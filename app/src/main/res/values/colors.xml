@@ -24,4 +24,34 @@
 
     <drawable name="red">#ffff0000</drawable>
     <color name="white">#FFFFFF</color>
+
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorBlack3">#FF333333</color>
+    <color name="colorWebViewIndicator">#FE0606</color>
+
+    <color name="colorPrimary">#E42112</color>
+    <color name="colorPrimaryDark">#E42112</color>
+    <color name="colorAccent">#E42112</color>
+    <color name="colorBackground">#E42112</color>
+    <color name="colorBlack9">#999999</color>
+    <color name="colorBlack6">#666666</color>
+    <color name="colorBlack0">#000000</color>
+    <color name="colorWhite60">#99FFFFFF</color>
+    <color name="colorBlack60">#99000000</color>
+    <color name="colorBackGround_F7F7F7">#F7F7F7</color>
+    <color name="colorGrayC">#CCCCCC</color>
+    <color name="colorGrayEF">#EFEFEF</color>
+    <color name="colorLine">#F6F6F6</color>
+    <color name="colorText">#69707F</color>
+    <color name="colorMine">#FBF7F7</color>
+    <color name="colorMine2">#FAF9F5</color>
+    <color name="colorSearch">#EDEDED</color>
+    <color name="colorSearch2">#EC7C0F</color>
+    <color name="colorSearch3">#12A6E4</color>
+    <color name="colorSearchText">#B3B3B3</color>
+    <color name="colorLight">#344B67</color>
+    <color name="colorBlack15">#D9000000</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorText_back">#FF6988F8</color>
+    <color name="colorText_gray">#FF888888</color>
 </resources>

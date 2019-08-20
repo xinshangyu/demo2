@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="17dp"
+    android:layout_marginRight="17dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/old_pwd"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/set_pwd"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/x_pwd"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/set_pwd2"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/x_pwd2"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="33.5dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/set_pwd3"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other_pwd"
+            android:textColor="@color/colorText_back"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:background="@color/colorBackGround_F7F7F7"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/shape_color_text_background"
+            android:paddingLeft="130dp"
+            android:paddingTop="15dp"
+            android:paddingRight="130dp"
+            android:paddingBottom="15dp"
+            android:text="@string/do_yes"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_14sp" />
+    </RelativeLayout>
+</LinearLayout>

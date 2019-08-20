@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.base.BaseActivity;
-import com.example.administrator.demo.ben.UserFollowBen;
+import com.example.administrator.demo.entity.UserFollowBen;
 
 import java.util.ArrayList;
 import java.util.List;

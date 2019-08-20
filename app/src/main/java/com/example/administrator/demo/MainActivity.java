@@ -15,8 +15,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
 
-
-        //测试ldh？？？ 可以了
     }
 
     /**
