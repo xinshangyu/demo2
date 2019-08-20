@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--APP主题色-->
+    <color name="themeColor">#6988F8</color>
+    <!--页面背景色/字体白色-->
+    <color name="themeTextColor">#ffffff</color>
+    <!-- PagerSlidingTabStrip所需的颜色 -->
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="light_gray_text">#949494</color>
+    <color name="common_list_divider">#dfdfdf</color>
+    <color name="heise">#FF333333</color>
+    <color name="huise">#CDCDCD</color>
+    <!--主题色-->
+    <color name="purple_button">#855090</color>
+    <color name="lightslategray">#778899</color>
+    <color name="color_main_bottom_text">#12B7F5</color>
+     <!--读立背景/线-->
+    <color name="lineColor" tools:ignore="MissingDefaultResource">#cccccc</color>
+
+     <color name="huise2">#FF999999</color>
+
+    <color name="class_1">#FF7895FE</color>
+    <color name="class_2">#FFC1CEFB</color>
+
+    <drawable name="red">#ffff0000</drawable>
+    <color name="white">#FFFFFF</color>
+</resources>
