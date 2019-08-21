@@ -15,12 +15,7 @@ import com.example.baselibrary.zh.CommonBaseLibrary;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/23
- *     desc  : Activity相关工具类
- * </pre>
+ * 跳转工具类
  */
 public class ActivityUtils {
 

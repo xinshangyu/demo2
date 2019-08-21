@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
@@ -16,6 +17,9 @@ import com.shehuan.nicedialog.ViewHolder;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 设置
+ */
 public class SettingActivity extends BaseActivity {
 
     @BindView(R.id.rl_number_and)
@@ -59,6 +63,7 @@ public class SettingActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_number_and:
+                ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
                 break;
