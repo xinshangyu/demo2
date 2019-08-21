@@ -82,6 +82,10 @@
     <string name="close">关闭</string>
     <string name="next">下一步</string>
 
+    <string name="mine_data">我的资料</string>
+    <string name="mine_data_search_hint">作者 书名 出版社 关键词</string>
+    <string name="mine_data_shopping">商城</string>
+
     <string name="my_quan">优惠券</string>
     <string name="my_car">道具</string>
     <string name="my_index">交易记录</string>
