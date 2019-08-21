@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rl_number_and"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
@@ -45,6 +46,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_read"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
@@ -85,6 +87,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_cjian"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
@@ -125,6 +128,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_clear"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
@@ -142,6 +146,7 @@
             android:textSize="@dimen/text_16sp" />
 
         <TextView
+            android:id="@+id/tv_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -150,7 +155,6 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:text="@string/my_name"
             android:textColor="@color/colorGrayC"
             android:textSize="@dimen/text_14sp" />
 
@@ -164,6 +168,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_check"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
@@ -181,6 +186,7 @@
             android:textSize="@dimen/text_16sp" />
 
         <TextView
+            android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -189,7 +195,6 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:text="@string/my_name"
             android:textColor="@color/colorGrayC"
             android:textSize="@dimen/text_14sp" />
 
@@ -203,6 +208,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_login_out"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="1dp"
