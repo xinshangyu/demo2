@@ -1,6 +1,7 @@
 package com.example.administrator.demo;
 
 
+import com.example.administrator.demo.activity.MyModularActivity;
 import com.example.administrator.demo.base.BaseActivity;
 
 import butterknife.OnClick;

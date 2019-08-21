@@ -25,9 +25,6 @@
         <activity android:name=".activity.MyModularActivity"
             android:launchMode="standard"
             />
-        <activity android:name=".activity.MainActivity"
-            android:launchMode="standard"
-            />
     </application>
 
 </manifest>

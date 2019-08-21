@@ -2,8 +2,8 @@ package com.example.administrator.demo.activity.user;
 
 import android.widget.TextView;
 
+import com.example.administrator.demo.MainActivity;
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.activity.MainActivity;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.UserLoginView;
 import com.example.administrator.demo.mvp.presenter.UserLoginPresenter;
