@@ -10,7 +10,7 @@ public class Address {
     //TODO:Token更换
     public static final String token = "user/login/token/refresh?";
     /**
-     * 我的--设置--账号与安全--变更手机号   GET
+     * 我的--设置--账号与安全--变更手机号  GET
      */
     public final static String update_number_zh = "user/me/setting/changePhone";
     /**
