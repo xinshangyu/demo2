@@ -4,4 +4,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/common_toolbar" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="@string/please_set"
+        android:padding="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_phone_and_email"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/login_phone_hint_and_email"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/show_wt"
+        android:textColor="@color/colorBlack0"
+        android:textSize="@dimen/text_16sp" />
+
+
 </LinearLayout>

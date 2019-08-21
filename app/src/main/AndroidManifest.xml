@@ -32,6 +32,13 @@
         <activity android:name=".activity.setting.AccountActivity" />
         <activity android:name=".activity.setting.UpdatePhoneActivity" />
         <activity android:name=".activity.setting.UpdatePhoneSuccessActivity" />
+        <activity android:name=".activity.setting.UpdatePwdActivity" />
+        <activity android:name=".activity.setting.BindEmailActivity" />
+        <activity android:name=".activity.setting.BindEmailSuccessActivity" />
+        <activity android:name=".activity.setting.UpdateEmailSuccessActivity" />
+        <activity android:name=".activity.setting.CallBackActivity" />
+        <activity android:name=".activity.setting.CallBackSuccessActivity" />
+        <activity android:name=".activity.money.MyMoneyActivity" />
 
 
     </application>

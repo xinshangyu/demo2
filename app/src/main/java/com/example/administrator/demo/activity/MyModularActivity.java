@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.money.MyMoneyActivity;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
 import com.example.administrator.demo.network.result.WeatherResult;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -153,7 +155,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickWallet)
     void onclickWallet() {
-
+        ActivityUtils.startActivity(this, MyMoneyActivity.class);
     }
 
     /**

@@ -56,6 +56,7 @@ public class AccountActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, UpdatePhoneActivity.class);
                 break;
             case R.id.rl_tv_update_pwd:
+                ActivityUtils.startActivity(mContext, UpdatePwdActivity.class);
                 break;
             case R.id.rl_tv_bing_email:
                 break;

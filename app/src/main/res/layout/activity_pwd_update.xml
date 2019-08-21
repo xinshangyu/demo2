@@ -6,6 +6,8 @@
     android:layout_marginRight="17dp"
     android:orientation="vertical">
 
+    <include layout="@layout/common_toolbar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -20,7 +22,7 @@
             android:textSize="@dimen/text_16sp" />
 
         <EditText
-            android:id="@+id/et_number"
+            android:id="@+id/et_old_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
@@ -31,6 +33,7 @@
             android:textSize="@dimen/text_16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -45,6 +48,7 @@
             android:textSize="@dimen/text_16sp" />
 
         <EditText
+            android:id="@+id/et_new_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
@@ -55,6 +59,7 @@
             android:textSize="@dimen/text_16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -69,6 +74,7 @@
             android:textSize="@dimen/text_16sp" />
 
         <EditText
+            android:id="@+id/et_new_number2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="33.5dp"
@@ -81,10 +87,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_pwd"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +101,7 @@
             android:textSize="@dimen/text_16sp" />
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

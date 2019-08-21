@@ -14,21 +14,35 @@
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:text="@string/app_name"
+            android:text="@string/xnb"
             android:textColor="@color/colorBlack0"
             android:textSize="25sp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="123565565"
-            android:textColor="@color/colorBlack0"
-            android:textSize="25sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/colorBlack0"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack0"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_save"
@@ -37,18 +51,19 @@
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="20dp"
             android:background="@drawable/shape_color_text_background"
-            android:paddingLeft="130dp"
+            android:paddingLeft="120dp"
             android:paddingTop="15dp"
-            android:paddingRight="130dp"
+            android:paddingRight="120dp"
             android:paddingBottom="15dp"
-            android:text="@string/save_my_info"
+            android:text="@string/set_money"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14sp" />
     </android.support.v7.widget.CardView>
 
     <RelativeLayout
+        android:id="@+id/rl_yhj"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
@@ -81,8 +96,9 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_daoju"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
         android:paddingLeft="14dp"
@@ -114,8 +130,9 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_jyjl"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
         android:paddingLeft="14dp"
