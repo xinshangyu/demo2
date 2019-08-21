@@ -1,11 +1,12 @@
 package com.example.administrator.demo.activity.setting;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.base.BaseActivity;
+import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.utils.AppUtils;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
@@ -35,19 +36,23 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout rlLoginOut;
 
     @Override
-    public int intiLayout() {
+    protected int getLayout() {
         return R.layout.activity_setting;
     }
 
     @Override
-    public void initView() {
-
-        initData();
+    protected void initView(Bundle savedInstanceState) {
+        setTitleBar(getResources().getString(R.string.setting), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    private void initData() {
+    @Override
+    protected void initDate() {
         tvSize.setText(" V" + AppUtils.getAppVersionName());
-
     }
 
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})
