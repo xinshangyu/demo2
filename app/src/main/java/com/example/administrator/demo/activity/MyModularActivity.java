@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.base.BaseActivity;
+import com.example.administrator.demo.mvp.iview.MyModularView;
+import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
+import com.example.administrator.demo.network.result.WeatherResult;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -14,7 +17,7 @@ import butterknife.OnClick;
 /***
  * 我的模块
  */
-public class MyModularActivity extends BaseActivity {
+public class MyModularActivity extends BaseActivity implements MyModularView {
     //昵称
     @BindView(R.id.iv_personal_user_name)
     TextView tvUserName;
@@ -31,6 +34,8 @@ public class MyModularActivity extends BaseActivity {
     @BindView(R.id.tv_personal_user_identify)
     TextView tvUserIdentify;
 
+    private MyModularPresenter myModularPresenter;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_my_modular;
@@ -38,7 +43,8 @@ public class MyModularActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        myModularPresenter = new MyModularPresenter(this);
+        myModularPresenter.requestRanking(this);
     }
 
     /***
@@ -47,7 +53,6 @@ public class MyModularActivity extends BaseActivity {
 
     @OnClick(R.id.iv_run)
     void onRun(){
-
         finish();
     }
 
@@ -212,4 +217,8 @@ public class MyModularActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onMyModular(WeatherResult weatherResult) {
+
+    }
 }

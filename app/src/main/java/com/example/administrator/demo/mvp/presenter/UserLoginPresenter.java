@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.administrator.demo.mvp.iview.UserLoginView;
 import com.example.administrator.demo.mvp.model.UserLoginModel;
+import com.example.administrator.demo.mvp.presenter.basePresenter.UUserLoginPresenter;
 
 
 public class UserLoginPresenter implements UUserLoginPresenter {

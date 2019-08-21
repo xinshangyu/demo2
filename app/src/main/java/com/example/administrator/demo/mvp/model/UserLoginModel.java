@@ -6,7 +6,7 @@ import android.util.ArrayMap;
 import com.example.administrator.demo.api.Address;
 import com.example.administrator.demo.api.ApiKeys;
 import com.example.administrator.demo.entity.UserLogInBen;
-import com.example.administrator.demo.mvp.presenter.UUserLoginPresenter;
+import com.example.administrator.demo.mvp.presenter.basePresenter.UUserLoginPresenter;
 import com.example.administrator.demo.network.RetrofitRequest;
 import com.example.administrator.demo.network.result.WeatherResult;
 import com.example.baselibrary.LogUtil;

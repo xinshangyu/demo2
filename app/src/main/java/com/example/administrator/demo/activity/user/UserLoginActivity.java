@@ -39,6 +39,7 @@ public class UserLoginActivity extends BaseActivity implements UserLoginView {
     @OnClick(R.id.bt_to_login)
     void onToLogin() {
         userLoginPresenter.requestRanking(getApplicationContext(), userAccount.getText().toString(), userPassword.getText().toString());
+
     }
 
 
