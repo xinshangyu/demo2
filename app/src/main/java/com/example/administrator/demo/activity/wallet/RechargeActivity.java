@@ -88,7 +88,8 @@ public class RechargeActivity extends BaseActivity {
                 pay_type = 2;
                 break;
             case R.id.tv_start_Rent:
-                showToast("soidvjoshjvlksdjlvb");
+                int selectPosition = adapter.getSelectPosition();
+                showToast("============" + selectPosition);
                 break;
         }
     }

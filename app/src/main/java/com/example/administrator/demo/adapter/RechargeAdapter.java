@@ -51,11 +51,11 @@ public class RechargeAdapter extends RecyclerView.Adapter<RechargeAdapter.Re> {
             }
         });
         if (selectPosition == re.getAdapterPosition()) {
-//            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect_solid);
-//            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect_solid);
+            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorWhite));
         } else {
-//            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect);
-//            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorBackground));
+            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect);
+            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorBackground));
         }
 
     }
