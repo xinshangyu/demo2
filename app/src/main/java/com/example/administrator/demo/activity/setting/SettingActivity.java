@@ -68,6 +68,7 @@ public class SettingActivity extends BaseActivity {
             case R.id.rl_read:
                 break;
             case R.id.rl_cjian:
+                ActivityUtils.startActivity(mContext, CallBackActivity.class);
                 break;
             case R.id.rl_clear:
                 NiceDialog.init()
