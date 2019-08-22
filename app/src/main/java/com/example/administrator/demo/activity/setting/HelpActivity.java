@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 
 import com.example.administrator.demo.R;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,8 +39,11 @@ public class HelpActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.common_toolBar_image_right)
-    public void onClick() {
-        showToast("==========TODO=======");
+    @OnClick(R.id.common_toolBar_text_right)
+    public void onClick(View view) {
+        if (view.getId() == R.id.common_toolBar_text_right) {
+            ActivityUtils.startActivity(mContext, CallBackActivity.class);
+        }
+
     }
 }
