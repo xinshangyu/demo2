@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.money.MyMoneyActivity;
+import com.example.administrator.demo.activity.record.IntegralShappingActivity;
+import com.example.administrator.demo.activity.setting.HelpActivity;
 import com.example.administrator.demo.activity.setting.SettingActivity;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.MyModularView;
@@ -190,7 +192,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickIntegral)
     void onclickIntegral() {
-
+        ActivityUtils.startActivity(this, IntegralShappingActivity.class);
     }
 
 
@@ -208,7 +210,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickHelp)
     void onclickHelp() {
-
+        ActivityUtils.startActivity(this, HelpActivity.class);
     }
 
 

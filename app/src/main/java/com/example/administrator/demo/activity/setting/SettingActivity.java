@@ -56,7 +56,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-//        tvSize.setText(" V" + AppUtils.getAppVersionName());
+//        tvSize.setText("V" + AppUtils.getAppVersionName());
     }
 
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})
@@ -71,13 +71,20 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.rl_clear:
                 NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_clear_show)     //设置dialog布局文件
+                        .setLayoutId(R.layout.dialog_show_toast)
+                        .setMargin(60)
+                        .show(getSupportFragmentManager());
+
+                break;
+            case R.id.rl_check:
+                NiceDialog.init()
+                        .setLayoutId(R.layout.dialog_login_out)     //设置dialog布局文件
                         .setConvertListener(new ViewConvertListener() {
                             @Override
                             protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
                                 holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {// TODO: 2019/8/21 清除缓存 
+                                    public void onClick(View v) {// TODO: 2019/8/21 打开登陆页面
                                         dialog.dismiss();
 //                                        SPUtils.cleanUserInfo(mContext);
 //                                        AppActivityUtils.StartLoginTaskActivity(mContext);
@@ -94,8 +101,7 @@ public class SettingActivity extends BaseActivity {
                         .setMargin(60)
                         .show(getSupportFragmentManager());
 
-                break;
-            case R.id.rl_check:
+
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()

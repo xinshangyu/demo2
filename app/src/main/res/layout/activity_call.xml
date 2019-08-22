@@ -5,6 +5,8 @@
     android:background="@color/colorBackGround_F7F7F7"
     android:orientation="vertical">
 
+    <include layout="@layout/common_toolbar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/kf"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_18sp" />
 
@@ -54,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/cnxw"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_18sp" />
 

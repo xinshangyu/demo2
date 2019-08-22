@@ -36,10 +36,12 @@
         <activity android:name=".activity.setting.UpdateEmailSuccessActivity" />
         <activity android:name=".activity.setting.CallBackActivity" />
         <activity android:name=".activity.setting.CallBackSuccessActivity" />
+        <activity android:name=".activity.setting.HelpActivity" />
         <activity android:name=".activity.money.MyMoneyActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.record.RecordActivity" />
         <activity android:name="com.example.administrator.demo.activity.wallet.RechargeActivity" />
+        <activity android:name="com.example.administrator.demo.activity.record.IntegralShappingActivity" />
 
 
     </application>
