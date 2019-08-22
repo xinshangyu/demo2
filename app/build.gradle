@@ -46,4 +46,5 @@ dependencies {
     implementation project(':baselibrary')
 
     implementation 'com.github.SheHuan:NiceDialog:1.2.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-12'
 }

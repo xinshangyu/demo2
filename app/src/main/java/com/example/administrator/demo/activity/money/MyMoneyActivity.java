@@ -6,7 +6,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.record.RecordActivity;
+import com.example.administrator.demo.activity.setting.UpdatePhoneActivity;
+import com.example.administrator.demo.activity.wallet.RechargeActivity;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,13 +59,15 @@ public class MyMoneyActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_save:
-                // TODO: 2019/8/21 充值 
+                // TODO: 2019/8/21 充值
+                ActivityUtils.startActivity(mContext, RechargeActivity.class);
                 break;
             case R.id.rl_yhj:
                 break;
             case R.id.rl_daoju:
                 break;
             case R.id.rl_jyjl:
+                ActivityUtils.startActivity(mContext, RecordActivity.class);
                 break;
         }
     }

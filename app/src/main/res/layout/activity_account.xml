@@ -7,12 +7,19 @@
     <include layout="@layout/common_toolbar" />
 
     <EditText
+        android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@null"
         android:gravity="top"
         android:hint="@string/please_set"
-        android:padding="15dp" />
+        android:inputType="text"
+        android:maxLength="200"
+        android:paddingLeft="13dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/colorBlack0"
+        android:textSize="@dimen/text_14sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"

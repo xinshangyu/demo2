@@ -103,8 +103,13 @@
     <string name="setting">设置</string>
 
     <string name="account">账号与安全</string>
+
     <string name="money">钱包</string>
     <string name="xnb">虚拟币</string>
+    <string name="record">交易记录</string>
+    <string name="recharge">充值</string>
+    <string name="pay_zfb">支付宝</string>
+    <string name="pay_we_chat">微信</string>
 
 
 </resources>
