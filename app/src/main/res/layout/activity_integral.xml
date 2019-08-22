@@ -10,7 +10,7 @@
         android:id="@+id/iv_my_head"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:src="@drawable/defaulthead" />
+        android:src="@drawable/icon" />
 
     <LinearLayout
         android:layout_width="match_parent"

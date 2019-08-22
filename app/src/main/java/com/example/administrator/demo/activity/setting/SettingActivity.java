@@ -66,16 +66,38 @@ public class SettingActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
+                NiceDialog.init()
+                        .setLayoutId(R.layout.dialog_show_toast)
+                        .setMargin(60)
+                        .show(getSupportFragmentManager());
                 break;
             case R.id.rl_cjian:
                 ActivityUtils.startActivity(mContext, CallBackActivity.class);
                 break;
             case R.id.rl_clear:
                 NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_show_toast)
+                        .setLayoutId(R.layout.dialog_clear_show)
+                        .setConvertListener(new ViewConvertListener() {
+                            @Override
+                            protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {// TODO: 2019/8/22  清除缓存
+                                        dialog.dismiss();
+//                                        SPUtils.cleanUserInfo(mContext);
+//                                        AppActivityUtils.StartLoginTaskActivity(mContext);
+                                    }
+                                });
+                                holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
+                        })
                         .setMargin(60)
                         .show(getSupportFragmentManager());
-
                 break;
             case R.id.rl_check:
                 NiceDialog.init()
@@ -101,8 +123,6 @@ public class SettingActivity extends BaseActivity {
                         })
                         .setMargin(60)
                         .show(getSupportFragmentManager());
-
-
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()
