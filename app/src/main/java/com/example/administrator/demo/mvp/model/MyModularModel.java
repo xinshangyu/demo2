@@ -30,7 +30,7 @@ public class MyModularModel {
     public void getUserInfo(Context context) {
 
         paramMap = new ArrayMap<>();
-        paramMap.put("userId", SharedPreferencesHelper.getPrefString("token", ""));
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.me_data, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
@@ -40,16 +40,7 @@ public class MyModularModel {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 LogUtil.e("我的" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 2021) {
-//                    UserLogInBen data = new Gson().fromJson(new Gson().toJson(weatherResult), UserLogInBen.class);
-//                    userCodeBea = data.getData().getUserCode();
-//                    SharedPreferencesHelper.setPrefString("userCode", userCodeBea.getUserCode());
-//                    SharedPreferencesHelper.setPrefString("userPwd", userCodeBea.getUserPwd());
-//                    SharedPreferencesHelper.setPrefString("userId", userCodeBea.getId());
-//                    SharedPreferencesHelper.setPrefString("advertsiongId", String.valueOf(data.getData().getAdInfo().get(0).getId()));//广告ID
-//                    SharedPreferencesHelper.setPrefString("token", data.getData().getToken());
-//                    //处理完给前端
-//                    uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), Integer.parseInt(userCodeBea.getIsFirstLogin()));
+                if (weatherResult.getCode() == 0) {
                     myModularPresenter.toMyModular(weatherResult);
                     return;
                 }

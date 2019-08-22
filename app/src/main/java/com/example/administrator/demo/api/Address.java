@@ -12,7 +12,7 @@ public class Address {
     /**
      * 我的
      */
-    public final static String me_data = "user/me/index";
+    public final static String me_data = "user/me/index?";
     /**
      * 我的--设置--账号与安全--变更手机号  GET
      */

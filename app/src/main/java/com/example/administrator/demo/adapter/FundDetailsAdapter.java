@@ -20,5 +20,6 @@ public class FundDetailsAdapter extends CommonAdapter<String> {
     @Override
     protected void convert(ViewHolder holder, String messageListBean, int position) {
         holder.setText(R.id.tv_date, messageListBean.toString());
+
     }
 }
