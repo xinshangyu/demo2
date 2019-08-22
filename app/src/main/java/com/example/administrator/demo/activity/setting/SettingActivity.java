@@ -66,10 +66,7 @@ public class SettingActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
-                NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_show_toast)
-                        .setMargin(60)
-                        .show(getSupportFragmentManager());
+               
                 break;
             case R.id.rl_cjian:
                 ActivityUtils.startActivity(mContext, CallBackActivity.class);
@@ -101,26 +98,7 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.rl_check:
                 NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_login_out)     //设置dialog布局文件
-                        .setConvertListener(new ViewConvertListener() {
-                            @Override
-                            protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
-                                holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {// TODO: 2019/8/21 打开登陆页面
-                                        dialog.dismiss();
-//                                        SPUtils.cleanUserInfo(mContext);
-//                                        AppActivityUtils.StartLoginTaskActivity(mContext);
-                                    }
-                                });
-                                holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                            }
-                        })
+                        .setLayoutId(R.layout.dialog_show_toast)
                         .setMargin(60)
                         .show(getSupportFragmentManager());
                 break;
