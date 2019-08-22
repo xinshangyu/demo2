@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorBlack3">#FF333333</color>
+    <color name="colorWebViewIndicator">#FE0606</color>
+</resources>
