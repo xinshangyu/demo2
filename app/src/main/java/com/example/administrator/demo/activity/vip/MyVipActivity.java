@@ -5,6 +5,9 @@ import android.os.Bundle;
 import com.example.administrator.demo.R;
 import com.example.baselibrary.zh.base.BaseActivity;
 
+/**
+ * 我的vip
+ */
 public class MyVipActivity extends BaseActivity {
 
 
