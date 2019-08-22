@@ -56,7 +56,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        tvSize.setText(" V" + AppUtils.getAppVersionName());
+//        tvSize.setText(" V" + AppUtils.getAppVersionName());
     }
 
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})

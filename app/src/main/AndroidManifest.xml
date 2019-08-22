@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.demo">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -25,6 +22,7 @@
         <activity
             android:name=".activity.MyModularActivity"
             android:launchMode="standard" />
+
         <activity
             android:name="com.example.administrator.demo.activity.UserFollowActivity"
             android:launchMode="standard" />
@@ -39,8 +37,12 @@
         <activity android:name=".activity.setting.CallBackActivity" />
         <activity android:name=".activity.setting.CallBackSuccessActivity" />
         <activity android:name=".activity.money.MyMoneyActivity" />
+        <activity android:name=".MainActivity" />
 
 
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

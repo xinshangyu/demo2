@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.money.MyMoneyActivity;
+import com.example.administrator.demo.activity.setting.SettingActivity;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
@@ -54,7 +55,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      */
 
     @OnClick(R.id.iv_run)
-    void onRun(){
+    void onRun() {
         finish();
     }
 
@@ -216,7 +217,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickSet)
     void onclickSet() {
-
+        ActivityUtils.startActivity(this, SettingActivity.class);
     }
 
     @Override
