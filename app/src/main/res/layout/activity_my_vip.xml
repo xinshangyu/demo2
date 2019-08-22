@@ -21,14 +21,14 @@
                 android:layout_height="19dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:background="@drawable/logo" />
+                android:src="@drawable/black_back" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:text="@string/next"
+                android:text="@string/my_vip"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_19sp" />
 

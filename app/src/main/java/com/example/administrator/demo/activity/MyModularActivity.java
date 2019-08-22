@@ -10,6 +10,7 @@ import com.example.administrator.demo.activity.money.MyMoneyActivity;
 import com.example.administrator.demo.activity.record.IntegralShappingActivity;
 import com.example.administrator.demo.activity.setting.HelpActivity;
 import com.example.administrator.demo.activity.setting.SettingActivity;
+import com.example.administrator.demo.activity.vip.MyVipActivity;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
@@ -166,7 +167,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickVIP)
     void onclickVIP() {
-
+        ActivityUtils.startActivity(this, MyVipActivity.class);
     }
 
     /**

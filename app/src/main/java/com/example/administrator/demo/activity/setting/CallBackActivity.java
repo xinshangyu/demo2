@@ -64,7 +64,7 @@ public class CallBackActivity extends BaseActivity {
         recyclerView.setLayoutManager(manager);
         adapter = new GridImageAdapter(CallBackActivity.this, onAddPicClickListener);
         adapter.setList(selectList);
-        adapter.setSelectMax(6);
+        adapter.setSelectMax(9);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class CallBackActivity extends BaseActivity {
                     .openGallery(PictureMimeType.ofImage())
                     .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                     .previewImage(true)// 是否可预览图片 true or fals
-                    .maxSelectNum(6)
+                    .maxSelectNum(9)
                     .isGif(false)// 是否显示gif图片 true or false
                     .isCamera(true)// 是否显示拍照按钮 true or false
                     .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
