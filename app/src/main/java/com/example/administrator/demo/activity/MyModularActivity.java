@@ -79,7 +79,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_user_follow)
     void onFollow() {
-
         Bundle bundle = new Bundle();
         bundle.putString("tabNum", "0");
         startActivity(UserFollowActivity.class, bundle);

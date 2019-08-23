@@ -2,6 +2,7 @@ package com.example.administrator.demo.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +20,13 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.shehuan.nicedialog.BaseNiceDialog;
+import com.shehuan.nicedialog.NiceDialog;
+import com.shehuan.nicedialog.ViewConvertListener;
+import com.shehuan.nicedialog.ViewHolder;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,32 +103,109 @@ public class CallBackActivity extends BaseActivity {
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
-            PictureSelector.create(CallBackActivity.this)
-                    .openGallery(PictureMimeType.ofImage())
-                    .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-                    .previewImage(true)// 是否可预览图片 true or fals
-                    .maxSelectNum(9)
-                    .isGif(false)// 是否显示gif图片 true or false
-                    .isCamera(true)// 是否显示拍照按钮 true or false
-                    .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+            NiceDialog.init()
+                    .setLayoutId(R.layout.dialog_photo_select)     //设置dialog布局文件
+                    .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                        @Override
+                        public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                            viewHolder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    requestPermission(Permission.CAMERA,Permission.READ_PHONE_STATE,Permission.WRITE_EXTERNAL_STORAGE);
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    doSelectPhoto();
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.rl_image, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    })
+                    .show(getSupportFragmentManager());
+        }
+    };
+    /**
+     * 相机拍照
+     */
+    private void doTakePhoto() {
+        PictureSelector.create(CallBackActivity.this)
+                .openCamera(PictureMimeType.ofImage())
+                .enableCrop(true)// 是否裁剪 true or false
+                .compress(true)// 是否压缩 true or false
+                .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                .isGif(false)// 是否显示gif图片 true or false
+                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+                .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
+                .minimumCompressSize(30)// 小于100kb的图片不压缩
+                .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+                .forResult(PictureConfig.CHOOSE_REQUEST);
+    }
+    /**
+     * 从本地相册中选择
+     */
+    private void doSelectPhoto() {
+        PictureSelector.create(CallBackActivity.this)
+                .openGallery(PictureMimeType.ofImage())
+                .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .previewImage(true)// 是否可预览图片 true or fals
+                .maxSelectNum(9)
+                .isGif(false)// 是否显示gif图片 true or false
+                .isCamera(true)// 是否显示拍照按钮 true or false
+                .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
 //                    .enableCrop(true)// 是否裁剪 true or false
-                    .compress(true)// 是否压缩 true or false
-                    .glideOverride(160, 160)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-                    .minimumCompressSize(100)// 小于100kb的图片不压缩
-                    .selectionMedia(selectList)
+                .compress(true)// 是否压缩 true or false
+                .glideOverride(160, 160)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .selectionMedia(selectList)
 //                    .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
 //                    .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
 ////                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
 //                    .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
-                    .forResult(PictureConfig.CHOOSE_REQUEST);
+                .forResult(PictureConfig.CHOOSE_REQUEST);
 //                    .circleDimmedLayer(true)// 是否圆形裁剪 true or false
 //                    .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
 //                    .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
 
-
-        }
-
-    };
+    }
+    /**
+     * 权限申请
+     * @param permissions
+     */
+    private void requestPermission( String... permissions) {
+        AndPermission.with(this).runtime().permission(permissions)
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        doTakePhoto();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(mContext, permissions)) {
+                        }
+                    }
+                }).start();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

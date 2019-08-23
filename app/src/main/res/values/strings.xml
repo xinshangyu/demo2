@@ -136,5 +136,8 @@
     <string name="tjfk">提交反馈</string>
     <string name="my_vip">我的VIP</string>
 
+    <string name="follow">关注</string>
+    <string name="fs">粉丝</string>
+
 
 </resources>
