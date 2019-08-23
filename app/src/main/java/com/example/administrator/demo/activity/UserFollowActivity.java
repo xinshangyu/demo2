@@ -25,13 +25,14 @@ import butterknife.BindView;
  * 关注/粉丝
  **/
 public class UserFollowActivity extends BaseActivity implements OnTabSelectListener, ViewPager.OnPageChangeListener {
+
     @BindView(R.id.home_tabLayout)
     CommonTabLayout mTabLayout;
     @BindView(R.id.home_NoScrollViewPager)
     NoScrollViewPager mViewPager;
-    @BindString(R.string.home)
+    @BindString(R.string.follow)
     String home;
-    @BindString(R.string.mine)
+    @BindString(R.string.fs)
     String mine;
     private String[] mTitles;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
@@ -59,7 +60,7 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mViewPager.setScroll(false);
+        mViewPager.setScroll(true);
         mTitles = new String[]{home, mine};
         mFragments.add(UnFollowFragment.newInstance("", ""));
         mFragments.add(FollowFragment.newInstance("", ""));
@@ -71,7 +72,7 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
         mTabLayout.setOnTabSelectListener(this);
         mViewPager.setAdapter(new PagerAdapter(this.getSupportFragmentManager(), mTitles, mFragments));
         mViewPager.addOnPageChangeListener(this);
-        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setOffscreenPageLimit(3);
     }
 
     @Override

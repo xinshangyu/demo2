@@ -22,7 +22,7 @@ public class FollowFragment extends BaseFragment {
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.activity_email_bind;
+        return R.layout.activity_fund_details;
     }
 
     @Override
