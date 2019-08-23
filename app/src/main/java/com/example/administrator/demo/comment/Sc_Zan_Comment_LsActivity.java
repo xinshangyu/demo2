@@ -3,23 +3,26 @@ package com.example.administrator.demo.comment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.PagerAdapter;
+import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.TabBean;
 import com.example.administrator.demo.fragment.CommentFragment;
-import com.example.administrator.demo.fragment.FollowFragment;
 import com.example.administrator.demo.fragment.LiFragment;
 import com.example.administrator.demo.fragment.ScFragment;
-import com.example.administrator.demo.fragment.UnFollowFragment;
 import com.example.administrator.demo.fragment.ZanFragment;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     @BindView(R.id.iv_clear)
     ImageView ivClear;
     @BindView(R.id.home_search)
-    ImageView homeSearch;
+    public TextView homeSearch;
     @BindView(R.id.home_tabLayout)
     CommonTabLayout mTabLayout;
     @BindView(R.id.home_NoScrollViewPager)
@@ -65,11 +68,11 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     @Override
     public void onPageSelected(int i) {
         mTabLayout.setCurrentTab(i);
+        tabNum = i;
     }
 
     @Override
     public void onPageScrollStateChanged(int i) {
-
     }
 
     @Override
@@ -86,7 +89,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
 
 
         mTitles = new String[]{scang, pl, zan, ls};
-        mFragments.add(ScFragment.newInstance("", ""));
+        mFragments.add(ScFragment.newInstance(""));
         mFragments.add(CommentFragment.newInstance("", ""));
         mFragments.add(ZanFragment.newInstance("", ""));
         mFragments.add(LiFragment.newInstance("", ""));
@@ -118,6 +121,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     @Override
     public void onTabSelect(int position) {
         mViewPager.setCurrentItem(position);
+        tabNum = position;
     }
 
     @Override
@@ -136,6 +140,17 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
             case R.id.iv_clear:
                 break;
             case R.id.home_search:
+                if (tabNum == 0) {
+                    EventBus.getDefault().post(new QuickReturnTopEvent("SC"));
+                } else if (tabNum == 1) {
+
+                } else if (tabNum == 2) {
+
+                } else if (tabNum == 3) {
+
+                }
+
+
                 break;
         }
     }

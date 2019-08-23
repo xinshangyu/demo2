@@ -11,19 +11,26 @@ import java.util.ArrayList;
 
 
 /**
- *评论
+ * 评论
  **/
 public class CommentAdapter extends CommonAdapter<String> {
+
+
+    private boolean showCheck;
 
     public CommentAdapter(Context context, ArrayList<String> beanList) {
         super(context, R.layout.item_comment, beanList);
     }
 
-
+    public void setShowCheck(boolean showCheck) {
+        this.showCheck = showCheck;
+        notifyDataSetChanged();
+    }
     @Override
     protected void convert(ViewHolder holder, String userFollowBen, int position) {
 
-        holder.setText(R.id.tv_name, userFollowBen.toString());
+        holder.setVisible(R.id.CheckBox_my_collection, showCheck)
+                .setText(R.id.tv_name, userFollowBen.toString());
 
     }
 }

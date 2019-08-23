@@ -41,6 +41,7 @@
                 android:singleLine="true"
                 android:textSize="@dimen/text_12sp" />
 
+
             <ImageView
                 android:id="@+id/iv_clear"
                 android:layout_width="wrap_content"
@@ -48,12 +49,19 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/black_back"
-                android:visibility="gone" />
+                android:src="@drawable/chazi" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/black_back" />
         </RelativeLayout>
 
 
-        <ImageView
+        <TextView
             android:id="@+id/home_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +69,7 @@
             android:layout_centerVertical="true"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:src="@drawable/black_back" />
+            android:text="@string/choose" />
 
     </LinearLayout>
 

@@ -66,6 +66,7 @@
     <string name="do_delete_show">删除提示</string>
     <string name="do_delete_show_text">确认删除已选中的历史？</string>
     <string name="do_delete">删除</string>
+    <string name="do_delete1">一键清空</string>
 
     <string name="do_system_show">系统提示</string>
     <string name="do_system_show_text">是否确定删除此条商圈信息</string>

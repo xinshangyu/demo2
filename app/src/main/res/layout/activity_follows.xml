@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/SmartRefreshLayout"
@@ -18,4 +17,47 @@
 
         </android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_color_text_background"
+            android:gravity="center"
+            android:paddingLeft="130dp"
+            android:paddingTop="15dp"
+            android:paddingRight="130dp"
+            android:paddingBottom="15dp"
+            android:text="@string/do_delete1"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_14sp" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_color_text_kong"
+            android:gravity="center"
+            android:paddingLeft="130dp"
+            android:paddingTop="15dp"
+            android:paddingRight="130dp"
+            android:paddingBottom="15dp"
+            android:text="@string/do_delete"
+            android:textColor="@color/colorWebViewIndicator"
+            android:textSize="@dimen/text_14sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
