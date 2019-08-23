@@ -30,7 +30,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="right|bottom"
-                android:src="@drawable/deful" />
+                android:src="@mipmap/qiye_vip1" />
 
 
         </FrameLayout>
@@ -89,21 +89,11 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_start"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right|center_vertical"
-            android:background="@drawable/shape_color_text_background"
-            android:gravity="center"
-            android:paddingLeft="12dp"
-            android:paddingTop="3dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="3dp"
-            android:text="@string/follow"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_13sp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/weiguanzhu" />
     </LinearLayout>
 
 </LinearLayout>
