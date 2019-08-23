@@ -4,13 +4,13 @@ package com.example.administrator.demo.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.PagerAdapter;
 import com.example.administrator.demo.entity.TabBean;
 import com.example.administrator.demo.fragment.FollowFragment;
 import com.example.administrator.demo.fragment.UnFollowFragment;
-import com.example.administrator.demo.weight.NoScrollViewPager;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 关注/粉丝
@@ -29,14 +30,18 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
     @BindView(R.id.home_tabLayout)
     CommonTabLayout mTabLayout;
     @BindView(R.id.home_NoScrollViewPager)
-    NoScrollViewPager mViewPager;
+    ViewPager mViewPager;
     @BindString(R.string.follow)
     String home;
     @BindString(R.string.fs)
     String mine;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
     private String[] mTitles;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
+
+    private int tabNum;
 
     @Override
     public void onPageScrolled(int i, float v, int i1) {
@@ -50,7 +55,6 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
 
     @Override
     public void onPageScrollStateChanged(int i) {
-
     }
 
     @Override
@@ -60,7 +64,11 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mViewPager.setScroll(true);
+        //接受状态值
+        String string = getIntent().getStringExtra("tabNum");
+        tabNum = Integer.parseInt(string);
+
+
         mTitles = new String[]{home, mine};
         mFragments.add(UnFollowFragment.newInstance("", ""));
         mFragments.add(FollowFragment.newInstance("", ""));
@@ -68,11 +76,17 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
             mTabEntities.add(new TabBean(mTitles[i]));
         }
         mTabLayout.setTabData(mTabEntities);
-        mTabLayout.setCurrentTab(0);
+        if (tabNum == 0) {
+            mTabLayout.setCurrentTab(0);
+        } else if (tabNum == 1) {
+            mTabLayout.setCurrentTab(1);
+        }
         mTabLayout.setOnTabSelectListener(this);
         mViewPager.setAdapter(new PagerAdapter(this.getSupportFragmentManager(), mTitles, mFragments));
+        mViewPager.setCurrentItem(tabNum);
         mViewPager.addOnPageChangeListener(this);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(2);
+
     }
 
     @Override
@@ -88,6 +102,12 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
     @Override
     public void onTabReselect(int position) {
 
+    }
+
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
     }
 //    String[] layoutTables = {"关注", "粉丝"};
 //    @BindView(R.id.tl_persona_details)

@@ -39,12 +39,13 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.activity_fund_details;
+        return R.layout.activity_follows;
     }
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-
+//        if (isVisible) setStatusBarColorInFragment();
+        if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
