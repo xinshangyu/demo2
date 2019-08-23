@@ -8,15 +8,12 @@
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/home_tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        app:tl_iconHeight="30dp"
-        app:tl_iconWidth="30dp"
         app:tl_indicator_height="2dp"
         app:tl_textSelectColor="@color/themeColor"
         app:tl_textUnselectColor="@color/heise"
-        app:tl_textsize="@dimen/text_9sp" />
+        app:tl_textsize="@dimen/text_15sp" />
 
 
     <com.example.administrator.demo.weight.NoScrollViewPager
