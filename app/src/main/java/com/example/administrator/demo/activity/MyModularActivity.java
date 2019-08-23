@@ -12,6 +12,7 @@ import com.example.administrator.demo.activity.setting.HelpActivity;
 import com.example.administrator.demo.activity.setting.SettingActivity;
 import com.example.administrator.demo.activity.vip.MyVipActivity;
 import com.example.administrator.demo.base.BaseActivity;
+import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
 import com.example.administrator.demo.network.result.WeatherResult;
@@ -39,6 +40,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     //获赞个数
     @BindView(R.id.tv_personal_user_identify)
     TextView tvUserIdentify;
+
 
     private MyModularPresenter myModularPresenter;
 
@@ -77,6 +79,17 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_user_follow)
     void onFollow() {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "0");
+        startActivity(UserFollowActivity.class, bundle);
+    }
+
+    /**
+     * 用户名
+     **/
+    @OnClick(R.id.iv_personal_user_name)
+    void onName() {
 
         Bundle bundle = new Bundle();
         bundle.putString("tabNum", "0");
@@ -225,6 +238,12 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
 
     @Override
     public void onMyModular(WeatherResult weatherResult) {
-
+        MyModularBen myModularBen;
+        myModularBen = (MyModularBen) weatherResult;
+        tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
+        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()));
+        tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber()));
+        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()));
+        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()));
     }
 }

@@ -259,5 +259,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * 将null替换为""
+     *
+     * @param str
+     * @return
+     */
+    public static String replaceNULL(String str) {
+        return null == str || "null".equals(str) || "".equals(str.trim()) ? "" : str.trim();
+    }
+
 
 }
