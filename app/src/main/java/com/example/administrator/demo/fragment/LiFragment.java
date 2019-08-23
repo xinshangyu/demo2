@@ -14,10 +14,11 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+
 /**
- * 粉丝
+ * 历史
  */
-public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
+public class LiFragment extends BaseFragment implements RefreshCallBack {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -30,14 +31,16 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
     UserFollowAdapter mAdapter;
     private ArrayList<UserFollowBen> mBeanList = new ArrayList<>();
 
-    public static UnFollowFragment newInstance(String param1, String param2) {
-        UnFollowFragment fragment = new UnFollowFragment();
+
+    public static LiFragment newInstance(String param1, String param2) {
+        LiFragment fragment = new LiFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     protected int getContentViewLayoutID() {
@@ -52,10 +55,9 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             UserFollowBen userFollowBen = new UserFollowBen();
-            userFollowBen.setName("昵称1");
+            userFollowBen.setName("看啥");
             mBeanList.add(userFollowBen);
         }
 

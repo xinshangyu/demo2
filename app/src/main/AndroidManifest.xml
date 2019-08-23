@@ -29,6 +29,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.user.UserLoginActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,18 +62,15 @@
         <activity android:name=".activity.setting.CallBackSuccessActivity" />
         <activity android:name=".activity.setting.HelpActivity" />
         <activity android:name=".activity.money.MyMoneyActivity" />
-        <activity android:name=".MainActivity" />
+
         <activity android:name=".activity.record.RecordActivity" />
         <activity android:name=".activity.wallet.RechargeActivity" />
         <activity android:name=".activity.record.IntegralShappingActivity" />
         <activity android:name=".activity.record.IntegralActivity" />
         <activity android:name=".activity.vip.MyVipActivity" />
+        <activity android:name=".comment.Sc_Zan_Comment_LsActivity" />
 
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

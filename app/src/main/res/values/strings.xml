@@ -139,5 +139,14 @@
     <string name="follow">关注</string>
     <string name="fs">粉丝</string>
 
+    <string name="scang">收藏</string>
+    <string name="pl">评论</string>
+    <string name="zan">点赞</string>
+    <string name="ls">历史</string>
+
+    <string name="sq">商圈</string>
+    <string name="wx">微信</string>
+    <string name="qq">QQ</string>
+
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.administrator.demo.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,11 +13,18 @@ import com.example.administrator.demo.activity.setting.HelpActivity;
 import com.example.administrator.demo.activity.setting.SettingActivity;
 import com.example.administrator.demo.activity.vip.MyVipActivity;
 import com.example.administrator.demo.base.BaseActivity;
+import com.example.administrator.demo.comment.Sc_Zan_Comment_LsActivity;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
 import com.example.administrator.demo.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.example.baselibrary.zh.utils.ToastUtils;
+import com.shehuan.nicedialog.BaseNiceDialog;
+import com.shehuan.nicedialog.NiceDialog;
+import com.shehuan.nicedialog.ViewConvertListener;
+import com.shehuan.nicedialog.ViewHolder;
+import com.yanzhenjie.permission.Permission;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -69,8 +77,50 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.iv_personal_user_open)
     void onOpen() {
-
-
+        {
+            NiceDialog.init()
+                    .setLayoutId(R.layout.dialog_share)     //设置dialog布局文件
+                    .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                        @Override
+                        public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                            viewHolder.setOnClickListener(R.id.ll_sq, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    ToastUtils.showToast(getApplicationContext(), "sq");
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.ll_wx, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    ToastUtils.showToast(getApplicationContext(), "wx");
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.ll_qq, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    ToastUtils.showToast(getApplicationContext(), "qq");
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            viewHolder.setOnClickListener(R.id.rl_image, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    })
+                    .setGravity(Gravity.BOTTOM)
+                    .show(getSupportFragmentManager());
+        }
     }
 
 
@@ -127,7 +177,9 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_operation1)
     void onclickCollection() {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "0");
+        startActivity(Sc_Zan_Comment_LsActivity.class, bundle);
     }
 
     /**
@@ -135,7 +187,9 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_operation2)
     void onclickAfter(View view) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "2");
+        startActivity(Sc_Zan_Comment_LsActivity.class, bundle);
     }
 
 
@@ -144,7 +198,9 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_operation3)
     void onclickComment() {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "1");
+        startActivity(Sc_Zan_Comment_LsActivity.class, bundle);
     }
 
 

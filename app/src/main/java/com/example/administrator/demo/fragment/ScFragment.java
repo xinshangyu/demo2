@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.zh.base.BaseFragment;
@@ -14,30 +15,34 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+
 /**
- * 粉丝
+ * 收藏
  */
-public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
+public class ScFragment extends BaseFragment implements RefreshCallBack {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    UserFollowAdapter mAdapter;
-    private ArrayList<UserFollowBen> mBeanList = new ArrayList<>();
+    CommentAdapter mAdapter;
+    private ArrayList<String> mBeanList = new ArrayList<>();
 
-    public static UnFollowFragment newInstance(String param1, String param2) {
-        UnFollowFragment fragment = new UnFollowFragment();
+
+    public static ScFragment newInstance(String param1, String param2) {
+        ScFragment fragment = new ScFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     protected int getContentViewLayoutID() {
@@ -52,16 +57,13 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-
-        for (int i = 0; i < 10; i++) {
-            UserFollowBen userFollowBen = new UserFollowBen();
-            userFollowBen.setName("昵称1");
-            mBeanList.add(userFollowBen);
+        for (int i = 0; i < 5; i++) {
+            mBeanList.add("吃多少" + i);
         }
 
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new UserFollowAdapter(mContext, mBeanList);
+        mAdapter = new CommentAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
     }
 

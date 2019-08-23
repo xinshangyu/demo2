@@ -14,7 +14,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-
+/**
+ * 关注
+ */
 public class FollowFragment extends BaseFragment implements RefreshCallBack {
 
     private static final String ARG_PARAM1 = "param1";
