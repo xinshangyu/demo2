@@ -69,6 +69,9 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     public void onPageSelected(int i) {
         mTabLayout.setCurrentTab(i);
         tabNum = i;
+        Log.d("zhh", "onPageSelected: " + i);
+        EventBus.getDefault().post(new QuickReturnTopEvent("SC2"));
+
     }
 
     @Override
@@ -122,6 +125,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     public void onTabSelect(int position) {
         mViewPager.setCurrentItem(position);
         tabNum = position;
+        Log.d("zhh", "onTabSelect: " + position);
     }
 
     @Override
@@ -149,8 +153,6 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
                 } else if (tabNum == 3) {
 
                 }
-
-
                 break;
         }
     }

@@ -92,6 +92,9 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
         if ("SC".equals(event.current)) {
             llBottom.setVisibility(View.VISIBLE);
             mAdapter.setShowCheck(true);
+        } else if ("SC2".equals(event.current)) {
+            llBottom.setVisibility(View.GONE);
+            mAdapter.setShowCheck(false);
         }
     }
 
@@ -106,20 +109,14 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     @OnClick({R.id.tv_save, R.id.tv_delete, R.id.ll_bottom})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_save:
+                showToast("清空");
                 break;
             case R.id.tv_delete:
-                break;
-            case R.id.ll_bottom:
+                showToast("删除");
                 break;
         }
     }

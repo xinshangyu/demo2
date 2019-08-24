@@ -64,8 +64,6 @@ public class UpdatePhoneActivity extends BaseActivity {
                     // TODO: 2019/8/21 调用接口
 
                 }
-
-
                 break;
             case R.id.tv_save:
                 if (TextUtils.isEmpty(phone)) {
