@@ -16,7 +16,7 @@ public class Address {
     /**
      * 我的--设置--账号与安全--变更手机号  GET
      */
-    public final static String update_number_zh = "user/me/setting/changePhone";
+    public final static String update_number_zh = "user/me/setting/changePhone?";
     /**
      * 我的--设置--账号与安全--绑定 邮箱   GET
      */

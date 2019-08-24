@@ -294,11 +294,11 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @Override
     public void onMyModular(WeatherResult weatherResult) {
         MyModularBen myModularBen;
-        myModularBen = (MyModularBen) weatherResult;
-        tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
-        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()));
-        tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber()));
-        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()));
-        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()));
+//        myModularBen = (MyModularBen) weatherResult;
+//        tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
+//        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()));
+//        tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber()));
+//        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()));
+//        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()));
     }
 }
