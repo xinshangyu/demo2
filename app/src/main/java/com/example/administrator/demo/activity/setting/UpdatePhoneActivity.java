@@ -24,6 +24,7 @@ import com.example.baselibrary.zh.net.CommonResponseBean;
 import com.example.baselibrary.zh.net.JsonUtils;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -99,7 +100,7 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     public void updatePhone(Context context, String userPhone, String userCodeBea) {
 
-        paramMap = new ArrayMap<>();
+        paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         paramMap.put("userPhone", userPhone);
         paramMap.put("smsCount", userCodeBea);
