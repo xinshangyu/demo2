@@ -70,8 +70,8 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
 
 
         mTitles = new String[]{home, mine};
-        mFragments.add(UnFollowFragment.newInstance("", ""));
         mFragments.add(FollowFragment.newInstance("", ""));
+        mFragments.add(UnFollowFragment.newInstance("", ""));
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabBean(mTitles[i]));
         }

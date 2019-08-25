@@ -20,7 +20,7 @@ import butterknife.BindView;
 /**
  * 粉丝
  */
-public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
+public class UnFollowFragment extends BaseFragment implements RefreshCallBack, FansView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -32,6 +32,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     UserFollowAdapter mAdapter;
     private ArrayList<UserFollowBen> mBeanList = new ArrayList<>();
+    private FansPresenter fansPresenter;
 
     public static UnFollowFragment newInstance(String param1, String param2) {
         UnFollowFragment fragment = new UnFollowFragment();
@@ -55,7 +56,8 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-
+        fansPresenter = new FansPresenter(this);
+        fansPresenter.requestFans(getActivity());
         for (int i = 0; i < 10; i++) {
             UserFollowBen userFollowBen = new UserFollowBen();
             userFollowBen.setName("昵称1");
@@ -73,4 +75,8 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack {
 
     }
 
+    @Override
+    public void onFans(WeatherResult weatherResult) {
+
+    }
 }
