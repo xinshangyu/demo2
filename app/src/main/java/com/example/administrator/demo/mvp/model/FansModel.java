@@ -51,7 +51,6 @@ public class FansModel {
 
             @Override
             public void onAfterFailure() {
-                ToastUtils.showShort(context, "请求失败");
             }
         });
     }

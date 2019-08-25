@@ -51,7 +51,7 @@ public class UserLoginModel {
                     SharedPreferencesHelper.setPrefString("userCode", userCodeBea.getUserCode());
                     SharedPreferencesHelper.setPrefString("userPwd", userCodeBea.getUserPwd());
                     SharedPreferencesHelper.setPrefString("userId", userCodeBea.getId());
-                    SharedPreferencesHelper.setPrefString("advertsiongId", String.valueOf(data.getData().getAdInfo().get(0).getId()));//广告ID
+//                    SharedPreferencesHelper.setPrefString("advertsiongId", String.valueOf(data.getData().getAdInfo().get(0).getId()));//广告ID
                     SharedPreferencesHelper.setPrefString("token", data.getData().getToken());
                     //处理完给前端
                     uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), Integer.parseInt(userCodeBea.getIsFirstLogin()));
