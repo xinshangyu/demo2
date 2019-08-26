@@ -2,26 +2,19 @@ package com.example.administrator.demo.activity.setting;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.api.Address;
-import com.example.administrator.demo.api.ApiKeys;
-import com.example.administrator.demo.network.RetrofitRequest;
-import com.example.administrator.demo.network.result.WeatherResult;
-import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
+import com.example.baselibrary.zh.network.RetrofitRequest;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.ToastUtils;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.net.CommonResponseBean;
-import com.example.baselibrary.zh.net.JsonUtils;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import java.util.HashMap;

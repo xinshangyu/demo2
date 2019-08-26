@@ -1,6 +1,6 @@
 package com.example.administrator.demo.entity;
 
-import com.example.administrator.demo.network.result.WeatherResult;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 
 import java.io.Serializable;
 

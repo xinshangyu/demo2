@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.baselibrary.R;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonPresenter;
+import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.utils.StatusBar;
 import com.example.baselibrary.zh.utils.TUtil;
 import com.example.baselibrary.zh.utils.ToastUtils;
@@ -36,6 +38,7 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     protected int mRefreshCount = 20;
     protected P mPresenter = null;
     protected M mModel = null;
+    protected CommonPresenter cPresenter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,10 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
             mModel = TUtil.getT(this, 1);
             mPresenter.attachVM(this, mModel);
             mPresenter.setContext(mContext);
+        }
+
+        if(this instanceof CommonView){
+            cPresenter = new CommonPresenter((CommonView) this);
         }
         initView(savedInstanceState);
         initDate();

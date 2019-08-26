@@ -9,7 +9,7 @@ import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.administrator.demo.mvp.iview.FansView;
 import com.example.administrator.demo.mvp.presenter.FansPresenter;
-import com.example.administrator.demo.network.result.WeatherResult;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;

@@ -17,14 +17,13 @@ import com.example.administrator.demo.comment.Sc_Zan_Comment_LsActivity;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
-import com.example.administrator.demo.network.result.WeatherResult;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.ToastUtils;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
-import com.yanzhenjie.permission.Permission;
 
 import butterknife.BindView;
 import butterknife.OnClick;
