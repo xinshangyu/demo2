@@ -61,10 +61,10 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack {
 //            mBeanList.add(userFollowBen);
         }
 
-        setRefresh(mSmartRefreshLayout, this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new UserFollowAdapter(mContext, mBeanList);
-        mRecyclerView.setAdapter(mAdapter);
+//        setRefresh(mSmartRefreshLayout, this);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//        mAdapter = new UserFollowAdapter(mContext, mBeanList);
+//        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

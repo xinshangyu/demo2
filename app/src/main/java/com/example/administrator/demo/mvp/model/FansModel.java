@@ -28,7 +28,7 @@ public class FansModel {
 
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.payAttentionToFans, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl2() + Address.payAttentionToFans, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 
