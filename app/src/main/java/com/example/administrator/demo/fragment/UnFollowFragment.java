@@ -59,9 +59,9 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
         fansPresenter = new FansPresenter(this);
         fansPresenter.requestFans(getActivity());
         for (int i = 0; i < 10; i++) {
-            UserFollowBen userFollowBen = new UserFollowBen();
-            userFollowBen.setName("昵称1");
-            mBeanList.add(userFollowBen);
+//            UserFollowBen userFollowBen = new UserFollowBen();
+//            userFollowBen.setName("昵称1");
+//            mBeanList.add(userFollowBen);
         }
 
         setRefresh(mSmartRefreshLayout, this);

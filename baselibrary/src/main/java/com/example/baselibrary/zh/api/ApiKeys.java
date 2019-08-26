@@ -8,6 +8,7 @@ public class ApiKeys {
     /*=========================  内外  =======================*/
 
     public static final String API_DEVELOPMENT_DOMAIN = "http://192.168.0.195:8980/";//内网
+    public static final String API_DEVELOPMENT_DOMAIN2 = "http://192.168.0.195:9991/";//内网
     public static final String API_PRODUCTION_DOMAIN = "http://10.3.255.73:8080/";//外网
     public static final String API_PRODUCTION_DOMAIN_OUT_IMAGE = "http://192.168.0.195:8980/file/resourceFiles/download/image?";//外网图片
 
@@ -16,6 +17,7 @@ public class ApiKeys {
      * 访问接口的地址
      */
     public static final String API_DEVELOPMENT_URL = API_DEVELOPMENT_DOMAIN + "";//项目名
+    public static final String API_DEVELOPMENT_URL2 = API_DEVELOPMENT_DOMAIN2 + "";//项目名
     public static final String API_PRODUCTION_URL = API_PRODUCTION_DOMAIN + "";
     public static final String API_PRODUCTION_URL_IMAGE = API_DEVELOPMENT_DOMAIN + ""; //项目名追加
     public static final String API_PRODUCTION_URL_IMAGE_OUT = API_PRODUCTION_DOMAIN_OUT_IMAGE + "";
@@ -30,6 +32,10 @@ public class ApiKeys {
 
     public static final String getApiUrl() {
         return DEBUG ? API_DEVELOPMENT_URL : API_PRODUCTION_URL;
+    }
+
+    public static final String getApiUrl2() {
+        return DEBUG ? API_DEVELOPMENT_URL2 : API_PRODUCTION_URL;
     }
 
     public static final String getImageApiUrl() {

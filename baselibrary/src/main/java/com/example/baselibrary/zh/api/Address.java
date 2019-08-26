@@ -80,7 +80,8 @@ public class Address {
     /**
      * 我的--首页--粉丝列表    POST
      */
-    public final static String payAttentionToFans = "user/me/payAttentionToFans?";
+    //public final static String payAttentionToFans = "user/me/payAttentionToFans?";
+    public final static String payAttentionToFans = "area/me/payAttentionToFans?";
     /**
      * 我的--首页--获取关注人列表--关注   GET
      */

@@ -23,7 +23,7 @@ public class UserFollowAdapter extends CommonAdapter<UserFollowBen> {
     @Override
     protected void convert(ViewHolder holder, UserFollowBen userFollowBen, int position) {
 
-        holder.setText(R.id.tv_name, userFollowBen.getName());
+        holder.setText(R.id.tv_name, userFollowBen.getUserRelation().getUserInfo().getPetName());
 
     }
 }

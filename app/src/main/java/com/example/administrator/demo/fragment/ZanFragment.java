@@ -56,9 +56,9 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack {
     @Override
     protected void onFragmentFirstVisible() {
         for (int i = 0; i < 5; i++) {
-            UserFollowBen userFollowBen = new UserFollowBen();
-            userFollowBen.setName("看啥");
-            mBeanList.add(userFollowBen);
+//            UserFollowBen userFollowBen = new UserFollowBen();
+//            userFollowBen.setName("看啥");
+//            mBeanList.add(userFollowBen);
         }
 
         setRefresh(mSmartRefreshLayout, this);

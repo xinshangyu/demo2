@@ -28,7 +28,7 @@ public class FansModel {
 
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.payAttentionToFans, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl2() + Address.payAttentionToFans, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 
@@ -36,8 +36,8 @@ public class FansModel {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("粉丝" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 1) {
+                LogUtil.e("ldh 粉丝" + new Gson().toJson(weatherResult));
+                if (weatherResult.getCode() == 200) {
                     fansPresenter.toFans(weatherResult);
                     return;
                 }
