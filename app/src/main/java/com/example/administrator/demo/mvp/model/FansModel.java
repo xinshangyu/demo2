@@ -42,7 +42,7 @@ public class FansModel {
                     return;
                 }
 
-                fansPresenter.toFans(weatherResult);
+                //fansPresenter.toFans(weatherResult);
             }
 
             @Override

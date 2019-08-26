@@ -5,7 +5,7 @@ import com.example.baselibrary.zh.network.result.WeatherResult;
 import java.io.Serializable;
 import java.util.List;
 
-public class UnFollowBen extends WeatherResult implements Serializable {
+public class UnFollowBen implements Serializable {
 
 
     /**

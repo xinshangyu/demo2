@@ -28,23 +28,28 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.DataBean.UserRe
     @Override
     protected void convert(ViewHolder holder, UnFollowBen.DataBean.UserRelationBean userFollowBen, int position) {
 
-        holder.setText(R.id.tv_name, userFollowBen.getUserInfo().getPetName());
-        holder.setText(R.id.tv1, userFollowBen.getUserInfo().getUserSignature());
+        holder.setText(R.id.tv_name, userFollowBen.getUserInfo().getPetName())
+                .setText(R.id.tv1, userFollowBen.getUserInfo().getUserSignature());
 //        holder.setText(R.id.tv2, userFollowBen.getUserInfo().getUserSignature());
         ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserInfo().getUserPhoto(), holder.getView(R.id.iv_imageView),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
         ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserInfo().getVipLevel(), holder.getView(R.id.iv_vip),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
         if ("0".equals(userFollowBen.getRalationType())) {
-            holder.setImageResource(R.id.iv_imageView, R.drawable.icon_follow);
+            holder.setImageResource(R.id.iv_r, R.drawable.icon_follow);
         } else if ("1".equals(userFollowBen.getRalationType())) {
-            holder.setImageResource(R.id.iv_imageView, R.mipmap.weiguanzhu);
+            holder.setImageResource(R.id.iv_r, R.mipmap.weiguanzhu);
         } else if ("2".equals(userFollowBen.getRalationType())) {
-            holder.setImageResource(R.id.iv_imageView, R.drawable.icon_hxfollow);
-        }else{
-            holder.setImageResource(R.id.iv_imageView, R.mipmap.weiguanzhu);
+            holder.setImageResource(R.id.iv_r, R.drawable.icon_hxfollow);
+        } else {
+            holder.setImageResource(R.id.iv_r, R.mipmap.weiguanzhu);
         }
 
 
+    }
+
+    public void setData(ArrayList<UnFollowBen.DataBean.UserRelationBean> datas) {
+        mDatas = datas;
+        notifyDataSetChanged();
     }
 }

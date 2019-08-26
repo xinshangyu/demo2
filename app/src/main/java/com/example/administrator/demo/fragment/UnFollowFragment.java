@@ -8,14 +8,17 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.entity.UserFollowBen;
+import com.example.administrator.demo.entity.UserLogInBen;
 import com.example.administrator.demo.mvp.iview.FansView;
 import com.example.administrator.demo.mvp.presenter.FansPresenter;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 /**
@@ -59,7 +62,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
     protected void onFragmentFirstVisible() {
         fansPresenter = new FansPresenter(this);
         fansPresenter.requestFans(getActivity());
-//        for (int i = 0; i < 10; i++) {
+//        for (int i = 0; i < 10; i++) {ß
 //            UserFollowBen userFollowBen = new UserFollowBen();
 //            userFollowBen.setName("昵称1");
 //            mBeanList.add(userFollowBen);
@@ -78,10 +81,11 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
 
     @Override
     public void onFans(WeatherResult weatherResult) {
-        UnFollowBen unFollowBen = (UnFollowBen) weatherResult;
+        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
         if(unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0){
-            mBeanList = (ArrayList<UnFollowBen.DataBean.UserRelationBean>) unFollowBen.getData().getUserRelation();
-
+            List<UnFollowBen.DataBean.UserRelationBean> data = (ArrayList<UnFollowBen.DataBean.UserRelationBean>) unFollowBen.getData().getUserRelation();
+            mBeanList.addAll(data);
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
