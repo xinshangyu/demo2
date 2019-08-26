@@ -1,4 +1,4 @@
-package com.example.administrator.demo.comment;
+package com.example.administrator.demo.activity.comment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

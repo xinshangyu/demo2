@@ -20,7 +20,7 @@ public class Personal_SQ_Adapter extends CommonAdapter<String> {
 
     @Override
     protected void convert(ViewHolder holder, String messageListBean, int position) {
-        holder.setText(R.id.tv_date, messageListBean.toString())
+        holder.setText(R.id.tv_name, messageListBean.toString())
                 .setOnClickListener(R.id.iv_dot, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

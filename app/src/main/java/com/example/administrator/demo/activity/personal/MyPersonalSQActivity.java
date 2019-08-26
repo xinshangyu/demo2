@@ -1,4 +1,4 @@
-package com.example.administrator.demo.personal;
+package com.example.administrator.demo.activity.personal;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +24,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
-    
+
     Personal_SQ_Adapter mAdapter;
     private ArrayList<String> mBeanList = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
             }
         });
         for (int i = 0; i < 10; i++) {
-            mBeanList.add(i + "山泉");
+            mBeanList.add(i + "山泉是u商圈啊");
         }
 
         setRefresh(mSmartRefreshLayout, this);
