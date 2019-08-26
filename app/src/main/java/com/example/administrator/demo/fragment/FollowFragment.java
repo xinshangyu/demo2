@@ -6,18 +6,28 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
+import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.entity.UserFollowBen;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.result.WeatherResult;
+import com.facebook.common.util.SecureHashUtil;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 /**
  * 关注
  */
-public class FollowFragment extends BaseFragment implements RefreshCallBack {
+public class FollowFragment extends BaseFragment implements RefreshCallBack, CommonView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -29,7 +39,8 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack {
     SmartRefreshLayout mSmartRefreshLayout;
 
     UserFollowAdapter mAdapter;
-    private ArrayList<UserFollowBen> mBeanList = new ArrayList<>();
+    private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
+
 
 
     public static FollowFragment newInstance(String param1, String param2) {
@@ -55,20 +66,33 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-        for (int i = 0; i < 5; i++) {
+
+//        for (int i = 0; i < 5; i++) {
 //            UserFollowBen userFollowBen = new UserFollowBen();
 //            userFollowBen.setName("看啥");
 //            mBeanList.add(userFollowBen);
-        }
-
-//        setRefresh(mSmartRefreshLayout, this);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-//        mAdapter = new UserFollowAdapter(mContext, mBeanList);
-//        mRecyclerView.setAdapter(mAdapter);
+//        }
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cPresenter.requestData(getActivity(), map, Address.follow);
+        setRefresh(mSmartRefreshLayout, this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mAdapter = new UserFollowAdapter(mContext, mBeanList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
 
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
+        if(unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0){
+            List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();
+            mBeanList.addAll(data);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

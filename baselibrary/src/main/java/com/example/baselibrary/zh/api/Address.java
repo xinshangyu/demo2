@@ -83,6 +83,10 @@ public class Address {
     //public final static String payAttentionToFans = "user/me/payAttentionToFans?";
     public final static String payAttentionToFans = "area/me/payAttentionToFans?";
     /**
+     * 我的--首页--获取关注人列表
+     */
+    public final static String follow = "store/enterpriseMyOrganization/getAttentionList?";
+    /**
      * 我的--首页--获取关注人列表--关注   GET
      */
     public final static String attention = "user/me/getAttentions/attention?";
