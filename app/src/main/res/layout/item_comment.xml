@@ -11,6 +11,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="11dp"
         android:background="@drawable/select_btn"
+        android:visibility="gone"
         android:button="@null" />
 
     <LinearLayout
@@ -31,12 +32,14 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_title"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/defaulthead" />
 
                 <TextView
-                    android:layout_width="11.5dp"
+                    android:id="@+id/tv_vip"
+                    android:layout_width="wrap_content"
                     android:layout_height="11.5dp"
                     android:layout_gravity="right|bottom"
                     android:background="@drawable/normal"
@@ -64,6 +67,7 @@
                     android:textSize="@dimen/text_14sp" />
 
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -77,6 +81,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"

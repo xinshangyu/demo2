@@ -18,7 +18,7 @@ public class CommertListBen implements Serializable {
     public static class BizCircleBean {
         /**
          * commentNum : 0
-         * userInfo : {"vipLevel":"VIP0","headPortrait":"402880ef6bb0ed2e016bd5e81e3d107d"}
+         * userInfo : {"vipLevel":"VIP0","nickName":"银中","headPortrait":"402880ef6bb0ed2e016bd5e81e3d107d"}
          * createTime : 2019-07-29 11:56:27
          * praiseNum : 0
          * comment : {"id":"2583e9ac710bd4de7f6ad94ae199cce2","content":"暑假摸瞎"}
@@ -103,10 +103,12 @@ public class CommertListBen implements Serializable {
         public static class UserInfoBean {
             /**
              * vipLevel : VIP0
+             * nickName : 银中
              * headPortrait : 402880ef6bb0ed2e016bd5e81e3d107d
              */
 
             private String vipLevel;
+            private String nickName;
             private String headPortrait;
 
             public String getVipLevel() {
@@ -115,6 +117,14 @@ public class CommertListBen implements Serializable {
 
             public void setVipLevel(String vipLevel) {
                 this.vipLevel = vipLevel;
+            }
+
+            public String getNickName() {
+                return nickName;
+            }
+
+            public void setNickName(String nickName) {
+                this.nickName = nickName;
             }
 
             public String getHeadPortrait() {

@@ -79,10 +79,10 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
             mBeanList.add("吃多少" + i);
         }
 
-        setRefresh(mSmartRefreshLayout, this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new CommentAdapter(mContext, mBeanList);
-        mRecyclerView.setAdapter(mAdapter);
+//        setRefresh(mSmartRefreshLayout, this);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//        mAdapter = new CommentAdapter(mContext, mBeanList);
+//        mRecyclerView.setAdapter(mAdapter);
 
 
     }

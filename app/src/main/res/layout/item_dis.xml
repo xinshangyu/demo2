@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_title"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/defaulthead" />
@@ -39,7 +40,18 @@
                     android:layout_width="9dp"
                     android:layout_height="8dp"
                     android:layout_gravity="right|bottom"
+                    android:visibility="gone"
                     android:src="@mipmap/qiye_vip1" />
+                <TextView
+                    android:id="@+id/tv_vip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="11.5dp"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/normal"
+                    android:gravity="center"
+                    android:text="v12"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="5sp" />
 
             </FrameLayout>
 
@@ -51,6 +63,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -59,6 +72,7 @@
                     android:textSize="@dimen/text_14sp" />
 
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -71,6 +85,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -82,12 +97,14 @@
             android:textSize="@dimen/text_19sp" />
 
         <LinearLayout
+            android:id="@+id/ll_comment"
             android:layout_width="match_parent"
             android:layout_height="77.5dp"
             android:background="@color/huise"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_content2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8.5dp"
@@ -101,10 +118,12 @@
                 android:textSize="@dimen/text_16sp" />
 
             <ImageView
+                android:id="@id/iv_title"
                 android:layout_width="58dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
+                android:visibility="gone"
                 android:src="@drawable/logo" />
         </LinearLayout>
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
+import com.example.administrator.demo.adapter.CommentAdapter2;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.CommertListBen;
 import com.example.administrator.demo.entity.UserFollowBen;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -36,8 +38,8 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    CommentAdapter mAdapter;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    CommentAdapter2 mAdapter;
+    private ArrayList<CommertListBen.BizCircleBean> mBeanList = new ArrayList<>();
 
     public static CommentFragment newInstance(String param1, String param2) {
         CommentFragment fragment = new CommentFragment();
@@ -70,7 +72,7 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
         cPresenter.requestData2(getActivity(), cMap, Address.commertArtiles);
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new CommentAdapter(mContext, mBeanList);
+        mAdapter = new CommentAdapter2(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -83,7 +85,9 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
     public void onData(WeatherResult weatherResult) {
         CommertListBen commertListBen = gson.fromJson(gson.toJson(weatherResult.getData()), CommertListBen.class);
         if(commertListBen != null && commertListBen.getBizCircle() != null && commertListBen.getBizCircle().size() >0){
-
+            List<CommertListBen.BizCircleBean> bizCircle = commertListBen.getBizCircle();
+            mBeanList.addAll(bizCircle);
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
