@@ -36,7 +36,7 @@ public class CommentAdapter extends BaseQuickAdapter<SCBean.BizCircleBean, BaseV
 
     @Override
     protected void convert(BaseViewHolder helper, SCBean.BizCircleBean bizCircleBean) {
-        helper.setVisible(R.id.CheckBox_my_collection, showCheck)
+        helper.setGone(R.id.CheckBox_my_collection, showCheck)
                 .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
                 .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
                 .setText(R.id.tv_time, bizCircleBean.getCreateTime())
