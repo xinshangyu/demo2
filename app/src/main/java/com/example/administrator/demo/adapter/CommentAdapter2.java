@@ -45,18 +45,6 @@ public class CommentAdapter2 extends BaseQuickAdapter<CommertListBen.BizCircleBe
                 .setText(R.id.tv_content2, bizCircleBean.getContent());
         ImageLoader.getInstance().loadingImage(mContext, bizCircleBean.getUserInfo().getHeadPortrait(), holder.getView(R.id.iv_title),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+
     }
-//    @Override
-//    protected void convert(ViewHolder holder, CommertListBen.BizCircleBean bizCircleBean, int position) {
-//
-//        holder.setVisible(R.id.CheckBox_my_collection, showCheck)
-//                .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
-//                .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
-//                .setText(R.id.tv_time, bizCircleBean.getCreateTime())
-//                .setText(R.id.tv_content, bizCircleBean.getComment().getContent())
-//                .setText(R.id.tv_content2, bizCircleBean.getContent());
-//        ImageLoader.getInstance().loadingImage(mContext, bizCircleBean.getUserInfo().getHeadPortrait(), holder.getView(R.id.iv_title),
-//                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-//
-//    }
 }

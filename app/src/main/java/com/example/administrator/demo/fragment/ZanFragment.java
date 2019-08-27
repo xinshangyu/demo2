@@ -3,7 +3,11 @@ package com.example.administrator.demo.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
@@ -61,12 +65,6 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
 
     @Override
     protected void onFragmentFirstVisible() {
-//        for (int i = 0; i < 5; i++) {
-//            UserFollowBen userFollowBen = new UserFollowBen();
-//            userFollowBen.setName("看啥");
-//            mBeanList.add(userFollowBen);
-//        }
-
 
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "01");//收藏
@@ -75,6 +73,22 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new CommentAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                mAdapter.setShowCheck(true);
+                return false;
+            }
+        });
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if(view.getId() == R.id.CheckBox_my_collection){
+                    mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override
@@ -90,5 +104,24 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
+                    if(mAdapter.getShowCheck()){
+                        mAdapter.setShowCheck(false);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 }

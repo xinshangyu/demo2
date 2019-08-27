@@ -37,6 +37,8 @@ public class CommentAdapter extends BaseQuickAdapter<SCBean.BizCircleBean, BaseV
     @Override
     protected void convert(BaseViewHolder helper, SCBean.BizCircleBean bizCircleBean) {
         helper.setGone(R.id.CheckBox_my_collection, showCheck)
+                .setImageResource(R.id.CheckBox_my_collection, bizCircleBean.getIsDetele() ? R.drawable.check_ok : R.drawable.check_no)
+                .addOnClickListener(R.id.CheckBox_my_collection)
                 .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
                 .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
                 .setText(R.id.tv_time, bizCircleBean.getCreateTime())
@@ -55,21 +57,7 @@ public class CommentAdapter extends BaseQuickAdapter<SCBean.BizCircleBean, BaseV
         notifyDataSetChanged();
     }
 
-    /*
-    @Override
-    protected void convert(ViewHolder holder, SCBean.BizCircleBean bizCircleBean, int position) {
-
-        holder.setVisible(R.id.CheckBox_my_collection, showCheck)
-                .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
-                .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
-                .setText(R.id.tv_time, bizCircleBean.getCreateTime())
-                .setText(R.id.tv_content, bizCircleBean.getContent())
-                .setText(R.id.tv_zan, bizCircleBean.getPraiseNum())
-                .setText(R.id.tv_pinglun, bizCircleBean.getCommentNum())
-                .setText(R.id.tv_content, bizCircleBean.getContent())
-        ;
-        ImageLoader.getInstance().loadingImage(mContext, bizCircleBean.getUserInfo().getHeadPortrait(), holder.getView(R.id.iv_title),
-                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-
-    }*/
+    public boolean getShowCheck() {
+        return showCheck;
+    }
 }
