@@ -27,6 +27,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -55,6 +58,7 @@ public abstract class BaseFragment<P extends BasePresenter, M extends BaseModel>
     public P mPresenter;
     public M mModel;
     public CommonPresenter cPresenter;
+    public Map<String, String> cMap;
     protected final int DEFAULT_STATUS_BAR_ALPHA = 0;
 
     @Override
@@ -89,6 +93,7 @@ public abstract class BaseFragment<P extends BasePresenter, M extends BaseModel>
 
         if (this instanceof CommonView) {
             cPresenter = new CommonPresenter((CommonView) this);
+            cMap = new HashMap<>();
         }
         if (getContentViewLayoutID() != 0) {
             mContext = getActivity();
