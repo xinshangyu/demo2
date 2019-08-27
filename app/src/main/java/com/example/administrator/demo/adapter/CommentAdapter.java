@@ -40,7 +40,11 @@ public class CommentAdapter extends CommonAdapter<SCBean.BizCircleBean> {
         holder.setVisible(R.id.CheckBox_my_collection, showCheck)
                 .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
                 .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
-                .setText(R.id.tv_time, bizCircleBean.getCreateTime());
+                .setText(R.id.tv_time, bizCircleBean.getCreateTime())
+                .setText(R.id.tv_content, bizCircleBean.getContent())
+                .setText(R.id.tv_zan, bizCircleBean.getPraiseNum())
+                .setText(R.id.tv_content, bizCircleBean.getCommentNum())
+        ;
         ImageLoader.getInstance().loadingImage(mContext, bizCircleBean.getUserInfo().getHeadPortrait(), holder.getView(R.id.iv_title),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
 

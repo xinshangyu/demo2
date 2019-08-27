@@ -132,6 +132,10 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
+        SCBean scBean = gson.fromJson(gson.toJson(weatherResult), SCBean.class);
+        if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
+            mBeanList.addAll(scBean.getBizCircle());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

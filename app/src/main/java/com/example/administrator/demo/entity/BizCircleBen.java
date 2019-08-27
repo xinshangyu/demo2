@@ -1,8 +1,9 @@
 package com.example.administrator.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SCBean {
+public class BizCircleBen implements Serializable {
 
     private List<BizCircleBean> bizCircle;
 
@@ -17,18 +18,20 @@ public class SCBean {
     public static class BizCircleBean {
         /**
          * commentNum : 0
-         * userInfo : {"vipLevel":"VIP0","id":"402880436b9bb9a4016b9bdcdcfa0008","headPortrait":"402880ef6bb0ed2e016bd5e81e3d107d"}
-         * createTime : 2019-07-17 11:47:33
+         * userInfo : {"vipLevel":"VIP0","nickName":"银中","headPortrait":"402880ef6bb0ed2e016bd5e81e3d107d"}
+         * createTime : 2019-07-29 11:56:27
          * praiseNum : 0
-         * id : 713cd0d5dd471a0745b202f6f6dd19d5
+         * comment : {"id":"2583e9ac710bd4de7f6ad94ae199cce2","content":"暑假摸瞎"}
+         * id : 2ef1f0943dd8d3a08fbe22b3868cc913
          * userId : 402880436b9bb9a4016b9bdcdcfa0008
-         * content : 今天下雨了
+         * content : 暑假快乐吧nnnnnnnnnnnn
          */
 
         private String commentNum;
         private UserInfoBean userInfo;
         private String createTime;
         private String praiseNum;
+        private CommentBean comment;
         private String id;
         private String userId;
         private String content;
@@ -65,6 +68,14 @@ public class SCBean {
             this.praiseNum = praiseNum;
         }
 
+        public CommentBean getComment() {
+            return comment;
+        }
+
+        public void setComment(CommentBean comment) {
+            this.comment = comment;
+        }
+
         public String getId() {
             return id;
         }
@@ -89,19 +100,16 @@ public class SCBean {
             this.content = content;
         }
 
-
-
         public static class UserInfoBean {
             /**
              * vipLevel : VIP0
-             * id : 402880436b9bb9a4016b9bdcdcfa0008
+             * nickName : 银中
              * headPortrait : 402880ef6bb0ed2e016bd5e81e3d107d
              */
 
             private String vipLevel;
-            private String id;
+            private String nickName;
             private String headPortrait;
-            private String nickName = "";
 
             public String getVipLevel() {
                 return vipLevel;
@@ -111,12 +119,12 @@ public class SCBean {
                 this.vipLevel = vipLevel;
             }
 
-            public String getId() {
-                return id;
+            public String getNickName() {
+                return nickName;
             }
 
-            public void setId(String id) {
-                this.id = id;
+            public void setNickName(String nickName) {
+                this.nickName = nickName;
             }
 
             public String getHeadPortrait() {
@@ -126,13 +134,31 @@ public class SCBean {
             public void setHeadPortrait(String headPortrait) {
                 this.headPortrait = headPortrait;
             }
+        }
 
-            public String getNickName() {
-                return nickName;
+        public static class CommentBean {
+            /**
+             * id : 2583e9ac710bd4de7f6ad94ae199cce2
+             * content : 暑假摸瞎
+             */
+
+            private String id;
+            private String content;
+
+            public String getId() {
+                return id;
             }
 
-            public void setNickName(String nickName) {
-                this.nickName = nickName;
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
             }
         }
     }
