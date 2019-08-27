@@ -61,7 +61,7 @@
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="left"
                     android:text="@string/this_is_Newest"
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />

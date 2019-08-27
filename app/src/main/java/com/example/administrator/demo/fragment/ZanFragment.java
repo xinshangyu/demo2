@@ -84,6 +84,7 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
 
     @Override
     public void onData(WeatherResult weatherResult) {
+
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
             mBeanList.addAll(scBean.getBizCircle());
