@@ -18,7 +18,6 @@ public class CommonPresenter implements ICommonPresenter {
     }
 
 
-
     //开始处理
     public void requestData(Context context, Map<String, String> map, String url) {
 
@@ -28,6 +27,10 @@ public class CommonPresenter implements ICommonPresenter {
     //开始处理
     public void requestData2(Context context, Map<String, String> map, String url) {
         commonModel.getData2(context, map, url);
+    }
+    //商圈
+    public void requestDataSQ(Context context, Map<String, String> map, String url) {
+        commonModel.getDataSQ(context, map, url);
     }
 
 
