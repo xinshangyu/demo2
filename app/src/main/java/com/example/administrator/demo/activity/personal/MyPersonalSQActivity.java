@@ -143,7 +143,6 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                         });
                     }
                 })
-                .setMargin(60)
                 .show(getSupportFragmentManager());
     }
 
