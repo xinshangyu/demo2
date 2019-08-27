@@ -119,7 +119,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
                             });
                         }
                     })
-                    .setGravity(Gravity.BOTTOM)
                     .show(getSupportFragmentManager());
         }
     }
