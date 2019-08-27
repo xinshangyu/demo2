@@ -93,8 +93,8 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
 
         mTitles = new String[]{scang, pl, zan, ls};
         mFragments.add(ScFragment.newInstance(""));
-        mFragments.add(CommentFragment.newInstance("", ""));
         mFragments.add(LiFragment.newInstance("", ""));
+        mFragments.add(CommentFragment.newInstance("", ""));
         mFragments.add(ZanFragment.newInstance("", ""));
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabBean(mTitles[i]));
