@@ -199,7 +199,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_operation3)
     void onclickComment() {
-        //zl测试
         Bundle bundle = new Bundle();
         bundle.putString("tabNum", "1");
         startActivity(Sc_Zan_Comment_LsActivity.class, bundle);

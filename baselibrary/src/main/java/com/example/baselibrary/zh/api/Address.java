@@ -105,7 +105,7 @@ public class Address {
     /**
      * 我的--首页--我的点赞   GET
      */
-    public final static String praisedArticles = "user/me/praisedArticles?";
+    public final static String praisedArticles = "area/me/praisedArticles?";
     /**
      * 我的--首页--我的评论   GET  http://192.168.0.195:9991/area/me/commertArtiles
      */

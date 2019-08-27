@@ -5,10 +5,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
+import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.entity.UserFollowBen;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -18,7 +24,7 @@ import butterknife.BindView;
 /**
  * 点赞
  */
-public class ZanFragment extends BaseFragment implements RefreshCallBack {
+public class ZanFragment extends BaseFragment implements RefreshCallBack, CommonView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -28,8 +34,8 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack {
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    UserFollowAdapter mAdapter;
-    private ArrayList<UserFollowBen> mBeanList = new ArrayList<>();
+    CommentAdapter mAdapter;
+    private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
 
 
     public static ZanFragment newInstance(String param1, String param2) {
@@ -55,20 +61,34 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 5; i++) {
 //            UserFollowBen userFollowBen = new UserFollowBen();
 //            userFollowBen.setName("看啥");
 //            mBeanList.add(userFollowBen);
-        }
+//        }
 
-//        setRefresh(mSmartRefreshLayout, this);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-//        mAdapter = new UserFollowAdapter(mContext, mBeanList);
-//        mRecyclerView.setAdapter(mAdapter);
+
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cMap.put("oprType", "01");//收藏
+        cPresenter.requestData2(getActivity(), cMap, Address.praisedArticles);
+        setRefresh(mSmartRefreshLayout, this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mAdapter = new CommentAdapter(mContext, mBeanList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
 
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+
+        SCBean scBean = gson.fromJson(gson.toJson(weatherResult), SCBean.class);
+        if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
+            mBeanList.addAll(scBean.getBizCircle());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }
