@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
@@ -43,10 +44,10 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.ll_bottom)
     LinearLayout mLLBottom;
-    @BindView(R.id.tv_all_delete)
-    Button mBtAllDelete;
+    @BindView(R.id.tv_save)
+    TextView mBtAllDelete;
     @BindView(R.id.tv_delete)
-    Button mBtDelete;
+    TextView mBtDelete;
 
     CommentAdapter mAdapter;
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
@@ -86,6 +87,8 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
         mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
+                mBtDelete.setText("删除（1）");
                 mAdapter.setShowCheck(true);
                 mLLBottom.setVisibility(View.VISIBLE);
                 return false;
@@ -95,7 +98,15 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.CheckBox_my_collection) {
+
                     mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
+                    int i = 0;
+                    for (SCBean.BizCircleBean bean : mBeanList) {
+                        if(bean.getIsDetele()){
+                            i++;
+                        }
+                    }
+                    mBtDelete.setText("删除（"+ i +"）");
                     mAdapter.notifyDataSetChanged();
                 }
             }
@@ -137,15 +148,19 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
         });
     }
 
-    @OnClick({R.id.tv_all_delete, R.id.tv_delete})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_all_delete:
+    /**
+     * 删除所有
+     **/
+    @OnClick(R.id.tv_save)
+    void onAllDetele() {
 
-                break;
-            case R.id.tv_delete:
+    }
 
-                break;
-        }
+    /**
+     * 删除
+     **/
+    @OnClick(R.id.tv_delete)
+    void onDetele() {
+
     }
 }

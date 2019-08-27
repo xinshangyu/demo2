@@ -29,8 +29,8 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <Button
-            android:id="@+id/tv_all_delete"
+        <TextView
+            android:id="@+id/tv_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -47,7 +47,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14sp" />
 
-        <Button
+        <TextView
             android:id="@+id/tv_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
