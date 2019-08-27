@@ -72,7 +72,7 @@ public class Address {
     /**
      * 我的--首页--查看收藏信息   GET
      */
-    public final static String scanCollectionInfo = "user/me/scanCollectionInfo?";
+    public final static String scanCollectionInfo = "area/me/scanCollectionInfo?";
     /**
      * 我的--首页--分享上报    GET
      */
@@ -107,7 +107,7 @@ public class Address {
      */
     public final static String praisedArticles = "user/me/praisedArticles?";
     /**
-     * 我的--首页--我的评论   GET
+     * 我的--首页--我的评论   GET  http://192.168.0.195:9991/area/me/commertArtiles
      */
     public final static String commertArtiles = "area/me/commertArtiles?";
     /**

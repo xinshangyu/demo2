@@ -9,9 +9,15 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
+import com.example.administrator.demo.entity.CommertListBen;
 import com.example.administrator.demo.entity.QuickReturnTopEvent;
+import com.example.administrator.demo.entity.SCBean;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * 收藏
  */
-public class ScFragment extends BaseFragment implements RefreshCallBack {
+public class ScFragment extends BaseFragment implements RefreshCallBack, CommonView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -45,7 +51,7 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
     @BindView(R.id.ll_bottom)
     LinearLayout llBottom;
     Unbinder unbinder;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
     private String mVid;
 
 
@@ -73,16 +79,19 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cMap.put("oprType", "03");//收藏
+        cPresenter.requestData2(getActivity(), cMap, Address.scanCollectionInfo);
         EventBus.getDefault().register(this);
 
-        for (int i = 0; i < 8; i++) {
-            mBeanList.add("吃多少" + i);
-        }
+//        for (int i = 0; i < 8; i++) {
+//            mBeanList.add("吃多少" + i);
+//        }
 
-//        setRefresh(mSmartRefreshLayout, this);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-//        mAdapter = new CommentAdapter(mContext, mBeanList);
-//        mRecyclerView.setAdapter(mAdapter);
+        setRefresh(mSmartRefreshLayout, this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mAdapter = new CommentAdapter(mContext, mBeanList);
+        mRecyclerView.setAdapter(mAdapter);
 
 
     }
@@ -119,5 +128,10 @@ public class ScFragment extends BaseFragment implements RefreshCallBack {
                 showToast("删除");
                 break;
         }
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+
     }
 }

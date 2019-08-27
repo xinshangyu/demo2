@@ -6,6 +6,7 @@ import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.CommertListBen;
+import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
@@ -14,17 +15,18 @@ import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 /**
- * 评论
+ *
  **/
-public class CommentAdapter extends CommonAdapter<CommertListBen.BizCircleBean> {
+public class CommentAdapter extends CommonAdapter<SCBean.BizCircleBean> {
 
 
     private boolean showCheck;
 
-    public CommentAdapter(Context context, ArrayList<CommertListBen.BizCircleBean> beanList) {
+    public CommentAdapter(Context context, ArrayList<SCBean.BizCircleBean> beanList) {
         super(context, R.layout.item_comment, beanList);
     }
 
@@ -33,7 +35,7 @@ public class CommentAdapter extends CommonAdapter<CommertListBen.BizCircleBean> 
         notifyDataSetChanged();
     }
     @Override
-    protected void convert(ViewHolder holder, CommertListBen.BizCircleBean bizCircleBean, int position) {
+    protected void convert(ViewHolder holder, SCBean.BizCircleBean bizCircleBean, int position) {
 
         holder.setVisible(R.id.CheckBox_my_collection, showCheck)
                 .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
