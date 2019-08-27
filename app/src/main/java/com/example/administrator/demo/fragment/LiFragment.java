@@ -176,7 +176,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                                 dialog.dismiss();
                                 mBeanList.clear();
                                 mAdapter.setShowCheck(false);
-                                mLLBottom.setVerticalGravity(View.GONE);
+                                mLLBottom.setVisibility(View.GONE);
                             }
                         });
                     }
@@ -210,7 +210,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                                     }
                                 }
                                 mAdapter.setShowCheck(false);
-                                mLLBottom.setVerticalGravity(View.GONE);
+                                mLLBottom.setVisibility(View.GONE);
 
                             }
                         });
