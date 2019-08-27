@@ -149,5 +149,14 @@
     <string name="wx">微信</string>
     <string name="qq">QQ</string>
 
+    <string name="shapping_zf">购买相框需支付</string>
+    <string name="num">数量：</string>
+    <string name="xnb2">虚拟币：</string>
+
+    <string name="zj">足迹</string>
+    <string name="sczp">上传照片</string>
+    <string name="bt">标题:</string>
+    <string name="please_xkbt">请输入相框标题</string>
+
 
 </resources>

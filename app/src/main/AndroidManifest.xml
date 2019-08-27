@@ -68,7 +68,9 @@
         <activity android:name=".activity.record.IntegralShappingActivity" />
         <activity android:name=".activity.record.IntegralActivity" />
         <activity android:name=".activity.vip.MyVipActivity" />
-        <activity android:name=".comment.Sc_Zan_Comment_LsActivity" />
+        <activity android:name=".activity.comment.Sc_Zan_Comment_LsActivity" />
+        <activity android:name=".activity.personal.MyPersonalSQActivity" />
+        <activity android:name="com.example.administrator.demo.activity.adress.ZjActivity" />
 
 
     </application>
