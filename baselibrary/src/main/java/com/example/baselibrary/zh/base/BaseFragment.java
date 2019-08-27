@@ -22,6 +22,7 @@ import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.utils.StatusBar;
 import com.example.baselibrary.zh.utils.TUtil;
 import com.example.baselibrary.zh.utils.ToastUtils;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
@@ -59,6 +60,7 @@ public abstract class BaseFragment<P extends BasePresenter, M extends BaseModel>
     public M mModel;
     public CommonPresenter cPresenter;
     public Map<String, String> cMap;
+    public Gson gson;
     protected final int DEFAULT_STATUS_BAR_ALPHA = 0;
 
     @Override
@@ -94,6 +96,7 @@ public abstract class BaseFragment<P extends BasePresenter, M extends BaseModel>
         if (this instanceof CommonView) {
             cPresenter = new CommonPresenter((CommonView) this);
             cMap = new HashMap<>();
+            gson = new Gson();
         }
         if (getContentViewLayoutID() != 0) {
             mContext = getActivity();
