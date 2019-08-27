@@ -89,7 +89,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     @Override
     public void onData(WeatherResult weatherResult) {
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
-        if(unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0){
+        if(unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0){
             List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();

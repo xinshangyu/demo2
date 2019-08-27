@@ -60,12 +60,12 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
 
     @Override
     protected void onFragmentFirstVisible() {
-        for (int i = 0; i < 5; i++) {
-            mBeanList.add("不错电视剧" + i);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            mBeanList.add("不错电视剧" + i);
+//        }
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "05");//阅读
-        cPresenter.requestData(getActivity(), cMap, Address.commertArtiles);
+        cPresenter.requestData2(getActivity(), cMap, Address.commertArtiles);
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new CommentAdapter(mContext, mBeanList);

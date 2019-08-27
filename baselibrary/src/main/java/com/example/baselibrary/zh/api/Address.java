@@ -109,7 +109,7 @@ public class Address {
     /**
      * 我的--首页--我的评论   GET
      */
-    public final static String commertArtiles = "user/me/commertArtiles?";
+    public final static String commertArtiles = "area/me/commertArtiles?";
     /**
      * 我的--首页--用户个人基本信息   GET
      */
