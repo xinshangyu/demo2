@@ -4,13 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <CheckBox
+    <ImageView
         android:id="@+id/CheckBox_my_collection"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="11dp"
-        android:background="@drawable/select_btn"
         android:visibility="gone"
         android:button="@null" />
 
