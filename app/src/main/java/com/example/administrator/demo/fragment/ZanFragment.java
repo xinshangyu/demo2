@@ -4,15 +4,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
-import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.SCBean;
-import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
@@ -24,6 +25,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * 点赞
@@ -37,6 +41,12 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.ll_bottom)
+    LinearLayout mLLBottom;
+    @BindView(R.id.tv_all_delete)
+    Button mBtAllDelete;
+    @BindView(R.id.tv_delete)
+    Button mBtDelete;
 
     CommentAdapter mAdapter;
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
@@ -77,13 +87,14 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
                 mAdapter.setShowCheck(true);
+                mLLBottom.setVisibility(View.VISIBLE);
                 return false;
             }
         });
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if(view.getId() == R.id.CheckBox_my_collection){
+                if (view.getId() == R.id.CheckBox_my_collection) {
                     mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
                     mAdapter.notifyDataSetChanged();
                 }
@@ -100,7 +111,7 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     public void onData(WeatherResult weatherResult) {
 
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
-        if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
+        if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
         }
@@ -114,14 +125,27 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
-                    if(mAdapter.getShowCheck()){
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK) {
+                    if (mAdapter.getShowCheck()) {
                         mAdapter.setShowCheck(false);
+                        mLLBottom.setVisibility(View.GONE);
                         return true;
                     }
                 }
                 return false;
             }
         });
+    }
+
+    @OnClick({R.id.tv_all_delete, R.id.tv_delete})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_all_delete:
+
+                break;
+            case R.id.tv_delete:
+
+                break;
+        }
     }
 }

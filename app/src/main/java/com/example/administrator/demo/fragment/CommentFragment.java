@@ -5,18 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.CommentAdapter2;
-import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.CommertListBen;
-import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
