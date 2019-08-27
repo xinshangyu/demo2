@@ -95,9 +95,13 @@ public class Address {
      */
     public final static String browerHistoty = "area/me/browerHistoty?";
     /**
-     * 我的--首页--商圈信息列表--删除商圈信息   GET
+     * 我的--首页--商圈信息列表   GET   http://192.168.0.195:9991/area/me/bizCircleStatistics
      */
-    public final static String deleteBizCircle = "user/me/bizCircle/deleteBizCircle?";
+    public final static String bizCircleStatistics = "area/me/bizCircleStatistics?";
+    /**
+     * 我的--首页--商圈信息列表--删除商圈信息   GET  http://192.168.0.195:9991/area/me/bizCircle/deleteBizCircle
+     */
+    public final static String deleteBizCircle = "area/me/bizCircle/deleteBizCircle?";
     /**
      * 我的--首页--商圈信息列表--设置商圈阅读权限   POST
      */

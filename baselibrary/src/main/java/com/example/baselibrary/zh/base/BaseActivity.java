@@ -20,10 +20,14 @@ import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.utils.StatusBar;
 import com.example.baselibrary.zh.utils.TUtil;
 import com.example.baselibrary.zh.utils.ToastUtils;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -39,6 +43,9 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     protected P mPresenter = null;
     protected M mModel = null;
     protected CommonPresenter cPresenter = null;
+
+    public Map<String, String> cMap;
+    public Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,8 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
 
         if(this instanceof CommonView){
             cPresenter = new CommonPresenter((CommonView) this);
+            cMap = new HashMap<>();
+            gson = new Gson();
         }
         initView(savedInstanceState);
         initDate();

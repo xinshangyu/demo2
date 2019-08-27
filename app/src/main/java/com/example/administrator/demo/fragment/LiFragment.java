@@ -8,6 +8,7 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.SCBean;
+import com.example.administrator.demo.entity.SQBean;
 import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
