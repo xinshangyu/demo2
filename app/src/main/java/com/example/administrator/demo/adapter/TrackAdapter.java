@@ -22,7 +22,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
 
     @Override
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
-        if(helper.getPosition() % 2 == 1){
+        if(helper.getPosition() % 2 == 0){
             if(TextUtils.isEmpty(item.getFootprintImgSrc())){
                 helper.setGone(R.id.iv, false);
             }else{
