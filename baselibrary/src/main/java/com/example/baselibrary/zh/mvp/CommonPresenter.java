@@ -32,6 +32,10 @@ public class CommonPresenter implements ICommonPresenter {
     public void requestDataSQ(Context context, Map<String, String> map, String url) {
         commonModel.getDataSQ(context, map, url);
     }
+    //足迹
+    public void requestDataZJ(Context context, Map<String, String> map, String url) {
+        commonModel.getDataZJ(context, map, url);
+    }
 
 
     @Override

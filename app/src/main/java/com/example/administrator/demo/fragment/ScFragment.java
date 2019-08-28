@@ -80,9 +80,11 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     protected void onFragmentFirstVisible() {
+
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "03");//收藏
         cPresenter.requestData2(getActivity(), cMap, Address.scanCollectionInfo);
+
         EventBus.getDefault().register(this);
 
 //        for (int i = 0; i < 8; i++) {
