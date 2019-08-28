@@ -29,7 +29,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                 ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
             }
-            helper.setText(R.id.tv, item.getFootprintDescribe())
+            helper.setText(R.id.tv, item.getFootprintName())
                     .setGone(R.id.iv1, false)
                     .setGone(R.id.tv1, false)
                     .setGone(R.id.lin1, false)
@@ -43,7 +43,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                 ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
             }
-            helper.setText(R.id.tv1, item.getFootprintDescribe())
+            helper.setText(R.id.tv1, item.getFootprintName())
                     .setGone(R.id.iv1, true)
                     .setGone(R.id.tv1, true)
                     .setGone(R.id.lin1, true)
