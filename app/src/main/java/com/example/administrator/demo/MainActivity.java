@@ -1,6 +1,7 @@
 package com.example.administrator.demo;
 
 
+import com.example.administrator.demo.activity.MyDataActivity;
 import com.example.administrator.demo.activity.MyModularActivity;
 import com.example.administrator.demo.base.BaseActivity;
 
@@ -32,7 +33,7 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.bt_my_data)
     void onMyData() {
         //TODO:根据业务需求添加功能实现
-
+        startActivity(MyDataActivity.class,0);
     }
 
 }
