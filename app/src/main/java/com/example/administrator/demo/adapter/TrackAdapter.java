@@ -26,7 +26,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, Long.parseLong(item.getFootprintImgSrc()), helper.getView(R.id.iv1),
+                ImageLoader.getInstance().loadingImage(mContext, Long.parseLong(item.getFootprintImgSrc()), helper.getView(R.id.iv),
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
             }else{
                 if(TextUtils.isEmpty(item.getFootprintImgSrc())){
@@ -43,7 +43,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.lin1, false)
                     .setGone(R.id.iv, true)
                     .setGone(R.id.tv, true)
-                    .setGone(R.id.lin, !(data.size() == helper.getPosition()));
+                    .setGone(R.id.lin, !(data.size()-1 == helper.getPosition()));
         }else{
 
             if(item.isAdd()){
@@ -61,10 +61,10 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
             helper.setText(R.id.tv1, item.getFootprintName())
                     .setGone(R.id.iv1, true)
                     .setGone(R.id.tv1, true)
-                    .setGone(R.id.lin1, true)
+                    .setGone(R.id.lin1, !(data.size()-1 == helper.getPosition()))
                     .setGone(R.id.iv, false)
                     .setGone(R.id.tv, false)
-                    .setGone(R.id.lin, !(data.size() == helper.getPosition()));
+                    .setGone(R.id.lin, false);
         }
     }
 }
