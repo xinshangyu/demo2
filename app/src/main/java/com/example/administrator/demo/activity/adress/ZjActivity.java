@@ -58,16 +58,15 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new TrackAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if(view.getId() == R.id.iv || view.getId() == R.id.iv1){
                     TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
                     if(bean.isAdd()){
                         startActivity(new Intent(ZjActivity.this, ZjAddActivity.class));
                     }
                 }
-
             }
         });
 
