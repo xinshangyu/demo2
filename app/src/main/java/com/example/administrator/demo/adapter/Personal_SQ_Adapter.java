@@ -27,7 +27,8 @@ public class Personal_SQ_Adapter extends CommonAdapter<SQBean.BizCircleBean> {
 
     @Override
     protected void convert(ViewHolder holder, SQBean.BizCircleBean messageListBean, int position) {
-        holder.setText(R.id.tv_name, messageListBean.getContent())
+        holder.setText(R.id.tv_name, messageListBean.getUserInfo().getNickName())
+                .setText(R.id.tv_content, messageListBean.getContent())
                 .setOnClickListener(R.id.iv_dot, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

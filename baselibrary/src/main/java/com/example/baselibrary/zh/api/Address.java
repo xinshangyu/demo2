@@ -30,11 +30,11 @@ public class Address {
      */
     public final static String upgradeAmount = "user/upgradeAmount?";
     /**
-     * 我的--帮助中心--查询FAQ   GET
+     * 我的--帮助中心--查询FAQ   GET   http://192.168.0.195:9993/user/me/helpCenter/findFAQs
      */
     public final static String findFAQs = "user/me/helpCenter/findFAQs?";
     /**
-     * 我的--帮助中心--查询客服信息   GET
+     * 我的--帮助中心--查询客服信息   GET   http://192.168.0.195:9993/user/me/helpCenter/findServiceInfo
      */
     public final static String findServiceInfo = "user/me/helpCenter/findServiceInfo?";
     /**
