@@ -55,6 +55,8 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         TrackBean.FootprintBean footprintBean = new TrackBean.FootprintBean();
         footprintBean.setAdd(true);
         footprintBean.setFootprintImgSrc(R.drawable.icon_zj_add + "");
+        footprintBean.setFootprintName("");
+        mBeanList.add(footprintBean);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new TrackAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
@@ -76,7 +78,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     public void onData(WeatherResult weatherResult) {
         TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);
         if(trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0){
-            mBeanList.addAll(trackBean.getFootprint());
+            mBeanList.addAll(0, trackBean.getFootprint());
             mAdapter.notifyDataSetChanged();
         }
     }

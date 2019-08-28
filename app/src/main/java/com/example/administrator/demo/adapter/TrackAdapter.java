@@ -43,7 +43,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.lin1, false)
                     .setGone(R.id.iv, true)
                     .setGone(R.id.tv, true)
-                    .setGone(R.id.lin, !(data.size() == helper.getAdapterPosition()));
+                    .setGone(R.id.lin, !(data.size() == helper.getPosition()));
         }else{
 
             if(item.isAdd()){
@@ -64,7 +64,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.lin1, true)
                     .setGone(R.id.iv, false)
                     .setGone(R.id.tv, false)
-                    .setGone(R.id.lin, !(data.size() == helper.getAdapterPosition()));
+                    .setGone(R.id.lin, !(data.size() == helper.getPosition()));
         }
     }
 }
