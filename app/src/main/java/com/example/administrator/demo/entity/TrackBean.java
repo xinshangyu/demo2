@@ -15,14 +15,6 @@ public class TrackBean {
     }
 
     public static class FootprintBean {
-        /**
-         * footprintOrder : 1
-         * footprintName : 时光
-         * id : 650dca9f24862a52bb33bae3dbab348a
-         * footprintDescribe : 测试足迹框
-         * footprintImgSrc : F:/staticFile/\402880436b9bb9a4016b9bdcdcfa0008\u=2795971417,2079101078&fm=26&gp=0.jpg
-         */
-
         private String footprintOrder;
         private String footprintName;
         private String id;
