@@ -22,8 +22,13 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.shehuan.nicedialog.BaseNiceDialog;
+import com.shehuan.nicedialog.NiceDialog;
+import com.shehuan.nicedialog.ViewConvertListener;
+import com.shehuan.nicedialog.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -153,7 +158,31 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
      **/
     @OnClick(R.id.tv_save)
     void onAllDetele() {
-
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_delete_show)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                        viewHolder.setText(R.id.tv_title, "清空提示");
+                        viewHolder.setText(R.id.tv_content, "确定要清空吗？清空后将永远无法找回，请谨慎操作");
+                        viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                mBeanList.clear();
+                                mAdapter.setShowCheck(false);
+                                mLLBottom.setVisibility(View.GONE);
+                            }
+                        });
+                    }
+                })
+                .show(getFragmentManager());
     }
 
     /**
@@ -161,6 +190,47 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
      **/
     @OnClick(R.id.tv_delete)
     void onDetele() {
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_delete_show)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                        viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                List<SCBean.BizCircleBean> data = new ArrayList<>();
+                                for(int i = 0;i<mBeanList.size();i++){
+                                    if(mBeanList.get(i).getIsDetele()){
+                                        data.add(mBeanList.get(i));
+                                    }
+                                }
+                                if(data.size() <= 0){
+                                    showToast("请选择删除内容");
+                                    return;
+                                }
 
+                                dialog.dismiss();
+                                for (int i = 0; i < data.size(); i++) {
+                                    for(int j = 0; j < mBeanList.size(); j++){
+                                        if(mBeanList.get(j).getId().equals(data.get(i).getId())){
+                                            mBeanList.remove(j);
+                                            break;
+                                        }
+                                    }
+                                }
+                                mAdapter.setShowCheck(false);
+                                mLLBottom.setVisibility(View.GONE);
+
+                            }
+                        });
+                    }
+                })
+                .show(getFragmentManager());
     }
 }

@@ -22,6 +22,7 @@ import com.example.administrator.demo.activity.personal.MyPersonalSQActivity;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.ToastUtils;
+import com.google.gson.Gson;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
@@ -295,11 +296,14 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @Override
     public void onMyModular(WeatherResult weatherResult) {
         MyModularBen myModularBen;
-//        myModularBen = (MyModularBen) weatherResult;
-//        tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
-//        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()));
-//        tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber()));
-//        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()));
-//        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()));
+        myModularBen = new Gson().fromJson(new Gson().toJson(weatherResult), MyModularBen.class);
+        if(myModularBen == null || myModularBen.getData() == null || myModularBen.getData().getUserInfo() == null){
+            return;
+        }
+        tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
+        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()));
+        tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber()));
+        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()));
+        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()));
     }
 }
