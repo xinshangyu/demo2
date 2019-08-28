@@ -7,9 +7,7 @@ import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.TrackAdapter;
-import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.TrackBean;
-import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -19,11 +17,8 @@ import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 足迹
@@ -37,6 +32,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
 
     TrackAdapter mAdapter;
     private ArrayList<TrackBean.FootprintBean> mBeanList = new ArrayList<>();
+    private TrackBean.FootprintBean footprintBean;
 
     @Override
     protected int getLayout() {
@@ -52,7 +48,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
             }
         });
         setRefresh(mSmartRefreshLayout, this);
-        TrackBean.FootprintBean footprintBean = new TrackBean.FootprintBean();
+        footprintBean = new TrackBean.FootprintBean();
         footprintBean.setAdd(true);
         footprintBean.setFootprintImgSrc(R.drawable.icon_zj_add + "");
         footprintBean.setFootprintName("");
@@ -78,7 +74,9 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     public void onData(WeatherResult weatherResult) {
         TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);
         if(trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0){
+            mBeanList.clear();
             mBeanList.addAll(0, trackBean.getFootprint());
+            mBeanList.add(footprintBean);
             mAdapter.notifyDataSetChanged();
         }
     }

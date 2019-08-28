@@ -15,7 +15,6 @@ import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
-import com.example.baselibrary.zh.utils.AppUtils;
 import com.google.gson.Gson;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;

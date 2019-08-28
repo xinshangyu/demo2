@@ -38,7 +38,7 @@ public class Address {
      */
     public final static String findServiceInfo = "user/me/helpCenter/findServiceInfo?";
     /**
-     * 我的--帮助中心--意见反馈   POST
+     * 我的--帮助中心--意见反馈   POST  http://192.168.0.195:9993/user/me/helpCenter/feedbackProblem
      */
     public final static String feedbackProblem = "user/me/helpCenter/feedbackProblem?";
     /**

@@ -1,8 +1,6 @@
 package com.example.administrator.demo.adapter;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -26,15 +24,14 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv),
-                        new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.defaulthead);
             }else{
-                if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                    helper.setGone(R.id.iv, false);
-                }else{
+                //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
+                //    helper.setGone(R.id.iv, false);
+                //}else{
                     ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
                             new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-                }
+                //}
             }
 
             helper.setText(R.id.tv, item.getFootprintName())
@@ -47,15 +44,14 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
         }else{
 
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv1),
-                        new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.defaulthead);
             }else{
-                if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                    helper.setGone(R.id.iv1, false);
-                }else{
+                //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
+                //    helper.setGone(R.id.iv1, false);
+                //}else{
                     ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
                             new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-                }
+                //}
             }
 
             helper.setText(R.id.tv1, item.getFootprintName())

@@ -6,16 +6,20 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.weight.FullyGridLayoutManager;
 import com.example.administrator.demo.weight.GridImageAdapter;
+import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.net.CommonResponseBean;
-import com.example.baselibrary.zh.net.JsonUtils;
-import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.example.baselibrary.zh.network.RetrofitRequest;
+import com.example.baselibrary.zh.network.result.WeatherResult;
+import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -33,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
+import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -45,6 +49,12 @@ public class CallBackActivity extends BaseActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.edit_content)
+    EditText editContent;
+    @BindView(R.id.et_number)
+    EditText etNumber;
+    @BindView(R.id.tv_save)
+    TextView tvSave;
 
     private GridImageAdapter adapter;
     private List<LocalMedia> selectList = new ArrayList<>();
@@ -112,7 +122,7 @@ public class CallBackActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     dialog.dismiss();
-                                    requestPermission(Permission.CAMERA,Permission.READ_PHONE_STATE,Permission.WRITE_EXTERNAL_STORAGE);
+                                    requestPermission(Permission.CAMERA, Permission.READ_PHONE_STATE, Permission.WRITE_EXTERNAL_STORAGE);
                                 }
                             });
                             viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
@@ -139,6 +149,7 @@ public class CallBackActivity extends BaseActivity {
                     .show(getSupportFragmentManager());
         }
     };
+
     /**
      * 相机拍照
      */
@@ -159,6 +170,7 @@ public class CallBackActivity extends BaseActivity {
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(PictureConfig.CHOOSE_REQUEST);
     }
+
     /**
      * 从本地相册中选择
      */
@@ -186,11 +198,13 @@ public class CallBackActivity extends BaseActivity {
 //                    .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
 
     }
+
     /**
      * 权限申请
+     *
      * @param permissions
      */
-    private void requestPermission( String... permissions) {
+    private void requestPermission(String... permissions) {
         AndPermission.with(this).runtime().permission(permissions)
                 .onGranted(new Action<List<String>>() {
                     @Override
@@ -273,9 +287,40 @@ public class CallBackActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cMap.put("comment", editContent.getText().toString());//
+        cMap.put("visitTel", etNumber.getText().toString());// TODO: 2019/8/28 意见反馈
+        cMap.put("feedbackImg", "");
+
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.feedbackProblem, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+                if (weatherResult.getCode() == 200) {
+
+
+                }
+            }
+
+            @Override
+            public void onAfterFailure() {
+
+            }
+        });
 
 
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }
