@@ -1,5 +1,6 @@
 package com.example.administrator.demo.activity.personal;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.example.administrator.demo.entity.SQBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
+import com.example.baselibrary.zh.adapter.wrapper.EmptyWrapper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -41,7 +43,8 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    Personal_SQ_Adapter mAdapter;
+    Personal_SQ_Adapter adapter;
+    private EmptyWrapper mAdapter;
     private ArrayList<SQBean.BizCircleBean> mBeanList = new ArrayList<>();
     private Map<String, String> mMap;
 
@@ -59,12 +62,13 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
             }
         });
 
-
-        setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new Personal_SQ_Adapter(mContext, mBeanList);
+        adapter = new Personal_SQ_Adapter(mContext, mBeanList);
+        mAdapter = new EmptyWrapper(adapter);
+        mAdapter.setEmptyView(R.layout.empty_view);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(this);
+        adapter.setOnItemClickListener(this);
+        setRefresh(mSmartRefreshLayout, this);
 
     }
 
@@ -77,7 +81,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-
+        setFinishRefresh(mSmartRefreshLayout, false);//
     }
 
     @Override
@@ -107,8 +111,10 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                         });
                         holder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {//删除
                             @Override
-                            public void onClick(View v) {// TODO: 2019/8/27 删除后数据缓存有问题，你看一下 
-                                mMap = new ArrayMap<>();
+                            public void onClick(View v) {//
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                    mMap = new ArrayMap<>();
+                                }
                                 mMap.put("id", mBeanList.get(position).getId());
                                 mMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
 
@@ -122,7 +128,31 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                     public void onResult(WeatherResult weatherResult) {
                                         if (weatherResult.getCode() == 200) {
                                             dialog.dismiss();
-                                            initDate();
+                                            NiceDialog.init()
+                                                    .setLayoutId(R.layout.dialog_delete_show)     //先看下效果，布局最后改
+                                                    .setConvertListener(new ViewConvertListener() {
+                                                        @Override
+                                                        protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                                            holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    dialog.dismiss();
+                                                                    mBeanList.remove(position);
+                                                                    mAdapter.notifyDataSetChanged();
+
+                                                                }
+                                                            });
+                                                            holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
+                                                        }
+                                                    })
+                                                    .setMargin(60)
+                                                    .show(getSupportFragmentManager());
+
                                         }
                                     }
 
