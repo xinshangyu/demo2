@@ -80,13 +80,13 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                                     viewHolder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-
+                                            dialog.dismiss();
                                         }
                                     });
                                     viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-
+                                            dialog.dismiss();
                                         }
                                     });
                                 }
