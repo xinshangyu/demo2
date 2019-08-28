@@ -31,6 +31,7 @@ import com.shehuan.nicedialog.ViewHolder;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -204,9 +205,19 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
+                                List<SCBean.BizCircleBean> data = new ArrayList<>();
                                 for(int i = 0;i<mBeanList.size();i++){
                                     if(mBeanList.get(i).getIsDetele()){
-                                        mBeanList.remove(i);
+                                        data.add(mBeanList.get(i));
+                                    }
+                                }
+
+                                for (int i = 0; i < data.size(); i++) {
+                                    for(int j = 0; j < mBeanList.size(); j++){
+                                        if(mBeanList.get(j).getId().equals(data.get(i).getId())){
+                                            mBeanList.remove(j);
+                                            break;
+                                        }
                                     }
                                 }
                                 mAdapter.setShowCheck(false);
