@@ -12,10 +12,9 @@ public class AppActivityUtils extends ActivityUtils {
     /**
      * 跳转帮助页面
      */
-    public static void StartMoreActivity(Context context, String content, String title) {
+    public static void StartMoreActivity(Context context, String content) {
         Bundle bundle = new Bundle();
         bundle.putString("CONTENT", content);//Tab标识
-        bundle.putString("TITLE", title);//标题
         startActivity(context, MoreActivity.class, bundle);
     }
 
