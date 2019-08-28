@@ -12,14 +12,7 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.weight.FullyGridLayoutManager;
 import com.example.administrator.demo.weight.GridImageAdapter;
-import com.example.baselibrary.LogUtil;
-import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.zh.api.Address;
-import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.network.RetrofitRequest;
-import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -287,31 +280,31 @@ public class CallBackActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cMap.put("comment", editContent.getText().toString());//
-        cMap.put("visitTel", etNumber.getText().toString());// TODO: 2019/8/28 意见反馈
-        cMap.put("feedbackImg", "");
+        //cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        //cMap.put("comment", editContent.getText().toString());//
+        //cMap.put("visitTel", etNumber.getText().toString());// TODO: 2019/8/28 意见反馈
+        //cMap.put("feedbackImg", "");
 
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.feedbackProblem, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-            @Override
-            public void onBeforeResult() {
+        //RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.feedbackProblem, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+        //    @Override
+        //    public void onBeforeResult() {
 
-            }
+        //    }
 
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 200) {
+        //    @Override
+        //    public void onResult(WeatherResult weatherResult) {
+        //        LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+        //        if (weatherResult.getCode() == 200) {
 
 
-                }
-            }
+        //        }
+        //    }
 
-            @Override
-            public void onAfterFailure() {
+        //    @Override
+        //    public void onAfterFailure() {
 
-            }
-        });
+        //    }
+        //});
 
 
     }

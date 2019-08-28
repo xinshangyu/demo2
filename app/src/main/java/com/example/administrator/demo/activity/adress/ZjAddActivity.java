@@ -1,35 +1,36 @@
 package com.example.administrator.demo.activity.adress;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.adapter.TrackAdapter;
-import com.example.administrator.demo.entity.TrackBean;
-import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.example.baselibrary.zh.utils.ImageLoader;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.annotations.NonNull;
 
 /**
  * 足迹
@@ -45,6 +46,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
     @BindView(R.id.tv_do_cancel)
     TextView tv2;
 
+    private List<LocalMedia> selectList = new ArrayList<>();
     @Override
     protected int getLayout() {
         return R.layout.activity_zj;
@@ -75,37 +77,160 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv:
-                if(TextUtils.isEmpty(editText.getText().toString().trim())){
-                    showToast("请输入标题");
-                    NiceDialog.init()
-                            .setLayoutId(R.layout.dialog_photo_select)     //设置dialog布局文件
-                            .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
-                                @Override
-                                public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
-                                    viewHolder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                    viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                }
-                            }).setGravity(Gravity.BOTTOM)
-                            .show(getSupportFragmentManager());
-                    return;
-                }
+
+                NiceDialog.init()
+                        .setLayoutId(R.layout.dialog_photo_select)     //设置dialog布局文件
+                        .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                            @Override
+                            public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                                viewHolder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        requestPermission(Permission.CAMERA, Permission.READ_PHONE_STATE, Permission.WRITE_EXTERNAL_STORAGE);
+                                    }
+                                });
+                                viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        doSelectPhoto();
+                                    }
+                                });
+                                viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                viewHolder.setOnClickListener(R.id.rl_image, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
+                        })
+                        .show(getSupportFragmentManager());
+
                 break;
             case R.id.tv_save:
-
+                if(TextUtils.isEmpty(editText.getText().toString().trim())){
+                    showToast("请输入标题");
+                    return;
+                }
                 break;
             case R.id.tv_do_cancel:
                 finish();
                 break;
         }
     }
+
+    /**
+     * 权限申请
+     *
+     * @param permissions
+     */
+    private void requestPermission(String... permissions) {
+        AndPermission.with(this).runtime().permission(permissions)
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        doTakePhoto();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(mContext, permissions)) {
+                        }
+                    }
+                }).start();
+    }
+
+    /**
+     * 相机拍照
+     */
+    private void doTakePhoto() {
+        PictureSelector.create(this)
+                .openCamera(PictureMimeType.ofImage())
+                .enableCrop(true)// 是否裁剪 true or false
+                .compress(true)// 是否压缩 true or false
+                .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                .isGif(false)// 是否显示gif图片 true or false
+                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+                .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
+                .minimumCompressSize(30)// 小于100kb的图片不压缩
+                .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+                .forResult(PictureConfig.CHOOSE_REQUEST);
+    }
+
+    /**
+     * 从本地相册中选择
+     */
+    private void doSelectPhoto() {
+        PictureSelector.create(this)
+                .openGallery(PictureMimeType.ofImage())
+                .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .previewImage(true)// 是否可预览图片 true or fals
+                .maxSelectNum(1)
+                .isGif(false)// 是否显示gif图片 true or false
+                .isCamera(true)// 是否显示拍照按钮 true or false
+                .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+//                    .enableCrop(true)// 是否裁剪 true or false
+                .compress(true)// 是否压缩 true or false
+                .glideOverride(160, 160)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .selectionMedia(selectList)
+//                    .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+//                    .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+////                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+//                    .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+                .forResult(PictureConfig.CHOOSE_REQUEST);
+//                    .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+//                    .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+//                    .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    selectList = PictureSelector.obtainMultipleResult(data);
+                    // 例如 LocalMedia 里面返回三种path
+                    // 1.media.getPath(); 为原图path
+                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
+//                    for (LocalMedia media : selectList) {
+//                        Log.i("图片-----》", media.getPath());
+//                    }
+                    LocalMedia media = selectList.get(0);
+                    String path = "";
+                    if (media.isCut() && !media.isCompressed()) {
+                        // 裁剪过
+                        path = media.getCutPath();
+                    } else if (media.isCompressed() || (media.isCut() && media.isCompressed())) {
+                        // 压缩过,或者裁剪同时压缩过,以最终压缩过图片为准
+                        path = media.getCompressPath();
+                    } else {
+                        // 原图
+                        path = media.getPath();
+                    }
+                    ImageLoader.getInstance().loadingImage(this, path, imageView);
+                    //提交图片
+                    break;
+            }
+        }
+    }
+
+
 }
