@@ -100,7 +100,6 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                                 viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        //ss
                                         dialog.dismiss();
                                     }
                                 });
@@ -226,6 +225,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                         // 原图
                         path = media.getPath();
                     }
+                    imageView.setPadding(0,0,0,0);
                     ImageLoader.getInstance().loadingImage(this, path, imageView);
                     //提交图片
                     break;

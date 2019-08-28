@@ -71,7 +71,6 @@
         <activity android:name=".activity.comment.Sc_Zan_Comment_LsActivity" />
         <activity android:name=".activity.personal.MyPersonalSQActivity" />
         <activity android:name="com.example.administrator.demo.activity.adress.ZjActivity" />
-        <activity android:name="com.example.administrator.demo.activity.adress.ZjAddActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.MoreActivity" />
 
 
