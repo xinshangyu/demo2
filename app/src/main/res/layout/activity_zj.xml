@@ -43,11 +43,19 @@
         android:textColor="@color/colorBlack0"
         android:textSize="@dimen/text_16sp" />
 
-    <android.support.v7.widget.RecyclerView
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:padding="@dimen/dp_70"
+        android:src="@mipmap/icon_zj_add"
+        />
+
+    <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="7dp"></android.support.v7.widget.RecyclerView>-->
 
     <LinearLayout
         android:layout_width="match_parent"

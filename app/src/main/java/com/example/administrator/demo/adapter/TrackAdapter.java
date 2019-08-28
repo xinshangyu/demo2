@@ -24,7 +24,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.defaulthead);
             }else{
                 //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
                 //    helper.setGone(R.id.iv, false);
@@ -44,7 +44,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
         }else{
 
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.drawable.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.defaulthead);
             }else{
                 //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
                 //    helper.setGone(R.id.iv1, false);

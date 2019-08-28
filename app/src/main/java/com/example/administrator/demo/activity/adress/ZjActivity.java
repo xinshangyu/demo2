@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.TrackAdapter;
 import com.example.administrator.demo.entity.TrackBean;
@@ -56,6 +57,15 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new TrackAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
+                if(bean.isAdd()){
+
+                }
+            }
+        });
 
     }
 
