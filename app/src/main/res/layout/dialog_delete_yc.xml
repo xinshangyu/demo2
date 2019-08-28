@@ -25,11 +25,6 @@
                 android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/text_15sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/colorGrayC" />
-
             <TextView
                 android:id="@+id/tv_select_photo"
                 android:layout_width="match_parent"
@@ -38,12 +33,12 @@
                 android:text="@string/do_delete"
                 android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/text_15sp" />
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/colorLine" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/colorGrayC" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_do_cancel"
@@ -54,5 +49,10 @@
             android:text="@string/hint"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorLine" />
     </LinearLayout>
 </RelativeLayout>

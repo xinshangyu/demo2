@@ -30,15 +30,15 @@ public class Address {
      */
     public final static String upgradeAmount = "user/upgradeAmount?";
     /**
-     * 我的--帮助中心--查询FAQ   GET
+     * 我的--帮助中心--查询FAQ   GET   http://192.168.0.195:9993/user/me/helpCenter/findFAQs
      */
     public final static String findFAQs = "user/me/helpCenter/findFAQs?";
     /**
-     * 我的--帮助中心--查询客服信息   GET
+     * 我的--帮助中心--查询客服信息   GET   http://192.168.0.195:9993/user/me/helpCenter/findServiceInfo
      */
     public final static String findServiceInfo = "user/me/helpCenter/findServiceInfo?";
     /**
-     * 我的--帮助中心--意见反馈   POST
+     * 我的--帮助中心--意见反馈   POST  http://192.168.0.195:9993/user/me/helpCenter/feedbackProblem
      */
     public final static String feedbackProblem = "user/me/helpCenter/feedbackProblem?";
     /**
@@ -54,7 +54,7 @@ public class Address {
      */
     public final static String accountBalance = "user/wallet/accountBalance?";
     /**
-     * 我的--设置--检查更新    GET
+     * 我的--设置--检查更新    GET   http://192.168.0.195:9993/user/me/setting/checkForUpdates
      */
     public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
     /**
@@ -95,9 +95,13 @@ public class Address {
      */
     public final static String browerHistoty = "area/me/browerHistoty?";
     /**
-     * 我的--首页--商圈信息列表--删除商圈信息   GET
+     * 我的--首页--商圈信息列表   GET   http://192.168.0.195:9991/area/me/bizCircleStatistics
      */
-    public final static String deleteBizCircle = "user/me/bizCircle/deleteBizCircle?";
+    public final static String bizCircleStatistics = "area/me/bizCircleStatistics?";
+    /**
+     * 我的--首页--商圈信息列表--删除商圈信息   GET  http://192.168.0.195:9991/area/me/bizCircle/deleteBizCircle
+     */
+    public final static String deleteBizCircle = "area/me/bizCircle/deleteBizCircle?";
     /**
      * 我的--首页--商圈信息列表--设置商圈阅读权限   POST
      */
@@ -105,7 +109,7 @@ public class Address {
     /**
      * 我的--首页--我的点赞   GET
      */
-    public final static String praisedArticles = "user/me/praisedArticles?";
+    public final static String praisedArticles = "area/me/praisedArticles?";
     /**
      * 我的--首页--我的评论   GET  http://192.168.0.195:9991/area/me/commertArtiles
      */

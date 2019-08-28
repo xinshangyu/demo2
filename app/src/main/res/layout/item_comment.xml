@@ -4,13 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <CheckBox
+    <ImageView
         android:id="@+id/CheckBox_my_collection"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="11dp"
-        android:background="@drawable/select_btn"
         android:visibility="gone"
         android:button="@null" />
 
@@ -61,7 +60,7 @@
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="left"
                     android:text="@string/this_is_Newest"
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
@@ -117,7 +116,7 @@
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/comment_sc" />
+                        android:src="@drawable/sc" />
 
                     <View
                         android:layout_width="0dp"
@@ -127,7 +126,7 @@
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/comment_sc" />
+                        android:src="@drawable/zf" />
 
 
                 </LinearLayout>
@@ -157,7 +156,7 @@
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/comment_sc" />
+                        android:src="@drawable/pl" />
 
                     <TextView
                         android:id="@+id/tv_pinglun"
@@ -193,7 +192,7 @@
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/comment_sc" />
+                        android:src="@drawable/dz" />
 
                     <TextView
                         android:id="@+id/tv_zan"

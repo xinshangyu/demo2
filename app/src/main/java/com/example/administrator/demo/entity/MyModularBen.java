@@ -1,15 +1,12 @@
 package com.example.administrator.demo.entity;
 
-import com.example.baselibrary.zh.network.result.WeatherResult;
-
 import java.io.Serializable;
 
-public class MyModularBen extends WeatherResult implements Serializable {
-
+public class MyModularBen implements Serializable {
 
     /**
      * code : 0
-     * data : {"userInfo":{"userSignature":"签名签名签名","petName":"汪汪汪","vipLevel":"VIP0","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d","butterfly":{"butterfly_tentacle":20000,"right_top_wing":8000,"butterfly_body":300000,"left_down_wing":9000,"left_top_wing":11000,"right_down_wing":10000,"id":"d28fe6b81d624c2b9fb56b0ff0aa634e","butterflyLevel":"5"}}}
+     * data : {"userInfo":{"userSignature":"天道酬勤","petName":"银中","vipLevel":"VIP0","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d","circleNumber":1,"fansNumber":1,"butterfly":{"butterfly_tentacle":20000,"right_top_wing":8000,"butterfly_body":300000,"left_down_wing":9000,"left_top_wing":11000,"right_down_wing":10000,"id":"d28fe6b81d624c2b9fb56b0ff0aa634e","butterflyLevel":"5"},"nationId":"6174accb8914403fbe47d438d721fb9e","praiseNumber":2,"cityId":"261746b632e8422bb488cd4fbff25057","provinceId":"a47078ef813541dd935b04a16523e457"}}
      * msg : success
      */
 
@@ -43,7 +40,7 @@ public class MyModularBen extends WeatherResult implements Serializable {
 
     public static class DataBean {
         /**
-         * userInfo : {"userSignature":"签名签名签名","petName":"汪汪汪","vipLevel":"VIP0","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d","butterfly":{"butterfly_tentacle":20000,"right_top_wing":8000,"butterfly_body":300000,"left_down_wing":9000,"left_top_wing":11000,"right_down_wing":10000,"id":"d28fe6b81d624c2b9fb56b0ff0aa634e","butterflyLevel":"5"}}
+         * userInfo : {"userSignature":"天道酬勤","petName":"银中","vipLevel":"VIP0","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d","circleNumber":1,"fansNumber":1,"butterfly":{"butterfly_tentacle":20000,"right_top_wing":8000,"butterfly_body":300000,"left_down_wing":9000,"left_top_wing":11000,"right_down_wing":10000,"id":"d28fe6b81d624c2b9fb56b0ff0aa634e","butterflyLevel":"5"},"nationId":"6174accb8914403fbe47d438d721fb9e","praiseNumber":2,"cityId":"261746b632e8422bb488cd4fbff25057","provinceId":"a47078ef813541dd935b04a16523e457"}
          */
 
         private UserInfoBean userInfo;
@@ -58,91 +55,31 @@ public class MyModularBen extends WeatherResult implements Serializable {
 
         public static class UserInfoBean {
             /**
-             * userSignature : 签名签名签名
-             * petName : 汪汪汪
+             * userSignature : 天道酬勤
+             * petName : 银中
              * vipLevel : VIP0
              * userPhoto : 402880ef6bb0ed2e016bd5e81e3d107d
+             * circleNumber : 1.0
+             * fansNumber : 1.0
              * butterfly : {"butterfly_tentacle":20000,"right_top_wing":8000,"butterfly_body":300000,"left_down_wing":9000,"left_top_wing":11000,"right_down_wing":10000,"id":"d28fe6b81d624c2b9fb56b0ff0aa634e","butterflyLevel":"5"}
+             * nationId : 6174accb8914403fbe47d438d721fb9e
+             * praiseNumber : 2.0
+             * cityId : 261746b632e8422bb488cd4fbff25057
+             * provinceId : a47078ef813541dd935b04a16523e457
              */
 
-            /**
-             * "circleNumber": "455634", 
-             * "attentionNumber": "78645", 
-             * "fansNumber": "45654", 
-             * "praiseNumber": "456453", 
-             * "cityId": "e167ba040c295ecab825a61e65745159", 
-             * "provinceId": "郑州", 
-             * "nationId": "河南",
-             */
-
-            private String circleNumber;//商圈数量
-            private String attentionNumber;//关注数量
-            private String fansNumber;//粉丝数量
-            private String praiseNumber;//点赞数量
-            private String cityId;//城市
-            private String provinceId;//省份
-            private String nationId;//国家
             private String userSignature;
             private String petName;
             private String vipLevel;
             private String userPhoto;
+            private int circleNumber;
+            private int fansNumber;
             private ButterflyBean butterfly;
-
-            public String getCircleNumber() {
-                return circleNumber;
-            }
-
-            public void setCircleNumber(String circleNumber) {
-                this.circleNumber = circleNumber;
-            }
-
-            public String getAttentionNumber() {
-                return attentionNumber;
-            }
-
-            public void setAttentionNumber(String attentionNumber) {
-                this.attentionNumber = attentionNumber;
-            }
-
-            public String getFansNumber() {
-                return fansNumber;
-            }
-
-            public void setFansNumber(String fansNumber) {
-                this.fansNumber = fansNumber;
-            }
-
-            public String getPraiseNumber() {
-                return praiseNumber;
-            }
-
-            public void setPraiseNumber(String praiseNumber) {
-                this.praiseNumber = praiseNumber;
-            }
-
-            public String getCityId() {
-                return cityId;
-            }
-
-            public void setCityId(String cityId) {
-                this.cityId = cityId;
-            }
-
-            public String getProvinceId() {
-                return provinceId;
-            }
-
-            public void setProvinceId(String provinceId) {
-                this.provinceId = provinceId;
-            }
-
-            public String getNationId() {
-                return nationId;
-            }
-
-            public void setNationId(String nationId) {
-                this.nationId = nationId;
-            }
+            private String nationId;
+            private int praiseNumber;
+            private String cityId;
+            private String provinceId;
+            private int attentionNumber;
 
             public String getUserSignature() {
                 return userSignature;
@@ -176,12 +113,68 @@ public class MyModularBen extends WeatherResult implements Serializable {
                 this.userPhoto = userPhoto;
             }
 
+            public int getCircleNumber() {
+                return circleNumber;
+            }
+
+            public void setCircleNumber(int circleNumber) {
+                this.circleNumber = circleNumber;
+            }
+
+            public int getFansNumber() {
+                return fansNumber;
+            }
+
+            public void setFansNumber(int fansNumber) {
+                this.fansNumber = fansNumber;
+            }
+
             public ButterflyBean getButterfly() {
                 return butterfly;
             }
 
             public void setButterfly(ButterflyBean butterfly) {
                 this.butterfly = butterfly;
+            }
+
+            public String getNationId() {
+                return nationId;
+            }
+
+            public void setNationId(String nationId) {
+                this.nationId = nationId;
+            }
+
+            public int getPraiseNumber() {
+                return praiseNumber;
+            }
+
+            public void setPraiseNumber(int praiseNumber) {
+                this.praiseNumber = praiseNumber;
+            }
+
+            public String getCityId() {
+                return cityId;
+            }
+
+            public void setCityId(String cityId) {
+                this.cityId = cityId;
+            }
+
+            public String getProvinceId() {
+                return provinceId;
+            }
+
+            public void setProvinceId(String provinceId) {
+                this.provinceId = provinceId;
+            }
+
+            public int getAttentionNumber() {
+                return attentionNumber;
+            }
+
+            public void setAttentionNumber(int attentionNumber) {
+                this.attentionNumber = attentionNumber;
             }
 
             public static class ButterflyBean {

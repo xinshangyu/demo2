@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/SmartRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
             android:scrollbars="none">
-
         </android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
@@ -56,9 +58,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/shape_color_text_kong"
             android:gravity="center"
-            android:paddingLeft="130dp"
             android:paddingTop="15dp"
-            android:paddingRight="130dp"
             android:paddingBottom="15dp"
             android:text="@string/do_delete"
             android:textColor="@color/colorWebViewIndicator"
@@ -66,4 +66,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

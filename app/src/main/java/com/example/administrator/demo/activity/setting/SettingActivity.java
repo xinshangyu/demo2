@@ -6,13 +6,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.entity.VersionBean;
+import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.network.RetrofitRequest;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
-import com.example.baselibrary.zh.utils.AppUtils;
+import com.google.gson.Gson;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +49,8 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.rl_login_out)
     RelativeLayout rlLoginOut;
 
+    public Map<String, String> cMap;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_setting;
@@ -56,7 +68,32 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-//        tvSize.setText("V" + AppUtils.getAppVersionName());
+        cMap = new HashMap<>();
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.checkForUpdates, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+                if (weatherResult.getCode() == 200) {
+                    VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
+                    if (sqBean != null) {
+                        tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
+                    }
+
+                }
+            }
+
+            @Override
+            public void onAfterFailure() {
+
+            }
+        });
+
     }
 
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})
@@ -66,7 +103,7 @@ public class SettingActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
-               
+
                 break;
             case R.id.rl_cjian:
                 ActivityUtils.startActivity(mContext, CallBackActivity.class);
@@ -97,6 +134,8 @@ public class SettingActivity extends BaseActivity {
                         .show(getSupportFragmentManager());
                 break;
             case R.id.rl_check:
+
+
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_show_toast)
                         .setMargin(60)

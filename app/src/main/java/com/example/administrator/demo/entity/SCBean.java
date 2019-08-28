@@ -32,6 +32,7 @@ public class SCBean {
         private String id;
         private String userId;
         private String content;
+        private boolean isDetele;
 
         public String getCommentNum() {
             return commentNum;
@@ -89,7 +90,13 @@ public class SCBean {
             this.content = content;
         }
 
+        public boolean getIsDetele() {
+            return isDetele;
+        }
 
+        public void setIsDetele(boolean isDetele) {
+            this.isDetele = isDetele;
+        }
 
         public static class UserInfoBean {
             /**

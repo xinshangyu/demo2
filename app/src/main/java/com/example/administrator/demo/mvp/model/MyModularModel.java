@@ -39,14 +39,14 @@ public class MyModularModel {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("我的" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 1) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("我的" + json);
+                if (weatherResult.getCode() == 0) {
                     myModularPresenter.toMyModular(weatherResult);
                     return;
                 }
 
 //                uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
-                myModularPresenter.toMyModular(null);
             }
 
             @Override

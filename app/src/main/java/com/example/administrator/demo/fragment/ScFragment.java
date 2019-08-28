@@ -25,6 +25,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -79,9 +80,11 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     protected void onFragmentFirstVisible() {
+
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "03");//收藏
         cPresenter.requestData2(getActivity(), cMap, Address.scanCollectionInfo);
+
         EventBus.getDefault().register(this);
 
 //        for (int i = 0; i < 8; i++) {
@@ -132,7 +135,7 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        SCBean scBean = gson.fromJson(gson.toJson(weatherResult), SCBean.class);
+        SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
