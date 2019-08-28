@@ -1,5 +1,6 @@
 package com.example.administrator.demo.activity.adress;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +52,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         setRefresh(mSmartRefreshLayout, this);
         footprintBean = new TrackBean.FootprintBean();
         footprintBean.setAdd(true);
-        footprintBean.setFootprintImgSrc(R.drawable.icon_zj_add + "");
+        footprintBean.setFootprintImgSrc(R.mipmap.icon_zj_add + "");
         footprintBean.setFootprintName("");
         mBeanList.add(footprintBean);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -60,10 +61,13 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
-                if(bean.isAdd()){
-
+                if(view.getId() == R.id.iv || view.getId() == R.id.iv1){
+                    TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
+                    if(bean.isAdd()){
+                        startActivity(new Intent(ZjActivity.this, ZjAddActivity.class));
+                    }
                 }
+
             }
         });
 
