@@ -71,10 +71,10 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
 
     }
 
-    @OnClick({R.id.tv_save, R.id.tv_do_cancel})
+    @OnClick({R.id.tv_save, R.id.tv_do_cancel, R.id.iv})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_save:
+            case R.id.iv:
                 if(TextUtils.isEmpty(editText.getText().toString().trim())){
                     showToast("请输入标题");
                     NiceDialog.init()
@@ -99,6 +99,8 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                             .show(getSupportFragmentManager());
                     return;
                 }
+                break;
+            case R.id.tv_save:
 
                 break;
             case R.id.tv_do_cancel:
