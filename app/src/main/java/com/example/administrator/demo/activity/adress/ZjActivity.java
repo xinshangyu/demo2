@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.TrackAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
+import com.example.administrator.demo.entity.TrackBean;
 import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -33,8 +35,8 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    UserFollowAdapter mAdapter;
-    private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
+    TrackAdapter mAdapter;
+    private ArrayList<TrackBean.FootprintBean> mBeanList = new ArrayList<>();
 
     @Override
     protected int getLayout() {
@@ -51,7 +53,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         });
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new UserFollowAdapter(mContext, mBeanList);
+        mAdapter = new TrackAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -69,6 +71,10 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
+        TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);
+        if(trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0){
+            mBeanList.addAll(trackBean.getFootprint());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }
