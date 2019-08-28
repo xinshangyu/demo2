@@ -204,14 +204,18 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                         viewHolder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                dialog.dismiss();
                                 List<SCBean.BizCircleBean> data = new ArrayList<>();
                                 for(int i = 0;i<mBeanList.size();i++){
                                     if(mBeanList.get(i).getIsDetele()){
                                         data.add(mBeanList.get(i));
                                     }
                                 }
+                                if(data.size() <= 0){
+                                    showToast("请选择删除内容");
+                                    return;
+                                }
 
+                                dialog.dismiss();
                                 for (int i = 0; i < data.size(); i++) {
                                     for(int j = 0; j < mBeanList.size(); j++){
                                         if(mBeanList.get(j).getId().equals(data.get(i).getId())){
