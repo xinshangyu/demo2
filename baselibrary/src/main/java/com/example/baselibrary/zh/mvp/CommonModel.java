@@ -173,5 +173,10 @@ public class CommonModel {
             });
     }
 
+    public void uploadeFile(final Context context, Map<String, String> paramMap, String url) {
+
+
+    }
+
 
 }

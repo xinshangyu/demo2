@@ -117,6 +117,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
             case R.id.tv_save:
                 if(TextUtils.isEmpty(editText.getText().toString().trim())){
                     showToast("请输入标题");
+
                     return;
                 }
                 break;
