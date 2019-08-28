@@ -100,6 +100,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                                 viewHolder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        //ss
                                         dialog.dismiss();
                                     }
                                 });
