@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/image"
+        android:layout_width="120dp"
+        android:layout_height="180dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@color/lightslategray"
+        android:foreground="@color/white"
+        />
+
+    <ImageView
+        android:id="@+id/select"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@mipmap/wxz"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"/>
+</RelativeLayout>
