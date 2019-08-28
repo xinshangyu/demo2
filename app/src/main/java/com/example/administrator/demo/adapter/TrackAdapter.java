@@ -16,40 +16,55 @@ import com.example.baselibrary.zh.utils.ImageLoader;
 import java.util.List;
 
 public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, BaseViewHolder> {
+    private List<TrackBean.FootprintBean> data;
     public TrackAdapter(@Nullable List<TrackBean.FootprintBean> data) {
         super(R.layout.item_zuji, data);
+        this.data = data;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
-            if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                helper.setGone(R.id.iv, false);
-            }else{
-                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
+            if(item.isAdd()){
+                ImageLoader.getInstance().loadingImage(mContext, Long.parseLong(item.getFootprintImgSrc()), helper.getView(R.id.iv1),
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+            }else{
+                if(TextUtils.isEmpty(item.getFootprintImgSrc())){
+                    helper.setGone(R.id.iv, false);
+                }else{
+                    ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
+                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                }
             }
+
             helper.setText(R.id.tv, item.getFootprintName())
                     .setGone(R.id.iv1, false)
                     .setGone(R.id.tv1, false)
                     .setGone(R.id.lin1, false)
                     .setGone(R.id.iv, true)
                     .setGone(R.id.tv, true)
-                    .setGone(R.id.lin, true);
+                    .setGone(R.id.lin, !(data.size() == helper.getAdapterPosition()));
         }else{
-            if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                helper.setGone(R.id.iv1, false);
-            }else{
-                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
+
+            if(item.isAdd()){
+                ImageLoader.getInstance().loadingImage(mContext, Long.parseLong(item.getFootprintImgSrc()), helper.getView(R.id.iv1),
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+            }else{
+                if(TextUtils.isEmpty(item.getFootprintImgSrc())){
+                    helper.setGone(R.id.iv1, false);
+                }else{
+                    ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
+                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                }
             }
+
             helper.setText(R.id.tv1, item.getFootprintName())
                     .setGone(R.id.iv1, true)
                     .setGone(R.id.tv1, true)
                     .setGone(R.id.lin1, true)
                     .setGone(R.id.iv, false)
                     .setGone(R.id.tv, false)
-                    .setGone(R.id.lin, false);
+                    .setGone(R.id.lin, !(data.size() == helper.getAdapterPosition()));
         }
     }
 }

@@ -1,8 +1,9 @@
 package com.example.administrator.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TrackBean {
+public class TrackBean implements Serializable{
 
     private List<FootprintBean> footprint;
 
@@ -28,6 +29,7 @@ public class TrackBean {
         private String id;
         private String footprintDescribe;
         private String footprintImgSrc;
+        private boolean add;
 
         public String getFootprintOrder() {
             return footprintOrder;
@@ -67,6 +69,14 @@ public class TrackBean {
 
         public void setFootprintImgSrc(String footprintImgSrc) {
             this.footprintImgSrc = footprintImgSrc;
+        }
+
+        public boolean isAdd() {
+            return add;
+        }
+
+        public void setAdd(boolean add) {
+            this.add = add;
         }
     }
 }

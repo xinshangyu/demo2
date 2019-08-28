@@ -52,6 +52,9 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
             }
         });
         setRefresh(mSmartRefreshLayout, this);
+        TrackBean.FootprintBean footprintBean = new TrackBean.FootprintBean();
+        footprintBean.setAdd(true);
+        footprintBean.setFootprintImgSrc(R.drawable.icon_zj_add + "");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new TrackAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
