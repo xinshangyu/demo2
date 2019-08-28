@@ -40,7 +40,7 @@ public class MyModularModel {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 LogUtil.e("我的" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 1) {
+                if (weatherResult.getCode() == 0) {
                     myModularPresenter.toMyModular(weatherResult);
                     return;
                 }

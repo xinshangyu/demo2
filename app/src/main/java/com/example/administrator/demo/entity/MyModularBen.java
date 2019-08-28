@@ -72,14 +72,14 @@ public class MyModularBen implements Serializable {
             private String petName;
             private String vipLevel;
             private String userPhoto;
-            private double circleNumber;
-            private double fansNumber;
+            private int circleNumber;
+            private int fansNumber;
             private ButterflyBean butterfly;
             private String nationId;
-            private double praiseNumber;
+            private int praiseNumber;
             private String cityId;
             private String provinceId;
-            private double attentionNumber;
+            private int attentionNumber;
 
             public String getUserSignature() {
                 return userSignature;
@@ -113,19 +113,19 @@ public class MyModularBen implements Serializable {
                 this.userPhoto = userPhoto;
             }
 
-            public double getCircleNumber() {
+            public int getCircleNumber() {
                 return circleNumber;
             }
 
-            public void setCircleNumber(double circleNumber) {
+            public void setCircleNumber(int circleNumber) {
                 this.circleNumber = circleNumber;
             }
 
-            public double getFansNumber() {
+            public int getFansNumber() {
                 return fansNumber;
             }
 
-            public void setFansNumber(double fansNumber) {
+            public void setFansNumber(int fansNumber) {
                 this.fansNumber = fansNumber;
             }
 
@@ -145,11 +145,11 @@ public class MyModularBen implements Serializable {
                 this.nationId = nationId;
             }
 
-            public double getPraiseNumber() {
+            public int getPraiseNumber() {
                 return praiseNumber;
             }
 
-            public void setPraiseNumber(double praiseNumber) {
+            public void setPraiseNumber(int praiseNumber) {
                 this.praiseNumber = praiseNumber;
             }
 
@@ -169,11 +169,11 @@ public class MyModularBen implements Serializable {
                 this.provinceId = provinceId;
             }
 
-            public double getAttentionNumber() {
+            public int getAttentionNumber() {
                 return attentionNumber;
             }
 
-            public void setAttentionNumber(double attentionNumber) {
+            public void setAttentionNumber(int attentionNumber) {
                 this.attentionNumber = attentionNumber;
             }
 
