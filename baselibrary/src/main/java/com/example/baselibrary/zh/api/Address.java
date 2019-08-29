@@ -46,7 +46,7 @@ public class Address {
      */
     public final static String personalPoints = "user/pointsMall/personalPoints?";
     /**
-     * 我的--积分商城--精选兑换   GET
+     * 我的--积分商城--精选兑换   GET   http://192.168.0.195:8980/user/pointsMall/selectedFor
      */
     public final static String selectedFor = "user/pointsMall/selectedFor?";
     /**

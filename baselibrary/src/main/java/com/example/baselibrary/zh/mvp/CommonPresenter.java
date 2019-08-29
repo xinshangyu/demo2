@@ -38,6 +38,7 @@ public class CommonPresenter implements ICommonPresenter {
     public void requestDataSQ(Context context, Map<String, String> map, String url) {
         commonModel.getData2(context, map, url);
     }
+
     //足迹
     public void requestDataZJ(Context context, Map<String, String> map, String url) {
         commonModel.getData3(context, map, url);
@@ -47,9 +48,15 @@ public class CommonPresenter implements ICommonPresenter {
     public void requestDataKF(Context context, Map<String, String> map, String url) {
         commonModel.getData3(context, map, url);
     }
+
     //帮助中心faq信息
     public void requestDataFAQ(Context context, Map<String, String> map, String url) {
         commonModel.getData3(context, map, url);
+    }
+
+    //我的--积分商城--精选兑换
+    public void requestDataSelectedFor(Context context, Map<String, String> map, String url) {
+        commonModel.getDataSelectedFor(context, map, url);
     }
 
     @Override

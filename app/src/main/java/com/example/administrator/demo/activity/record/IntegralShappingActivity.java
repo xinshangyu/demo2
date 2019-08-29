@@ -11,7 +11,11 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.setting.UpdatePwdActivity;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import butterknife.BindView;
@@ -20,7 +24,7 @@ import butterknife.OnClick;
 /**
  * 积分商城
  */
-public class IntegralShappingActivity extends BaseActivity {
+public class IntegralShappingActivity extends BaseActivity implements CommonView {
 
     @BindView(R.id.iv_my_head)
     ImageView ivMyHead;
@@ -54,7 +58,8 @@ public class IntegralShappingActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cPresenter.requestDataSelectedFor(this, cMap, Address.selectedFor);
 
     }
 
@@ -73,5 +78,10 @@ public class IntegralShappingActivity extends BaseActivity {
                 showToast("去商城");
                 break;
         }
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+
     }
 }
