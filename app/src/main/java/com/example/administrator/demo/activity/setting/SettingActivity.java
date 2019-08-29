@@ -136,10 +136,10 @@ public class SettingActivity extends BaseActivity {
 
                     }
                 });
-                NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_show_toast)
-                        .setMargin(60)
-                        .show(getSupportFragmentManager());
+//                NiceDialog.init()
+//                        .setLayoutId(R.layout.dialog_show_toast)
+//                        .setMargin(60)
+//                        .show(getSupportFragmentManager());
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()
