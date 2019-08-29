@@ -27,15 +27,16 @@
             android:layout_height="match_parent"
             android:background="@color/huise" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/RecyclerView2"
+        <com.example.baselibrary.zh.utils.flowlayout.FlowLayout
+            android:id="@+id/fl_search"
             android:layout_width="0dp"
+            android:padding="10dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:overScrollMode="never"
             android:scrollbars="none">
 
-        </android.support.v7.widget.RecyclerView>
+        </com.example.baselibrary.zh.utils.flowlayout.FlowLayout>
 
     </LinearLayout>
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.example.baselibrary.zh.utils.flowlayout.FlowLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fl_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:padding="10dp"
+        app:height_space="10dp"
+        app:width_space="10dp">
+
+    </com.example.baselibrary.zh.utils.flowlayout.FlowLayout>
+</LinearLayout>
