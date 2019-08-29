@@ -70,8 +70,6 @@ public class UpdatePhoneActivity extends BaseActivity {
                     showToast(R.string.login_phone_error_hint);
                 } else {
                     // TODO: 2019/8/21 调用接口
-
-
                 }
                 break;
             case R.id.tv_save:
@@ -84,8 +82,6 @@ public class UpdatePhoneActivity extends BaseActivity {
                 } else {
                     // TODO: 2019/8/21 调用接口跳转
                     updatePhone(mContext, phone, code);
-
-
                 }
                 break;
         }
@@ -97,7 +93,7 @@ public class UpdatePhoneActivity extends BaseActivity {
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         paramMap.put("userPhone", userPhone);
         paramMap.put("smsCount", userCodeBea);
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 
@@ -106,7 +102,7 @@ public class UpdatePhoneActivity extends BaseActivity {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 Log.d("zhh", weatherResult.getCode() + "==code");
-                if (weatherResult.getCode() == 1) {
+                if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePhoneSuccessActivity.class);
                 }
 

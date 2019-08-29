@@ -1,9 +1,7 @@
 package com.example.administrator.demo.activity.setting;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -59,6 +57,7 @@ public class AccountActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, UpdatePwdActivity.class);
                 break;
             case R.id.rl_tv_bing_email:
+                ActivityUtils.startActivity(mContext, BindEmailActivity.class);
                 break;
         }
     }

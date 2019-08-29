@@ -12,21 +12,21 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 更新手机号成功
+ * 更新密码成功
  */
-public class UpdatePhoneSuccessActivity extends BaseActivity {
+public class UpdatePwdSuccessActivity extends BaseActivity {
 
     @BindView(R.id.tv_save)
     TextView tvSave;
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_phone_success;
+        return R.layout.activity_pwd_success;
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar(getResources().getString(R.string.update_number), new View.OnClickListener() {
+        setTitleBar(getResources().getString(R.string.set_pwd6), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -36,7 +36,6 @@ public class UpdatePhoneSuccessActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
 
     }
 

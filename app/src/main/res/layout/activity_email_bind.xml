@@ -70,4 +70,27 @@
             android:textColor="@color/colorText_back"
             android:textSize="@dimen/text_14sp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:background="@color/colorBackGround_F7F7F7"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/shape_color_text_background"
+            android:paddingLeft="130dp"
+            android:paddingTop="15dp"
+            android:paddingRight="130dp"
+            android:paddingBottom="15dp"
+            android:text="@string/wc"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_14sp" />
+    </RelativeLayout>
 </LinearLayout>

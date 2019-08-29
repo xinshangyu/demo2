@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.entity.VersionBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -79,11 +78,11 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 200) {
-                    VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
-                    if (sqBean != null) {
-                        tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
-                    }
+                if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
+//                    VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
+//                    if (sqBean != null) {
+//                        tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
+//                    }
 
                 }
             }

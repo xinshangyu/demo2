@@ -10,13 +10,13 @@ public class Address {
     //TODO:Token更换
     public static final String token = "user/login/token/refresh?";
     /**
-     * 我的--设置--账号与安全--变更手机号  GET
+     * 我的--设置--账号与安全--变更手机号  GET  http://192.168.0.195:9993/user/me/setting/changePhone
      */
     public final static String update_number_zh = "user/me/setting/changePhone?";
     /**
-     * 我的--设置--账号与安全--绑定 邮箱   GET
+     * 我的--设置--账号与安全--绑定 邮箱   GET   http://192.168.0.195:9993/user/me/setting/changeEmail
      */
-    public final static String update_email_zh = "user/me/setting/changeEmail?";
+    public final static String update_email = "user/me/setting/changeEmail?";
     /**
      * 我的--vip  GET
      */
@@ -62,7 +62,7 @@ public class Address {
      */
     public final static String bySmsCode = "user/me/setting/modifyPwd/bySmsCode?";
     /**
-     * 我的--设置--账号与安全--修改密码(用旧密码)   GET
+     * 我的--设置--账号与安全--修改密码(用旧密码)   GET   http://192.168.0.195:9993/user/me/setting/modifyPwd/byOldPwd
      */
     public final static String byOldPwd = "user/me/setting/modifyPwd/byOldPwd?";
     /**
