@@ -76,15 +76,8 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
                             protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
                                 final int[] i = {1};
                                 TextView textView = holder.getView(R.id.tv_num);
+
                                 holder.setOnClickListener(R.id.iv_less, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        i[0]++;
-                                        textView.setText(i[0] + "");
-                                        holder.setText(R.id.tv_content, 2000*i[0] + "");
-                                    }
-                                });
-                                holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         if(i[0] > 1){
@@ -92,6 +85,16 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
                                         }
                                         holder.setText(R.id.tv_content, 2000*i[0] + "");
                                         textView.setText(i[0] + "");
+                                    }
+                                });
+
+                                holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        i[0]++;
+                                        textView.setText(i[0] + "");
+                                        holder.setText(R.id.tv_content, 2000*i[0] + "");
                                     }
                                 });
                                 holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
