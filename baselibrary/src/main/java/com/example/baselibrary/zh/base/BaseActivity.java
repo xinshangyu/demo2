@@ -124,26 +124,7 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
         mToolbar.setNavigationIcon(R.drawable.black_back);
         mToolbar.setNavigationOnClickListener(listener);
     }
-    /**
-     * 显示右边标题2
-     *
-     * @param title
-     * @param listener
-     * @param isVisible
-     * @param right
-     */
-    protected void setTitleBar2(String title, View.OnClickListener listener, boolean isVisible, String right) {
-        mToolbar = (Toolbar) findViewById(R.id.common_toolbar);
-        if (!TextUtils.isEmpty(title))
-            ((TextView) findViewById(R.id.common_toolBar_title)).setText(title);
-        TextView mTextRight = (TextView) findViewById(R.id.tv_save);
-        if (isVisible) {
-            mTextRight.setVisibility(View.VISIBLE);
-            mTextRight.setText(right);
-        }
-        mToolbar.setNavigationIcon(R.drawable.black_back);
-        mToolbar.setNavigationOnClickListener(listener);
-    }
+
 
     protected abstract int getLayout();
 

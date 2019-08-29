@@ -4,16 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.activity.setting.CallBackActivity;
 import com.example.administrator.demo.adapter.PagerAdapter;
 import com.example.administrator.demo.entity.TabBean;
-import com.example.administrator.demo.fragment.FollowFragment;
 import com.example.administrator.demo.fragment.HositoryFragment;
 import com.example.administrator.demo.fragment.My_ReadFragment;
-import com.example.administrator.demo.fragment.UnFollowFragment;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.flyco.tablayout.CommonTabLayout;
@@ -40,8 +36,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
     String home;
     @BindString(R.string.lscj)
     String mine;
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
     private String[] mTitles;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
@@ -53,12 +47,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar2("", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        }, true, getResources().getString(R.string.update_data));
 
         mTitles = new String[]{home, mine};
         mFragments.add(My_ReadFragment.newInstance("", ""));
@@ -78,14 +66,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
     @Override
     protected void initDate() {
 
-
-    }
-
-    @OnClick(R.id.tv_save)
-    public void onClick(View view) {
-        if (view.getId() == R.id.tv_save) {
-            ActivityUtils.startActivity(mContext, UpdateMyInfoActivity.class);
-        }
 
     }
 
@@ -111,5 +91,17 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
     @Override
     public void onTabReselect(int position) {
 
+    }
+
+    @OnClick({R.id.iv_run, R.id.tv_save})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_run:
+                finish();
+                break;
+            case R.id.tv_save:
+                ActivityUtils.startActivity(mContext, UpdateMyInfoActivity.class);
+                break;
+        }
     }
 }

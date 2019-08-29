@@ -62,7 +62,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 finish();
             }
         });
-        tvVersion.setText("v"+getVersionName());
+        tvVersion.setText(AppUtils.getAppName());
     }
 
     @Override
