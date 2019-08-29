@@ -6,6 +6,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.read.ReadActivity;
+import com.example.administrator.demo.entity.VersionBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -102,7 +104,7 @@ public class SettingActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
-
+                ActivityUtils.startActivity(mContext, ReadActivity.class);
                 break;
             case R.id.rl_cjian:
                 ActivityUtils.startActivity(mContext, CallBackActivity.class);

@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class SharedPreferencesHelper {
+
     public static final String TAG = SharedPreferencesHelper.class.getName();
     private static Context mContext;
+
     public SharedPreferencesHelper(Context mContext) {
         this.mContext = mContext;
     }
@@ -31,7 +33,7 @@ public class SharedPreferencesHelper {
         settings.edit().putBoolean(key, value).commit();
     }
 
-    public static void setPrefInt(final String key,final int value) {
+    public static void setPrefInt(final String key, final int value) {
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
         settings.edit().putInt(key, value).commit();
     }
@@ -51,7 +53,7 @@ public class SharedPreferencesHelper {
         return settings.getFloat(key, defaultValue);
     }
 
-    public static void setPrefLong(final String key,final long value) {
+    public static void setPrefLong(final String key, final long value) {
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
         settings.edit().putLong(key, value).commit();
     }

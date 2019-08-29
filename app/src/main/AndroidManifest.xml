@@ -30,17 +30,17 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.user.UserLoginActivity">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity
@@ -71,9 +71,10 @@
         <activity android:name=".activity.vip.MyVipActivity" />
         <activity android:name=".activity.comment.Sc_Zan_Comment_LsActivity" />
         <activity android:name=".activity.personal.MyPersonalSQActivity" />
-        <activity android:name="com.example.administrator.demo.activity.adress.ZjActivity" />
-        <activity android:name="com.example.administrator.demo.activity.adress.ZjAddActivity" />
-        <activity android:name="com.example.administrator.demo.activity.setting.MoreActivity" />
+        <activity android:name=".activity.adress.ZjActivity" />
+        <activity android:name=".activity.setting.MoreActivity" />
+        <activity android:name=".activity.read.ReadActivity" />
+        <activity android:name=".activity.adress.ZjAddActivity" />
 
 
     </application>
