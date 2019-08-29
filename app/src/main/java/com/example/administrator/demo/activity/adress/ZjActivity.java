@@ -66,53 +66,55 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if(view.getId() == R.id.iv || view.getId() == R.id.iv1){
+                if (view.getId() == R.id.iv || view.getId() == R.id.iv1) {
                     TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
-                    if(bean.isAdd()){
+                    if (bean.isAdd()) {
                         NiceDialog.init()
                                 .setLayoutId(R.layout.dialog_zuji_show)
                                 .setConvertListener(new ViewConvertListener() {
-                            @Override
-                            protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
-                                final int[] i = {1};
-                                TextView textView = holder.getView(R.id.tv_num);
-
-                                holder.setOnClickListener(R.id.iv_less, new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
-                                        if(i[0] > 1){
-                                            i[0]--;
-                                        }
-                                        holder.setText(R.id.tv_content, 2000*i[0] + "");
-                                        textView.setText(i[0] + "");
-                                    }
-                                });
+                                    protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                        final int[] i = {1};
+                                        TextView textView = holder.getView(R.id.tv_num);
 
-                                holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
+                                        holder.setOnClickListener(R.id.iv_less, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                if (i[0] > 1) {
+                                                    i[0]--;
+                                                }
+                                                holder.setText(R.id.tv_content, 2000 * i[0] + "");
+                                                textView.setText(i[0] + "");
+                                            }
+                                        });
 
-                                        i[0]++;
-                                        textView.setText(i[0] + "");
-                                        holder.setText(R.id.tv_content, 2000*i[0] + "");
-                                    }
-                                });
-                                holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                                holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        startActivity(new Intent(ZjActivity.this, ZjAddActivity.class));
-                                        dialog.dismiss();
-                                    }
-                                });
+                                        holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
 
-                            }
-                        }).show(getSupportFragmentManager());
+                                                i[0]++;
+                                                textView.setText(i[0] + "");
+                                                holder.setText(R.id.tv_content, 2000 * i[0] + "");
+                                            }
+                                        });
+                                        holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                startActivity(new Intent(ZjActivity.this, ZjAddActivity.class));
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                    }
+                                })
+                                .setMargin(42)
+                                .show(getSupportFragmentManager());
                     }
                 }
             }
@@ -134,7 +136,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     @Override
     public void onData(WeatherResult weatherResult) {
         TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);
-        if(trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0){
+        if (trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0) {
             mBeanList.clear();
             mBeanList.addAll(0, trackBean.getFootprint());
             mBeanList.add(footprintBean);
