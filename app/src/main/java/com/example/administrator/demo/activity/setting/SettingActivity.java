@@ -79,7 +79,7 @@ public class SettingActivity extends BaseActivity {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+                LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
 //                    VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
 //                    if (sqBean != null) {
