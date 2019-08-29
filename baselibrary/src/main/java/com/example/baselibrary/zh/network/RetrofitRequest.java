@@ -222,6 +222,8 @@ public class RetrofitRequest {
         FileRequest fileRequest = retrofit.create(FileRequest.class);
 
         Map<String, RequestBody> paramMap = new HashMap<>();
+
+        addMultiPart(paramMap, "userId", SharedPreferencesHelper.getPrefString("userId", ""));
         addMultiPart(paramMap, "file", file);
 
         // 构建请求
