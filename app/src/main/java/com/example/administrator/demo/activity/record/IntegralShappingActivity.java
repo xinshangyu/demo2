@@ -1,22 +1,32 @@
 package com.example.administrator.demo.activity.record;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.activity.setting.UpdatePwdActivity;
+import com.example.administrator.demo.adapter.DhAdapter;
+import com.example.administrator.demo.entity.DhBean;
+import com.example.administrator.demo.entity.JBean;
+import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +48,12 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
     RecyclerView recyclerView;
     @BindView(R.id.tv_save)
     TextView tvSave;
+    @BindView(R.id.tv)
+    TextView tv;
+
+    private ArrayList<DhBean.DataBean.MallCommodityBean> mBeanList = new ArrayList<>();
+    private DhAdapter adapter;
+    private Map<String, String> paramMap;
 
     @Override
     protected int getLayout() {
@@ -52,14 +68,53 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
                 finish();
             }
         });
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new DhAdapter(mContext, mBeanList);
+        recyclerView.setAdapter(adapter);
 
     }
 
     @Override
     protected void initDate() {
-        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestDataSelectedFor(this, cMap, Address.selectedFor);
+
+        paramMap = new HashMap<>();
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.personalPoints, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+                    JBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), JBean.class);
+                    if (sqBean != null) {
+                        double integralNumber = sqBean.getIntegralNumber();
+                        tv.setText("" + integralNumber);
+                    }
+//                    try {
+//                        JSONObject jsonObject = new JSONObject(json);
+//                        int name = jsonObject.optInt("integralNumber");
+//
+//                        showToast(""+name);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
 
     }
 
@@ -72,9 +127,9 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
                 ActivityUtils.startActivity(mContext, IntegralActivity.class);
                 break;
             case R.id.ll_gz:
+                ActivityUtils.startActivity(mContext, JfGzActivity.class);
                 break;
             case R.id.tv_save:
-
                 showToast("去商城");
                 break;
         }
@@ -82,6 +137,10 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
+        DhBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), DhBean.class);
+        if (sqBean != null && sqBean.getData() != null && sqBean.getData().getMallCommodity().size() > 0) {
+            mBeanList.addAll(sqBean.getData().getMallCommodity());
+            adapter.notifyDataSetChanged();
+        }
     }
 }

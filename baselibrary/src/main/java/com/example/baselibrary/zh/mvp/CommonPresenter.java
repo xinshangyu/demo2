@@ -58,6 +58,10 @@ public class CommonPresenter implements ICommonPresenter {
     public void requestDataSelectedFor(Context context, Map<String, String> map, String url) {
         commonModel.getDataSelectedFor(context, map, url);
     }
+    //我的--积分商城--积分规则
+    public void requestDataJF(Context context, Map<String, String> map, String url) {
+        commonModel.getDataJF(context, map, url);
+    }
 
     @Override
     public void toData(WeatherResult weatherResult) {

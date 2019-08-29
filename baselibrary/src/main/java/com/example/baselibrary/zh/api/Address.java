@@ -42,7 +42,7 @@ public class Address {
      */
     public final static String feedbackProblem = "user/me/helpCenter/feedbackProblem?";
     /**
-     * 我的--积分商城--个人积分   GET
+     * 我的--积分商城--个人积分   GET  http://192.168.0.195:8980/user/pointsMall/personalPoints
      */
     public final static String personalPoints = "user/pointsMall/personalPoints?";
     /**
@@ -53,6 +53,10 @@ public class Address {
      * 我的--钱包--账户余额   GET
      */
     public final static String accountBalance = "user/wallet/accountBalance?";
+    /**
+     * 积分规则   GET  http://192.168.0.195:8980/store/pointsMall/pointsRules
+     */
+    public final static String pointsRules = "store/pointsMall/pointsRules?";
     /**
      * 我的--设置--检查更新    GET   http://192.168.0.195:9993/user/me/setting/checkForUpdates
      */
