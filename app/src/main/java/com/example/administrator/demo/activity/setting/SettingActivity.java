@@ -61,7 +61,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 finish();
             }
         });
-        tvVersion.setText(AppUtils.getAppVersionName());
+        tvVersion.setText("V" + AppUtils.getAppVersionName());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 ActivityUtils.startActivity(mContext, ReadActivity.class);
                 break;
             case R.id.rl_cjian:
-                ActivityUtils.startActivity(mContext, CallBackActivity.class);
+//                ActivityUtils.startActivity(mContext, CallBackActivity.class);
                 break;
             case R.id.rl_clear:
                 NiceDialog.init()
@@ -90,10 +90,9 @@ public class SettingActivity extends BaseActivity implements CommonView {
                             protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
                                 holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {// TODO: 2019/8/22  清除缓存
+                                    public void onClick(View v) {
                                         dialog.dismiss();
-//                                        SPUtils.cleanUserInfo(mContext);
-//                                        AppActivityUtils.StartLoginTaskActivity(mContext);
+                                        showToast(getString(R.string.clear_all_size));
                                     }
                                 });
                                 holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
@@ -147,7 +146,8 @@ public class SettingActivity extends BaseActivity implements CommonView {
         if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
             VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
             if (sqBean != null) {
-                //tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
+                String versionCode = sqBean.getAppVersion().getVersionCode();
+                showToast(versionCode);
             }
 
 //                NiceDialog.init()

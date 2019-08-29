@@ -178,5 +178,7 @@
     <string name="phone">联系电话：</string>
     <string name="date">服务时间：</string>
 
+    <string name="clear_all_size">清理完毕</string>
+
 
 </resources>
