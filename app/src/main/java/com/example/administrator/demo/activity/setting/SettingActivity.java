@@ -125,7 +125,7 @@ public class SettingActivity extends BaseActivity {
                         if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
                             VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
                             if (sqBean != null) {
-                                tvSize.setText("" + sqBean.getVersionNumber());
+                                tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
                             }
 
                         }
