@@ -11,19 +11,16 @@ import com.example.administrator.demo.entity.VersionBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
-import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.network.RetrofitRequest;
+import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.example.baselibrary.zh.utils.AppUtils;
 import com.google.gson.Gson;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,7 +28,7 @@ import butterknife.OnClick;
 /**
  * 设置
  */
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements CommonView {
 
     @BindView(R.id.rl_number_and)
     RelativeLayout rlNumberAnd;
@@ -50,7 +47,6 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.rl_login_out)
     RelativeLayout rlLoginOut;
 
-    public Map<String, String> cMap;
 
     @Override
     protected int getLayout() {
@@ -65,6 +61,7 @@ public class SettingActivity extends BaseActivity {
                 finish();
             }
         });
+        tvVersion.setText(AppUtils.getAppName());
     }
 
     @Override
@@ -113,33 +110,8 @@ public class SettingActivity extends BaseActivity {
             case R.id.rl_check:
 
                 cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-                RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.checkForUpdates, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-                    @Override
-                    public void onBeforeResult() {
+                cPresenter.requestData3(this, cMap, Address.checkForUpdates);
 
-                    }
-
-                    @Override
-                    public void onResult(WeatherResult weatherResult) {
-                        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
-                        if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
-                            VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
-                            if (sqBean != null) {
-                                tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onAfterFailure() {
-
-                    }
-                });
-//                NiceDialog.init()
-//                        .setLayoutId(R.layout.dialog_show_toast)
-//                        .setMargin(60)
-//                        .show(getSupportFragmentManager());
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()
@@ -166,6 +138,22 @@ public class SettingActivity extends BaseActivity {
                         .setMargin(60)
                         .show(getSupportFragmentManager());
                 break;
+        }
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
+        if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
+            VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
+            if (sqBean != null) {
+                //tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
+            }
+
+//                NiceDialog.init()
+//                        .setLayoutId(R.layout.dialog_show_toast)
+//                        .setMargin(60)
+//                        .show(getSupportFragmentManager());
         }
     }
 }
