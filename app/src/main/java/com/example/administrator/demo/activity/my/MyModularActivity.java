@@ -1,12 +1,13 @@
-package com.example.administrator.demo.activity;
+package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.user.UserFollowActivity;
 import com.example.administrator.demo.activity.adress.ZjActivity;
 import com.example.administrator.demo.activity.money.MyMoneyActivity;
 import com.example.administrator.demo.activity.record.IntegralShappingActivity;
@@ -51,6 +52,9 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @BindView(R.id.tv_personal_user_identify)
     TextView tvUserIdentify;
 
+    @BindView(R.id.iv_my_head)
+    ImageView iv_my_head;
+
 
     private MyModularPresenter myModularPresenter;
 
@@ -72,6 +76,15 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @OnClick(R.id.iv_run)
     void onRun() {
         finish();
+    }
+
+    /***
+     * 个人中心
+     */
+
+    @OnClick(R.id.iv_my_head)
+    void onHead() {
+        ActivityUtils.startActivity(this, MyInfoActivity.class);
     }
 
     /**
@@ -297,13 +310,13 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     public void onMyModular(WeatherResult weatherResult) {
         MyModularBen myModularBen;
         myModularBen = new Gson().fromJson(new Gson().toJson(weatherResult), MyModularBen.class);
-        if(myModularBen == null || myModularBen.getData() == null || myModularBen.getData().getUserInfo() == null){
+        if (myModularBen == null || myModularBen.getData() == null || myModularBen.getData().getUserInfo() == null) {
             return;
         }
         tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
-        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber()+""));
+        tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber() + ""));
         tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber() + ""));
-        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber()+""));
-        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber()+""));
+        tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber() + ""));
+        tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber() + ""));
     }
 }

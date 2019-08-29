@@ -1,4 +1,4 @@
-package com.example.administrator.demo.activity;
+package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.base.BaseActivity;
 import com.youth.banner.Banner;
 

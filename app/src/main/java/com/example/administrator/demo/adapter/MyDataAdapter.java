@@ -1,4 +1,4 @@
-package com.example.administrator.demo.activity;
+package com.example.administrator.demo.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.my.MyDataActivity;
 
-import butterknife.BindView;
-
-class MyDataAdapter extends RecyclerView.Adapter<MyDataAdapter.ViewHolder> {
+public class MyDataAdapter extends RecyclerView.Adapter<MyDataAdapter.ViewHolder> {
 
 
     private Onclike onclike;
@@ -50,13 +49,13 @@ class MyDataAdapter extends RecyclerView.Adapter<MyDataAdapter.ViewHolder> {
         });
     }
 
-    public interface Onclike{
+    public interface Onclike {
         void selectclike(int i);
 
         void imageclike(int i);
     }
 
-    public void setOncItemClike(Onclike onclike){
+    public void setOncItemClike(Onclike onclike) {
         this.onclike = onclike;
     }
 
@@ -69,6 +68,7 @@ class MyDataAdapter extends RecyclerView.Adapter<MyDataAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView image;
         ImageView select;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);

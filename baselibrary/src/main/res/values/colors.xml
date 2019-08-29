@@ -3,4 +3,5 @@
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorBlack3">#FF333333</color>
     <color name="colorWebViewIndicator">#FE0606</color>
+    <color name="colorText_back">#FF6988F8</color>
 </resources>

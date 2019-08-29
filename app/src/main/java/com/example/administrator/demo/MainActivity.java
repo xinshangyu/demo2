@@ -1,8 +1,8 @@
 package com.example.administrator.demo;
 
 
-import com.example.administrator.demo.activity.MyDataActivity;
-import com.example.administrator.demo.activity.MyModularActivity;
+import com.example.administrator.demo.activity.my.MyDataActivity;
+import com.example.administrator.demo.activity.my.MyModularActivity;
 import com.example.administrator.demo.base.BaseActivity;
 
 import butterknife.OnClick;

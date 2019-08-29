@@ -29,26 +29,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.user.UserLoginActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
 
         <activity
-            android:name=".activity.MyModularActivity"
+            android:name=".activity.my.MyModularActivity"
             android:launchMode="standard" />
 
         <activity
-            android:name="com.example.administrator.demo.activity.UserFollowActivity"
+            android:name="com.example.administrator.demo.activity.user.UserFollowActivity"
             android:launchMode="standard" />
         <activity android:name=".activity.setting.SettingActivity" />
         <activity android:name=".activity.setting.AccountActivity" />
@@ -75,6 +75,8 @@
         <activity android:name=".activity.setting.MoreActivity" />
         <activity android:name=".activity.read.ReadActivity" />
         <activity android:name=".activity.adress.ZjAddActivity" />
+        <activity android:name=".activity.my.MyInfoActivity" />
+        <activity android:name=".activity.my.UpdateMyInfoActivity" />
 
 
     </application>
