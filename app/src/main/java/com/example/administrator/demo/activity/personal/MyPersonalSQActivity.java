@@ -10,7 +10,6 @@ import android.view.View;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.Personal_SQ_Adapter;
 import com.example.administrator.demo.entity.SQBean;
-import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.adapter.wrapper.EmptyWrapper;
@@ -21,7 +20,6 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
@@ -87,7 +85,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
     @Override
     public void onData(WeatherResult weatherResult) {
         SQBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), SQBean.class);
-        if (sqBean != null && sqBean.getBizCircle().size() > 0) {
+        if (sqBean != null && sqBean.getBizCircle() != null && sqBean.getBizCircle().size() > 0) {
             mBeanList.addAll(sqBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
         }

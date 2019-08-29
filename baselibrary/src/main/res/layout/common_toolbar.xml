@@ -29,19 +29,6 @@
         android:textSize="@dimen/text_14sp"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tv_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@drawable/shape_color_text_background"
-        android:paddingBottom="4dp"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        android:paddingTop="4dp"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_15sp"
-        android:visibility="gone" />
 
     <TextView
         android:id="@+id/common_toolBar_title"
