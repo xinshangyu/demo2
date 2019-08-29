@@ -157,6 +157,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
 //                        .setLayoutId(R.layout.dialog_show_toast)
 //                        .setMargin(60)
 //                        .show(getSupportFragmentManager());
+                    //
                 }
                 NiceDialog.init()
                         .setLayoutId(R.layout.activity_update)
