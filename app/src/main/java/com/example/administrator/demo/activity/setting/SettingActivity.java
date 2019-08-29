@@ -69,31 +69,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        cMap = new HashMap<>();
-        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.checkForUpdates, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-            @Override
-            public void onBeforeResult() {
 
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
-//                    VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
-//                    if (sqBean != null) {
-//                        tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
-//                    }
-
-                }
-            }
-
-            @Override
-            public void onAfterFailure() {
-
-            }
-        });
 
     }
 
@@ -136,7 +112,30 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.rl_check:
 
+                cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+                RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.checkForUpdates, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+                    @Override
+                    public void onBeforeResult() {
 
+                    }
+
+                    @Override
+                    public void onResult(WeatherResult weatherResult) {
+                        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
+                        if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
+                            VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
+                            if (sqBean != null) {
+                                tvSize.setText("" + sqBean.getVersionNumber());
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onAfterFailure() {
+
+                    }
+                });
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_show_toast)
                         .setMargin(60)

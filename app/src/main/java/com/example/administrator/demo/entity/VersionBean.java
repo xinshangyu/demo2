@@ -4,84 +4,67 @@ import java.io.Serializable;
 
 public class VersionBean implements Serializable {
 
-
     /**
-     * appVersion : {"versionDescribe":"第一版","id":"0000001","versionClassify":"1","versionNumber":"v1.0.0","versionCode":"001","versionUrl":"c/c/c"}
+     * versionDescribe : 第一版
+     * id : 0000001
+     * versionClassify : 1
+     * versionNumber : v1.0.0
+     * versionCode : 001
+     * versionUrl : c/c/c
      */
 
-    private AppVersionBean appVersion;
+    private String versionDescribe;
+    private String id;
+    private String versionClassify;
+    private String versionNumber;
+    private String versionCode;
+    private String versionUrl;
 
-    public AppVersionBean getAppVersion() {
-        return appVersion;
+    public String getVersionDescribe() {
+        return versionDescribe;
     }
 
-    public void setAppVersion(AppVersionBean appVersion) {
-        this.appVersion = appVersion;
+    public void setVersionDescribe(String versionDescribe) {
+        this.versionDescribe = versionDescribe;
     }
 
-    public static class AppVersionBean {
-        /**
-         * versionDescribe : 第一版
-         * id : 0000001
-         * versionClassify : 1
-         * versionNumber : v1.0.0
-         * versionCode : 001
-         * versionUrl : c/c/c
-         */
+    public String getId() {
+        return id;
+    }
 
-        private String versionDescribe;
-        private String id;
-        private String versionClassify;
-        private String versionNumber;
-        private String versionCode;
-        private String versionUrl;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        public String getVersionDescribe() {
-            return versionDescribe;
-        }
+    public String getVersionClassify() {
+        return versionClassify;
+    }
 
-        public void setVersionDescribe(String versionDescribe) {
-            this.versionDescribe = versionDescribe;
-        }
+    public void setVersionClassify(String versionClassify) {
+        this.versionClassify = versionClassify;
+    }
 
-        public String getId() {
-            return id;
-        }
+    public String getVersionNumber() {
+        return versionNumber;
+    }
 
-        public void setId(String id) {
-            this.id = id;
-        }
+    public void setVersionNumber(String versionNumber) {
+        this.versionNumber = versionNumber;
+    }
 
-        public String getVersionClassify() {
-            return versionClassify;
-        }
+    public String getVersionCode() {
+        return versionCode;
+    }
 
-        public void setVersionClassify(String versionClassify) {
-            this.versionClassify = versionClassify;
-        }
+    public void setVersionCode(String versionCode) {
+        this.versionCode = versionCode;
+    }
 
-        public String getVersionNumber() {
-            return versionNumber;
-        }
+    public String getVersionUrl() {
+        return versionUrl;
+    }
 
-        public void setVersionNumber(String versionNumber) {
-            this.versionNumber = versionNumber;
-        }
-
-        public String getVersionCode() {
-            return versionCode;
-        }
-
-        public void setVersionCode(String versionCode) {
-            this.versionCode = versionCode;
-        }
-
-        public String getVersionUrl() {
-            return versionUrl;
-        }
-
-        public void setVersionUrl(String versionUrl) {
-            this.versionUrl = versionUrl;
-        }
+    public void setVersionUrl(String versionUrl) {
+        this.versionUrl = versionUrl;
     }
 }
