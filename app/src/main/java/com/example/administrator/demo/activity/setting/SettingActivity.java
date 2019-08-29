@@ -9,6 +9,7 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.read.ReadActivity;
 import com.example.administrator.demo.entity.VersionBean;
 import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.NumberFormatUtils;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -61,7 +62,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 finish();
             }
         });
-        tvVersion.setText(AppUtils.getAppName());
+        tvVersion.setText("v"+getVersionName());
     }
 
     @Override
@@ -146,14 +147,50 @@ public class SettingActivity extends BaseActivity implements CommonView {
         LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
         if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
             VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
-            if (sqBean != null) {
-                //tvSize.setText("" + sqBean.getAppVersion().getVersionNumber());
-            }
+            if (sqBean != null && sqBean.getAppVersion() != null) {
+                int currentVersion = getVersionCode();
+                int lastVersion = NumberFormatUtils.getIntegerByString(sqBean.getAppVersion().getVersionCode());
+                if(lastVersion > currentVersion){
 
-//                NiceDialog.init()
+                }else{
+//                    NiceDialog.init()
 //                        .setLayoutId(R.layout.dialog_show_toast)
 //                        .setMargin(60)
 //                        .show(getSupportFragmentManager());
+                }
+                NiceDialog.init()
+                        .setLayoutId(R.layout.activity_update)
+                        .setConvertListener(new ViewConvertListener() {
+                            @Override
+                            protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+
+                            }
+                        })
+                        .show(getSupportFragmentManager());
+            }
+
         }
+    }
+
+    private String getVersionName() {
+        try {
+            String pkName = this.getPackageName();
+            String versionName = this.getPackageManager().getPackageInfo(
+                    pkName, 0).versionName;
+            return versionName;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    private int getVersionCode() {
+        try {
+            String pkName = this.getPackageName();
+            int versionName = this.getPackageManager().getPackageInfo(
+                    pkName, 0).versionCode;
+            return versionName;
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }
