@@ -6,23 +6,21 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyDataAdapter;
-import com.example.administrator.demo.base.BaseActivity;
+import com.example.administrator.demo.entity.MyDataBean;
+import com.example.baselibrary.zh.base.BaseActivity;
 import com.youth.banner.Banner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyDataActivity extends BaseActivity {
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
-    @BindView(R.id.home_search)
-    ImageView homeSearch;
     @BindView(R.id.home_search_edittext)
     EditText homeSearchEdittext;
     @BindView(R.id.banner)
@@ -31,43 +29,41 @@ public class MyDataActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.navigation_view)
     BottomNavigationView navigationView;
-    @BindView(R.id.terrace)
-    TextView terrace;
     @BindView(R.id.my)
     TextView my;
 
-
+    private List<MyDataBean> mBeanList = new ArrayList<>();
+    private MyDataBean bean;
+    private MyDataAdapter mAdapter;
     @Override
-    public int intiLayout() {
+    protected int getLayout() {
         return R.layout.activity_mydata;
     }
 
     @Override
-    public void initView() {
-
+    protected void initView(Bundle savedInstanceState) {
         GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
         recyclerView.setLayoutManager(manager);
-        MyDataAdapter adapter = new MyDataAdapter(MyDataActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.setOncItemClike(new MyDataAdapter.Onclike() {
-            @Override
-            public void selectclike(int i) {
+        mAdapter = new MyDataAdapter(mBeanList);
+        recyclerView.setAdapter(mAdapter);
 
-            }
 
-            @Override
-            public void imageclike(int i) {
-
-            }
-        });
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    protected void initDate() {
 
+        for(int i = 0; i < 10; i++){
+            bean = new MyDataBean();
+            bean.setName("书名" + i);
+            bean.setId("0");
+            mBeanList.add(bean);
+        }
+        bean = new MyDataBean();
+        bean.setName("");
+        bean.setId("-1");
+        mBeanList.add(bean);
+        mAdapter.notifyDataSetChanged();
     }
 
     @OnClick({R.id.terrace, R.id.my})

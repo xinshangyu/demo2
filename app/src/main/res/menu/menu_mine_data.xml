@@ -10,10 +10,6 @@
         android:title="创建文件夹"
         android:icon="@drawable/icon_data_add"/>
 
-    <item
-        android:id="@+id/m_move"
-        android:title="移动"
-        android:icon="@drawable/icon_data_add"/>
 
     <item
         android:id="@+id/m_top"
