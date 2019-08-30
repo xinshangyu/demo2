@@ -70,7 +70,7 @@ public class MyDataActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.terrace:
-                //平台资料
+                //平台资料是
 
                 break;
             case R.id.my:
