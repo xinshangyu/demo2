@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 我的vip
@@ -81,5 +82,10 @@ public class MyVipActivity extends BaseActivity implements CommonView {
             }
         }
 
+    }
+
+    @OnClick(R.id.iv_back)
+    void onBack(){
+        finish();
     }
 }
