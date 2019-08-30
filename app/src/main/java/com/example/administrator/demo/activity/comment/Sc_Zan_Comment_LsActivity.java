@@ -30,6 +30,9 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 收藏，获赞，历史，评论
+ */
 public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSelectListener, ViewPager.OnPageChangeListener {
 
     @BindView(R.id.iv_back)
@@ -71,7 +74,6 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
         tabNum = i;
         Log.d("zhh", "onPageSelected: " + i);
 //        EventBus.getDefault().post(new QuickReturnTopEvent("SC2"));
-
     }
 
     @Override

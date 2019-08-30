@@ -18,6 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 我的资料
+ */
 public class MyDataActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -45,7 +48,7 @@ public class MyDataActivity extends BaseActivity {
     @Override
     public void initView() {
 
-        GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
+        GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this, 3);
         recyclerView.setLayoutManager(manager);
         MyDataAdapter adapter = new MyDataAdapter(MyDataActivity.this);
         recyclerView.setAdapter(adapter);

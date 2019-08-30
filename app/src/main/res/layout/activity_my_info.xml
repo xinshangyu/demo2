@@ -70,13 +70,14 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_nick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="14dp"
+                    android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"

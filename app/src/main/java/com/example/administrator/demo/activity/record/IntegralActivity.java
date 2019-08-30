@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.adapter.FundDetailsAdapter;
 import com.example.administrator.demo.adapter.IntegralDetailsAdapter;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.callback.RefreshCallBack;

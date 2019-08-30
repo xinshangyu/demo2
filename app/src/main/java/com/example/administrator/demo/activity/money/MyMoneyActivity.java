@@ -7,13 +7,11 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.record.RecordActivity;
-import com.example.administrator.demo.activity.setting.UpdatePhoneActivity;
 import com.example.administrator.demo.activity.wallet.RechargeActivity;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
