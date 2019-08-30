@@ -59,6 +59,7 @@ public class MyDataActivity extends BaseActivity {
         images.add(R.drawable.icon);
         images.add(R.drawable.icon);
         images.add(R.drawable.icon);
+
         for(int i = 0; i < 10; i++){
             bean = new MyDataBean();
             bean.setName("书名" + i);
