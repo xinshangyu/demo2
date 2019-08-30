@@ -27,6 +27,7 @@
                 android:layout_height="20dp"
                 android:background="@mipmap/wxz"
                 android:layout_margin="@dimen/dp_5"
+                android:visibility="gone"
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
