@@ -32,7 +32,7 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, MyDataBean item) {
         ImageLoader.getInstance().loadingImage(mContext, item.getSrc(), helper.getView(R.id.iv),
-                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.color.blue);
         helper.setText(R.id.tv, item.getName())
                 .addOnClickListener(R.id.select);
 
