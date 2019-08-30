@@ -5,15 +5,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.RechargeAdapter;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.net.CommonResponseBean;
-import com.example.baselibrary.zh.utils.BaseUtils;
 
 import java.util.ArrayList;
 import java.util.List;

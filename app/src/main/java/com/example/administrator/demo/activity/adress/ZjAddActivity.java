@@ -33,7 +33,7 @@ import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 
 /**
- * 足迹
+ * 足迹添加
  */
 public class ZjAddActivity extends BaseActivity implements CommonView {
 
@@ -47,6 +47,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
     TextView tv2;
 
     private List<LocalMedia> selectList = new ArrayList<>();
+
     @Override
     protected int getLayout() {
         return R.layout.activity_zj;
@@ -60,24 +61,20 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                 finish();
             }
         });
-
     }
 
     @Override
     protected void initDate() {
-
     }
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
     }
 
     @OnClick({R.id.tv_save, R.id.tv_do_cancel, R.id.iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv:
-
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_photo_select)     //设置dialog布局文件
                         .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
@@ -115,7 +112,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
 
                 break;
             case R.id.tv_save:
-                if(TextUtils.isEmpty(editText.getText().toString().trim())){
+                if (TextUtils.isEmpty(editText.getText().toString().trim())) {
                     showToast("请输入标题");
 
                     return;
@@ -226,7 +223,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                         // 原图
                         path = media.getPath();
                     }
-                    imageView.setPadding(0,0,0,0);
+                    imageView.setPadding(0, 0, 0, 0);
                     ImageLoader.getInstance().loadingImage(this, path, imageView);
                     //提交图片
                     break;

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.adapter.VIPAdapter;
 import com.example.administrator.demo.entity.VIPBean;
 import com.example.baselibrary.SharedPreferencesHelper;
@@ -70,13 +69,13 @@ public class MyVipActivity extends BaseActivity implements CommonView {
     @Override
     public void onData(WeatherResult weatherResult) {
         VIPBean vipBean = gson.fromJson(gson.toJson(weatherResult.getData()), VIPBean.class);
-        if(vipBean.getUserInfo() != null){
+        if (vipBean.getUserInfo() != null) {
             ImageLoader.getInstance().loadingImage(mContext, vipBean.getUserInfo().getUserPhoto(), ivTitle,
                     new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
             mTvName.setText(vipBean.getUserInfo().getNickName());
             mTvVip.setText(vipBean.getUserInfo().getVipCode() + "");
             mTvAdd.setText("立即升级");
-            if(vipBean.getUserInfo().getVipEquitiesRule() != null && vipBean.getUserInfo().getVipEquitiesRule().size() > 0){
+            if (vipBean.getUserInfo().getVipEquitiesRule() != null && vipBean.getUserInfo().getVipEquitiesRule().size() > 0) {
                 mBeanList.addAll(vipBean.getUserInfo().getVipEquitiesRule());
                 mAdapter.notifyDataSetChanged();
             }
@@ -84,8 +83,9 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     }
 
+
     @OnClick(R.id.iv_back)
-    void onBack(){
+    public void onViewClicked() {
         finish();
     }
 }

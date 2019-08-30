@@ -7,19 +7,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.activity.user.UserFollowActivity;
 import com.example.administrator.demo.activity.adress.ZjActivity;
+import com.example.administrator.demo.activity.comment.Sc_Zan_Comment_LsActivity;
 import com.example.administrator.demo.activity.money.MyMoneyActivity;
+import com.example.administrator.demo.activity.personal.MyPersonalSQActivity;
 import com.example.administrator.demo.activity.record.IntegralShappingActivity;
 import com.example.administrator.demo.activity.setting.HelpActivity;
 import com.example.administrator.demo.activity.setting.SettingActivity;
+import com.example.administrator.demo.activity.user.UserFollowActivity;
 import com.example.administrator.demo.activity.vip.MyVipActivity;
+import com.example.administrator.demo.activity.wallet.RechargeActivity;
 import com.example.administrator.demo.base.BaseActivity;
-import com.example.administrator.demo.activity.comment.Sc_Zan_Comment_LsActivity;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
-import com.example.administrator.demo.activity.personal.MyPersonalSQActivity;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.ToastUtils;
@@ -245,6 +246,14 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     }
 
     /**
+     * 充值
+     **/
+    @OnClick(R.id.tv_cz)
+    void onclickCz() {
+        ActivityUtils.startActivity(this, RechargeActivity.class);
+    }
+
+    /**
      * 我的VIP
      **/
     @OnClick(R.id.onclickVIP)
@@ -285,7 +294,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickNews)
     public void onclickNews() {
-
+        ToastUtils.showToast(this, "正在开发中...");
     }
 
 

@@ -16,7 +16,7 @@ import com.example.baselibrary.zh.network.result.WeatherResult;
 import butterknife.BindView;
 
 /**
- * 帮助
+ * 问题帮助
  */
 public class MoreActivity extends BaseActivity implements CommonView {
 

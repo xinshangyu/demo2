@@ -17,8 +17,7 @@ import java.util.ArrayList;
  * 商圈adapter
  */
 public class Personal_SQ_Adapter extends CommonAdapter<SQBean.BizCircleBean> {
-    Context context;
-
+    private Context context;
 
     public Personal_SQ_Adapter(Context context, ArrayList<SQBean.BizCircleBean> datas) {
         super(context, R.layout.item_personal_sq, datas);
@@ -32,11 +31,8 @@ public class Personal_SQ_Adapter extends CommonAdapter<SQBean.BizCircleBean> {
                 .setOnClickListener(R.id.iv_dot, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//编辑 删除 隐藏的 布局有，用的时候告诉我，我没看懂    布局是dialog_delete_yc.xml
-
                         mOnItemClickListener.onItemClick(view, holder, position);
                     }
                 });
-
     }
 }

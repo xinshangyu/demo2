@@ -23,8 +23,7 @@ public class DhAdapter extends CommonAdapter<DhBean.MallCommodityBean> {
 
     @Override
     protected void convert(ViewHolder holder,DhBean.MallCommodityBean messageListBean, int position) {
-        holder.setText(R.id.tv_name, messageListBean.getCommodityName())
-               ;
+        holder.setText(R.id.tv_name, messageListBean.getUnitPrice());
 
     }
 }
