@@ -79,6 +79,7 @@
         <activity android:name=".activity.my.MyInfoActivity" />
         <activity android:name=".activity.my.UpdateMyInfoActivity" />
         <activity android:name=".activity.record.JfGzActivity" />
+        <activity android:name=".activity.my.MyDataActivity" />
 
 
     </application>
