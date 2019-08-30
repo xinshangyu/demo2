@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/dp_95"
+        android:layout_height="@dimen/dp_72"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/update_app_name"
+        android:textColor="@color/colorBlack0"
+        android:textSize="@dimen/text_20sp" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text=""
+        android:textColor="@color/colorBlack0"
+        android:textSize="@dimen/text_16sp" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:text="sjjjdsjjssd第三方的圣诞节是范德萨开发德生科技独守空房肯德基德生科技SDK放的时间德生科技"
+        android:lineSpacingExtra="@dimen/dp_10"
+        android:textColor="@color/colorBlack0"
+        android:textSize="@dimen/text_16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_color_text_background"
+            android:paddingLeft="139dp"
+            android:paddingTop="15dp"
+            android:paddingRight="139dp"
+            android:paddingBottom="15dp"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_40"
+            android:text="@string/this_update"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_14sp" />
+</LinearLayout>

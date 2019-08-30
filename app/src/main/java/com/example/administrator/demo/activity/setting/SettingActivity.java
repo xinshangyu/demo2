@@ -160,10 +160,18 @@ public class SettingActivity extends BaseActivity implements CommonView {
                     //
                 }
                 NiceDialog.init()
-                        .setLayoutId(R.layout.activity_update)
+                        .setLayoutId(R.layout.dialog_update)
                         .setConvertListener(new ViewConvertListener() {
                             @Override
                             protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                holder.setText(R.id.tv1, "Android " + sqBean.getAppVersion().getVersionNumber());
+                                holder.setText(R.id.tv2, sqBean.getAppVersion().getVersionDescribe());
+                                holder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                });
 
                             }
                         })
