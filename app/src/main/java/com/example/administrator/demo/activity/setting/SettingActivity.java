@@ -175,6 +175,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
 
                             }
                         })
+                        .setMargin(40)
                         .show(getSupportFragmentManager());
             }
 
