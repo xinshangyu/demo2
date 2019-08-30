@@ -52,7 +52,7 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        setStatusBarColor(R.color.colorgray1);
     }
 
     @Override
