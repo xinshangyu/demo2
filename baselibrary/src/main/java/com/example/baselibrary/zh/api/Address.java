@@ -18,7 +18,7 @@ public class Address {
      */
     public final static String update_email = "user/me/setting/changeEmail?";
     /**
-     * 我的--vip  GET
+     * 我的--vip  GET   http://192.168.0.195:8980/user/getVipEquities
      */
     public final static String vip_getVipEquities = "user/getVipEquities?";
     /**
