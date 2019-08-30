@@ -12,17 +12,17 @@ import java.util.ArrayList;
 /**
  * 兑换
  */
-public class DhAdapter extends CommonAdapter<DhBean.DataBean.MallCommodityBean> {
+public class DhAdapter extends CommonAdapter<DhBean.MallCommodityBean> {
 
     private Context context;
 
-    public DhAdapter(Context context, ArrayList<DhBean.DataBean.MallCommodityBean> datas) {
+    public DhAdapter(Context context, ArrayList<DhBean.MallCommodityBean> datas) {
         super(context, R.layout.item_dh, datas);
         this.context = context;
     }
 
     @Override
-    protected void convert(ViewHolder holder,DhBean.DataBean.MallCommodityBean messageListBean, int position) {
+    protected void convert(ViewHolder holder,DhBean.MallCommodityBean messageListBean, int position) {
         holder.setText(R.id.tv_name, messageListBean.getCommodityName())
                ;
 

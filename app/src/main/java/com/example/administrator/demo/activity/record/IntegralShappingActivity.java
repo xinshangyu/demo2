@@ -51,7 +51,7 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
     @BindView(R.id.tv)
     TextView tv;
 
-    private ArrayList<DhBean.DataBean.MallCommodityBean> mBeanList = new ArrayList<>();
+    private ArrayList<DhBean.MallCommodityBean> mBeanList = new ArrayList<>();
     private DhAdapter adapter;
     private Map<String, String> paramMap;
 
@@ -138,8 +138,8 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
     @Override
     public void onData(WeatherResult weatherResult) {
         DhBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), DhBean.class);
-        if (sqBean != null && sqBean.getData() != null && sqBean.getData().getMallCommodity().size() > 0) {
-            mBeanList.addAll(sqBean.getData().getMallCommodity());
+        if (sqBean != null && sqBean.getMallCommodity() != null && sqBean.getMallCommodity().size() > 0) {
+            mBeanList.addAll(sqBean.getMallCommodity());
             adapter.notifyDataSetChanged();
         }
     }

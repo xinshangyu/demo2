@@ -5,105 +5,70 @@ import java.util.List;
 
 public class DhBean implements Serializable {
 
-    /**
-     * msg : 操作成功！
-     * code : 200
-     * data : {"mallCommodity":[{"commodityId":"402880296c2c4563016c2c4563b20002","unitPrice":"1000","commodityName":null,"commodityImg":null,"commodityType":"1"}]}
-     */
 
-    private String msg;
-    private String code;
-    private DataBean data;
+    private List<MallCommodityBean> mallCommodity;
 
-    public String getMsg() {
-        return msg;
+    public List<MallCommodityBean> getMallCommodity() {
+        return mallCommodity;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMallCommodity(List<MallCommodityBean> mallCommodity) {
+        this.mallCommodity = mallCommodity;
     }
 
-    public String getCode() {
-        return code;
-    }
+    public static class MallCommodityBean {
+        /**
+         * commodityId : 402880296c2c4563016c2c4563b20002
+         * unitPrice : 1000
+         * commodityName : null
+         * commodityImg : null
+         * commodityType : 1
+         */
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+        private String commodityId;
+        private String unitPrice;
+        private String commodityName;
+        private String commodityImg;
+        private String commodityType;
 
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
-        private List<MallCommodityBean> mallCommodity;
-
-        public List<MallCommodityBean> getMallCommodity() {
-            return mallCommodity;
+        public String getCommodityId() {
+            return commodityId;
         }
 
-        public void setMallCommodity(List<MallCommodityBean> mallCommodity) {
-            this.mallCommodity = mallCommodity;
+        public void setCommodityId(String commodityId) {
+            this.commodityId = commodityId;
         }
 
-        public static class MallCommodityBean {
-            /**
-             * commodityId : 402880296c2c4563016c2c4563b20002
-             * unitPrice : 1000
-             * commodityName : null
-             * commodityImg : null
-             * commodityType : 1
-             */
+        public String getUnitPrice() {
+            return unitPrice;
+        }
 
-            private String commodityId;
-            private String unitPrice;
-            private String commodityName;
-            private String commodityImg;
-            private String commodityType;
+        public void setUnitPrice(String unitPrice) {
+            this.unitPrice = unitPrice;
+        }
 
-            public String getCommodityId() {
-                return commodityId;
-            }
+        public String getCommodityName() {
+            return commodityName;
+        }
 
-            public void setCommodityId(String commodityId) {
-                this.commodityId = commodityId;
-            }
+        public void setCommodityName(String commodityName) {
+            this.commodityName = commodityName;
+        }
 
-            public String getUnitPrice() {
-                return unitPrice;
-            }
+        public String getCommodityImg() {
+            return commodityImg;
+        }
 
-            public void setUnitPrice(String unitPrice) {
-                this.unitPrice = unitPrice;
-            }
+        public void setCommodityImg(String commodityImg) {
+            this.commodityImg = commodityImg;
+        }
 
-            public String getCommodityName() {
-                return commodityName;
-            }
+        public String getCommodityType() {
+            return commodityType;
+        }
 
-            public void setCommodityName(String commodityName) {
-                this.commodityName = commodityName;
-            }
-
-            public String getCommodityImg() {
-                return commodityImg;
-            }
-
-            public void setCommodityImg(String commodityImg) {
-                this.commodityImg = commodityImg;
-            }
-
-            public String getCommodityType() {
-                return commodityType;
-            }
-
-            public void setCommodityType(String commodityType) {
-                this.commodityType = commodityType;
-            }
+        public void setCommodityType(String commodityType) {
+            this.commodityType = commodityType;
         }
     }
 }
