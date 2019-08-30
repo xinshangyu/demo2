@@ -14,6 +14,7 @@ import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
@@ -25,6 +26,7 @@ import com.shehuan.nicedialog.ViewHolder;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 
 /**
  * 设置
@@ -169,7 +171,17 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                 holder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        RetrofitRequest.fileDownload(sqBean.getAppVersion().getVersionUrl(), new RetrofitRequest.DownloadHandler() {
+                                            @Override
+                                            public void onBody(ResponseBody body) {
 
+                                            }
+
+                                            @Override
+                                            public void onError() {
+
+                                            }
+                                        });
                                     }
                                 });
 

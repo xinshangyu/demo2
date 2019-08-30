@@ -78,7 +78,7 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
 
     @Override
     protected void initDate() {
-        cPresenter.requestDataSelectedFor(this, cMap, Address.selectedFor);
+        cPresenter.requestData(this, cMap, Address.selectedFor);
 
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));

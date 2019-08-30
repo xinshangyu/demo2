@@ -76,7 +76,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cPresenter.requestDataKF(getApplicationContext(), cMap, Address.findServiceInfo);
+        cPresenter.requestData3(getApplicationContext(), cMap, Address.findServiceInfo);
 
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.findFAQs, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override

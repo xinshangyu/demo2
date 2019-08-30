@@ -30,7 +30,7 @@ public class CommonModel {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+                LogUtil.e("ldh 返回数据1" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {//code==200不是等于1
                     commonPresenter.toData(weatherResult);
                     return;
@@ -56,7 +56,7 @@ public class CommonModel {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 String json = new Gson().toJson(weatherResult);
-                LogUtil.e("返回数据" + json);
+                LogUtil.e("ldh 返回数据2" + json);
                 if (weatherResult.getCode() == 200) {//code==200不是等于1
                     commonPresenter.toData(weatherResult);
                     return;
@@ -81,7 +81,7 @@ public class CommonModel {
             @Override
             public void onResult(WeatherResult weatherResult) {
                 String json = new Gson().toJson(weatherResult);
-                LogUtil.e("返回数据" + json);
+                LogUtil.e("ldh 返回数据3" + json);
                 if (weatherResult.getCode() == 200) {//code==200不是等于1
                     commonPresenter.toData(weatherResult);
                     return;
@@ -95,60 +95,6 @@ public class CommonModel {
         });
     }
 
-    public void getDataSelectedFor(final Context context, Map<String, String> paramMap, String url) {
-
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
-            @Override
-            public void onBeforeResult() {
-
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                String json = new Gson().toJson(weatherResult);
-                LogUtil.e("返回数据" + json);
-                if (weatherResult.getCode() == 200) {//code==200不是等于1
-                    commonPresenter.toData(weatherResult);
-                    return;
-                }
-            }
-
-            @Override
-            public void onAfterFailure() {
-                ToastUtils.showShort(context, "请求失败");
-            }
-        });
-    }
-
-    public void getDataJF(final Context context, Map<String, String> paramMap, String url) {
-
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
-            @Override
-            public void onBeforeResult() {
-
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                String json = new Gson().toJson(weatherResult);
-                LogUtil.e("返回数据" + json);
-                if (weatherResult.getCode() == 200) {//code==200不是等于1
-                    commonPresenter.toData(weatherResult);
-                    return;
-                }
-            }
-
-            @Override
-            public void onAfterFailure() {
-                ToastUtils.showShort(context, "请求失败");
-            }
-        });
-    }
-
-    public void uploadeFile(final Context context, Map<String, String> paramMap, String url) {
-
-
-    }
 
 
 }

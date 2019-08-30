@@ -73,7 +73,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cPresenter.requestDataSQ(getApplicationContext(), cMap, Address.bizCircleStatistics);
+        cPresenter.requestData2(getApplicationContext(), cMap, Address.bizCircleStatistics);
     }
 
 
