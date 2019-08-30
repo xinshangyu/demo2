@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.entity.MyDataBean;
+import com.example.administrator.demo.weight.GlideImageLoader;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.youth.banner.Banner;
 
@@ -35,6 +36,8 @@ public class MyDataActivity extends BaseActivity {
     private List<MyDataBean> mBeanList = new ArrayList<>();
     private MyDataBean bean;
     private MyDataAdapter mAdapter;
+    private List<Integer> images = new ArrayList<>();
+
     @Override
     protected int getLayout() {
         return R.layout.activity_mydata;
@@ -46,13 +49,16 @@ public class MyDataActivity extends BaseActivity {
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
-
+        banner.setImages(images).setImageLoader(new GlideImageLoader()).start();
 
     }
 
     @Override
     protected void initDate() {
 
+        images.add(R.drawable.icon);
+        images.add(R.drawable.icon);
+        images.add(R.drawable.icon);
         for(int i = 0; i < 10; i++){
             bean = new MyDataBean();
             bean.setName("书名" + i);
