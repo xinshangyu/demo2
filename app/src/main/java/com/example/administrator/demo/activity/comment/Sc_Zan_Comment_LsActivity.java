@@ -70,7 +70,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
         mTabLayout.setCurrentTab(i);
         tabNum = i;
         Log.d("zhh", "onPageSelected: " + i);
-        EventBus.getDefault().post(new QuickReturnTopEvent("SC2"));
+//        EventBus.getDefault().post(new QuickReturnTopEvent("SC2"));
 
     }
 

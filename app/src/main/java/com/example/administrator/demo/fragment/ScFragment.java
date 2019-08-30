@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
-import com.example.administrator.demo.entity.CommertListBen;
 import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.SCBean;
 import com.example.baselibrary.SharedPreferencesHelper;
@@ -25,7 +24,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -102,12 +100,13 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvents(QuickReturnTopEvent event) {
         if ("SC".equals(event.current)) {
-            llBottom.setVisibility(View.VISIBLE);
-            mAdapter.setShowCheck(true);
-        } else if ("SC2".equals(event.current)) {
-            llBottom.setVisibility(View.GONE);
-            mAdapter.setShowCheck(false);
+            llBottom.setVisibility(llBottom.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            mAdapter.setShowCheck(!mAdapter.getShowCheck());
         }
+//        else if ("SC2".equals(event.current)) {
+//            llBottom.setVisibility(View.GONE);
+//            mAdapter.setShowCheck(false);
+//        }
     }
 
     @Override
