@@ -77,9 +77,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
-        <TextView
+        <!--<TextView
             android:id="@+id/terrace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -90,17 +90,16 @@
             android:textSize="@dimen/text_15sp"
             android:textColor="@color/color_main_bottom_text"
             android:visibility="gone"
-            />
+            />-->
         <TextView
             android:id="@+id/my"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:text="我的资料"
-            android:gravity="center"
-            android:paddingRight="50dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
             android:textSize="@dimen/text_15sp"
-            android:textColor="@color/color_main_bottom_text"
+            android:textColor="@color/heise"
             />
     </LinearLayout>
 

@@ -45,6 +45,9 @@ public class MyDataActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        images.add(R.drawable.icon);
+        images.add(R.drawable.icon);
+        images.add(R.drawable.icon);
         GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
@@ -56,9 +59,6 @@ public class MyDataActivity extends BaseActivity {
     @Override
     protected void initDate() {
 
-        images.add(R.drawable.icon);
-        images.add(R.drawable.icon);
-        images.add(R.drawable.icon);
         for(int i = 0; i < 10; i++){
             bean = new MyDataBean();
             bean.setName("书名" + i);
