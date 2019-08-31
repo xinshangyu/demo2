@@ -56,9 +56,9 @@ public class MyDataActivity extends BaseActivity {
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 MyDataBean bean = (MyDataBean) adapter.getItem(position);
                 if("-1".equals(bean.getId())){
                     new MaterialFilePicker()
