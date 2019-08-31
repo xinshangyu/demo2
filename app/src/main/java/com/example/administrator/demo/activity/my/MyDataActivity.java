@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.entity.MyDataBean;
 import com.example.administrator.demo.weight.GlideImageLoader;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -48,11 +51,27 @@ public class MyDataActivity extends BaseActivity {
         images.add(R.drawable.icon);
         images.add(R.drawable.icon);
         images.add(R.drawable.icon);
+        banner.setImages(images).setImageLoader(new GlideImageLoader()).start();
         GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
-        banner.setImages(images).setImageLoader(new GlideImageLoader()).start();
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                MyDataBean bean = (MyDataBean) adapter.getItem(position);
+                if("-1".equals(bean.getId())){
+                    new MaterialFilePicker()
+                            .withActivity(MyDataActivity.this)
+                            .withRequestCode(1)
+                            .withFilter(Pattern.compile(".*\\.txt$")) // Filtering files and directories by file name using regexp
+                            .withFilterDirectories(true) // Set directories filterable (false by default)
+                            .withHiddenFiles(true) // Show hidden files and folders
+                            .start();
+
+                }
+            }
+        });
 
     }
 
