@@ -2,13 +2,26 @@ package com.example.administrator.demo.entity;
 
 import java.io.Serializable;
 
-public class MyDataBean implements Serializable{
+public class MyDataBean {
     private String name;
     private String path;
     private String newPath;
     private String size;
     private String id;
     private String src;
+    private boolean isSelect;
+
+    public MyDataBean(){}
+
+    public MyDataBean(String name, String path, String newPath, String size, String id, String src, boolean isSelect){
+        this.name = name;
+        this.path = path;
+        this.newPath = newPath;
+        this.size = size;
+        this.id = id;
+        this.src = src;
+        this.isSelect = isSelect;
+    }
 
     public String getName() {
         return name;
@@ -56,5 +69,13 @@ public class MyDataBean implements Serializable{
 
     public void setSrc(String src) {
         this.src = src;
+    }
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
     }
 }

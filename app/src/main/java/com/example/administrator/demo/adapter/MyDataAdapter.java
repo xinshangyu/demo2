@@ -24,9 +24,12 @@ import java.util.List;
 
 public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> {
 
+    private boolean isShow;
+    private List<MyDataBean> datas;
 
     public MyDataAdapter( @Nullable List<MyDataBean> data) {
         super(R.layout.item_mydata, data);
+        datas = data;
     }
 
     @Override
@@ -34,7 +37,22 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
         ImageLoader.getInstance().loadingImage(mContext, item.getSrc(), helper.getView(R.id.iv),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.color.blue);
         helper.setText(R.id.tv, item.getName())
+                .setImageResource(R.id.select, item.isSelect() ? R.mipmap.yxz : R.mipmap.wxz)
                 .addOnClickListener(R.id.select);
+        if("-1".equals(item.getId())){
+            helper.setGone(R.id.select, false);
+        }else{
+            helper.setGone(R.id.select, isShow);
+        }
 
+    }
+
+    public void setShow(boolean isShow){
+        this.isShow = isShow;
+        notifyDataSetChanged();
+    }
+
+    public boolean getShow(){
+        return isShow;
     }
 }

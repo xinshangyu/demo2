@@ -1,22 +1,46 @@
 package com.example.administrator.demo.activity.my;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.Utils.DateUtil;
+import com.example.administrator.demo.Utils.FileUtil;
+import com.example.administrator.demo.Utils.FileUtils;
 import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.entity.MyDataBean;
+import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.weight.GlideImageLoader;
+import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.shehuan.nicedialog.BaseNiceDialog;
+import com.shehuan.nicedialog.NiceDialog;
+import com.shehuan.nicedialog.ViewConvertListener;
+import com.shehuan.nicedialog.ViewHolder;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 import com.youth.banner.Banner;
 
+import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -40,6 +64,9 @@ public class MyDataActivity extends BaseActivity {
     private MyDataBean bean;
     private MyDataAdapter mAdapter;
     private List<Integer> images = new ArrayList<>();
+    public static final int FILE_PICKER_REQUEST_CODE = 1;
+    private List<MyDataBean> mFileList = new ArrayList<>();
+    private Gson gson = new Gson();
 
     @Override
     protected int getLayout() {
@@ -53,6 +80,7 @@ public class MyDataActivity extends BaseActivity {
         images.add(R.drawable.icon);
         banner.setImages(images).setImageLoader(new GlideImageLoader()).start();
         GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
+
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
@@ -61,34 +89,134 @@ public class MyDataActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 MyDataBean bean = (MyDataBean) adapter.getItem(position);
                 if("-1".equals(bean.getId())){
-                    new MaterialFilePicker()
-                            .withActivity(MyDataActivity.this)
-                            .withRequestCode(1)
-                            .withFilter(Pattern.compile(".*\\.txt$")) // Filtering files and directories by file name using regexp
-                            .withFilterDirectories(true) // Set directories filterable (false by default)
-                            .withHiddenFiles(true) // Show hidden files and folders
-                            .start();
+                    requestPermission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE);
+                }
+            }
+        });
+
+        mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                MyDataBean bean = (MyDataBean) adapter.getItem(position);
+                if("-1".equals(bean.getId())){
+                    return false;
+                }
+                mAdapter.setShow(true);
+                navigationView.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                MyDataBean bean = (MyDataBean) adapter.getItem(position);
+                if(view.getId() == R.id.select){
+                    bean.setSelect(!bean.isSelect());
+                    if(bean.isSelect()){
+                        mFileList.add(bean);
+                    }else{
+                        mFileList.remove(bean);
+                    }
+                    mAdapter.notifyDataSetChanged();
 
                 }
             }
         });
 
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.m_delete) {
+                    for (MyDataBean bean: mFileList) {
+                        for(int i = 0; i < mBeanList.size(); i++){
+                            if(bean.getId().equals(mBeanList.get(i).getId())){
+                                mBeanList.remove(i);
+                                FileUtils.deletePath(bean.getNewPath());
+                                break;
+                            }
+                        }
+                    }
+                    mFileList.clear();
+                    String json = gson.toJson(mBeanList);
+                    SharedPreferencesHelper.setPrefString("files", json);
+                    mAdapter.notifyDataSetChanged();
+                } else if (item.getItemId() == R.id.m_add) {
+
+                    NiceDialog.init()
+                            .setLayoutId(R.layout.dialog_add_show)
+                            .setConvertListener(new ViewConvertListener() {
+                                @Override
+                                protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                    holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            EditText editText = holder.getView(R.id.et_content);
+                                            if(TextUtils.isEmpty(editText.getText().toString().trim())){
+                                                showToast("请输入文件名");
+                                                return;
+                                            }
+                                            FileUtils.getUserNew(editText.getText().toString().trim());
+                                            showToast("创建成功");
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                }
+                            })
+                            .setMargin(30)
+                            .show(getSupportFragmentManager());
+
+                } else if (item.getItemId() == R.id.m_top) {
+                    for (MyDataBean bean: mFileList) {
+                        for(int i = 0; i < mBeanList.size(); i++){
+                            if(bean.getId().equals(mBeanList.get(i).getId())){
+                                mBeanList.remove(i);
+                                break;
+                            }
+                        }
+                    }
+                    mBeanList.addAll(0, mFileList);
+                    String json = gson.toJson(mBeanList);
+                    SharedPreferencesHelper.setPrefString("files", json);
+                    mAdapter.notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
+
+
     }
 
     @Override
     protected void initDate() {
-
-        for(int i = 0; i < 10; i++){
+        Type type = new TypeToken<List<MyDataBean>>() {}.getType();
+        String files = SharedPreferencesHelper.getPrefString("files", "");
+        List<MyDataBean> arrayList = null;
+        if(!TextUtils.isEmpty(files)){
+            arrayList = gson.fromJson(files, type);
+            if(arrayList != null && arrayList.size() > 0){
+                mBeanList.addAll(arrayList);
+                for (MyDataBean bean: mBeanList) {
+                    bean.setSelect(false);
+                }
+            }
+        }
+        if(mBeanList.size() == 0){
             bean = new MyDataBean();
-            bean.setName("书名" + i);
-            bean.setId("0");
+            bean.setName("");
+            bean.setId("-1");
+            bean.setNewPath("");
+            bean.setPath("");
             mBeanList.add(bean);
         }
-        bean = new MyDataBean();
-        bean.setName("");
-        bean.setId("-1");
-        mBeanList.add(bean);
         mAdapter.notifyDataSetChanged();
+
     }
 
     @OnClick({R.id.terrace, R.id.my})
@@ -102,6 +230,105 @@ public class MyDataActivity extends BaseActivity {
                 //我的资料
 
                 break;
+        }
+    }
+
+    /**
+     * 权限申请
+     *
+     * @param permissions
+     */
+    private void requestPermission(String... permissions) {
+        AndPermission.with(this).runtime().permission(permissions)
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        if(mAdapter.getShow()){
+                            return;
+                        }
+                        new MaterialFilePicker()
+                                .withActivity(MyDataActivity.this)
+                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+                                .withHiddenFiles(true)
+                                .withFilter(Pattern.compile(".*\\.txt$|.*\\.doc$"
+                                ))
+                                .withTitle("文件选择")
+                                .withHiddenFiles(true)
+                                .start();
+//                        new MaterialFilePicker()
+//                                .withActivity(MyDataActivity.this)
+//                                .withRequestCode(1)
+//                                .withFilter(Pattern.compile(".*\\.txt$" +
+//                                        ".*\\.doc$" +
+//                                        ".*\\.docx$" +
+//                                        ".*\\.docm$" +
+//                                        ".*\\.dotx$" +
+//                                        ".*\\.dotm$" +
+//                                        ".*\\.xls$" +
+//                                        ".*\\.xlsx$" +
+//                                        ".*\\.xlsm$" +
+//                                        ".*\\.xltx$" +
+//                                        ".*\\.xltm$" +
+//                                        ".*\\.xlam$" +
+//                                        ".*\\.pptx$" +
+//                                        ".*\\.pptm$" +
+//                                        ".*\\.ppsx$" +
+//                                        ".*\\.potx$" +
+//                                        ".*\\.potm$" +
+//                                        ".*\\.ppam$" +
+//                                        ".*\\.pdf$" +
+//                                        ".*\\.epub$"
+//                                )) // Filtering files and directories by file name using regexp
+//                                .withFilterDirectories(true) // Set directories filterable (false by default)
+//                                .withHiddenFiles(true) // Show hidden files and folders
+//                                .start();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(mContext, permissions)) {
+                        }
+                    }
+                }).start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            File file = new File(filePath);
+            if(!TextUtils.isEmpty(filePath)){
+                String newPath = FileUtils.getCacheMD() + file.getName();
+                FileUtil.copyFile(filePath, newPath);
+                bean = new MyDataBean();
+                bean.setName(file.getName());
+                bean.setId(DateUtil.getDateShortSerial());
+                bean.setPath(filePath);
+                bean.setNewPath(newPath);
+                mBeanList.add(0, bean);
+                mAdapter.notifyDataSetChanged();
+                String json = gson.toJson(mBeanList);
+                SharedPreferencesHelper.setPrefString("files", json);
+            }
+            // Do anything with file
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mAdapter.getShow()){
+            mAdapter.setShow(false);
+            mFileList.clear();
+            mFileList.clear();
+            for (MyDataBean bean: mBeanList) {
+                bean.setSelect(false);
+            }
+            navigationView.setVisibility(View.GONE);
+        }else{
+            super.onBackPressed();
         }
     }
 }

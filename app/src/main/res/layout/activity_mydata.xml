@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
-        android:background="@color/class_1"
+        android:background="@color/design_default_color_primary"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -115,6 +115,7 @@
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:menu="@menu/menu_mine_data"
         android:background="@color/white"
         app:itemBackground="@color/white"
