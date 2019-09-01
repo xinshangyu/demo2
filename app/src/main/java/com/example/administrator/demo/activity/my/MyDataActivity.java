@@ -1,12 +1,9 @@
 package com.example.administrator.demo.activity.my;
 
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -22,7 +19,6 @@ import com.example.administrator.demo.Utils.FileUtil;
 import com.example.administrator.demo.Utils.FileUtils;
 import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.entity.MyDataBean;
-import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.weight.GlideImageLoader;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -254,6 +250,7 @@ public class MyDataActivity extends BaseActivity {
                                 ))
                                 .withTitle("文件选择")
                                 .withHiddenFiles(true)
+                                .withFilterDirectories(true)
                                 .start();
 //                        new MaterialFilePicker()
 //                                .withActivity(MyDataActivity.this)
