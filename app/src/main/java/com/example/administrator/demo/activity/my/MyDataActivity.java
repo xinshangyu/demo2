@@ -250,7 +250,6 @@ public class MyDataActivity extends BaseActivity {
                                 ))
                                 .withTitle("文件选择")
                                 .withHiddenFiles(true)
-                                .withFilterDirectories(true)
                                 .start();
 //                        new MaterialFilePicker()
 //                                .withActivity(MyDataActivity.this)
