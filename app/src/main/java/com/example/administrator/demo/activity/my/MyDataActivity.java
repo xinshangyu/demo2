@@ -30,6 +30,8 @@ import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
+import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -63,6 +65,9 @@ public class MyDataActivity extends BaseActivity {
     public static final int FILE_PICKER_REQUEST_CODE = 1;
     private List<MyDataBean> mFileList = new ArrayList<>();
     private Gson gson = new Gson();
+
+    public static final String IS_NEED_FOLDER_LIST = "isNeedFolderList";
+
 
     @Override
     protected int getLayout() {
@@ -242,15 +247,21 @@ public class MyDataActivity extends BaseActivity {
                         if(mAdapter.getShow()){
                             return;
                         }
-                        new MaterialFilePicker()
-                                .withActivity(MyDataActivity.this)
-                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
-                                .withHiddenFiles(true)
-                                .withFilter(Pattern.compile(".*\\.txt$|.*\\.doc$"
-                                ))
-                                .withTitle("文件选择")
-                                .withHiddenFiles(true)
-                                .start();
+//                        new MaterialFilePicker()
+//                                .withActivity(MyDataActivity.this)
+//                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+//                                .withHiddenFiles(true)
+//                                .withFilter(Pattern.compile(".*\\.txt$|.*\\.doc$"
+//                                ))
+//                                .withTitle("文件选择")
+//                                .withHiddenFiles(true)
+//                                .start();
+                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
+                        intent4.putExtra(Constant.MAX_NUMBER, 9);
+                        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
+                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+                                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", ".pptx", "pdf"});
+                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
 //                        new MaterialFilePicker()
 //                                .withActivity(MyDataActivity.this)
 //                                .withRequestCode(1)
