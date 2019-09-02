@@ -101,10 +101,6 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorGrayC" />
 
         <TextView
             android:id="@+id/tv_do_cancel"
@@ -116,7 +112,10 @@
             android:text="@string/do_cancel"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_18sp" />
-
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorGrayC" />
         <TextView
             android:id="@+id/tv_start"
             android:layout_width="0dp"
