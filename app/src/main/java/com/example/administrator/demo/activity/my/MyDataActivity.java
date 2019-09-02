@@ -14,11 +14,12 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.Utils.DateUtil;
-import com.example.administrator.demo.Utils.FileUtil;
-import com.example.administrator.demo.Utils.FileUtils;
+import com.example.administrator.demo.utils.DateUtil;
+import com.example.administrator.demo.utils.FileUtil;
+import com.example.administrator.demo.utils.FileUtils;
 import com.example.administrator.demo.adapter.MyDataAdapter;
 import com.example.administrator.demo.entity.MyDataBean;
+import com.example.administrator.demo.utils.OpenFileUtil;
 import com.example.administrator.demo.weight.GlideImageLoader;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -32,6 +33,7 @@ import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.NormalFile;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -91,6 +93,8 @@ public class MyDataActivity extends BaseActivity {
                 MyDataBean bean = (MyDataBean) adapter.getItem(position);
                 if("-1".equals(bean.getId())){
                     requestPermission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE);
+                }else{
+//                    OpenFileUtil.openFile(bean.getNewPath());
                 }
             }
         });
@@ -247,21 +251,21 @@ public class MyDataActivity extends BaseActivity {
                         if(mAdapter.getShow()){
                             return;
                         }
-//                        new MaterialFilePicker()
-//                                .withActivity(MyDataActivity.this)
-//                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
-//                                .withHiddenFiles(true)
-//                                .withFilter(Pattern.compile(".*\\.txt$|.*\\.doc$"
-//                                ))
-//                                .withTitle("文件选择")
-//                                .withHiddenFiles(true)
-//                                .start();
-                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
-                        intent4.putExtra(Constant.MAX_NUMBER, 9);
-                        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
-                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
-                                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", ".pptx", "pdf"});
-                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+                        new MaterialFilePicker()
+                                .withActivity(MyDataActivity.this)
+                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+                                .withHiddenFiles(true)
+                                .withTitle("文件选择")
+                                .withHiddenFiles(true)
+                                .start();
+
+//                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
+//                        intent4.putExtra(Constant.MAX_NUMBER, 1);
+//                        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
+//                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+//                                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", ".pptx", "pdf", ".epub"});
+//                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+
 //                        new MaterialFilePicker()
 //                                .withActivity(MyDataActivity.this)
 //                                .withRequestCode(1)
@@ -321,6 +325,29 @@ public class MyDataActivity extends BaseActivity {
                 SharedPreferencesHelper.setPrefString("files", json);
             }
             // Do anything with file
+        }
+
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    String filePath = list.get(0).getPath();
+                    File file = new File(filePath);
+                    if(!TextUtils.isEmpty(filePath)){
+                        String newPath = FileUtils.getCacheMD() + file.getName();
+                        FileUtil.copyFile(filePath, newPath);
+                        bean = new MyDataBean();
+                        bean.setName(file.getName());
+                        bean.setId(DateUtil.getDateShortSerial());
+                        bean.setPath(filePath);
+                        bean.setNewPath(newPath);
+                        mBeanList.add(0, bean);
+                        mAdapter.notifyDataSetChanged();
+                        String json = gson.toJson(mBeanList);
+                        SharedPreferencesHelper.setPrefString("files", json);
+                    }
+                }
+                break;
         }
     }
 

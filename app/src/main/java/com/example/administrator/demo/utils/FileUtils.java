@@ -1,4 +1,4 @@
-package com.example.administrator.demo.Utils;
+package com.example.administrator.demo.utils;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
