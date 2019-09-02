@@ -7,7 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:gravity="center">
 
         <com.flyco.tablayout.CommonTabLayout
@@ -16,12 +16,12 @@
             android:layout_height="match_parent"
             app:tl_textSelectColor="@color/themeColor"
             app:tl_textUnselectColor="@color/heise"
-            app:tl_textsize="@dimen/text_15sp" />
+            app:tl_textsize="@dimen/text_19sp" />
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_height="19dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:src="@drawable/black_back" />

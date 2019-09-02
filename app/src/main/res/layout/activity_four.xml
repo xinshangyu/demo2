@@ -53,8 +53,8 @@
                 android:visibility="gone" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="32dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ss" />
 
@@ -69,7 +69,8 @@
             android:layout_centerVertical="true"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:text="@string/choose" />
+            android:text="@string/choose"
+            android:textSize="@dimen/text_15sp" />
 
     </LinearLayout>
 

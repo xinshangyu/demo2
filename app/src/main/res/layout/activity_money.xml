@@ -8,22 +8,22 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="206dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/white">
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="20dp"
             android:text="@string/xnb"
             android:textColor="@color/colorBlack0"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,14 +36,15 @@
                 android:layout_height="wrap_content"
                 android:text="￥"
                 android:textColor="@color/colorBlack0"
-                android:textSize="25sp" />
+                android:textSize="29sp" />
 
             <TextView
                 android:id="@+id/tv_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="00000"
                 android:textColor="@color/colorBlack0"
-                android:textSize="25sp" />
+                android:textSize="29sp" />
         </LinearLayout>
 
         <TextView
@@ -65,32 +66,34 @@
     <RelativeLayout
         android:id="@+id/rl_yhj"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
-        android:paddingLeft="14dp"
+        android:paddingLeft="20dp"
         android:paddingRight="16dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
+            android:id="@+id/iv1"
+            android:layout_width="18dp"
+            android:layout_height="14dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/deful" />
+            android:src="@drawable/yhjuan" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/iv1"
             android:text="@string/my_quan"
             android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:textSize="@dimen/text_15sp" />
 
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -100,31 +103,33 @@
     <RelativeLayout
         android:id="@+id/rl_daoju"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
-        android:paddingLeft="14dp"
+        android:paddingLeft="20dp"
         android:paddingRight="16dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
+            android:id="@+id/iv_my_head"
+            android:layout_width="16dp"
+            android:layout_height="19dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/deful" />
+            android:src="@drawable/hua" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/iv_my_head"
             android:text="@string/my_car"
             android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:textSize="@dimen/text_15sp" />
 
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -137,28 +142,30 @@
         android:layout_height="55dp"
         android:layout_marginBottom="5dp"
         android:background="@android:color/white"
-        android:paddingLeft="14dp"
+        android:paddingLeft="20dp"
         android:paddingRight="16dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
+            android:id="@+id/iv"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/deful" />
+            android:src="@drawable/jyjl" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/iv"
             android:text="@string/my_index"
             android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:textSize="@dimen/text_15sp" />
 
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />

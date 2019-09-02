@@ -2,76 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
     android:paddingLeft="@dimen/dp_15"
-    android:paddingRight="@dimen/dp_15"
-    android:background="@color/colorWhite">
+    android:paddingRight="@dimen/dp_15">
 
     <ImageView
         android:id="@+id/iv"
-        android:layout_width="@dimen/dp_150"
-        android:layout_height="@dimen/dp_130"
+        android:layout_width="138dp"
+        android:layout_height="94dp"
         android:gravity="left"
+        android:scaleType="fitXY"
+        android:src="@drawable/deful_back"
         android:text="@string/app_name"
         android:textColor="@color/colorBlack0"
-        android:src="@drawable/logo"
         android:textSize="@dimen/text_15sp" />
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="@dimen/dp_150"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:text="足迹标题哈哈哈"
-        android:textSize="@dimen/sp_16"
         android:layout_below="@+id/iv"
+        android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:paddingTop="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_15"
-        />
-    
+        android:textColor="@color/black"
+        android:textSize="19sp" />
+
     <ImageView
         android:id="@+id/lin"
-        android:layout_width="@dimen/dp_130"
-        android:layout_height="@dimen/dp_80"
-        android:layout_toRightOf="@+id/tv"
+        android:layout_width="@dimen/dp_140"
+        android:layout_height="@dimen/dp_70"
         android:layout_alignTop="@+id/tv"
-        android:background="@drawable/icon_zj_liner"
-        />
+        android:layout_marginLeft="-25dp"
+        android:layout_toRightOf="@+id/tv"
+        android:background="@drawable/icon_zj_liner" />
 
 
     <ImageView
         android:id="@+id/iv1"
-        android:layout_width="@dimen/dp_150"
-        android:layout_height="@dimen/dp_130"
+        android:layout_width="138dp"
+        android:layout_height="94dp"
+        android:layout_below="@+id/lin"
         android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/deful_back"
         android:text="@string/app_name"
         android:textColor="@color/colorBlack0"
-        android:layout_below="@+id/lin"
-        android:src="@drawable/logo"
-        android:textSize="@dimen/text_15sp" />
+        android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="@dimen/dp_150"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:layout_alignParentRight="true"
-        android:text="足迹标题哈哈哈"
-        android:textSize="@dimen/sp_16"
         android:layout_below="@+id/iv1"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:paddingTop="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_15"
-        />
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
 
     <ImageView
         android:id="@+id/lin1"
-        android:layout_width="@dimen/dp_130"
-        android:layout_height="@dimen/dp_80"
-        android:layout_toLeftOf="@+id/tv1"
+        android:layout_width="@dimen/dp_140"
+        android:layout_height="@dimen/dp_70"
         android:layout_alignTop="@+id/tv1"
-        android:background="@drawable/icon_zj_linel"
-        />
+        android:layout_marginRight="-25dp"
+        android:layout_toLeftOf="@+id/tv1"
+        android:background="@drawable/icon_zj_linel" />
 </RelativeLayout>

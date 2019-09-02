@@ -79,10 +79,10 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="2dp"
                 android:text="@string/app_name"
                 android:textColor="@color/colorBlack9"
-                android:textSize="@dimen/text_13sp" />
+                android:textSize="@dimen/text_9sp" />
 
             <TextView
                 android:id="@+id/tv_date2"
@@ -91,7 +91,7 @@
                 android:layout_marginTop="3dp"
                 android:text="@string/app_name"
                 android:textColor="@color/colorBlack9"
-                android:textSize="@dimen/text_13sp" />
+                android:textSize="@dimen/text_10sp" />
         </LinearLayout>
 
         <ImageView
@@ -122,15 +122,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="001"
-                android:textColor="#FF666666"
+                android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/dp_14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="关注"
                 android:textColor="#FF666666"
-                android:textSize="@dimen/dp_14" />
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
 
@@ -147,15 +148,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="002"
-                android:textColor="#FF666666"
+                android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/dp_14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="粉丝"
                 android:textColor="#FF666666"
-                android:textSize="@dimen/dp_14" />
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
 
@@ -172,15 +174,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="003"
-                android:textColor="#FF666666"
+                android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/dp_14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="商圈"
                 android:textColor="#FF666666"
-                android:textSize="@dimen/dp_14" />
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
 
@@ -197,15 +200,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="004"
-                android:textColor="#FF666666"
+                android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/dp_14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="获赞"
                 android:textColor="#FF666666"
-                android:textSize="@dimen/dp_14" />
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
     </LinearLayout>
@@ -214,8 +218,8 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/huise" />
+        android:layout_marginBottom="13dp"
+        android:background="@color/colorBackGround_F7F7F7" />
 
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/home_tabLayout"
@@ -223,7 +227,7 @@
         android:layout_height="48dp"
         app:tl_textSelectColor="@color/themeColor"
         app:tl_textUnselectColor="@color/heise"
-        app:tl_textsize="@dimen/text_15sp" />
+        app:tl_textsize="@dimen/text_16sp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/home_NoScrollViewPager"

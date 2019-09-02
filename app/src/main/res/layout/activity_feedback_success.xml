@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="15dp"
         android:text="@string/feedback_success"
         android:textColor="@color/colorBlack0"
         android:textSize="@dimen/text_17sp" />
@@ -25,7 +25,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/feedback_show_text"
         android:textColor="@color/colorText"
-        android:textSize="@dimen/text_17sp" />
+        android:textSize="@dimen/text_15sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,11 +37,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/shape_color_text_background"
-            android:paddingLeft="130dp"
+            android:paddingLeft="146dp"
             android:paddingTop="15dp"
-            android:paddingRight="130dp"
+            android:paddingRight="146dp"
             android:paddingBottom="15dp"
             android:text="@string/close"
             android:textColor="@color/colorWhite"

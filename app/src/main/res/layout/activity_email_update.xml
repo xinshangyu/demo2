@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="17dp"
-    android:layout_marginRight="17dp"
     android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -27,7 +28,7 @@
             android:layout_marginLeft="50dp"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="@string/login_email_hint2"
+            android:hint="@string/login_email_hint"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_16sp" />
 
@@ -36,7 +37,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="1dp"
+        android:layout_marginRight="17dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -49,9 +52,10 @@
             android:textSize="@dimen/text_16sp" />
 
         <EditText
+            android:id="@+id/et_code"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="33.5dp"
             android:layout_weight="1"
             android:background="@null"
             android:gravity="center_vertical"
@@ -60,10 +64,33 @@
             android:textSize="@dimen/text_16sp" />
 
         <TextView
+            android:id="@+id/tv_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/privacy_code"
             android:textColor="@color/colorText_back"
             android:textSize="@dimen/text_14sp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="90dp"
+        android:background="@color/colorBackGround_F7F7F7"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_color_text_background2"
+            android:paddingLeft="144dp"
+            android:paddingTop="15dp"
+            android:paddingRight="144dp"
+            android:paddingBottom="15dp"
+            android:text="@string/wc"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_16sp" />
+    </RelativeLayout>
 </LinearLayout>

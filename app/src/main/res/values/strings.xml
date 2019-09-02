@@ -21,7 +21,7 @@
     <string name="my_phone">手机号</string>
     <string name="my_phone_and_email">手机号/邮箱</string>
     <string name="show_wt">问题截图</string>
-    <string name="please_set">请输入</string>
+    <string name="please_set">请输入...</string>
 
     <string name="dialog_save_my_info">保存成功，并获得%d积分！</string>
     <string name="save_my_info">保存</string>
@@ -111,6 +111,7 @@
 
     <string name="account">账号与安全</string>
     <string name="wc">完成</string>
+    <string name="sming">说明</string>
 
     <string name="money">钱包</string>
     <string name="xnb">虚拟币</string>
@@ -180,6 +181,8 @@
     <string name="date">服务时间：</string>
 
     <string name="clear_all_size">清理完毕</string>
+
+    <string name="ljql">立即升级</string>
 
 
 </resources>

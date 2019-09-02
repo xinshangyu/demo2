@@ -17,7 +17,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/colorBlack3"
-        android:textSize="@dimen/text_18sp" />
+        android:textSize="@dimen/text_19sp" />
 
     <TextView
         android:id="@+id/common_toolBar_text_right"
@@ -28,7 +28,7 @@
         android:layout_marginRight="10dp"
         android:gravity="center"
         android:textColor="@color/colorBlack3"
-        android:textSize="@dimen/text_14sp"
+        android:textSize="@dimen/text_15sp"
         android:visibility="gone" />
 
     <ImageButton

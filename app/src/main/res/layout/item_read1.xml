@@ -13,8 +13,8 @@
         android:textColor="@color/colorBlack0"
         android:textSize="@dimen/text_20sp" />
 
-<Spinner
-    android:background="@color/huise"
-    android:layout_width="match_parent"
-    android:layout_height="0.5dp"></Spinner>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/huise"></Spinner>
 </LinearLayout>

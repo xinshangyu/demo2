@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp_10"
-    android:orientation="vertical"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="@dimen/dp_5">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,24 +22,25 @@
                 android:layout_width="100dp"
                 android:layout_height="137dp"
                 android:src="@color/blue" />
+
             <ImageView
                 android:id="@+id/select"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@mipmap/wxz"
                 android:layout_margin="@dimen/dp_10"
-                android:visibility="visible"/>
+                android:background="@mipmap/wxz"
+                android:visibility="visible" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
     <TextView
         android:id="@+id/tv"
         android:layout_width="@dimen/dp_100"
         android:layout_height="wrap_content"
-        android:text="书名书名书名"
-        android:padding="@dimen/dp_5"
         android:gravity="center"
-        />
+        android:padding="@dimen/dp_5"
+        android:text="书名书名书名" />
 
 
 </LinearLayout>

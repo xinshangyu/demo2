@@ -9,14 +9,15 @@
     <ImageView
         android:id="@+id/iv_my_head"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="131dp"
+        android:scaleType="fitXY"
         android:src="@drawable/icon" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <LinearLayout
             android:id="@+id/ll_jf1"
@@ -112,7 +113,7 @@
         android:layout_marginBottom="9dp"
         android:text="@string/jxdh"
         android:textColor="@color/colorBlack0"
-        android:textSize="@dimen/text_18sp" />
+        android:textSize="@dimen/text_16sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -124,7 +125,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="23dp"
         android:gravity="bottom">
 
         <TextView

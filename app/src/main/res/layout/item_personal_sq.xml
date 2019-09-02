@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/this_is_Newest"
                     android:textColor="@color/colorBlack0"
-                    android:textSize="@dimen/text_14sp" />
+                    android:textSize="@dimen/text_10sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/this_is_Newest"
                     android:textColor="@color/colorText_gray"
-                    android:textSize="@dimen/text_8sp" />
+                    android:textSize="@dimen/text_9sp" />
 
 
             </LinearLayout>
@@ -92,7 +92,7 @@
             android:maxLines="2"
             android:text="@string/do_clear_show_text"
             android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:textSize="@dimen/text_17sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,7 +109,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="67.5dp"
-                    android:src="@drawable/deful" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/deful_back" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,7 +149,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="67.5dp"
-                    android:src="@drawable/deful" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/deful_back" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -159,7 +161,7 @@
 
                     <ImageView
                         android:layout_width="14dp"
-                        android:layout_height="14dp"
+                        android:layout_height="13dp"
                         android:src="@drawable/pl" />
 
                     <TextView
@@ -184,7 +186,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="67.5dp"
-                    android:src="@drawable/logo" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/deful_back" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
