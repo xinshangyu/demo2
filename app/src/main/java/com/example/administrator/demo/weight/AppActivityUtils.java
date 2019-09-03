@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.administrator.demo.activity.record.JyXqActivity;
 import com.example.administrator.demo.activity.setting.MoreActivity;
 import com.example.administrator.demo.activity.user.UserLoginActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
@@ -18,6 +19,15 @@ public class AppActivityUtils extends ActivityUtils {
         Bundle bundle = new Bundle();
         bundle.putString("CONTENT", content);//Tab标识
         startActivity(context, MoreActivity.class, bundle);
+    }
+
+    /**
+     * 跳转交易详情页面
+     */
+    public static void StartJxxqActivity(Context context, String content) {
+        Bundle bundle = new Bundle();
+        bundle.putString("CONTENT", content);//Tab标识
+        startActivity(context, JyXqActivity.class, bundle);
     }
 
     /**

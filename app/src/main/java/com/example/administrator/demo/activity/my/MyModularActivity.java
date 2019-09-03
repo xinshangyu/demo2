@@ -295,7 +295,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickNews)
     public void onclickNews() {
-        ToastUtils.showToast(this, "正在开发中...");
+        ToastUtils.showToast(this, "不用写...");
     }
 
 

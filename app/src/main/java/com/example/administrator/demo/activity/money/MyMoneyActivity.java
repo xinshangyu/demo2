@@ -61,8 +61,10 @@ public class MyMoneyActivity extends BaseActivity {
                 ActivityUtils.startActivity(mContext, RechargeActivity.class);
                 break;
             case R.id.rl_yhj:
+                showToast("接口没有...");
                 break;
             case R.id.rl_daoju:
+                showToast("接口没有...");
                 break;
             case R.id.rl_jyjl:
                 ActivityUtils.startActivity(mContext, RecordActivity.class);

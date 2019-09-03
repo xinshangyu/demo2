@@ -26,7 +26,6 @@ import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
-import com.example.baselibrary.zh.utils.ToastUtils;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
@@ -91,7 +90,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 ActivityUtils.startActivity(mContext, ReadActivity.class);
                 break;
             case R.id.rl_cjian:
-                ToastUtils.showToast(this, "正在开发中...");
+                ActivityUtils.startActivity(mContext, ChaJianActivity.class);
                 break;
             case R.id.rl_clear:
                 NiceDialog.init()
@@ -122,10 +121,8 @@ public class SettingActivity extends BaseActivity implements CommonView {
                         .show(getSupportFragmentManager());
                 break;
             case R.id.rl_check:
-
                 cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
                 cPresenter.requestData3(this, cMap, Address.checkForUpdates);
-
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()
@@ -165,11 +162,10 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 if (lastVersion > currentVersion) {
 
                 } else {
-//                    NiceDialog.init()
-//                        .setLayoutId(R.layout.dialog_show_toast)
-//                        .setMargin(60)
-//                        .show(getSupportFragmentManager());
-                    //
+                    NiceDialog.init()
+                            .setLayoutId(R.layout.dialog_show_toast)
+                            .setMargin(60)
+                            .show(getSupportFragmentManager());
                 }
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_update)

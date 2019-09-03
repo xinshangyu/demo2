@@ -1,8 +1,11 @@
 package com.example.administrator.demo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
 
@@ -19,7 +22,14 @@ public class FundDetailsAdapter extends CommonAdapter<String> {
 
     @Override
     protected void convert(ViewHolder holder, String messageListBean, int position) {
-        holder.setText(R.id.tv_date, messageListBean.toString());
+        holder.setText(R.id.tv_date, messageListBean.toString())
+        .setOnClickListener(R.id.ll_check, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppActivityUtils.StartJxxqActivity((Activity) mContext, "测试啊" );
+            }
+        })
+        ;
 
     }
 }

@@ -30,18 +30,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.user.UserLoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -80,6 +80,8 @@
         <activity android:name=".activity.my.UpdateMyInfoActivity" />
         <activity android:name=".activity.record.JfGzActivity" />
         <activity android:name=".activity.my.MyDataActivity" />
+        <activity android:name="com.example.administrator.demo.activity.record.JyXqActivity" />
+        <activity android:name="com.example.administrator.demo.activity.setting.ChaJianActivity" />
 
 
     </application>
