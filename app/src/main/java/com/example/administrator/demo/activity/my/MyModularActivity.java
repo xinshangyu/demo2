@@ -184,7 +184,17 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_user_identify)
     void onIdentify() {
-
+        AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.alert_dialog_be_praised, null);
+        localBuilder.setView(view);
+        final AlertDialog dia = localBuilder.show();
+        TextView understand = view.findViewById(R.id.tv_praised_understand);
+        understand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dia.dismiss();
+            }
+        });
 
     }
 
@@ -225,17 +235,10 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_operation4)
     void onclickIdentify() {
-        AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.alert_dialog_be_praised, null);
-        localBuilder.setView(view);
-        final AlertDialog dia = localBuilder.show();
-        TextView understand = view.findViewById(R.id.tv_praised_understand);
-        understand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dia.dismiss();
-            }
-        });
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "2");
+        startActivity(Sc_Zan_Comment_LsActivity.class, bundle);
+
     }
 
     /**

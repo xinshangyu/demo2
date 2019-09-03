@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -54,6 +55,8 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
     LinearLayout mLLBottom;
     @BindView(R.id.tv_delete)
     TextView mBtDelete;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
     private String mVid;
@@ -164,8 +167,11 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
     public void onData(WeatherResult weatherResult) {
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
+        }else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
     }
 
@@ -243,7 +249,6 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
                                 }
                                 mAdapter.setShowCheck(false);
                                 mLLBottom.setVisibility(View.GONE);
-
                             }
                         });
                     }

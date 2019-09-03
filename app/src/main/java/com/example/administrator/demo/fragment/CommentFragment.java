@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
@@ -50,6 +51,8 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
     LinearLayout mLLBottom;
     @BindView(R.id.tv_delete)
     TextView mBtDelete;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     private CommentAdapter2 mAdapter;
     private ArrayList<CommertListBen.BizCircleBean> mBeanList = new ArrayList<>();
@@ -95,11 +98,12 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
     public void onData(WeatherResult weatherResult) {
         CommertListBen commertListBen = gson.fromJson(gson.toJson(weatherResult.getData()), CommertListBen.class);
         if (commertListBen != null && commertListBen.getBizCircle() != null && commertListBen.getBizCircle().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             List<CommertListBen.BizCircleBean> bizCircle = commertListBen.getBizCircle();
             mBeanList.addAll(bizCircle);
             mAdapter.notifyDataSetChanged();
-
-
+        }else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
     }
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

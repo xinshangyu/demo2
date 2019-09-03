@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -53,6 +54,8 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     TextView mBtAllDelete;
     @BindView(R.id.tv_delete)
     TextView mBtDelete;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     CommentAdapter mAdapter;
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
@@ -136,8 +139,11 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     public void onData(WeatherResult weatherResult) {
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
+        }else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
     }
 
