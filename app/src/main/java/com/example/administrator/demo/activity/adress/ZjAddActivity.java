@@ -3,12 +3,17 @@ package com.example.administrator.demo.activity.adress;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
@@ -17,10 +22,6 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -108,6 +109,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                                 });
                             }
                         })
+                        .setGravity(Gravity.BOTTOM)
                         .show(getSupportFragmentManager());
 
                 break;

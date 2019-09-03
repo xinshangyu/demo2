@@ -11,6 +11,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.TrackAdapter;
 import com.example.administrator.demo.entity.TrackBean;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -18,10 +22,6 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 
 import java.util.ArrayList;
 

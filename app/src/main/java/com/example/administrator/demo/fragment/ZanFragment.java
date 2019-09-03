@@ -4,10 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +12,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
 import com.example.administrator.demo.entity.SCBean;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
@@ -22,18 +23,12 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 点赞
@@ -107,11 +102,11 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
                     mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
                     int i = 0;
                     for (SCBean.BizCircleBean bean : mBeanList) {
-                        if(bean.getIsDetele()){
+                        if (bean.getIsDetele()) {
                             i++;
                         }
                     }
-                    mBtDelete.setText("删除（"+ i +"）");
+                    mBtDelete.setText("删除（" + i + "）");
                     mAdapter.notifyDataSetChanged();
                 }
             }
@@ -205,20 +200,20 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
                             @Override
                             public void onClick(View v) {
                                 List<SCBean.BizCircleBean> data = new ArrayList<>();
-                                for(int i = 0;i<mBeanList.size();i++){
-                                    if(mBeanList.get(i).getIsDetele()){
+                                for (int i = 0; i < mBeanList.size(); i++) {
+                                    if (mBeanList.get(i).getIsDetele()) {
                                         data.add(mBeanList.get(i));
                                     }
                                 }
-                                if(data.size() <= 0){
+                                if (data.size() <= 0) {
                                     showToast("请选择删除内容");
                                     return;
                                 }
 
                                 dialog.dismiss();
                                 for (int i = 0; i < data.size(); i++) {
-                                    for(int j = 0; j < mBeanList.size(); j++){
-                                        if(mBeanList.get(j).getId().equals(data.get(i).getId())){
+                                    for (int j = 0; j < mBeanList.size(); j++) {
+                                        if (mBeanList.get(j).getId().equals(data.get(i).getId())) {
                                             mBeanList.remove(j);
                                             break;
                                         }

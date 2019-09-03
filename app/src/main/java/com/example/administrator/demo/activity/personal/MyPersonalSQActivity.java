@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
+import android.view.Gravity;
 import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.Personal_SQ_Adapter;
 import com.example.administrator.demo.entity.SQBean;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.adapter.wrapper.EmptyWrapper;
@@ -21,10 +26,6 @@ import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -148,7 +149,6 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                                             });
                                                         }
                                                     })
-                                                    .setMargin(60)
                                                     .show(getSupportFragmentManager());
 
                                         }

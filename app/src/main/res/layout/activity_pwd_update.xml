@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="17dp"
-    android:layout_marginRight="17dp"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
@@ -11,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -21,22 +21,45 @@
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_16sp" />
 
-        <EditText
-            android:id="@+id/et_old_number"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/set_pwd"
-            android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:layout_marginLeft="50dp">
+
+            <EditText
+                android:id="@+id/et_old_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/set_pwd"
+                android:inputType="textPassword"
+                android:textColor="@color/colorBlack0"
+                android:textSize="@dimen/text_16sp" />
+
+            <CheckBox
+                android:id="@+id/login_password_watch"
+                style="@style/PasswordCheckboxStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp" />
+        </RelativeLayout>
+
 
     </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBackGround_F7F7F7" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -47,22 +70,45 @@
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_16sp" />
 
-        <EditText
-            android:id="@+id/et_new_number"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/set_pwd2"
-            android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:layout_marginLeft="50dp">
+
+            <EditText
+                android:id="@+id/et_new_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/set_pwd2"
+                android:inputType="textPassword"
+                android:textColor="@color/colorBlack0"
+                android:textSize="@dimen/text_16sp" />
+
+            <CheckBox
+                android:id="@+id/login_password_watch2"
+                style="@style/PasswordCheckboxStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp" />
+        </RelativeLayout>
+
 
     </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBackGround_F7F7F7" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -73,23 +119,46 @@
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_16sp" />
 
-        <EditText
-            android:id="@+id/et_new_number2"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="33.5dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/set_pwd3"
-            android:textColor="@color/colorBlack0"
-            android:textSize="@dimen/text_16sp" />
+            android:layout_marginLeft="33.5dp">
+
+            <EditText
+                android:id="@+id/et_new_number2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/set_pwd3"
+                android:inputType="textPassword"
+                android:textColor="@color/colorBlack0"
+                android:textSize="@dimen/text_16sp" />
+
+            <CheckBox
+                android:id="@+id/login_password_watch3"
+                style="@style/PasswordCheckboxStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp" />
+        </RelativeLayout>
 
     </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBackGround_F7F7F7" />
 
     <LinearLayout
         android:id="@+id/ll_pwd"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="17dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

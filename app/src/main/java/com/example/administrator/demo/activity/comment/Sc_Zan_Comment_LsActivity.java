@@ -39,8 +39,6 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     ImageView ivBack;
     @BindView(R.id.home_search_edittext)
     EditText homeSearchEdittext;
-    @BindView(R.id.iv_clear)
-    ImageView ivClear;
     @BindView(R.id.home_search)
     public TextView homeSearch;
     @BindView(R.id.home_tabLayout)
@@ -135,15 +133,13 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
 
     }
 
-    @OnClick({R.id.iv_back, R.id.home_search_edittext, R.id.iv_clear, R.id.home_search})
+    @OnClick({R.id.iv_back, R.id.home_search_edittext,  R.id.home_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.home_search_edittext:
-                break;
-            case R.id.iv_clear:
                 break;
             case R.id.home_search:
                 if (tabNum == 0) {

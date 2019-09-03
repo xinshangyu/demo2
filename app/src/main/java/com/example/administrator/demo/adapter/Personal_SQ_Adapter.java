@@ -7,9 +7,6 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.SQBean;
 import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
 
 import java.util.ArrayList;
 

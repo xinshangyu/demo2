@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,15 +13,15 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.weight.FullyGridLayoutManager;
 import com.example.administrator.demo.weight.GridImageAdapter;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -71,7 +71,7 @@ public class CallBackActivity extends BaseActivity {
     }
 
     private void initPicture() {
-        FullyGridLayoutManager manager = new FullyGridLayoutManager(CallBackActivity.this, 4, GridLayoutManager.VERTICAL, false);
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(CallBackActivity.this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         adapter = new GridImageAdapter(CallBackActivity.this, onAddPicClickListener);
         adapter.setList(selectList);
@@ -115,7 +115,7 @@ public class CallBackActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     dialog.dismiss();
-                                    requestPermission(Permission.CAMERA, Permission.READ_PHONE_STATE, Permission.WRITE_EXTERNAL_STORAGE);
+                                    requestPermission(Permission.CAMERA);
                                 }
                             });
                             viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
@@ -139,6 +139,7 @@ public class CallBackActivity extends BaseActivity {
                             });
                         }
                     })
+                    .setGravity(Gravity.BOTTOM)
                     .show(getSupportFragmentManager());
         }
     };
@@ -153,7 +154,7 @@ public class CallBackActivity extends BaseActivity {
                 .compress(true)// 是否压缩 true or false
                 .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .isGif(false)// 是否显示gif图片 true or false
-                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+                .circleDimmedLayer(false)// 是否圆形裁剪 true or false
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
                 .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
                 .minimumCompressSize(30)// 小于100kb的图片不压缩
@@ -176,20 +177,11 @@ public class CallBackActivity extends BaseActivity {
                 .isGif(false)// 是否显示gif图片 true or false
                 .isCamera(true)// 是否显示拍照按钮 true or false
                 .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
-//                    .enableCrop(true)// 是否裁剪 true or false
                 .compress(true)// 是否压缩 true or false
                 .glideOverride(160, 160)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
                 .selectionMedia(selectList)
-//                    .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
-//                    .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
-////                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
-//                    .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(PictureConfig.CHOOSE_REQUEST);
-//                    .circleDimmedLayer(true)// 是否圆形裁剪 true or false
-//                    .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
-//                    .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
-
     }
 
     /**
@@ -222,14 +214,6 @@ public class CallBackActivity extends BaseActivity {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
                     selectList = PictureSelector.obtainMultipleResult(data);
-                    // 例如 LocalMedia 里面返回三种path
-                    // 1.media.getPath(); 为原图path
-                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
-//                    for (LocalMedia media : selectList) {
-//                        Log.i("图片-----》", media.getPath());
-//                    }
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
                     //提交图片
@@ -309,11 +293,4 @@ public class CallBackActivity extends BaseActivity {
 
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

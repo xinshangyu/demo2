@@ -24,42 +24,34 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_marginBottom="5dp"
             android:layout_toLeftOf="@id/home_search"
             android:layout_weight="1"
             android:background="@drawable/shape_grayef_corners50"
             android:paddingLeft="10dp">
 
+            <ImageView
+                android:id="@+id/home_search1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_data_search" />
+
             <EditText
                 android:id="@+id/home_search_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:layout_toRightOf="@+id/home_search1"
                 android:background="@null"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textSize="@dimen/text_12sp" />
 
-
-            <ImageView
-                android:id="@+id/iv_clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/chazi"
-                android:visibility="gone" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ss" />
-
         </RelativeLayout>
-
 
         <TextView
             android:id="@+id/home_search"

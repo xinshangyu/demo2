@@ -2,6 +2,7 @@ package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,14 +22,14 @@ import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.ToastUtils;
 import com.google.gson.Gson;
-import com.shehuan.nicedialog.BaseNiceDialog;
-import com.shehuan.nicedialog.NiceDialog;
-import com.shehuan.nicedialog.ViewConvertListener;
-import com.shehuan.nicedialog.ViewHolder;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -93,49 +94,49 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.iv_personal_user_open)
     void onOpen() {
-        {
-            NiceDialog.init()
-                    .setLayoutId(R.layout.dialog_share)     //设置dialog布局文件
-                    .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
-                        @Override
-                        public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
-                            viewHolder.setOnClickListener(R.id.ll_sq, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    ToastUtils.showToast(getApplicationContext(), "sq");
-                                }
-                            });
-                            viewHolder.setOnClickListener(R.id.ll_wx, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    ToastUtils.showToast(getApplicationContext(), "wx");
-                                }
-                            });
-                            viewHolder.setOnClickListener(R.id.ll_qq, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    ToastUtils.showToast(getApplicationContext(), "qq");
-                                }
-                            });
-                            viewHolder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                }
-                            });
-                            viewHolder.setOnClickListener(R.id.rl_image, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                }
-                            });
-                        }
-                    })
-                    .show(getSupportFragmentManager());
-        }
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_share)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                        viewHolder.setOnClickListener(R.id.ll_sq, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                ToastUtils.showToast(getApplicationContext(), "sq");
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.ll_wx, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                ToastUtils.showToast(getApplicationContext(), "wx");
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.ll_qq, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                ToastUtils.showToast(getApplicationContext(), "qq");
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        viewHolder.setOnClickListener(R.id.rl_image, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setDimAmount(0.3f)
+                .setGravity(Gravity.BOTTOM)
+                .show(getSupportFragmentManager());
     }
 
 

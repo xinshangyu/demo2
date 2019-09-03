@@ -2,9 +2,12 @@ package com.example.administrator.demo.activity.setting;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -39,6 +43,12 @@ public class UpdatePwdActivity extends BaseActivity {
     LinearLayout llPwd;
     @BindView(R.id.tv_save)
     TextView tvSave;
+    @BindView(R.id.login_password_watch)
+    CheckBox loginPasswordWatch;
+    @BindView(R.id.login_password_watch2)
+    CheckBox loginPasswordWatch2;
+    @BindView(R.id.login_password_watch3)
+    CheckBox loginPasswordWatch3;
 
     private Map<String, String> paramMap;
 
@@ -59,7 +69,39 @@ public class UpdatePwdActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
+        loginPasswordWatch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etOldNumber.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                } else {
+                    etOldNumber.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                etOldNumber.setSelection(etOldNumber.length());
+            }
+        });
+        loginPasswordWatch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etNewNumber.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                } else {
+                    etNewNumber.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                etNewNumber.setSelection(etNewNumber.length());
+            }
+        });
+        loginPasswordWatch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    etNewNumber2.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                } else {
+                    etNewNumber2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                etNewNumber2.setSelection(etNewNumber2.length());
+            }
+        });
 
     }
 

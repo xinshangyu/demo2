@@ -52,6 +52,8 @@
     <string name="login_email_hint2">请输入新的邮箱</string>
     <string name="login_phone_hint">请输入手机号</string>
     <string name="login_phone_hint_and_email">请输入手机号/邮箱</string>
+    <string name="frequently">操作过于频繁，请稍后再试</string>
+
 
     <string name="take_Photo">拍照</string>
     <string name="do_select_xc">从相册选择</string>
