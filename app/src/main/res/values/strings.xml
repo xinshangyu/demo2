@@ -35,6 +35,7 @@
     <string name="read">阅读偏好</string>
     <string name="unit">插件</string>
     <string name="clear">清除缓存</string>
+    <string name="clear2">清理完毕</string>
     <string name="check_update">检查更新</string>
     <string name="login_out">退出登陆</string>
 

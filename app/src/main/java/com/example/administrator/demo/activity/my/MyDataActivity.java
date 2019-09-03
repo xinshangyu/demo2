@@ -142,7 +142,6 @@ public class MyDataActivity extends BaseActivity {
                     SharedPreferencesHelper.setPrefString("files", json);
                     mAdapter.notifyDataSetChanged();
                 } else if (item.getItemId() == R.id.m_add) {
-
                     NiceDialog.init()
                             .setLayoutId(R.layout.dialog_add_show)
                             .setConvertListener(new ViewConvertListener() {
@@ -251,7 +250,6 @@ public class MyDataActivity extends BaseActivity {
                                 .withRequestCode(FILE_PICKER_REQUEST_CODE)
                                 .withHiddenFiles(true)
                                 .withTitle("文件选择")
-                                .withHiddenFiles(true)
                                 .start();
 
 //                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);

@@ -41,11 +41,10 @@ public class MyModularModel {
             public void onResult(WeatherResult weatherResult) {
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("我的" + json);
-                if (weatherResult.getCode() == 0) {
+                if (weatherResult.getCode() == 200) {
                     myModularPresenter.toMyModular(weatherResult);
                     return;
                 }
-
 //                uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
             }
 

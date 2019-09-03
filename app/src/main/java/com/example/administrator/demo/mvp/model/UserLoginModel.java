@@ -54,7 +54,8 @@ public class UserLoginModel {
 //                    SharedPreferencesHelper.setPrefString("advertsiongId", String.valueOf(data.getData().getAdInfo().get(0).getId()));//广告ID
                     SharedPreferencesHelper.setPrefString("token", data.getData().getToken());
                     //处理完给前端
-                    uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), Integer.parseInt(userCodeBea.getIsFirstLogin()));
+//                    uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), Integer.parseInt(userCodeBea.getIsFirstLogin()));
+                    uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
                     return;
                 }
 

@@ -1,6 +1,8 @@
 package com.example.administrator.demo.activity.setting;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,6 +11,7 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.read.ReadActivity;
 import com.example.administrator.demo.entity.VersionBean;
 import com.example.administrator.demo.utils.CacheDataManager;
+import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -71,8 +74,11 @@ public class SettingActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initDate() {
-
-
+        try {
+            tvSize.setText(CacheDataManager.getTotalCacheSize(mContext));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})
@@ -95,15 +101,13 @@ public class SettingActivity extends BaseActivity implements CommonView {
                             protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
                                 holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {// TODO: 2019/8/22  清除缓存
+                                    public void onClick(View v) {
                                         dialog.dismiss();
                                         try {
-                                            tvSize.setText(CacheDataManager.getTotalCacheSize(mContext));
+                                            new Thread(new clearCache()).start();
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
-//                                        SPUtils.cleanUserInfo(mContext);
-//                                        AppActivityUtils.StartLoginTaskActivity(mContext);
                                     }
                                 });
                                 holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
@@ -133,8 +137,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                     @Override
                                     public void onClick(View v) {// TODO: 2019/8/21 打开登陆页面 
                                         dialog.dismiss();
-//                                        SPUtils.cleanUserInfo(mContext);
-//                                        AppActivityUtils.StartLoginTaskActivity(mContext);
+                                        AppActivityUtils.StartLoginTaskActivity(mContext);
                                     }
                                 });
                                 holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
@@ -159,9 +162,9 @@ public class SettingActivity extends BaseActivity implements CommonView {
             if (sqBean != null && sqBean.getAppVersion() != null) {
                 int currentVersion = getVersionCode();
                 int lastVersion = NumberFormatUtils.getIntegerByString(sqBean.getAppVersion().getVersionCode());
-                if(lastVersion > currentVersion){
+                if (lastVersion > currentVersion) {
 
-                }else{
+                } else {
 //                    NiceDialog.init()
 //                        .setLayoutId(R.layout.dialog_show_toast)
 //                        .setMargin(60)
@@ -222,4 +225,33 @@ public class SettingActivity extends BaseActivity implements CommonView {
         }
         return 0;
     }
+
+    class clearCache implements Runnable {
+        @Override
+        public void run() {
+            try {
+                CacheDataManager.clearAllCache(SettingActivity.this);
+
+                if (CacheDataManager.getTotalCacheSize(SettingActivity.this).startsWith("0")) {
+                    handler.sendEmptyMessage(0);
+                }
+            } catch (Exception e) {
+                return;
+            }
+        }
+    }
+
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    showToast(getString(R.string.clear2));
+                    try {
+                        tvSize.setText(CacheDataManager.getTotalCacheSize(SettingActivity.this));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+            }
+        }
+    };
 }
