@@ -93,7 +93,7 @@ public class BindEmailActivity extends BaseActivity {
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         paramMap.put("userMail", userPhone);
         paramMap.put("smsCount", userCodeBea);
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 

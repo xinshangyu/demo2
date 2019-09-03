@@ -47,7 +47,7 @@ public class CommonModel {
     public void getData2(final Context context, Map<String, String> paramMap, String url) {
 
 
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl2() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 
@@ -72,7 +72,7 @@ public class CommonModel {
 
     public void getData3(final Context context, Map<String, String> paramMap, String url) {
 
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + url, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 

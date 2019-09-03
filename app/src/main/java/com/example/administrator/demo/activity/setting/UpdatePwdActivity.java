@@ -102,7 +102,7 @@ public class UpdatePwdActivity extends BaseActivity {
         paramMap.put("passWord", etOldNumber);
         paramMap.put("newPassWord", etNewNumber);
 
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.byOldPwd, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.byOldPwd, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
 

@@ -116,7 +116,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                 mMap.put("id", mBeanList.get(position).getId());
                                 mMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
 
-                                RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl2() + Address.deleteBizCircle, mMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+                                RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.deleteBizCircle, mMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
                                     @Override
                                     public void onBeforeResult() {
 

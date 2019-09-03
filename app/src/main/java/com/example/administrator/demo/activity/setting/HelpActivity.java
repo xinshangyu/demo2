@@ -13,7 +13,6 @@ import com.example.administrator.demo.entity.Help2Bean;
 import com.example.administrator.demo.entity.HelpBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.zh.adapter.wrapper.EmptyWrapper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -47,7 +46,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
     RecyclerView mRecyclerView;
 
     private CallAdapter adapter;
-    private EmptyWrapper mAdapter;
+    //    private EmptyWrapper mAdapter;
     private ArrayList<Help2Bean.FaqRecordBean> mBeanList = new ArrayList<>();
 
 
@@ -67,9 +66,9 @@ public class HelpActivity extends BaseActivity implements CommonView {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new CallAdapter(mContext, mBeanList);
-        mAdapter = new EmptyWrapper(adapter);
-        mAdapter.setEmptyView(R.layout.empty_view);
-        mRecyclerView.setAdapter(mAdapter);
+//        mAdapter = new EmptyWrapper(adapter);
+//        mAdapter.setEmptyView(R.layout.empty_view);
+        mRecyclerView.setAdapter(adapter);
 
     }
 
@@ -78,7 +77,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData3(getApplicationContext(), cMap, Address.findServiceInfo);
 
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl3() + Address.findFAQs, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.findFAQs, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
 
@@ -91,7 +90,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
                     Help2Bean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), Help2Bean.class);
                     if (sqBean != null && sqBean.getFaqRecord().size() > 0) {
                         mBeanList.addAll(sqBean.getFaqRecord());
-                        mAdapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                     }
 
                 }

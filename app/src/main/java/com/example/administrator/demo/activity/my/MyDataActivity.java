@@ -14,12 +14,11 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.MyDataAdapter;
+import com.example.administrator.demo.entity.MyDataBean;
 import com.example.administrator.demo.utils.DateUtil;
 import com.example.administrator.demo.utils.FileUtil;
 import com.example.administrator.demo.utils.FileUtils;
-import com.example.administrator.demo.adapter.MyDataAdapter;
-import com.example.administrator.demo.entity.MyDataBean;
-import com.example.administrator.demo.utils.OpenFileUtil;
 import com.example.administrator.demo.weight.GlideImageLoader;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -31,9 +30,6 @@ import com.shehuan.nicedialog.BaseNiceDialog;
 import com.shehuan.nicedialog.NiceDialog;
 import com.shehuan.nicedialog.ViewConvertListener;
 import com.shehuan.nicedialog.ViewHolder;
-import com.vincent.filepicker.Constant;
-import com.vincent.filepicker.activity.NormalFilePickActivity;
-import com.vincent.filepicker.filter.entity.NormalFile;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -43,7 +39,6 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -327,28 +322,28 @@ public class MyDataActivity extends BaseActivity {
             // Do anything with file
         }
 
-        switch (requestCode) {
-            case Constant.REQUEST_CODE_PICK_FILE:
-                if (resultCode == RESULT_OK) {
-                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-                    String filePath = list.get(0).getPath();
-                    File file = new File(filePath);
-                    if(!TextUtils.isEmpty(filePath)){
-                        String newPath = FileUtils.getCacheMD() + file.getName();
-                        FileUtil.copyFile(filePath, newPath);
-                        bean = new MyDataBean();
-                        bean.setName(file.getName());
-                        bean.setId(DateUtil.getDateShortSerial());
-                        bean.setPath(filePath);
-                        bean.setNewPath(newPath);
-                        mBeanList.add(0, bean);
-                        mAdapter.notifyDataSetChanged();
-                        String json = gson.toJson(mBeanList);
-                        SharedPreferencesHelper.setPrefString("files", json);
-                    }
-                }
-                break;
-        }
+//        switch (requestCode) {
+//            case Constant.REQUEST_CODE_PICK_FILE:
+//                if (resultCode == RESULT_OK) {
+//                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+//                    String filePath = list.get(0).getPath();
+//                    File file = new File(filePath);
+//                    if(!TextUtils.isEmpty(filePath)){
+//                        String newPath = FileUtils.getCacheMD() + file.getName();
+//                        FileUtil.copyFile(filePath, newPath);
+//                        bean = new MyDataBean();
+//                        bean.setName(file.getName());
+//                        bean.setId(DateUtil.getDateShortSerial());
+//                        bean.setPath(filePath);
+//                        bean.setNewPath(newPath);
+//                        mBeanList.add(0, bean);
+//                        mAdapter.notifyDataSetChanged();
+//                        String json = gson.toJson(mBeanList);
+//                        SharedPreferencesHelper.setPrefString("files", json);
+//                    }
+//                }
+//                break;
+//        }
     }
 
     @Override

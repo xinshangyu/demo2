@@ -5,7 +5,7 @@ public class ApiKeys {
     //开发模式   true内网，false外网
     public static final boolean DEBUG = true;
 
-    /*=========================  内外  =======================*/
+    /*=========================  内外    192.168.0.195:8980=======================*/
 
     public static final String API_DEVELOPMENT_DOMAIN = "http://192.168.0.195:8980/";//内网
     public static final String API_DEVELOPMENT_DOMAIN2 = "http://192.168.0.195:9991/";//内网
@@ -36,14 +36,14 @@ public class ApiKeys {
         return DEBUG ? API_DEVELOPMENT_URL : API_PRODUCTION_URL;
     }
 
-    public static final String getApiUrl2() {
-        return DEBUG ? API_DEVELOPMENT_URL2 : API_PRODUCTION_URL;
-    }
-
-
-    public static final String getApiUrl3() {
-        return DEBUG ? API_DEVELOPMENT_URL3 : API_PRODUCTION_URL;
-    }
+//    public static final String getApiUrl2() {
+//        return DEBUG ? API_DEVELOPMENT_URL2 : API_PRODUCTION_URL;
+//    }
+//
+//
+//    public static final String getApiUrl3() {
+//        return DEBUG ? API_DEVELOPMENT_URL3 : API_PRODUCTION_URL;
+//    }
 
     public static final String getImageApiUrl() {
         return DEBUG ? API_PRODUCTION_URL_IMAGE : API_PRODUCTION_URL_IMAGE_OUT;
