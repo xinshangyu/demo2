@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.read.ReadActivity;
 import com.example.administrator.demo.entity.VersionBean;
+import com.example.administrator.demo.utils.CacheDataManager;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -96,6 +97,11 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                     @Override
                                     public void onClick(View v) {// TODO: 2019/8/22  清除缓存
                                         dialog.dismiss();
+                                        try {
+                                            tvSize.setText(CacheDataManager.getTotalCacheSize(mContext));
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
 //                                        SPUtils.cleanUserInfo(mContext);
 //                                        AppActivityUtils.StartLoginTaskActivity(mContext);
                                     }
