@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -294,4 +294,9 @@ public class CallBackActivity extends BaseActivity {
 
     }
 
+
+    @OnClick(R.id.tv_save)
+    public void onViewClicked() {
+        showToast("需要对接接口...");
+    }
 }

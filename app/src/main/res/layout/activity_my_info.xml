@@ -81,7 +81,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
+                    android:hint="@string/my_name"
                     android:textColor="@color/colorGrayC"
                     android:textSize="@dimen/text_14sp" />
 
@@ -112,7 +112,8 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
+                    android:background="@null"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -121,7 +122,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
+                    android:hint="@string/my_name"
                     android:textColor="@color/colorGrayC"
                     android:textSize="@dimen/text_14sp" />
 

@@ -2,17 +2,9 @@ package com.example.administrator.demo.activity.record;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.entity.Help2Bean;
-import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.mvp.CommonView;
-import com.example.baselibrary.zh.network.result.WeatherResult;
-
-import butterknife.BindView;
 
 /**
  * 问题帮助

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
+import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
@@ -23,6 +24,10 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,15 +75,16 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-//        if (isVisible) setStatusBarColorInFragment();
         if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onFragmentFirstVisible() {
+        EventBus.getDefault().register(this);
+
 
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cMap.put("oprType", "01");//收藏
+        cMap.put("oprType", "01");//赞
         cPresenter.requestData2(getActivity(), cMap, Address.praisedArticles);
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -113,19 +119,32 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
         });
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvents(QuickReturnTopEvent event) {
+        if ("ZAN".equals(event.current)) {
+            mLLBottom.setVisibility(mLLBottom.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            mAdapter.setShowCheck(!mAdapter.getShowCheck());
+        }
+    }
+
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -226,6 +245,7 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
                         });
                     }
                 })
+                .setMargin(60)
                 .show(getFragmentManager());
     }
 }

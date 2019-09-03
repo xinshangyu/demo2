@@ -8,9 +8,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.CommertListBen;
-import com.example.administrator.demo.entity.SCBean;
-import com.example.baselibrary.zh.adapter.CommonAdapter;
-import com.example.baselibrary.zh.adapter.base.ViewHolder;
 import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
@@ -34,10 +31,15 @@ public class CommentAdapter2 extends BaseQuickAdapter<CommertListBen.BizCircleBe
         this.showCheck = showCheck;
         notifyDataSetChanged();
     }
+    public boolean getShowCheck() {
+        return showCheck;
+    }
 
     @Override
     protected void convert(BaseViewHolder holder, CommertListBen.BizCircleBean bizCircleBean) {
         holder.setGone(R.id.CheckBox_my_collection, showCheck)
+                .setImageResource(R.id.CheckBox_my_collection, bizCircleBean.getIsDetele() ? R.drawable.check_ok : R.drawable.check_no)
+                .addOnClickListener(R.id.CheckBox_my_collection)
                 .setText(R.id.tv_name, bizCircleBean.getUserInfo().getNickName())
                 .setText(R.id.tv_vip, bizCircleBean.getUserInfo().getVipLevel())
                 .setText(R.id.tv_time, bizCircleBean.getCreateTime())

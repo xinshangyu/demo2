@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.administrator.demo.activity.my.TheInfoActivity;
 import com.example.administrator.demo.activity.record.JyXqActivity;
 import com.example.administrator.demo.activity.setting.MoreActivity;
 import com.example.administrator.demo.activity.user.UserLoginActivity;
@@ -28,6 +29,15 @@ public class AppActivityUtils extends ActivityUtils {
         Bundle bundle = new Bundle();
         bundle.putString("CONTENT", content);//Tab标识
         startActivity(context, JyXqActivity.class, bundle);
+    }
+
+    /**
+     * 跳转他人资料详情页面
+     */
+    public static void StartTheActivity(Context context, String content) {
+        Bundle bundle = new Bundle();
+        bundle.putString("CONTENT", content);//Tab标识
+        startActivity(context, TheInfoActivity.class, bundle);
     }
 
     /**

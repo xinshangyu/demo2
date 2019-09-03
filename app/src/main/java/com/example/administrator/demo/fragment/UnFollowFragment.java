@@ -7,13 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
-import com.example.administrator.demo.entity.UserFollowBen;
-import com.example.administrator.demo.entity.UserLogInBen;
 import com.example.administrator.demo.mvp.iview.FansView;
 import com.example.administrator.demo.mvp.presenter.FansPresenter;
-import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -34,7 +32,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    UserFollowAdapter mAdapter;
+    private UserFollowAdapter mAdapter;
     private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
     private FansPresenter fansPresenter;
 

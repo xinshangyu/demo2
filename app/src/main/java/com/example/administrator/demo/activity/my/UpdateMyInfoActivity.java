@@ -28,8 +28,7 @@ public class UpdateMyInfoActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
-
+        showToast("需要接口，目前放最后...");
     }
 
 

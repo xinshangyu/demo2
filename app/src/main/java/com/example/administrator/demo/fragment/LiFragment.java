@@ -1,23 +1,19 @@
 package com.example.administrator.demo.fragment;
 
-import android.media.tv.TvView;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter;
-import com.example.administrator.demo.adapter.UserFollowAdapter;
+import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.SCBean;
-import com.example.administrator.demo.entity.SQBean;
-import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -29,6 +25,10 @@ import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +49,13 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.ll_bottom)
-    LinearLayout mLLBottom;
+    LinearLayout llBottom;
     @BindView(R.id.tv_save)
     TextView mBtAllDelete;
     @BindView(R.id.tv_delete)
     TextView mBtDelete;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     CommentAdapter mAdapter;
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
@@ -76,12 +78,13 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-//        if (isVisible) setStatusBarColorInFragment();
         if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onFragmentFirstVisible() {
+
+        EventBus.getDefault().register(this);
 
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "05");//收藏
@@ -96,7 +99,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                 mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
                 mBtDelete.setText("删除（1）");
                 mAdapter.setShowCheck(true);
-                mLLBottom.setVisibility(View.VISIBLE);
+                llBottom.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -108,11 +111,11 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                     mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
                     int i = 0;
                     for (SCBean.BizCircleBean bean : mBeanList) {
-                        if(bean.getIsDetele()){
+                        if (bean.getIsDetele()) {
                             i++;
                         }
                     }
-                    mBtDelete.setText("删除（"+ i +"）");
+                    mBtDelete.setText("删除（" + i + "）");
                     mAdapter.notifyDataSetChanged();
                 }
             }
@@ -121,15 +124,26 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
+        setFinishRefresh(mSmartRefreshLayout, false);
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvents(QuickReturnTopEvent event) {
+        if ("LI".equals(event.current)) {
+            llBottom.setVisibility(llBottom.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            mAdapter.setShowCheck(!mAdapter.getShowCheck());
+        }
     }
 
     @Override
     public void onData(WeatherResult weatherResult) {
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
-        if(scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0){
+        if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
+        } else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
     }
 
@@ -144,7 +158,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK) {
                     if (mAdapter.getShowCheck()) {
                         mAdapter.setShowCheck(false);
-                        mLLBottom.setVisibility(View.GONE);
+                        llBottom.setVisibility(View.GONE);
                         return true;
                     }
                 }
@@ -177,11 +191,12 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                                 dialog.dismiss();
                                 mBeanList.clear();
                                 mAdapter.setShowCheck(false);
-                                mLLBottom.setVisibility(View.GONE);
+                                llBottom.setVisibility(View.GONE);
                             }
                         });
                     }
                 })
+                .setMargin(60)
                 .show(getFragmentManager());
     }
 
@@ -205,32 +220,38 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
                             @Override
                             public void onClick(View v) {
                                 List<SCBean.BizCircleBean> data = new ArrayList<>();
-                                for(int i = 0;i<mBeanList.size();i++){
-                                    if(mBeanList.get(i).getIsDetele()){
+                                for (int i = 0; i < mBeanList.size(); i++) {
+                                    if (mBeanList.get(i).getIsDetele()) {
                                         data.add(mBeanList.get(i));
                                     }
                                 }
-                                if(data.size() <= 0){
+                                if (data.size() <= 0) {
                                     showToast("请选择删除内容");
                                     return;
                                 }
-
                                 dialog.dismiss();
                                 for (int i = 0; i < data.size(); i++) {
-                                    for(int j = 0; j < mBeanList.size(); j++){
-                                        if(mBeanList.get(j).getId().equals(data.get(i).getId())){
+                                    for (int j = 0; j < mBeanList.size(); j++) {
+                                        if (mBeanList.get(j).getId().equals(data.get(i).getId())) {
                                             mBeanList.remove(j);
                                             break;
                                         }
                                     }
                                 }
                                 mAdapter.setShowCheck(false);
-                                mLLBottom.setVisibility(View.GONE);
+                                llBottom.setVisibility(View.GONE);
 
                             }
                         });
                     }
                 })
+                .setMargin(60)
                 .show(getFragmentManager());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -133,7 +133,7 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
 
     }
 
-    @OnClick({R.id.iv_back, R.id.home_search_edittext,  R.id.home_search})
+    @OnClick({R.id.iv_back, R.id.home_search_edittext, R.id.home_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -145,11 +145,11 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
                 if (tabNum == 0) {
                     EventBus.getDefault().post(new QuickReturnTopEvent("SC"));
                 } else if (tabNum == 1) {
-
+                    EventBus.getDefault().post(new QuickReturnTopEvent("COMMENT"));
                 } else if (tabNum == 2) {
-
+                    EventBus.getDefault().post(new QuickReturnTopEvent("ZAN"));
                 } else if (tabNum == 3) {
-
+                    EventBus.getDefault().post(new QuickReturnTopEvent("LI"));
                 }
                 break;
         }

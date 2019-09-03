@@ -7,14 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
-import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.facebook.common.util.SecureHashUtil;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -24,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+
 /**
  * 关注
  */
@@ -38,9 +37,8 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    UserFollowAdapter mAdapter;
+    private UserFollowAdapter mAdapter;
     private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
-
 
 
     public static FollowFragment newInstance(String param1, String param2) {
@@ -89,7 +87,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     @Override
     public void onData(WeatherResult weatherResult) {
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
-        if(unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0){
+        if (unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0) {
             List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();

@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.Help2Bean;
-import com.example.administrator.demo.entity.HelpBean;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -14,6 +13,7 @@ import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 问题帮助
@@ -24,6 +24,10 @@ public class MoreActivity extends BaseActivity implements CommonView {
     TextView tvName;
     @BindView(R.id.tv_content)
     TextView tvContent;
+    @BindView(R.id.tv1)
+    TextView tv1;
+    @BindView(R.id.tv2)
+    TextView tv2;
     private String content;
 
     @Override
@@ -57,6 +61,19 @@ public class MoreActivity extends BaseActivity implements CommonView {
         if (sqBean != null && sqBean.getFaqRecord().size() > 0) {
             tvName.setText(sqBean.getFaqRecord().get(Integer.parseInt(content) - 1).getPreblemTitle());
             tvContent.setText(sqBean.getFaqRecord().get(Integer.parseInt(content) - 1).getProblemAnswers());
+        }
+    }
+
+
+    @OnClick({R.id.tv1, R.id.tv2})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv1:
+                showToast("接口没有...");
+                break;
+            case R.id.tv2:
+                showToast("接口没有...");
+                break;
         }
     }
 }

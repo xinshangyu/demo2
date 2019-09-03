@@ -65,5 +65,49 @@
             android:textSize="@dimen/text_14sp" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackGround_F7F7F7">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="65dp"
+            android:background="@drawable/defaulthead" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="暂无数据"
+            android:textColor="@color/colorLight"
+            android:textSize="@dimen/text_16sp" />
+
+        <TextView
+            android:id="@+id/tv_falsh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_color_text_background"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="15dp"
+            android:text="刷新"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_15sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
 
 </LinearLayout>
