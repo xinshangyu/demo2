@@ -21,7 +21,6 @@ import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -34,8 +33,8 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.SmartRefreshLayout)
-    SmartRefreshLayout mSmartRefreshLayout;
+//    @BindView(R.id.SmartRefreshLayout)
+//    SmartRefreshLayout mSmartRefreshLayout;
 
     TrackAdapter mAdapter;
     private ArrayList<TrackBean.FootprintBean> mBeanList = new ArrayList<>();
@@ -54,7 +53,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
                 finish();
             }
         });
-        setRefresh(mSmartRefreshLayout, this);
+//        setRefresh(mSmartRefreshLayout, this);
         footprintBean = new TrackBean.FootprintBean();
         footprintBean.setAdd(true);
         footprintBean.setFootprintImgSrc(R.mipmap.icon_zj_add + "");
