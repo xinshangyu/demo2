@@ -123,6 +123,11 @@ public class HelpActivity extends BaseActivity implements CommonView {
     }
 
     @Override
+    public void onError() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation

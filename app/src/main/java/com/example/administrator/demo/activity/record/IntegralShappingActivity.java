@@ -143,4 +143,9 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
             adapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onError() {
+
+    }
 }

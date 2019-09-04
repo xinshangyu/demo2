@@ -3,6 +3,8 @@ package com.example.administrator.demo.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
@@ -36,6 +38,8 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     private UserFollowAdapter mAdapter;
     private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
@@ -63,11 +67,10 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     protected void onFragmentFirstVisible() {
-        showDialog(getActivity());
-
         Map<String, String> map = new HashMap<>();
         map.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData(getActivity(), map, Address.follow);
+
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new UserFollowAdapter(mContext, mBeanList);
@@ -81,12 +84,19 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        dissDialog(getActivity());
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
         if (unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();
+        } else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onError() {
+        if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
     }
 }

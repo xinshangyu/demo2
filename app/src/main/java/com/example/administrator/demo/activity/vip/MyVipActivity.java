@@ -83,6 +83,11 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     }
 
+    @Override
+    public void onError() {
+
+    }
+
 
     @OnClick(R.id.iv_back)
     public void onViewClicked() {

@@ -8,4 +8,5 @@ import com.example.baselibrary.zh.network.result.WeatherResult;
  **/
 public interface CommonView {
     void onData(WeatherResult weatherResult);
+    void onError();
 }

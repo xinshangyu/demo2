@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/tv_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="35dp"
         android:background="@mipmap/ic_launcher" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_below="@+id/tv_name"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/shape_color_text_background"
         android:gravity="center"
         android:paddingLeft="30dp"

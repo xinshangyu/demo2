@@ -3,27 +3,34 @@ package com.example.administrator.demo.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.mvp.iview.FansView;
 import com.example.administrator.demo.mvp.presenter.FansPresenter;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
 /**
  * 粉丝
  */
-public class UnFollowFragment extends BaseFragment implements RefreshCallBack, FansView {
+public class UnFollowFragment extends BaseFragment implements RefreshCallBack, CommonView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -32,6 +39,8 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rl_empty;
 
     private UserFollowAdapter mAdapter;
     private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
@@ -58,9 +67,11 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
 
     @Override
     protected void onFragmentFirstVisible() {
-        showDialog(getActivity());
-        fansPresenter = new FansPresenter(this);
-        fansPresenter.requestFans(getActivity());
+//        fansPresenter = new FansPresenter(this);
+//        fansPresenter.requestFans(getActivity());
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cPresenter.requestData(getActivity(), map, Address.payAttentionToFans);
 
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -74,13 +85,20 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
     }
 
     @Override
-    public void onFans(WeatherResult weatherResult) {
-        dissDialog(getActivity());
+    public void onData(WeatherResult weatherResult) {
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
         if (unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0) {
+            rl_empty.setVisibility(View.GONE);
             List<UnFollowBen.DataBean.UserRelationBean> data = (ArrayList<UnFollowBen.DataBean.UserRelationBean>) unFollowBen.getData().getUserRelation();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();
+        } else {
+            rl_empty.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onError() {
+        if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
     }
 }

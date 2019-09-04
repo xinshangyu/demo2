@@ -17,10 +17,8 @@ public class CommonPresenter implements ICommonPresenter {
         commonModel = new CommonModel(this);
     }
 
-
     //开始处理
     public void requestData(Context context, Map<String, String> map, String url) {
-
         commonModel.getData(context, map, url);
     }
 
@@ -31,7 +29,7 @@ public class CommonPresenter implements ICommonPresenter {
 
     //开始处理
     public void requestData3(Context context, Map<String, String> map, String url) {
-        commonModel.getData3(context, map, url);
+        commonModel.getData(context, map, url);
     }
 
 //    //商圈
@@ -66,5 +64,10 @@ public class CommonPresenter implements ICommonPresenter {
     @Override
     public void toData(WeatherResult weatherResult) {
         commonView.onData(weatherResult);
+    }
+
+    @Override
+    public void toError() {
+        commonView.onError();
     }
 }

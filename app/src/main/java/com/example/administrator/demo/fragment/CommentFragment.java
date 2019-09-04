@@ -79,11 +79,10 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
 
     @Override
     protected void onFragmentFirstVisible() {
-        showDialog(getActivity());
         EventBus.getDefault().register(this);
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "05");//阅读
-        cPresenter.requestData2(getActivity(), cMap, Address.commertArtiles);
+        cPresenter.requestData(getActivity(), cMap, Address.commertArtiles);
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new CommentAdapter2(mContext, mBeanList);
@@ -97,17 +96,22 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        dissDialog(getActivity());
         CommertListBen commertListBen = gson.fromJson(gson.toJson(weatherResult.getData()), CommertListBen.class);
         if (commertListBen != null && commertListBen.getBizCircle() != null && commertListBen.getBizCircle().size() > 0) {
             rl_empty.setVisibility(View.GONE);
             List<CommertListBen.BizCircleBean> bizCircle = commertListBen.getBizCircle();
             mBeanList.addAll(bizCircle);
             mAdapter.notifyDataSetChanged();
-        }else {
+        } else {
             rl_empty.setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    public void onError() {
+        if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvents(QuickReturnTopEvent event) {
         if ("COMMENT".equals(event.current)) {
@@ -115,11 +119,13 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
             mAdapter.setShowCheck(!mAdapter.getShowCheck());
         }
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -139,6 +145,7 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
             }
         });
     }
+
     /**
      * 删除所有
      **/

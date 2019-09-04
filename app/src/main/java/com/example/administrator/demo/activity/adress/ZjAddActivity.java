@@ -72,6 +72,11 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
     public void onData(WeatherResult weatherResult) {
     }
 
+    @Override
+    public void onError() {
+
+    }
+
     @OnClick({R.id.tv_save, R.id.tv_do_cancel, R.id.iv})
     public void onClick(View view) {
         switch (view.getId()) {

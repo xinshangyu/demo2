@@ -84,11 +84,10 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
     @Override
     protected void onFragmentFirstVisible() {
         EventBus.getDefault().register(this);
-        showDialog(getActivity());
 
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "01");//赞
-        cPresenter.requestData2(getActivity(), cMap, Address.praisedArticles);
+        cPresenter.requestData(getActivity(), cMap, Address.praisedArticles);
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new CommentAdapter(mContext, mBeanList);
@@ -137,15 +136,19 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        dissDialog(getActivity());
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
             rl_empty.setVisibility(View.GONE);
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
-        }else {
+        } else {
             rl_empty.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onError() {
+        if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
     }
 
     @Override

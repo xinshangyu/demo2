@@ -142,4 +142,9 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
             mAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onError() {
+
+    }
 }

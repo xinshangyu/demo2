@@ -53,7 +53,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar("", new View.OnClickListener() {
+        setTitleBar("商圈", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -67,16 +67,13 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
         mRecyclerView.setAdapter(mAdapter);
         adapter.setOnItemClickListener(this);
         setRefresh(mSmartRefreshLayout, this);
-
     }
 
     @Override
     protected void initDate() {
-        showToast(getParent());
-        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cMap.put("userId", ""+SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.bizCircleStatistics);
     }
-
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
@@ -85,12 +82,15 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        dissDialog(getParent());
         SQBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), SQBean.class);
         if (sqBean != null && sqBean.getBizCircle() != null && sqBean.getBizCircle().size() > 0) {
             mBeanList.addAll(sqBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onError() {
 
     }
 

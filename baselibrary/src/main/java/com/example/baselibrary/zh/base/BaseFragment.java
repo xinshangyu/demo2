@@ -141,33 +141,6 @@ public abstract class BaseFragment<P extends BasePresenter, M extends BaseModel>
         super.onDestroy();
     }
 
-    private ProgressDialog dialog;
-
-    private void initDialog(Activity activity, String dialogMessage) {
-        dialog = new ProgressDialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage(dialogMessage);
-        if (dialog != null && !dialog.isShowing()) {
-            dialog.show();
-        }
-    }
-
-    public void showDialog(Activity activity, String dialogMessage) {
-        initDialog(activity, TextUtils.isEmpty(dialogMessage) ? " 疯狂加载中......" : dialogMessage);
-    }
-
-    public void showDialog(Activity activity) {
-        initDialog(activity, " 疯狂加载中......");
-    }
-
-    public void dissDialog(Activity activity) {
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
-
     protected void showToast(Object message) {
         ToastUtils.showToast(mContext, message instanceof String ? message + "" : getResources().getString((int) message));
     }

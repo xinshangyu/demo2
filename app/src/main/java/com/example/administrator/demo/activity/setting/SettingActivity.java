@@ -200,6 +200,11 @@ public class SettingActivity extends BaseActivity implements CommonView {
         }
     }
 
+    @Override
+    public void onError() {
+
+    }
+
     private String getVersionName() {
         try {
             String pkName = this.getPackageName();

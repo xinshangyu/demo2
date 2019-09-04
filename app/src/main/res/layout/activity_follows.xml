@@ -9,15 +9,14 @@
         android:id="@+id/SmartRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:scrollbars="none">
-        </android.support.v7.widget.RecyclerView>
+            android:scrollbars="none"></android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <LinearLayout
@@ -66,19 +65,19 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rl_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackGround_F7F7F7">
+        android:background="@color/colorBackGround_F7F7F7"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="65dp"
-            android:background="@drawable/defaulthead" />
+            android:layout_marginBottom="35dp"
+            android:background="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/tv_name"

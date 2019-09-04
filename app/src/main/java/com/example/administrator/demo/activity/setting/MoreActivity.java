@@ -64,6 +64,11 @@ public class MoreActivity extends BaseActivity implements CommonView {
         }
     }
 
+    @Override
+    public void onError() {
+
+    }
+
 
     @OnClick({R.id.tv1, R.id.tv2})
     public void onViewClicked(View view) {
