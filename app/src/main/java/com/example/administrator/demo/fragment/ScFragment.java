@@ -84,7 +84,7 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
     @Override
     protected void onFragmentFirstVisible() {
         EventBus.getDefault().register(this);
-
+        showDialog(getActivity());
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "03");//收藏
         cPresenter.requestData2(getActivity(), cMap, Address.scanCollectionInfo);
@@ -165,12 +165,13 @@ public class ScFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        dissDialog(getActivity());
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
             rl_empty.setVisibility(View.GONE);
             mBeanList.addAll(scBean.getBizCircle());
             mAdapter.notifyDataSetChanged();
-        }else {
+        } else {
             rl_empty.setVisibility(View.VISIBLE);
         }
     }
