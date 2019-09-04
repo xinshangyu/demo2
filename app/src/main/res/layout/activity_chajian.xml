@@ -7,6 +7,11 @@
 
     <include layout="@layout/common_toolbar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"

@@ -21,11 +21,9 @@ import butterknife.OnClick;
  * 文件名：充值
  */
 public class RechargeActivity extends BaseActivity {
+
     @BindView(R.id.recyclerView_pay)
     RecyclerView mRecyclerViewPay;
-
-    RechargeAdapter adapter;
-
     @BindView(R.id.CheckBox_zfb)
     CheckBox mCheckBoxZfb;
     @BindView(R.id.CheckBox_weChat)
@@ -37,6 +35,7 @@ public class RechargeActivity extends BaseActivity {
     private List<String> mListData = new ArrayList<>();
 
     private int pay_type = 1;//默认微信
+    private RechargeAdapter adapter;
 
     @Override
     protected int getLayout() {
@@ -70,15 +69,17 @@ public class RechargeActivity extends BaseActivity {
         mRecyclerViewPay.setAdapter(adapter);
     }
 
-    @OnClick({R.id.CheckBox_zfb, R.id.CheckBox_weChat, R.id.tv_start_Rent})
+    @OnClick({R.id.CheckBox_zfb, R.id.CheckBox_weChat, R.id.tv_start_Rent, R.id.llCheckBox_zfb, R.id.llCheckBox_weChat})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.CheckBox_zfb:
+            case R.id.llCheckBox_zfb:
                 mCheckBoxZfb.setChecked(true);
                 mCheckBoxWeChat.setChecked(!mCheckBoxZfb.isChecked());
                 pay_type = 1;
                 break;
             case R.id.CheckBox_weChat:
+            case R.id.llCheckBox_weChat:
                 mCheckBoxWeChat.setChecked(true);
                 mCheckBoxZfb.setChecked(!mCheckBoxWeChat.isChecked());
                 pay_type = 2;

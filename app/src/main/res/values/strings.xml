@@ -186,6 +186,10 @@
     <string name="clear_all_size">清理完毕</string>
 
     <string name="ljql">立即升级</string>
+    <string name="czxnb">充值金豆额度</string>
+    <string name="czxnb2">1元人民币=100金豆</string>
+    <string name="zffs">支付方式</string>
+    <string name="jindou">金豆</string>
 
 
 </resources>

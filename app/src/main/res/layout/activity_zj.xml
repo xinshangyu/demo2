@@ -2,10 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -50,7 +54,7 @@
         android:padding="@dimen/dp_70"
         android:background="@color/transparent_db"
         android:layout_margin="@dimen/dp_15"
-        android:src="@mipmap/icon_zj_add"
+        android:src="@drawable/icon_zj_add"
         />
 
     <!--<android.support.v7.widget.RecyclerView

@@ -2,9 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,10 +26,8 @@
                 android:id="@+id/rl_my_headImage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
                 android:background="@android:color/white"
                 android:paddingLeft="14dp"
-                android:paddingTop="10dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -80,8 +84,8 @@
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
-                    android:singleLine="true"
                     android:hint="@string/my_name"
+                    android:singleLine="true"
                     android:textColor="@color/colorGrayC"
                     android:textSize="@dimen/text_14sp" />
 
@@ -113,16 +117,16 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
-                    android:background="@null"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="14dp"
+                    android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
-                    android:singleLine="true"
                     android:hint="@string/my_name"
+                    android:singleLine="true"
                     android:textColor="@color/colorGrayC"
                     android:textSize="@dimen/text_14sp" />
 
@@ -445,8 +449,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBackGround_F7F7F7">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_save"

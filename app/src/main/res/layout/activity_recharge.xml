@@ -2,30 +2,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/shape_color_text_background_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/app_name"
-        android:textColor="@color/colorBlack9"
-        android:textSize="@dimen/text_15sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/czxnb"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/czxnb2"
+            android:textColor="@color/colorBlack9"
+            android:textSize="@dimen/text_13sp" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="8dp"
         android:overScrollMode="never"
         android:scrollbars="none" />
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="13dp"
+            android:gravity="center_vertical"
+            android:text="@string/zffs"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="13dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
+
+    <LinearLayout
+        android:id="@+id/llCheckBox_zfb"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="1dp"
         android:background="@color/colorWhite"
         android:orientation="horizontal">
 
@@ -38,8 +88,53 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/zfb" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/pay_zfb"
+                android:textColor="@color/colorBlack0"
+                android:textSize="@dimen/text_16sp" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/CheckBox_zfb"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/select_btn"
+            android:button="@null" />
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="13dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
+
+    <LinearLayout
+        android:id="@+id/llCheckBox_weChat"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:src="@drawable/wechat" />
 
             <TextView
@@ -48,7 +143,7 @@
                 android:layout_marginLeft="3dp"
                 android:text="@string/pay_we_chat"
                 android:textColor="@color/colorBlack0"
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
         </LinearLayout>
 
         <CheckBox
@@ -61,44 +156,11 @@
             android:button="@null" />
     </LinearLayout>
 
-    <LinearLayout
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="1dp"
-        android:background="@color/colorWhite"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="13dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/zfb" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:text="@string/pay_zfb"
-                android:textColor="@color/colorBlack0"
-                android:textSize="@dimen/text_15sp" />
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/CheckBox_zfb"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="13dp"
-            android:background="@drawable/select_btn"
-            android:button="@null" />
-    </LinearLayout>
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="13dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
 
     <RelativeLayout
         android:layout_width="match_parent"

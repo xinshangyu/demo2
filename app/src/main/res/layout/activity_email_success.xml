@@ -3,10 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"

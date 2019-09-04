@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
@@ -41,21 +42,23 @@ public class RechargeAdapter extends RecyclerView.Adapter<RechargeAdapter.Re> {
 
     @Override
     public void onBindViewHolder(@NonNull RechargeAdapter.Re re, int i) {
-        re.mTvMoney.setText(list.get(i));
-        re.mTvMoney.setOnClickListener(new View.OnClickListener() {
+        re.mTvMoney.setText(list.get(i)+context.getString(R.string.jindou));
+        re.mTvMoney2.setText(list.get(i));
+        re.mll_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 selectPosition = re.getAdapterPosition();
                 notifyDataSetChanged();
             }
         });
         if (selectPosition == re.getAdapterPosition()) {
-            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect_solid);
+            re.mll_check.setBackgroundResource(R.drawable.shape_pay_rect_solid);
             re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            re.mTvMoney2.setTextColor(context.getResources().getColor(R.color.colorWhite));
         } else {
-            re.mTvMoney.setBackgroundResource(R.drawable.shape_pay_rect);
-            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorBackground));
+            re.mll_check.setBackgroundResource(R.drawable.shape_pay_rect);
+            re.mTvMoney.setTextColor(context.getResources().getColor(R.color.colorBlack0));
+            re.mTvMoney2.setTextColor(context.getResources().getColor(R.color.colorText_back));
         }
 
     }
@@ -68,10 +71,14 @@ public class RechargeAdapter extends RecyclerView.Adapter<RechargeAdapter.Re> {
     public class Re extends RecyclerView.ViewHolder {
 
         private TextView mTvMoney;
+        private TextView mTvMoney2;
+        private LinearLayout mll_check;
 
         public Re(View itemView) {
             super(itemView);
-            mTvMoney = itemView.findViewById(R.id.tv_ipm_money);
+            mll_check = itemView.findViewById(R.id.ll_check);
+            mTvMoney = itemView.findViewById(R.id.tv_money);
+            mTvMoney2 = itemView.findViewById(R.id.tv_money2);
         }
     }
 }

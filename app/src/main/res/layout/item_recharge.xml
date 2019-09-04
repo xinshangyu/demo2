@@ -2,20 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="13dp"
-    android:layout_marginTop="18dp"
-    android:layout_marginRight="13dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="7dp"
+    android:background="@color/colorWhite"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_ipm_money"
+    <LinearLayout
+        android:id="@+id/ll_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/select_pay"
-        android:gravity="center"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
-        android:textColor="@color/colorBackground"
-        android:textSize="@dimen/text_16sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="7dp"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/text_16sp" />
+
+        <TextView
+            android:id="@+id/tv_money2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:textColor="@color/colorText_back"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -2,15 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
 
     <RelativeLayout
         android:id="@+id/rl_tv_nick_update"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:layout_marginTop="1dp"
         android:background="@android:color/white"
         android:paddingLeft="14dp"
         android:paddingRight="14dp">
@@ -46,6 +51,11 @@
             android:background="@drawable/right" />
 
     </RelativeLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
 
     <RelativeLayout
         android:id="@+id/rl_tv_update_pwd"
@@ -86,6 +96,11 @@
             android:background="@drawable/right" />
 
     </RelativeLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBackGround_F7F7F7"></Spinner>
 
     <RelativeLayout
         android:id="@+id/rl_tv_bing_email"
