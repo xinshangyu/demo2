@@ -124,7 +124,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cPresenter.requestData3(this, cMap, Address.footprint_list);
+        cPresenter.requestData2(this, cMap, Address.footprint_list);
     }
 
     @Override

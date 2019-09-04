@@ -51,7 +51,7 @@ public class MoreActivity extends BaseActivity implements CommonView {
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cPresenter.requestData3(getApplicationContext(), cMap, Address.findFAQs);
+        cPresenter.requestData2(getApplicationContext(), cMap, Address.findFAQs);
 
     }
 

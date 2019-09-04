@@ -27,11 +27,6 @@ public class CommonPresenter implements ICommonPresenter {
         commonModel.getData2(context, map, url);
     }
 
-    //开始处理
-    public void requestData3(Context context, Map<String, String> map, String url) {
-        commonModel.getData(context, map, url);
-    }
-
 //    //商圈
 //    public void requestDataSQ(Context context, Map<String, String> map, String url) {
 //        commonModel.getData2(context, map, url);

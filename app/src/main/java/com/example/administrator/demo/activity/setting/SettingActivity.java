@@ -122,7 +122,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 break;
             case R.id.rl_check:
                 cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-                cPresenter.requestData3(this, cMap, Address.checkForUpdates);
+                cPresenter.requestData2(this, cMap, Address.checkForUpdates);
                 break;
             case R.id.rl_login_out:
                 NiceDialog.init()
