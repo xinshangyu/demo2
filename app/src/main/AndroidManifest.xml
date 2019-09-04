@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.user.UserLoginActivity">
+        <activity android:name=".activity.my.MyDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,7 +61,7 @@
         <activity android:name=".activity.my.MyInfoActivity" />
         <activity android:name=".activity.my.UpdateMyInfoActivity" />
         <activity android:name=".activity.record.JfGzActivity" />
-        <activity android:name=".activity.my.MyDataActivity" />
+        <!--<activity android:name=".activity.my.MyDataActivity" />-->
         <activity android:name="com.example.administrator.demo.activity.record.JyXqActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.ChaJianActivity" />
         <activity android:name="com.example.administrator.demo.activity.my.TheInfoActivity" />
