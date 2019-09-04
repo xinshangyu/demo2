@@ -58,18 +58,13 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-//        if (isVisible) setStatusBarColorInFragment();
         if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onFragmentFirstVisible() {
+        showDialog(getActivity());
 
-//        for (int i = 0; i < 5; i++) {
-//            UserFollowBen userFollowBen = new UserFollowBen();
-//            userFollowBen.setName("看啥");
-//            mBeanList.add(userFollowBen);
-//        }
         Map<String, String> map = new HashMap<>();
         map.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData(getActivity(), map, Address.follow);
@@ -86,6 +81,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        dissDialog(getActivity());
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
         if (unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0) {
             List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();

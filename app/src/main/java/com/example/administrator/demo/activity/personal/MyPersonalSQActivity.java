@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
-import android.view.Gravity;
 import android.view.View;
 
 import com.example.administrator.demo.R;
@@ -73,6 +72,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
 
     @Override
     protected void initDate() {
+        showToast(getParent());
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.bizCircleStatistics);
     }
@@ -85,6 +85,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        dissDialog(getParent());
         SQBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), SQBean.class);
         if (sqBean != null && sqBean.getBizCircle() != null && sqBean.getBizCircle().size() > 0) {
             mBeanList.addAll(sqBean.getBizCircle());

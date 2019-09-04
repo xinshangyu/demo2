@@ -83,7 +83,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     protected void onFragmentFirstVisible() {
-
+        showDialog(getActivity());
         EventBus.getDefault().register(this);
 
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
@@ -137,6 +137,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        dissDialog(getActivity());
         SCBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), SCBean.class);
         if (scBean != null && scBean.getBizCircle() != null && scBean.getBizCircle().size() > 0) {
             rl_empty.setVisibility(View.GONE);

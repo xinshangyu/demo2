@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
 /**
  * 粉丝
  */
@@ -52,19 +53,14 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-//        if (isVisible) setStatusBarColorInFragment();
         if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onFragmentFirstVisible() {
+        showDialog(getActivity());
         fansPresenter = new FansPresenter(this);
         fansPresenter.requestFans(getActivity());
-//        for (int i = 0; i < 10; i++) {ß
-//            UserFollowBen userFollowBen = new UserFollowBen();
-//            userFollowBen.setName("昵称1");
-//            mBeanList.add(userFollowBen);
-//        }
 
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -79,8 +75,9 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, F
 
     @Override
     public void onFans(WeatherResult weatherResult) {
+        dissDialog(getActivity());
         UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
-        if(unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0){
+        if (unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0) {
             List<UnFollowBen.DataBean.UserRelationBean> data = (ArrayList<UnFollowBen.DataBean.UserRelationBean>) unFollowBen.getData().getUserRelation();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();

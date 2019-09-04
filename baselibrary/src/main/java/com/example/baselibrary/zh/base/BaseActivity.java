@@ -1,5 +1,7 @@
 package com.example.baselibrary.zh.base;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.example.baselibrary.R;
@@ -61,7 +64,7 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
             mPresenter.setContext(mContext);
         }
 
-        if(this instanceof CommonView){
+        if (this instanceof CommonView) {
             cPresenter = new CommonPresenter((CommonView) this);
             cMap = new HashMap<>();
             gson = new Gson();
@@ -131,6 +134,33 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     protected abstract void initView(Bundle savedInstanceState);
 
     protected abstract void initDate();
+
+    private ProgressDialog dialog;
+
+    private void initDialog(Activity activity, String dialogMessage) {
+        dialog = new ProgressDialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage(dialogMessage);
+        if (dialog != null && !dialog.isShowing()) {
+            dialog.show();
+        }
+    }
+
+    public void showDialog(Activity activity, String dialogMessage) {
+        initDialog(activity, TextUtils.isEmpty(dialogMessage) ? " 疯狂加载中......" : dialogMessage);
+    }
+
+    public void showDialog(Activity activity) {
+        initDialog(activity, " 疯狂加载中......");
+    }
+
+    public void dissDialog(Activity activity) {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
 
     protected void showToast(Object message) {
         ToastUtils.showToast(this, message instanceof String ? message + "" : getResources().getString((int) message));

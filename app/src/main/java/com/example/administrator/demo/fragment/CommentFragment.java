@@ -79,6 +79,7 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
 
     @Override
     protected void onFragmentFirstVisible() {
+        showDialog(getActivity());
         EventBus.getDefault().register(this);
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cMap.put("oprType", "05");//阅读
@@ -96,6 +97,7 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        dissDialog(getActivity());
         CommertListBen commertListBen = gson.fromJson(gson.toJson(weatherResult.getData()), CommertListBen.class);
         if (commertListBen != null && commertListBen.getBizCircle() != null && commertListBen.getBizCircle().size() > 0) {
             rl_empty.setVisibility(View.GONE);
