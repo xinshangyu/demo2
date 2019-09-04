@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -155,6 +154,8 @@ public class UpdatePwdActivity extends BaseActivity {
                 Log.d("zhh", weatherResult.getCode() + "==code");
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePwdSuccessActivity.class);
+                }else {
+                    showToast(""+weatherResult.getMsg());
                 }
 
             }

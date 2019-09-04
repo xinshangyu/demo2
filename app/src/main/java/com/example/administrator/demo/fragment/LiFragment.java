@@ -57,7 +57,7 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
     @BindView(R.id.rl_empty)
     RelativeLayout rl_empty;
 
-    CommentAdapter mAdapter;
+    private CommentAdapter mAdapter;
     private ArrayList<SCBean.BizCircleBean> mBeanList = new ArrayList<>();
 
 

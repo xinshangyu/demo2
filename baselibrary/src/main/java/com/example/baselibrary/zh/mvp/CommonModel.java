@@ -64,6 +64,8 @@ public class CommonModel {
                 if (weatherResult.getCode() == 200) {//code==200不是等于1
                     commonPresenter.toData(weatherResult);
                     return;
+                }else {
+                    ToastUtils.showShort(context, ""+weatherResult.getMsg());
                 }
             }
 

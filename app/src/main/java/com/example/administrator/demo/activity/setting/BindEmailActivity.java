@@ -135,6 +135,8 @@ public class BindEmailActivity extends BaseActivity {
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdateEmailSuccessActivity.class);
                     finish();
+                }else {
+                    showToast(""+weatherResult.getMsg());
                 }
 
             }

@@ -136,6 +136,8 @@ public class UpdatePhoneActivity extends BaseActivity {
                 Log.d("zhh", weatherResult.getCode() + "==code");
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePhoneSuccessActivity.class);
+                }else {
+                    showToast(""+weatherResult.getMsg());
                 }
 
             }

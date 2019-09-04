@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.CommentAdapter2;
 import com.example.administrator.demo.entity.CommertListBen;
@@ -87,6 +88,33 @@ public class CommentFragment extends BaseFragment implements RefreshCallBack, Co
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new CommentAdapter2(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
+                mBtDelete.setText("删除（1）");
+                mAdapter.setShowCheck(true);
+                mLLBottom.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.CheckBox_my_collection) {
+
+                    mBeanList.get(position).setIsDetele(!mBeanList.get(position).getIsDetele());
+                    int i = 0;
+                    for (CommertListBen.BizCircleBean bean : mBeanList) {
+                        if (bean.getIsDetele()) {
+                            i++;
+                        }
+                    }
+                    mBtDelete.setText("删除（" + i + "）");
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override
