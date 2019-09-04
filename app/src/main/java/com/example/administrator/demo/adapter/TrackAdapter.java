@@ -24,13 +24,13 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.deful_back);
             }else{
                 //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
                 //    helper.setGone(R.id.iv, false);
                 //}else{
                     ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
-                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
                 //}
             }
 
@@ -45,13 +45,13 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
         }else{
 
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.defaulthead);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.deful_back);
             }else{
                 //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
                 //    helper.setGone(R.id.iv1, false);
                 //}else{
                     ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
-                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
                 //}
             }
 

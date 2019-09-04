@@ -202,6 +202,7 @@ public class ZanFragment extends BaseFragment implements RefreshCallBack, Common
                         });
                     }
                 })
+                .setMargin(60)
                 .show(getFragmentManager());
     }
 

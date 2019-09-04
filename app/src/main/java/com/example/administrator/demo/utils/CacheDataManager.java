@@ -60,7 +60,7 @@ public class CacheDataManager {
     public static String getFormatSize(double size) {
         double kiloByte = size / 1024;
         if (kiloByte < 1) {
-            return size + "";
+            return size + "MB";
         }
         double megaByte = kiloByte / 1024;
         if (megaByte < 1) {
