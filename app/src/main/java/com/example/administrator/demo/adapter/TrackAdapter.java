@@ -27,7 +27,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
         if(helper.getPosition() % 2 == 0){
             ImageView imageView = helper.getView(R.id.iv);
             if(item.isAdd()){
-                int size = BaseUtils.dip2px(mContext, 20);
+                int size = BaseUtils.dip2px(mContext, 30);
                 imageView.setPadding(size,size,size,size);
                 ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
             }else{
@@ -48,7 +48,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
         }else{
             ImageView imageView = helper.getView(R.id.iv1);
             if(item.isAdd()){
-                int size = BaseUtils.dip2px(mContext, 20);
+                int size = BaseUtils.dip2px(mContext, 30);
                 imageView.setPadding(size,size,size,size);
                 ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
             }else{
