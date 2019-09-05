@@ -16,6 +16,7 @@
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="@dimen/dp_10"
             android:overScrollMode="never"
             android:scrollbars="none"></android.support.v7.widget.RecyclerView>
 <!--    </com.scwang.smartrefresh.layout.SmartRefreshLayout>-->

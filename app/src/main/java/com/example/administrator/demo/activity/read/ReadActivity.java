@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.Read1Adapter;
 import com.example.administrator.demo.adapter.Read2Adapter;
 import com.example.baselibrary.zh.base.BaseActivity;
-import com.example.baselibrary.zh.utils.flowlayout.FlowLayout;
-import com.example.baselibrary.zh.utils.flowlayout.FlowLayoutAdapter;
+import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import butterknife.BindView;
 
@@ -24,12 +27,11 @@ public class ReadActivity extends BaseActivity {
     @BindView(R.id.RecyclerView)
     RecyclerView RecyclerView;
     @BindView(R.id.fl_search)
-    FlowLayout flowLayout;
+    TagFlowLayout flowLayout;
 
     private ArrayList<String> mListData = new ArrayList<>();
     private ArrayList<String> mListData2 = new ArrayList<>();
     private Read1Adapter adapter;
-    private Read2Adapter adapter2;
 
     @Override
     protected int getLayout() {
@@ -64,33 +66,36 @@ public class ReadActivity extends BaseActivity {
         adapter = new Read1Adapter(mContext, mListData);
         RecyclerView.setAdapter(adapter);
 
-//        RecyclerView2.setLayoutManager(new LinearLayoutManager(mContext));
-//        adapter2 = new Read2Adapter(mContext, mListData2);
-//        RecyclerView2.setAdapter(adapter2);
-
-        FlowLayoutAdapter<String> flowLayoutAdapter = new FlowLayoutAdapter<String>(mListData2) {
+        flowLayout.setAdapter(new TagAdapter<String>(mListData2) {
             @Override
-            public void bindDataToView(FlowLayoutAdapter.ViewHolder holder, int position, String bean) {
-                holder.setText(R.id.tv_name, bean);
+            public View getView(FlowLayout parent, int position, String s) {
+                View view = View.inflate(mContext,R.layout.item_search_cache, null);
+                TextView textView = view.findViewById(R.id.tv);
+                textView.setText(s);
+                return view;
             }
 
             @Override
-            public void onItemClick(int position, String bean) {
-                Bundle bundle = new Bundle();
-
-//                bundle.putString(AppConfig.NAME,list.get(position).getName());
-//                bundle.putString(AppConfig.MID,list.get(position).getMid());
-//                bundle.putBoolean(AppConfig.ISAREA,true);
-//                ActivityUtils.startActivity(mContext,SearchAreaActivity.class,bundle);
+            public void onSelected(int position, View view) {
+                TextView textView = view.findViewById(R.id.tv);
+                textView.setBackground(getResources().getDrawable(R.drawable.shape_r6));
+                super.onSelected(position, view);
             }
 
             @Override
-            public int getItemLayoutID(int position, String bean) {
-                return R.layout.item_search_cache;
+            public void unSelected(int position, View view) {
+                TextView textView = view.findViewById(R.id.tv);
+                textView.setBackground(getResources().getDrawable(R.drawable.shape_r7));
+                super.unSelected(position, view);
             }
-        };
-        flowLayout.setAdapter(flowLayoutAdapter);
+        });
 
+        flowLayout.setOnSelectListener(new TagFlowLayout.OnSelectListener() {
+            @Override
+            public void onSelected(Set<Integer> selectPosSet) {
+//                getActivity().setTitle("choose:" + selectPosSet.toString());
+            }
+        });
 
     }
 }
