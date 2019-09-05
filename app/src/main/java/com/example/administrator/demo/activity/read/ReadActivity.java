@@ -33,6 +33,7 @@ public class ReadActivity extends BaseActivity {
     private ArrayList<String> mListData = new ArrayList<>();
     private ArrayList<String> mListData2 = new ArrayList<>();
     private Read1Adapter adapter;
+    private TagAdapter tagAdapter;
 
     @Override
     protected int getLayout() {
@@ -76,7 +77,7 @@ public class ReadActivity extends BaseActivity {
                     else if (i == 1) mListData2.add("的的成" + position);
                     else mListData2.add("的的成ac地方第" + position);
                 }
-                adapter.notifyDataSetChanged();
+                tagAdapter.notifyDataChanged();
             }
 
             @Override
@@ -85,7 +86,7 @@ public class ReadActivity extends BaseActivity {
             }
         });
 
-        flowLayout.setAdapter(new TagAdapter<String>(mListData2) {
+        flowLayout.setAdapter(tagAdapter = new TagAdapter<String>(mListData2) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 View view = View.inflate(mContext,R.layout.item_search_cache, null);
