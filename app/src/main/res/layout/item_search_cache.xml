@@ -9,7 +9,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_r6"
+        android:background="@drawable/shape_r7"
         android:gravity="center"
         android:padding="5dp"
         android:textColor="@color/colorWhite"
