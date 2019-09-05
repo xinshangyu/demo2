@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp">
+    >
 
     <TextView
         android:id="@+id/tv_name"
@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/my_name"
         android:textColor="@color/colorBlack0"
+        android:padding="10dp"
         android:textSize="@dimen/text_20sp" />
 
     <View
