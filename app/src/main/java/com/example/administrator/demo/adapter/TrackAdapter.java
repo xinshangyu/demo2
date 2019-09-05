@@ -1,6 +1,7 @@
 package com.example.administrator.demo.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -8,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.TrackBean;
+import com.example.baselibrary.zh.utils.BaseUtils;
 import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
@@ -23,15 +25,16 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
     @Override
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
         if(helper.getPosition() % 2 == 0){
+            ImageView imageView = helper.getView(R.id.iv);
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv),null, R.drawable.deful_back);
+                int size = BaseUtils.dip2px(mContext, 20);
+                imageView.setPadding(size,size,size,size);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
             }else{
-                //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                //    helper.setGone(R.id.iv, false);
-                //}else{
-                    ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv),
-                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
-                //}
+                int size = BaseUtils.dip2px(mContext, 0);
+                imageView.setPadding(size,size,size,size);
+                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), imageView,
+                        new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
 
             helper.setText(R.id.tv, item.getFootprintName())
@@ -43,16 +46,16 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.tv, true)
                     .setGone(R.id.lin, !(data.size()-1 == helper.getPosition()));
         }else{
-
+            ImageView imageView = helper.getView(R.id.iv1);
             if(item.isAdd()){
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, helper.getView(R.id.iv1),null, R.drawable.deful_back);
+                int size = BaseUtils.dip2px(mContext, 20);
+                imageView.setPadding(size,size,size,size);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
             }else{
-                //if(TextUtils.isEmpty(item.getFootprintImgSrc())){
-                //    helper.setGone(R.id.iv1, false);
-                //}else{
-                    ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), helper.getView(R.id.iv1),
-                            new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
-                //}
+                int size = BaseUtils.dip2px(mContext, 0);
+                imageView.setPadding(size,size,size,size);
+                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), imageView,
+                        new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
 
             helper.setText(R.id.tv1, item.getFootprintName())
