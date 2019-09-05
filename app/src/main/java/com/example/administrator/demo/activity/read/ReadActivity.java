@@ -70,21 +70,21 @@ public class ReadActivity extends BaseActivity {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 View view = View.inflate(mContext,R.layout.item_search_cache, null);
-                TextView textView = view.findViewById(R.id.tv);
+                TextView textView = view.findViewById(R.id.tv_name);
                 textView.setText(s);
                 return view;
             }
 
             @Override
             public void onSelected(int position, View view) {
-                TextView textView = view.findViewById(R.id.tv);
+                TextView textView = view.findViewById(R.id.tv_name);
                 textView.setBackground(getResources().getDrawable(R.drawable.shape_r6));
                 super.onSelected(position, view);
             }
 
             @Override
             public void unSelected(int position, View view) {
-                TextView textView = view.findViewById(R.id.tv);
+                TextView textView = view.findViewById(R.id.tv_name);
                 textView.setBackground(getResources().getDrawable(R.drawable.shape_r7));
                 super.unSelected(position, view);
             }
