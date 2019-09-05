@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.Read1Adapter;
 import com.example.administrator.demo.adapter.Read2Adapter;
+import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -57,14 +58,32 @@ public class ReadActivity extends BaseActivity {
         }
         for (int i = 0; i < 5; i++) {
             if (i == 0)
-                mListData2.add("的的成第三" + i);
-            else if (i == 1) mListData2.add("的的成" + i);
-            else mListData2.add("的的成ac地方第三" + i);
+                mListData2.add("的的成第1" + i);
+            else if (i == 1) mListData2.add("的的成1" + i);
+            else mListData2.add("的的成ac地方第1" + i);
         }
 
         RecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new Read1Adapter(mContext, mListData);
         RecyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                mListData2.clear();
+                for (int i = 0; i < 5; i++) {
+                    if (i == 0)
+                        mListData2.add("的的成第" + position);
+                    else if (i == 1) mListData2.add("的的成" + position);
+                    else mListData2.add("的的成ac地方第" + position);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
 
         flowLayout.setAdapter(new TagAdapter<String>(mListData2) {
             @Override
