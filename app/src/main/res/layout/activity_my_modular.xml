@@ -76,6 +76,7 @@
                     android:textSize="@dimen/dp_18" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/iv_vip"
                     android:layout_width="@dimen/dp_33"
                     android:layout_height="wrap_content"
@@ -83,6 +84,7 @@
                     android:src="@mipmap/vip1" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/ll_grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,7 +129,30 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/ll_personal_user_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tv_personal_user_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="004"
+                    android:textColor="#FF666666"
+                    android:textSize="@dimen/dp_13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商圈"
+                    android:textColor="#FF666666"
+                    android:textSize="@dimen/dp_13" />
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_personal_user_follow"
                 android:layout_width="wrap_content"
@@ -178,30 +203,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_personal_user_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_personal_user_circle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="004"
-                    android:textColor="#FF666666"
-                    android:textSize="@dimen/dp_13" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商圈"
-                    android:textColor="#FF666666"
-                    android:textSize="@dimen/dp_13" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_personal_user_identify"
@@ -300,7 +302,7 @@
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="浏览历史"
+                            android:text="浏览记录"
                             android:textColor="#FF666666"
                             android:textSize="@dimen/dp_14" />
                     </LinearLayout>
@@ -478,14 +480,17 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-
-                <RelativeLayout
+                <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_20">
+                    android:layout_height="10dp"
+                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/dp_20">-->
 
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/onclickFootprint"
@@ -671,14 +676,17 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-
-                <RelativeLayout
+                <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_20">
+                    android:layout_height="10dp"
+                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/dp_20">-->
 
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/onclickHelp"
