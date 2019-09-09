@@ -84,9 +84,8 @@
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
-                    android:hint="@string/my_name"
                     android:singleLine="true"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -117,6 +116,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
+                    android:id="@+id/et_nick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -125,9 +125,8 @@
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
-                    android:hint="@string/my_name"
                     android:singleLine="true"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -140,6 +139,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -157,6 +157,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -165,8 +166,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -195,6 +195,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_gsmc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -203,8 +204,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -234,6 +234,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_bm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -242,8 +243,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -272,6 +272,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_byyx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -280,8 +281,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -294,6 +294,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_xl"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -311,6 +312,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_xl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -319,8 +321,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -349,6 +350,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_zy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -357,8 +359,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -388,6 +389,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -396,8 +398,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -426,6 +427,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -434,8 +436,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text="@string/my_name"
-                    android:textColor="@color/colorGrayC"
+                    android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView

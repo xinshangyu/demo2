@@ -74,6 +74,14 @@ public class Address {
      */
     public final static String index = "user/me/index?";
     /**
+     * 我的--性别   GET  http://192.168.0.195:8980/store/sysTypeCode/userSex
+     */
+    public final static String userSex = "store/sysTypeCode/userSex?";
+    /**
+     * 我的--学历   GET    http://192.168.0.195:8980/store/sysTypeCode/educationBackground
+     */
+    public final static String educationBackground = "store/sysTypeCode/educationBackground?";
+    /**
      * 我的--首页--查看收藏信息   GET
      */
     public final static String scanCollectionInfo = "area/me/scanCollectionInfo?";
