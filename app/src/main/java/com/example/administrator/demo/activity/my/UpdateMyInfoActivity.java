@@ -16,6 +16,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.dialog.SexDialog;
 import com.example.administrator.demo.entity.ImgBean;
@@ -37,7 +39,6 @@ import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
-import com.example.baselibrary.zh.net.JsonUtils;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ImageLoader;
@@ -126,9 +127,9 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     protected void initDate() {
         mUserInfo = SPUtils.getUserInfo(mContext);
         if (mUserInfo != null) {
-
-//            ImageLoader.getInstance().loadingImage(mContext, headImage, mIvMyHead,
-//                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+            String userPhoto = mUserInfo.getUserPhoto();
+            ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userPhoto, ivMyHead,
+                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
         }
 
@@ -470,29 +471,33 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
      * 获取图片
      */
     private void setImage(String integralNumber) {
-        paramMap = new HashMap<>();
-        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        RetrofitRequest.sendGetRequest(ApiKeys.getApiUrl() + Address.fileId + integralNumber, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-            @Override
-            public void onBeforeResult() {
+        ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + integralNumber, ivMyHead,
+                new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
-            }
 
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                String json = new Gson().toJson(weatherResult);
-                LogUtil.e("返回数据" + json);
-                if (weatherResult.getCode() == 200) {
-
-                } else {
-                    ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
-                }
-            }
-
-            @Override
-            public void onAfterFailure() {
-                showToast("请求失败");
-            }
-        });
+//        paramMap = new HashMap<>();
+//        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+//        RetrofitRequest.sendGetRequest(ApiKeys.getApiUrl() + Address.fileId + integralNumber, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+//            @Override
+//            public void onBeforeResult() {
+//
+//            }
+//
+//            @Override
+//            public void onResult(WeatherResult weatherResult) {
+//                String json = new Gson().toJson(weatherResult);
+//                LogUtil.e("返回数据" + json);
+//                if (weatherResult.getCode() == 200) {
+//
+//                } else {
+//                    ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
+//                }
+//            }
+//
+//            @Override
+//            public void onAfterFailure() {
+//                showToast("请求失败");
+//            }
+//        });
     }
 }
