@@ -1,157 +1,104 @@
 package com.example.administrator.demo.entity;
 
-import com.example.baselibrary.zh.network.result.WeatherResult;
-
 import java.io.Serializable;
 import java.util.List;
 
 public class UnFollowBen implements Serializable {
 
 
-    /**
-     * code : 200
-     * data : {"userRelation":[{"ralationType":"0","userInfo":{"petName":"cccccc","userSignature":"我的状态","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d"},"id":"0359c8fda13a7098bfaaf51777024e3c","userId":"402880436bb26e6c016bb591be920008","beFocusedId":"402880436b9bb9a4016b9bdcdcfa0008"}]}
-     * msg : success
-     */
+    private List<RelationRecordListBean> relationRecordList;
 
-    private int code;
-    private DataBean data;
-    private String msg;
-
-    public int getCode() {
-        return code;
+    public List<RelationRecordListBean> getRelationRecordList() {
+        return relationRecordList;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setRelationRecordList(List<RelationRecordListBean> relationRecordList) {
+        this.relationRecordList = relationRecordList;
     }
 
-    public DataBean getData() {
-        return data;
-    }
+    public static class RelationRecordListBean {
+        /**
+         * id : f85401f306874d9d2a55c97206134332
+         * userId : 402880296cd7af30016cdb2baaaa0010
+         * fansId : 402880296cb71702016cb71702440001
+         * ralationType : 1
+         * userName : 王一一
+         * nickName : 卡特
+         * userPhoto : 402880266cd1c7a7016cd1c7bb5e001e
+         * userSignature : 这就对了嘛
+         */
 
-    public void setData(DataBean data) {
-        this.data = data;
-    }
+        private String id;
+        private String userId;
+        private String fansId;
+        private String ralationType;
+        private String userName;
+        private String nickName;
+        private String userPhoto;
+        private String userSignature;
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public static class DataBean {
-        private List<UserRelationBean> userRelation;
-
-        public List<UserRelationBean> getUserRelation() {
-            return userRelation;
+        public String getId() {
+            return id;
         }
 
-        public void setUserRelation(List<UserRelationBean> userRelation) {
-            this.userRelation = userRelation;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public static class UserRelationBean {
-            /**
-             * ralationType : 0
-             * userInfo : {"petName":"cccccc","userSignature":"我的状态","userPhoto":"402880ef6bb0ed2e016bd5e81e3d107d"}
-             * id : 0359c8fda13a7098bfaaf51777024e3c
-             * userId : 402880436bb26e6c016bb591be920008
-             * beFocusedId : 402880436b9bb9a4016b9bdcdcfa0008
-             */
+        public String getUserId() {
+            return userId;
+        }
 
-            private String ralationType;
-            private UserInfoBean userInfo;
-            private String id;
-            private String userId;
-            private String beFocusedId;
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
 
-            public String getRalationType() {
-                return ralationType;
-            }
+        public String getFansId() {
+            return fansId;
+        }
 
-            public void setRalationType(String ralationType) {
-                this.ralationType = ralationType;
-            }
+        public void setFansId(String fansId) {
+            this.fansId = fansId;
+        }
 
-            public UserInfoBean getUserInfo() {
-                return userInfo;
-            }
+        public String getRalationType() {
+            return ralationType;
+        }
 
-            public void setUserInfo(UserInfoBean userInfo) {
-                this.userInfo = userInfo;
-            }
+        public void setRalationType(String ralationType) {
+            this.ralationType = ralationType;
+        }
 
-            public String getId() {
-                return id;
-            }
+        public String getUserName() {
+            return userName;
+        }
 
-            public void setId(String id) {
-                this.id = id;
-            }
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
 
-            public String getUserId() {
-                return userId;
-            }
+        public String getNickName() {
+            return nickName;
+        }
 
-            public void setUserId(String userId) {
-                this.userId = userId;
-            }
+        public void setNickName(String nickName) {
+            this.nickName = nickName;
+        }
 
-            public String getBeFocusedId() {
-                return beFocusedId;
-            }
+        public String getUserPhoto() {
+            return userPhoto;
+        }
 
-            public void setBeFocusedId(String beFocusedId) {
-                this.beFocusedId = beFocusedId;
-            }
+        public void setUserPhoto(String userPhoto) {
+            this.userPhoto = userPhoto;
+        }
 
-            public static class UserInfoBean {
-                /**
-                 * petName : cccccc
-                 * userSignature : 我的状态
-                 * userPhoto : 402880ef6bb0ed2e016bd5e81e3d107d
-                 */
+        public String getUserSignature() {
+            return userSignature;
+        }
 
-                private String petName;
-                private String userSignature;
-                private String userPhoto;
-                private String vipLevel;
-
-                public String getPetName() {
-                    return petName;
-                }
-
-                public void setPetName(String petName) {
-                    this.petName = petName;
-                }
-
-                public String getUserSignature() {
-                    return userSignature;
-                }
-
-                public void setUserSignature(String userSignature) {
-                    this.userSignature = userSignature;
-                }
-
-                public String getUserPhoto() {
-                    return userPhoto;
-                }
-
-                public void setUserPhoto(String userPhoto) {
-                    this.userPhoto = userPhoto;
-                }
-
-                public String getVipLevel() {
-                    return vipLevel;
-                }
-
-                public void setVipLevel(String vipLevel) {
-                    this.vipLevel = vipLevel;
-                }
-            }
+        public void setUserSignature(String userSignature) {
+            this.userSignature = userSignature;
         }
     }
 }

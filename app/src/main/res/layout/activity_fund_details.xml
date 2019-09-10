@@ -6,6 +6,11 @@
 
     <include layout="@layout/common_toolbar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/SmartRefreshLayout"
         android:layout_width="match_parent"

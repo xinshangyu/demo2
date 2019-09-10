@@ -42,7 +42,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     RelativeLayout rl_empty;
 
     private UserFollowAdapter mAdapter;
-    private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
+    private ArrayList<UnFollowBen.RelationRecordListBean> mBeanList = new ArrayList<>();
 
 
     public static FollowFragment newInstance(String param1, String param2) {
@@ -84,10 +84,10 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
-        if (unFollowBen != null && unFollowBen.getData().getUserRelation() != null && unFollowBen.getData().getUserRelation().size() > 0) {
+        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), UnFollowBen.class);
+        if (unFollowBen != null && unFollowBen.getRelationRecordList() != null && unFollowBen.getRelationRecordList().size() > 0) {
             rl_empty.setVisibility(View.GONE);
-            List<UnFollowBen.DataBean.UserRelationBean> data = unFollowBen.getData().getUserRelation();
+            List<UnFollowBen.RelationRecordListBean> data = unFollowBen.getRelationRecordList();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();
         } else {

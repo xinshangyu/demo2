@@ -90,10 +90,9 @@ public class Address {
      */
     public final static String reportInfo = "user/userinfo/share/reportInfo?";
     /**
-     * 我的--首页--粉丝列表    POST
+     * 我的--首页--粉丝列表    POST  http://192.168.0.195:8980/user/userRelationRecord/list/fans
      */
-    //public final static String payAttentionToFans = "user/me/payAttentionToFans?";
-    public final static String payAttentionToFans = "area/me/payAttentionToFans?";
+    public final static String payAttentionToFans = "user/userRelationRecord/list/fans?";
     /**
      * 我的--首页--获取关注人列表
      */

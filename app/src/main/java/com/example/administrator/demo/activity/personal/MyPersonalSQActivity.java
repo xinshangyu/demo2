@@ -41,7 +41,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    Personal_SQ_Adapter adapter;
+    private Personal_SQ_Adapter adapter;
     private EmptyWrapper mAdapter;
     private ArrayList<SQBean.BizCircleBean> mBeanList = new ArrayList<>();
     private Map<String, String> mMap;

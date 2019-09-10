@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
-import com.example.administrator.demo.mvp.iview.FansView;
 import com.example.administrator.demo.mvp.presenter.FansPresenter;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -43,7 +42,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
     RelativeLayout rl_empty;
 
     private UserFollowAdapter mAdapter;
-    private ArrayList<UnFollowBen.DataBean.UserRelationBean> mBeanList = new ArrayList<>();
+    private ArrayList<UnFollowBen.RelationRecordListBean> mBeanList = new ArrayList<>();
     private FansPresenter fansPresenter;
 
     public static UnFollowFragment newInstance(String param1, String param2) {
@@ -67,8 +66,6 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
 
     @Override
     protected void onFragmentFirstVisible() {
-//        fansPresenter = new FansPresenter(this);
-//        fansPresenter.requestFans(getActivity());
         Map<String, String> map = new HashMap<>();
         map.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData(getActivity(), map, Address.payAttentionToFans);
@@ -86,10 +83,10 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult), UnFollowBen.class);
-        if (unFollowBen != null && unFollowBen.getData().getUserRelation().size() > 0) {
+        UnFollowBen unFollowBen = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), UnFollowBen.class);
+        if (unFollowBen != null && unFollowBen.getRelationRecordList().size() > 0) {
             rl_empty.setVisibility(View.GONE);
-            List<UnFollowBen.DataBean.UserRelationBean> data = (ArrayList<UnFollowBen.DataBean.UserRelationBean>) unFollowBen.getData().getUserRelation();
+            List<UnFollowBen.RelationRecordListBean> data = (ArrayList<UnFollowBen.RelationRecordListBean>) unFollowBen.getRelationRecordList();
             mBeanList.addAll(data);
             mAdapter.notifyDataSetChanged();
         } else {

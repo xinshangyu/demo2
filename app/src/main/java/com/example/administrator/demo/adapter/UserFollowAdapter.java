@@ -13,6 +13,7 @@ import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
 import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
+import com.example.baselibrary.zh.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -20,28 +21,39 @@ import java.util.ArrayList;
 /**
  * 关注/粉丝
  **/
-public class UserFollowAdapter extends CommonAdapter<UnFollowBen.DataBean.UserRelationBean> {
+public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordListBean> {
 
-    public UserFollowAdapter(Context context, ArrayList<UnFollowBen.DataBean.UserRelationBean> beanList) {
+    private Context context;
+
+    public UserFollowAdapter(Context context, ArrayList<UnFollowBen.RelationRecordListBean> beanList) {
         super(context, R.layout.item_follow, beanList);
+        this.context = context;
     }
 
     @Override
-    protected void convert(ViewHolder holder, UnFollowBen.DataBean.UserRelationBean userFollowBen, int position) {
+    protected void convert(ViewHolder holder, UnFollowBen.RelationRecordListBean userFollowBen, int position) {
 
-        holder.setText(R.id.tv_name, userFollowBen.getUserInfo().getPetName())
-                .setText(R.id.tv1, userFollowBen.getUserInfo().getUserSignature())
+        holder.setText(R.id.tv_name, userFollowBen.getUserName())
+                .setText(R.id.tv1, userFollowBen.getUserSignature())
                 .setOnClickListener(R.id.fl_content, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         AppActivityUtils.StartTheActivity((Activity) mContext, "测试");
                     }
                 })
+                .setOnClickListener(R.id.iv_r, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtils.showToast(context, "接口没有");
+
+                    }
+                })
         ;
-        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserInfo().getUserPhoto(), holder.getView(R.id.iv_imageView),
+        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserInfo().getVipLevel(), holder.getView(R.id.iv_vip),
-                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+
+//        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getVipLevel(), holder.getView(R.id.iv_vip),
+//                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
         if ("0".equals(userFollowBen.getRalationType())) {
             holder.setImageResource(R.id.iv_r, R.drawable.icon_follow);
         } else if ("1".equals(userFollowBen.getRalationType())) {
@@ -55,7 +67,7 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.DataBean.UserRe
 
     }
 
-    public void setData(ArrayList<UnFollowBen.DataBean.UserRelationBean> datas) {
+    public void setData(ArrayList<UnFollowBen.RelationRecordListBean> datas) {
         mDatas = datas;
         notifyDataSetChanged();
     }
