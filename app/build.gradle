@@ -58,6 +58,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation 'com.nbsp:library:1.8'
     implementation 'com.hyman:flowlayout-lib:1.1.2'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    implementation 'com.alibaba:fastjson:1.1.51.android'
 
 
 }

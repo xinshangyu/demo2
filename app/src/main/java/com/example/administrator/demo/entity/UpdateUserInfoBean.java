@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 public class UpdateUserInfoBean implements Serializable {
 
+
     /**
-     * userInfo : {"id":"402880296cb71702016cb71702440001","userName":"刘超","userSex":"483d35f4134c4e6ebeb21048f4bf9ee9","graduationSchool":"河南农业大学","educationBackground":"8886ab0f45ef4342a61e99d7683ee1a4","profession":"软件工程","homeSite":"河南郑州","userCode":{"id":"402880296cb71702016cb71702310000","nickName":"liuchao","userPhoto":"402880266cd1c7a7016cd1c7bbb20020"},"orgInfo":{"companyId":"000000002","companyName":"黑猫教育资讯合伙企业","deptId":"0000000","deptName":"国家安全部"}}
+     * userInfo : {"id":"402880296cb71702016cb71702440001","userPhoto":"402880266cd1c7a7016cd1c7bbb20020","userName":"刘超","nickName":"liuchao","userSex":"483d35f4134c4e6ebeb21048f4bf9ee9","graduationSchool":"河南农业大学","educationBackground":"8886ab0f45ef4342a61e99d7683ee1a4","profession":"软件工程","homeSite":"河南郑州","residenceSite":null,"userCode":null,"orgInfo":{"companyId":"000000002","companyName":"黑猫教育资讯合伙企业","deptId":"0000000","deptName":"国家安全部"}}
      */
 
     private UserInfoBean userInfo;
@@ -21,24 +22,30 @@ public class UpdateUserInfoBean implements Serializable {
     public static class UserInfoBean {
         /**
          * id : 402880296cb71702016cb71702440001
+         * userPhoto : 402880266cd1c7a7016cd1c7bbb20020
          * userName : 刘超
+         * nickName : liuchao
          * userSex : 483d35f4134c4e6ebeb21048f4bf9ee9
          * graduationSchool : 河南农业大学
          * educationBackground : 8886ab0f45ef4342a61e99d7683ee1a4
          * profession : 软件工程
          * homeSite : 河南郑州
-         * userCode : {"id":"402880296cb71702016cb71702310000","nickName":"liuchao","userPhoto":"402880266cd1c7a7016cd1c7bbb20020"}
+         * residenceSite : null
+         * userCode : null
          * orgInfo : {"companyId":"000000002","companyName":"黑猫教育资讯合伙企业","deptId":"0000000","deptName":"国家安全部"}
          */
 
         private String id;
+        private String userPhoto;
         private String userName;
+        private String nickName;
         private String userSex;
         private String graduationSchool;
         private String educationBackground;
         private String profession;
         private String homeSite;
-        private UserCodeBean userCode;
+        private Object residenceSite;
+        private Object userCode;
         private OrgInfoBean orgInfo;
 
         public String getId() {
@@ -49,12 +56,28 @@ public class UpdateUserInfoBean implements Serializable {
             this.id = id;
         }
 
+        public String getUserPhoto() {
+            return userPhoto;
+        }
+
+        public void setUserPhoto(String userPhoto) {
+            this.userPhoto = userPhoto;
+        }
+
         public String getUserName() {
             return userName;
         }
 
         public void setUserName(String userName) {
             this.userName = userName;
+        }
+
+        public String getNickName() {
+            return nickName;
+        }
+
+        public void setNickName(String nickName) {
+            this.nickName = nickName;
         }
 
         public String getUserSex() {
@@ -97,11 +120,19 @@ public class UpdateUserInfoBean implements Serializable {
             this.homeSite = homeSite;
         }
 
-        public UserCodeBean getUserCode() {
+        public Object getResidenceSite() {
+            return residenceSite;
+        }
+
+        public void setResidenceSite(Object residenceSite) {
+            this.residenceSite = residenceSite;
+        }
+
+        public Object getUserCode() {
             return userCode;
         }
 
-        public void setUserCode(UserCodeBean userCode) {
+        public void setUserCode(Object userCode) {
             this.userCode = userCode;
         }
 
@@ -111,42 +142,6 @@ public class UpdateUserInfoBean implements Serializable {
 
         public void setOrgInfo(OrgInfoBean orgInfo) {
             this.orgInfo = orgInfo;
-        }
-
-        public static class UserCodeBean {
-            /**
-             * id : 402880296cb71702016cb71702310000
-             * nickName : liuchao
-             * userPhoto : 402880266cd1c7a7016cd1c7bbb20020
-             */
-
-            private String id;
-            private String nickName;
-            private String userPhoto;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getNickName() {
-                return nickName;
-            }
-
-            public void setNickName(String nickName) {
-                this.nickName = nickName;
-            }
-
-            public String getUserPhoto() {
-                return userPhoto;
-            }
-
-            public void setUserPhoto(String userPhoto) {
-                this.userPhoto = userPhoto;
-            }
         }
 
         public static class OrgInfoBean {

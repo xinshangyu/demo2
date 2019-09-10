@@ -83,6 +83,7 @@
                     android:layout_marginRight="14dp"
                     android:background="@null"
                     android:ellipsize="end"
+                    android:hint="请输入"
                     android:gravity="right"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack0"
@@ -125,6 +126,7 @@
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
+                    android:hint="请输入"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
@@ -165,6 +167,7 @@
                     android:layout_marginRight="14dp"
                     android:ellipsize="end"
                     android:gravity="right"
+                    android:hint="请选择"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
@@ -195,6 +198,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:hint="请选择"
                     android:id="@+id/tv_gsmc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -234,6 +238,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:hint="请选择"
                     android:id="@+id/tv_bm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -271,7 +276,9 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
+                    android:background="@null"
+                    android:hint="请输入"
                     android:id="@+id/tv_byyx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -312,6 +319,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
+                    android:hint="请选择"
                     android:id="@+id/tv_xl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -349,7 +357,9 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
+                    android:background="@null"
+                    android:hint="请输入"
                     android:id="@+id/tv_zy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -388,13 +398,15 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
+                    android:hint="请输入"
                     android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="14dp"
+                    android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
@@ -426,7 +438,9 @@
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_16sp" />
 
-                <TextView
+                <EditText
+                    android:hint="请输入"
+                    android:background="@null"
                     android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

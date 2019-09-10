@@ -134,6 +134,16 @@ public class Address {
      * 我的--首页--用户个人基本信息--编辑个人资料   POST
      */
     public final static String edit = "user/userinfo/edit?";
+
+    /**
+     * 我的--头像上传--http://192.168.0.195:8980/file/resourceFiles/uploadFile   POST
+     */
+    public final static String uploadFile = "file/resourceFiles/uploadFile?";
+
+    /**
+     * 我的--头像获取--http://192.168.0.113:8980/file/resourceFiles/download/image?fileId=   POST
+     */
+    public final static String fileId = "file/resourceFiles/download/image?fileId=";
     /**
      * 我的--首页--用户个人基本信息--编辑个人资料--保存  POST
      */

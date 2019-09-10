@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.adress.ZjActivity;
 import com.example.administrator.demo.activity.comment.Sc_Zan_Comment_LsActivity;
@@ -22,6 +23,7 @@ import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.mvp.iview.MyModularView;
 import com.example.administrator.demo.mvp.presenter.MyModularPresenter;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -326,6 +328,8 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
         if (myModularBen == null || myModularBen.getData() == null || myModularBen.getData().getUserInfo() == null) {
             return;
         }
+        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(myModularBen.getData().getUserInfo()));
+
         tvUserName.setText(replaceNULL(myModularBen.getData().getUserInfo().getPetName()));
         tvUserCircle.setText(replaceNULL(myModularBen.getData().getUserInfo().getCircleNumber() + ""));
         tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber() + ""));
