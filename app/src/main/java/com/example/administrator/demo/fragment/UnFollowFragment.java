@@ -107,15 +107,18 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         UnFollowBen.RelationRecordListBean relationRecordListBean = mBeanList.get(position);
+        String userId = relationRecordListBean.getUserId();
         String fansId = relationRecordListBean.getFansId();
         String ralationType = relationRecordListBean.getRalationType();
         if ("0".equals(ralationType)) {
             ralationType = "1";
         } else if ("1".equals(ralationType)) {
             ralationType = "0";
+        } else if ("2".equals(ralationType)) {
+            ralationType = "0";
         }
 
-        initData(fansId, ralationType);
+        initData(fansId, ralationType, userId, position);
     }
 
     /**
@@ -124,9 +127,9 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
      * @param fansId
      * @param ralationType
      */
-    private void initData(String fansId, String ralationType) {
+    private void initData(String fansId, String ralationType, String userId, int pos) {
         paramMap = new HashMap<>();
-        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        paramMap.put("userId", userId);
         paramMap.put("ralationType", ralationType);
         paramMap.put("fansId", fansId);
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.attention, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
@@ -140,7 +143,8 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("返回数据" + json);
                 if (weatherResult.getCode() == 200) {
-
+                    mBeanList.remove(pos);
+                    mAdapter.notifyDataSetChanged();
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }

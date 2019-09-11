@@ -9,11 +9,15 @@ import android.widget.RelativeLayout;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
+import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -28,7 +32,7 @@ import butterknife.BindView;
 /**
  * 关注
  */
-public class FollowFragment extends BaseFragment implements RefreshCallBack, CommonView {
+public class FollowFragment extends BaseFragment implements RefreshCallBack, CommonView, MultiItemTypeAdapter.OnItemClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -42,6 +46,8 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     RelativeLayout rl_empty;
 
     private UserFollowAdapter mAdapter;
+    private String ralationType;
+    private Map<String, String> paramMap;
     private ArrayList<UnFollowBen.RelationRecordListBean> mBeanList = new ArrayList<>();
 
 
@@ -75,11 +81,72 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new UserFollowAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
     }
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
 
+    }
+
+    @Override
+    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+        UnFollowBen.RelationRecordListBean relationRecordListBean = mBeanList.get(position);
+        String userId = relationRecordListBean.getUserId();
+        String fansId = relationRecordListBean.getFansId();
+        String ralationType = relationRecordListBean.getRalationType();
+        if ("0".equals(ralationType)) {
+            ralationType = "1";
+        } else if ("1".equals(ralationType)) {
+            ralationType = "0";
+        } else if ("2".equals(ralationType)) {
+            ralationType = "0";
+        }
+
+        initData(fansId, ralationType, userId,position);
+    }
+
+    /**
+     * 按钮接口
+     *
+     * @param fansId
+     * @param ralationType
+     */
+    private void initData(String fansId, String ralationType, String userId,int pos) {
+        paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("ralationType", ralationType);
+        paramMap.put("fansId", fansId);
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.attention, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+                    mBeanList.remove(pos);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+        return false;
     }
 
     @Override

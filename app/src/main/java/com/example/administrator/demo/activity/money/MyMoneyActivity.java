@@ -8,8 +8,21 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.record.RecordActivity;
 import com.example.administrator.demo.activity.wallet.RechargeActivity;
+import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
+import com.example.baselibrary.zh.network.RetrofitRequest;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,6 +45,8 @@ public class MyMoneyActivity extends BaseActivity {
     @BindView(R.id.rl_jyjl)
     RelativeLayout rlJyjl;
 
+    private Map<String, String> paramMap;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_money;
@@ -49,7 +64,39 @@ public class MyMoneyActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
+        paramMap = new HashMap<>();
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.accountBalance, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
 
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+                    try {
+                        JSONObject object = new JSONObject(json);
+                        String currencyNumber = object.optString("currencyNumber");
+                        if ("".equals(currencyNumber)) tvMoney.setText("0");
+                        else tvMoney.setText("" + currencyNumber);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
 
     }
 

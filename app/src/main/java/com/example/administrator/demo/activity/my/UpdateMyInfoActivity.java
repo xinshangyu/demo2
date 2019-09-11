@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -450,8 +449,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
                         String integralNumber = sqBean.getFileId();
-                        mUserInfo.setUserPhoto(integralNumber);
-                        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
+//                        mUserInfo.setUserPhoto(integralNumber);
+//                        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
                         showToast("正在更新头像");
                         setImage(integralNumber);
                     }
@@ -468,36 +467,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     }
 
     /**
-     * 获取图片
+     * 设置图片
      */
     private void setImage(String integralNumber) {
         ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + integralNumber, ivMyHead,
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
-
-
-//        paramMap = new HashMap<>();
-//        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-//        RetrofitRequest.sendGetRequest(ApiKeys.getApiUrl() + Address.fileId + integralNumber, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-//            @Override
-//            public void onBeforeResult() {
-//
-//            }
-//
-//            @Override
-//            public void onResult(WeatherResult weatherResult) {
-//                String json = new Gson().toJson(weatherResult);
-//                LogUtil.e("返回数据" + json);
-//                if (weatherResult.getCode() == 200) {
-//
-//                } else {
-//                    ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
-//                }
-//            }
-//
-//            @Override
-//            public void onAfterFailure() {
-//                showToast("请求失败");
-//            }
-//        });
     }
 }

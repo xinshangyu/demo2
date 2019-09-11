@@ -53,9 +53,9 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
 //        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getVipLevel(), holder.getView(R.id.iv_vip),
 //                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
         if ("0".equals(userFollowBen.getRalationType())) {
-            holder.setImageResource(R.id.iv_r, R.drawable.icon_follow);
-        } else if ("1".equals(userFollowBen.getRalationType())) {
             holder.setImageResource(R.id.iv_r, R.mipmap.weiguanzhu);
+        } else if ("1".equals(userFollowBen.getRalationType())) {
+            holder.setImageResource(R.id.iv_r, R.drawable.icon_follow);
         } else if ("2".equals(userFollowBen.getRalationType())) {
             holder.setImageResource(R.id.iv_r, R.drawable.icon_hxfollow);
         } else {

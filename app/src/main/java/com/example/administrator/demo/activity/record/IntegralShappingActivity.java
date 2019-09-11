@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.DhAdapter;
 import com.example.administrator.demo.entity.DhBean;
-import com.example.administrator.demo.entity.JBean;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -23,6 +22,9 @@ import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,21 +95,14 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("返回数据" + json);
                 if (weatherResult.getCode() == 200) {
-                    JBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), JBean.class);
-                    if (sqBean != null) {
-                        double integralNumber = sqBean.getIntegralNumber();
-                        tv.setText("" + integralNumber);
+                    try {
+                        JSONObject object = new JSONObject(json);
+                        String currencyNumber = object.optString("integralNumber");
+                        tv.setText("" + currencyNumber);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(json);
-//                        int name = jsonObject.optInt("integralNumber");
-//
-//                        showToast(""+name);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
                 }
-
             }
 
             @Override

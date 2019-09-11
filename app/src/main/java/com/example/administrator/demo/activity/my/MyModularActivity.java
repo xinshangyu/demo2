@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.adress.ZjActivity;
 import com.example.administrator.demo.activity.comment.Sc_Zan_Comment_LsActivity;
@@ -28,8 +30,11 @@ import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
 import com.example.administrator.demo.weight.nice.ViewHolder;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.example.baselibrary.zh.utils.ImageLoader;
 import com.example.baselibrary.zh.utils.ToastUtils;
 import com.google.gson.Gson;
 
@@ -61,6 +66,7 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
 
 
     private MyModularPresenter myModularPresenter;
+    private MyModularBen.DataBean.UserInfoBean mUserInfo;
 
     @Override
     public int intiLayout() {
@@ -71,6 +77,12 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     public void initView() {
         myModularPresenter = new MyModularPresenter(this);
         myModularPresenter.requestRanking(this);
+        mUserInfo = SPUtils.getUserInfo(getApplicationContext());
+        if (mUserInfo != null) {
+            String userPhoto = mUserInfo.getUserPhoto();
+            ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
+                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+        }
     }
 
     /***

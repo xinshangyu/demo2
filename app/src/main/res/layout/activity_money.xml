@@ -42,7 +42,6 @@
                 android:id="@+id/tv_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00000"
                 android:textColor="@color/colorBlack0"
                 android:textSize="29sp" />
         </LinearLayout>
