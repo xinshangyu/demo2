@@ -94,13 +94,13 @@ public class Address {
      */
     public final static String payAttentionToFans = "user/userRelationRecord/list/fans?";
     /**
-     * 我的--首页--获取关注人列表
+     * 我的--首页--获取关注人列表  http://192.168.0.195:8980/user/userRelationRecord/list/attention
      */
-    public final static String follow = "store/enterpriseMyOrganization/getAttentionList?";
+    public final static String follow = "user/userRelationRecord/list/attention?";
     /**
-     * 我的--首页--获取关注人列表--关注   GET
+     * 我的--首页--获取关注人列表--关注按钮   GET  http://192.168.0.195:8980/user/userRelationRecord/getAttentions/attention
      */
-    public final static String attention = "user/me/getAttentions/attention?";
+    public final static String attention = "user/userRelationRecord/getAttentions/attention?";
     /**
      * 我的--首页--浏览历史   GET
      */

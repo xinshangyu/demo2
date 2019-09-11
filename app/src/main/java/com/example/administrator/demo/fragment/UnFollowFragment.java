@@ -9,12 +9,15 @@ import android.widget.RelativeLayout;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
-import com.example.administrator.demo.mvp.presenter.FansPresenter;
+import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -29,7 +32,7 @@ import butterknife.BindView;
 /**
  * 粉丝
  */
-public class UnFollowFragment extends BaseFragment implements RefreshCallBack, CommonView {
+public class UnFollowFragment extends BaseFragment implements RefreshCallBack, CommonView, MultiItemTypeAdapter.OnItemClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -43,7 +46,8 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
 
     private UserFollowAdapter mAdapter;
     private ArrayList<UnFollowBen.RelationRecordListBean> mBeanList = new ArrayList<>();
-    private FansPresenter fansPresenter;
+    private String ralationType;
+    private Map<String, String> paramMap;
 
     public static UnFollowFragment newInstance(String param1, String param2) {
         UnFollowFragment fragment = new UnFollowFragment();
@@ -74,6 +78,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new UserFollowAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
     }
 
     @Override
@@ -97,5 +102,61 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
     @Override
     public void onError() {
         if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+        UnFollowBen.RelationRecordListBean relationRecordListBean = mBeanList.get(position);
+        String fansId = relationRecordListBean.getFansId();
+        String ralationType = relationRecordListBean.getRalationType();
+        if ("0".equals(ralationType)) {
+            ralationType = "1";
+        } else if ("1".equals(ralationType)) {
+            ralationType = "0";
+        }
+
+        initData(fansId, ralationType);
+    }
+
+    /**
+     * 按钮接口
+     *
+     * @param fansId
+     * @param ralationType
+     */
+    private void initData(String fansId, String ralationType) {
+        paramMap = new HashMap<>();
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        paramMap.put("ralationType", ralationType);
+        paramMap.put("fansId", fansId);
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.attention, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+        return false;
     }
 }

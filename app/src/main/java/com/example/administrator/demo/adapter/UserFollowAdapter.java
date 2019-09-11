@@ -5,15 +5,13 @@ import android.content.Context;
 import android.view.View;
 
 import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
-import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
-import com.example.baselibrary.zh.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,7 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
 
     private Context context;
 
+
     public UserFollowAdapter(Context context, ArrayList<UnFollowBen.RelationRecordListBean> beanList) {
         super(context, R.layout.item_follow, beanList);
         this.context = context;
@@ -32,25 +31,24 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
 
     @Override
     protected void convert(ViewHolder holder, UnFollowBen.RelationRecordListBean userFollowBen, int position) {
-
         holder.setText(R.id.tv_name, userFollowBen.getUserName())
                 .setText(R.id.tv1, userFollowBen.getUserSignature())
                 .setOnClickListener(R.id.fl_content, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppActivityUtils.StartTheActivity((Activity) mContext, "测试");
+                        AppActivityUtils.StartTheActivity((Activity) mContext, "他的资料");
                     }
                 })
                 .setOnClickListener(R.id.iv_r, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtils.showToast(context, "接口没有");
-
+                        if (mOnItemClickListener != null)
+                            mOnItemClickListener.onItemClick(v, holder, position);
                     }
                 })
         ;
         ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
-                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+                new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
 //        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getVipLevel(), holder.getView(R.id.iv_vip),
 //                new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
@@ -63,7 +61,6 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
         } else {
             holder.setImageResource(R.id.iv_r, R.mipmap.weiguanzhu);
         }
-
 
     }
 
