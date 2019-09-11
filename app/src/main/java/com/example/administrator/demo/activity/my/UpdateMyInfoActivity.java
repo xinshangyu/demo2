@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -105,7 +106,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
 
     private Map<String, String> paramMap;
     private String mCompressPath;
+    private String sex;
     private MyModularBen.DataBean.UserInfoBean mUserInfo;
+    private String opt2tx;
+    private String integralNumber;
 
     @Override
     protected int getLayout() {
@@ -219,6 +223,45 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
 
                 break;
             case R.id.tv_save:
+                paramMap = new HashMap<>();
+                paramMap.put("id", SharedPreferencesHelper.getPrefString("userId", ""));
+                paramMap.put("userName", tvNick.getText().toString());
+                paramMap.put("nickName", et_nick.getText().toString());
+                paramMap.put("userPhoto", integralNumber);
+                paramMap.put("userSex", sex);
+                paramMap.put("graduationSchool", tvByyx.getText().toString());
+                paramMap.put("educationBackground", opt2tx);
+                paramMap.put("profession", tvZy.getText().toString());
+                paramMap.put("homeSite", tvAddress.getText().toString());
+
+                RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.save, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+                    @Override
+                    public void onBeforeResult() {
+
+                    }
+
+                    @Override
+                    public void onResult(WeatherResult weatherResult) {
+                        String json = new Gson().toJson(weatherResult);
+                        LogUtil.e("返回数据" + json);
+                        if (weatherResult.getCode() == 200) {
+                            mUserInfo.setUserPhoto(integralNumber);
+                            SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
+
+                            showToast("保存成功");
+                            finish();
+                        } else {
+                            ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onAfterFailure() {
+                        showToast("请求失败");
+                    }
+                });
+
+
                 break;
         }
     }
@@ -230,14 +273,17 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
      */
     private void setFKLX(List<XlBean.EducationBackgroundBean> educationBackground) {
         List<String> options1Items = new ArrayList<>();
+        List<String> options = new ArrayList<>();
         for (int i = 0; i < educationBackground.size(); i++) {
             options1Items.add(educationBackground.get(i).getCodeValue());
+            options.add(educationBackground.get(i).getCode());
         }
         OptionsPickerView pvOptions = new OptionsPickerBuilder(UpdateMyInfoActivity.this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String opt1tx = options1Items.size() > 0 ? options1Items.get(options1) : "";
+                opt2tx = options.size() > 0 ? options.get(options1) : "";
                 String tx = opt1tx;
                 tvXl.setText(tx);
             }
@@ -262,7 +308,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         UpdateUserInfoBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), UpdateUserInfoBean.class);
         if (sqBean != null && sqBean.getUserInfo() != null) {
             tvNick.setText("" + sqBean.getUserInfo().getUserName());
+            tvSex.setText("" + sqBean.getUserInfo().getUserSex());
             et_nick.setText("" + sqBean.getUserInfo().getNickName());
+            tvByyx.setText("" + sqBean.getUserInfo().getGraduationSchool());
+            tvXl.setText("" + sqBean.getUserInfo().getEducationBackground());
             tvGsmc.setText("" + sqBean.getUserInfo().getOrgInfo().getCompanyName());
             tvBm.setText("" + sqBean.getUserInfo().getOrgInfo().getDeptName());
             tvZy.setText("" + sqBean.getUserInfo().getProfession());
@@ -279,8 +328,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     public void onEvents(QuickReturnTopEvent event) {
         if ("女".equals(event.current)) {
             tvSex.setText("女");
+            sex = "woman";
         } else if ("男".equals(event.current)) {
             tvSex.setText("男");
+            sex = "man";
         } else {
             tvSex.setText("");
         }
@@ -433,8 +484,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
      */
     private void upLoadFile(String compressPath) {
         File file = new File(compressPath);
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        MultipartBody.Part file1 = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
@@ -448,9 +497,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 if (weatherResult.getCode() == 200) {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
-                        String integralNumber = sqBean.getFileId();
-//                        mUserInfo.setUserPhoto(integralNumber);
-//                        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
+                        integralNumber = sqBean.getFileId();
                         showToast("正在更新头像");
                         setImage(integralNumber);
                     }
