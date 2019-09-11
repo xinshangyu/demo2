@@ -42,15 +42,15 @@ public class SexDialog extends BaseNiceDialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_take_photo://女
-                EventBus.getDefault().post(new QuickReturnTopEvent(bean.getUserSex().get(0).getCodeValue()));
+                EventBus.getDefault().post(new QuickReturnTopEvent(bean.getUserSex().get(0).getCodeValue(), bean.getUserSex().get(0).getId()));
                 dismiss();
                 break;
             case R.id.tv_select_photo://男
-                EventBus.getDefault().post(new QuickReturnTopEvent(bean.getUserSex().get(1).getCodeValue()));
+                EventBus.getDefault().post(new QuickReturnTopEvent(bean.getUserSex().get(1).getCodeValue(), bean.getUserSex().get(1).getId()));
                 dismiss();
                 break;
             case R.id.tv_do_cancel:
-                EventBus.getDefault().post(new QuickReturnTopEvent(""));
+                EventBus.getDefault().post(new QuickReturnTopEvent("",""));
                 dismiss();
                 break;
         }

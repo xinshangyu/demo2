@@ -143,13 +143,13 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
                 break;
             case R.id.home_search:
                 if (tabNum == 0) {
-                    EventBus.getDefault().post(new QuickReturnTopEvent("SC"));
+                    EventBus.getDefault().post(new QuickReturnTopEvent("SC",""));
                 } else if (tabNum == 1) {
-                    EventBus.getDefault().post(new QuickReturnTopEvent("COMMENT"));
+                    EventBus.getDefault().post(new QuickReturnTopEvent("COMMENT",""));
                 } else if (tabNum == 2) {
-                    EventBus.getDefault().post(new QuickReturnTopEvent("ZAN"));
+                    EventBus.getDefault().post(new QuickReturnTopEvent("ZAN",""));
                 } else if (tabNum == 3) {
-                    EventBus.getDefault().post(new QuickReturnTopEvent("LI"));
+                    EventBus.getDefault().post(new QuickReturnTopEvent("LI",""));
                 }
                 break;
         }

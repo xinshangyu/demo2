@@ -131,6 +131,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         mUserInfo = SPUtils.getUserInfo(mContext);
         if (mUserInfo != null) {
             String userPhoto = mUserInfo.getUserPhoto();
+            integralNumber= mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userPhoto, ivMyHead,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
@@ -276,7 +277,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         List<String> options = new ArrayList<>();
         for (int i = 0; i < educationBackground.size(); i++) {
             options1Items.add(educationBackground.get(i).getCodeValue());
-            options.add(educationBackground.get(i).getCode());
+            options.add(educationBackground.get(i).getId());
         }
         OptionsPickerView pvOptions = new OptionsPickerBuilder(UpdateMyInfoActivity.this, new OnOptionsSelectListener() {
             @Override
@@ -308,10 +309,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         UpdateUserInfoBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), UpdateUserInfoBean.class);
         if (sqBean != null && sqBean.getUserInfo() != null) {
             tvNick.setText("" + sqBean.getUserInfo().getUserName());
-            tvSex.setText("" + sqBean.getUserInfo().getUserSex());
+            tvSex.setText("" + sqBean.getUserInfo().getUserSexValue());
             et_nick.setText("" + sqBean.getUserInfo().getNickName());
             tvByyx.setText("" + sqBean.getUserInfo().getGraduationSchool());
-            tvXl.setText("" + sqBean.getUserInfo().getEducationBackground());
+            tvXl.setText("" + sqBean.getUserInfo().getEducationBackgroundValue());
             tvGsmc.setText("" + sqBean.getUserInfo().getOrgInfo().getCompanyName());
             tvBm.setText("" + sqBean.getUserInfo().getOrgInfo().getDeptName());
             tvZy.setText("" + sqBean.getUserInfo().getProfession());
@@ -328,10 +329,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     public void onEvents(QuickReturnTopEvent event) {
         if ("女".equals(event.current)) {
             tvSex.setText("女");
-            sex = "woman";
+            sex = event.current2;
         } else if ("男".equals(event.current)) {
             tvSex.setText("男");
-            sex = "man";
+            sex = event.current2;
         } else {
             tvSex.setText("");
         }

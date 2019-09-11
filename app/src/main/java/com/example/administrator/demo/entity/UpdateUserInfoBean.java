@@ -39,6 +39,8 @@ public class UpdateUserInfoBean implements Serializable {
         private String userPhoto;
         private String userName;
         private String nickName;
+        private String userSexValue;
+        private String educationBackgroundValue;
         private String userSex;
         private String graduationSchool;
         private String educationBackground;
@@ -47,6 +49,22 @@ public class UpdateUserInfoBean implements Serializable {
         private Object residenceSite;
         private Object userCode;
         private OrgInfoBean orgInfo;
+
+        public String getUserSexValue() {
+            return userSexValue;
+        }
+
+        public void setUserSexValue(String userSexValue) {
+            this.userSexValue = userSexValue;
+        }
+
+        public String getEducationBackgroundValue() {
+            return educationBackgroundValue;
+        }
+
+        public void setEducationBackgroundValue(String educationBackgroundValue) {
+            this.educationBackgroundValue = educationBackgroundValue;
+        }
 
         public String getId() {
             return id;
