@@ -72,6 +72,7 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
 
     @Override
     public void onData(WeatherResult weatherResult) {
+
         DaojuBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), DaojuBean.class);
         if (sqBean != null && sqBean.getPropsAssets() != null && sqBean.getPropsAssets().size() > 0) {
             mBeanList.clear();
