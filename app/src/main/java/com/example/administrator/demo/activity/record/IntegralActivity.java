@@ -7,8 +7,13 @@ import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.IntegralDetailsAdapter;
+import com.example.administrator.demo.entity.IntegralBean;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
+import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -18,7 +23,7 @@ import butterknife.BindView;
 /**
  * 积分兑换记录
  */
-public class IntegralActivity extends BaseActivity implements RefreshCallBack {
+public class IntegralActivity extends BaseActivity implements RefreshCallBack, CommonView {
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
@@ -26,7 +31,7 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack {
     SmartRefreshLayout mSmartRefreshLayout;
 
     IntegralDetailsAdapter mAdapter;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    private ArrayList<IntegralBean.IntegralRecordBean> mBeanList = new ArrayList<>();
 
     @Override
     protected int getLayout() {
@@ -42,10 +47,6 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack {
             }
         });
 
-        for (int i = 0; i < 10; i++) {
-            mBeanList.add(i + "积分兑换记录");
-        }
-
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new IntegralDetailsAdapter(mContext, mBeanList);
@@ -55,12 +56,27 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack {
 
     @Override
     protected void initDate() {
-
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cPresenter.requestData2(getApplicationContext(), cMap, Address.exchangeRecords);
 
     }
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
         initDate();
+    }
+
+    @Override
+    public void onData(WeatherResult weatherResult) {
+        IntegralBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), IntegralBean.class);
+        if (sqBean != null && sqBean.getIntegralRecord() != null && sqBean.getIntegralRecord().size() > 0) {
+            mBeanList.addAll(sqBean.getIntegralRecord());
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onError() {
+
     }
 }

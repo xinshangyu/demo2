@@ -31,7 +31,7 @@ public class CallAdapter extends CommonAdapter<Help2Bean.FaqRecordBean> {
                     @Override
                     public void onClick(View view) {
 
-                        AppActivityUtils.StartMoreActivity((Activity) mContext, "" + messageListBean.getId());
+                        AppActivityUtils.StartMoreActivity((Activity) mContext, "" + position);
                     }
                 });
 

@@ -30,21 +30,29 @@ public class Address {
      */
     public final static String upgradeAmount = "user/upgradeAmount?";
     /**
-     * 我的--帮助中心--查询FAQ   GET   http://192.168.0.195:9993/user/me/helpCenter/findFAQs
+     * 我的--帮助中心--查询FAQ   GET   http://192.168.0.195:8980/user/faqrecord/findFAQs
      */
-    public final static String findFAQs = "user/me/helpCenter/findFAQs?";
+    public final static String findFAQs = "user/faqrecord/findFAQs?";
     /**
-     * 我的--帮助中心--查询客服信息   GET   http://192.168.0.195:9993/user/me/helpCenter/findServiceInfo
+     * 我的--帮助中心--查询客服信息   GET  http://192.168.0.195:8980/user/sysinfo/findServiceInfo
      */
-    public final static String findServiceInfo = "user/me/helpCenter/findServiceInfo?";
+    public final static String findServiceInfo = "user/sysinfo/findServiceInfo?";
     /**
      * 我的--帮助中心--意见反馈   POST  http://192.168.0.195:9993/user/me/helpCenter/feedbackProblem
      */
     public final static String feedbackProblem = "user/me/helpCenter/feedbackProblem?";
     /**
-     * 我的--积分商城--个人积分   GET  http://192.168.0.195:8980/user/pointsMall/personalPoints
+     * 我的--帮助中心--意见反馈   POST http://192.168.0.195:8980/user/userproblemrecord/problemFeedback
+     */
+    public final static String problemFeedback = "user/userproblemrecord/problemFeedback?";
+    /**
+     * 我的--积分商城--个人积分   GET http://192.168.0.195:8980/user/pointsMall/personalPoints
      */
     public final static String personalPoints = "user/pointsMall/personalPoints?";
+    /**
+     * 我的--积分商城--兑换记录   GET  http://192.168.0.195:8980/store/pointsMall/exchangeRecords
+     */
+    public final static String exchangeRecords = "store/pointsMall/exchangeRecords?";
     /**
      * 我的--积分商城--精选兑换   GET   http://192.168.0.195:8980/user/pointsMall/selectedFor
      */
@@ -53,6 +61,15 @@ public class Address {
      * 我的--钱包--账户余额   GET
      */
     public final static String accountBalance = "user/wallet/accountBalance?";
+    /**
+     * 我的--钱包--道具   GET   http://192.168.0.195:8980/user/wallet/propsAssets
+     */
+    public final static String propsAssets = "user/wallet/propsAssets?";
+
+    /**
+     * 我的--钱包--交易记录   GET  http://192.168.0.195:8980/user/wallet/txnRecord
+     */
+    public final static String txnRecord = "user/wallet/txnRecord?";
     /**
      * 积分规则   GET  http://192.168.0.195:8980/store/pointsMall/pointsRules
      */
@@ -188,13 +205,17 @@ public class Address {
      */
     public final static String myColleague = "user/me/myColleague?";
     /**
-     * 我的--足迹--查询足迹信息  GET
+     * 我的--足迹--查询足迹信息  GET  http://192.168.0.195:8980/user/footprint/list
      */
-    public final static String footprint_list = "user/me/footprint/list?";
+    public final static String footprint_list = "user/footprint/list?";
     /**
-     * 我的--足迹--添加足迹   GET
+     * 我的--足迹--添加足迹   GET  http://192.168.0.195:8980/user/footprint/add
      */
-    public final static String add_footprint = "user/me/footprint/add?";
+    public final static String add_footprint = "user/footprint/add?";
+    /**
+     * 我的迹--退出登录   GET  http://192.168.0.195:8980/user/login/loginout
+     */
+    public final static String loginout = "user/login/loginout?";
 
 
 }

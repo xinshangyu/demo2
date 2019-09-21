@@ -20,6 +20,7 @@ import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.NumberFormatUtils;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.RetrofitRequest;
@@ -27,6 +28,9 @@ import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -54,6 +58,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
     @BindView(R.id.rl_login_out)
     RelativeLayout rlLoginOut;
 
+    private Map<String, String> paramMap;
 
     @Override
     protected int getLayout() {
@@ -134,7 +139,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                     @Override
                                     public void onClick(View v) {// TODO: 2019/8/21 打开登陆页面 
                                         dialog.dismiss();
-                                        AppActivityUtils.StartLoginTaskActivity(mContext);
+                                        loginOut();
                                     }
                                 });
                                 holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
@@ -149,6 +154,31 @@ public class SettingActivity extends BaseActivity implements CommonView {
                         .show(getSupportFragmentManager());
                 break;
         }
+    }
+
+    public void loginOut() {
+        paramMap = new HashMap<>();
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.loginout, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(getBaseContext()) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                if (weatherResult.getCode() == 200) {
+                    AppActivityUtils.StartLoginTaskActivity(mContext);
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
     }
 
     @Override

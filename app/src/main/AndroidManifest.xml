@@ -46,6 +46,7 @@
         <activity android:name=".activity.setting.CallBackSuccessActivity" />
         <activity android:name=".activity.setting.HelpActivity" />
         <activity android:name=".activity.money.MyMoneyActivity" />
+        <activity android:name=".activity.money.DaoJuActivity" />
 
         <activity android:name=".activity.record.RecordActivity" />
         <activity android:name=".activity.wallet.RechargeActivity" />

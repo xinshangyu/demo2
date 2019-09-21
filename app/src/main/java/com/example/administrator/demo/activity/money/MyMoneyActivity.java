@@ -111,6 +111,9 @@ public class MyMoneyActivity extends BaseActivity {
                 showToast("接口没有...");
                 break;
             case R.id.rl_daoju:
+                ActivityUtils.startActivity(mContext,DaoJuActivity.class);
+
+
                 showToast("接口没有...");
                 break;
             case R.id.rl_jyjl:

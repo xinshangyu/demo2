@@ -1,12 +1,12 @@
-package com.example.administrator.demo.activity.record;
+package com.example.administrator.demo.activity.money;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.adapter.FundDetailsAdapter;
+import com.example.administrator.demo.adapter.DaoDetailsAdapter;
+import com.example.administrator.demo.entity.DaojuBean;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -20,17 +20,20 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 /**
- * 交易记录
+ * 道具
  */
-public class RecordActivity extends BaseActivity implements CommonView,RefreshCallBack {
+
+public class DaoJuActivity extends BaseActivity implements RefreshCallBack, CommonView {
+
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    FundDetailsAdapter mAdapter;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    DaoDetailsAdapter mAdapter;
+    private ArrayList<DaojuBean.PropsAssetsBean> mBeanList = new ArrayList<>();
+
 
     @Override
     protected int getLayout() {
@@ -39,29 +42,24 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
-
-
-        setTitleBar(getResources().getString(R.string.record), new View.OnClickListener() {
+        setTitleBar(getResources().getString(R.string.money), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-
-
-        setRefresh(mSmartRefreshLayout, this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new FundDetailsAdapter(mContext, mBeanList);
-        mRecyclerView.setAdapter(mAdapter);
+//        setRefresh(mSmartRefreshLayout, this);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//        mAdapter = new DaoDetailsAdapter(mContext, mBeanList);
+//        mRecyclerView.setAdapter(mAdapter);
 
     }
 
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cPresenter.requestData2(getApplicationContext(), cMap, Address.txnRecord);
+        cPresenter.requestData2(getApplicationContext(), cMap, Address.propsAssets);
 
     }
 
@@ -72,6 +70,12 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
 
     @Override
     public void onData(WeatherResult weatherResult) {
+//        DaojuBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), DaojuBean.class);
+//        if (sqBean != null && sqBean.getPropsAssets() != null) {
+//
+//            mBeanList.add(sqBean.getPropsAssets());
+//            mAdapter.notifyDataSetChanged();
+//        }
 
     }
 

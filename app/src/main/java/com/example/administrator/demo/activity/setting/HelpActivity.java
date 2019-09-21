@@ -93,12 +93,14 @@ public class HelpActivity extends BaseActivity implements CommonView {
                         adapter.notifyDataSetChanged();
                     }
 
+                }else {
+                    showToast(""+weatherResult.getMsg());
                 }
             }
 
             @Override
             public void onAfterFailure() {
-
+                showToast("请求失败");
             }
         });
 
@@ -124,7 +126,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 
     @Override
