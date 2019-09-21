@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.read.ReadActivity;
 import com.example.administrator.demo.entity.VersionBean;
 import com.example.administrator.demo.utils.CacheDataManager;
+import com.example.administrator.demo.utils.FileUtils;
 import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
@@ -29,6 +31,7 @@ import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +62,8 @@ public class SettingActivity extends BaseActivity implements CommonView {
     RelativeLayout rlLoginOut;
 
     private Map<String, String> paramMap;
+
+    private NiceDialog downloadDialog;
 
     @Override
     protected int getLayout() {
@@ -203,12 +208,38 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                             RetrofitRequest.fileDownload(sqBean.getAppVersion().getVersionUrl(), new RetrofitRequest.DownloadHandler() {
                                                 @Override
                                                 public void onBody(ResponseBody body) {
+                                                    dialog.dismiss();
 
                                                 }
 
                                                 @Override
-                                                public void onError() {
+                                                public void onProgress(int progress) {
+                                                    downloadDialog = NiceDialog.init()
+                                                            .setLayoutId(R.layout.dialog_download)
+                                                            .setConvertListener(new ViewConvertListener() {
+                                                                @Override
+                                                                protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                                                    ProgressBar progressBar = holder.getView(R.id.progressBar);
+                                                                    progressBar.setProgress(progress);
+                                                                    holder.setText(R.id.progressTv, progress + "%");
+                                                                }
+                                                            });
+                                                    downloadDialog.setCancelable(false);
+                                                    downloadDialog.show(getSupportFragmentManager());
 
+                                                }
+
+                                                @Override
+                                                public void onDownLoadSuccess(File file) {
+                                                    if(downloadDialog != null && downloadDialog.getShowsDialog()){
+                                                        downloadDialog.dismiss();
+                                                        AppUtils.installApp(file);
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onError() {
+                                                    dialog.dismiss();
                                                 }
                                             });
                                         }
