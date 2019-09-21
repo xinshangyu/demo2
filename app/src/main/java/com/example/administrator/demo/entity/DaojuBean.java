@@ -12,6 +12,10 @@ public class DaojuBean implements Serializable {
         return propsAssets;
     }
 
+    public void setPropsAssets(List<List<PropsAssetsBean>> propsAssets) {
+        this.propsAssets = propsAssets;
+    }
+
     public static class PropsAssetsBean {
         /**
          * propName : 普通刷
