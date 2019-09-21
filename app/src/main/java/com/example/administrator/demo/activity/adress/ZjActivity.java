@@ -2,6 +2,7 @@ package com.example.administrator.demo.activity.adress;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -105,7 +106,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
                                         holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                startActivity(new Intent(ZjActivity.this, ZjAddActivity.class));
+                                                startActivityForResult(new Intent(ZjActivity.this, ZjAddActivity.class), 100);
                                                 dialog.dismiss();
                                             }
                                         });
@@ -146,5 +147,14 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RESULT_OK && requestCode == 100){
+            cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+            cPresenter.requestData2(this, cMap, Address.footprint_list);
+        }
     }
 }

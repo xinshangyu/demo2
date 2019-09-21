@@ -485,6 +485,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
      */
     private void upLoadFile(String compressPath) {
         File file = new File(compressPath);
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        MultipartBody.Part file1 = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
@@ -498,7 +500,9 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 if (weatherResult.getCode() == 200) {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
-                        integralNumber = sqBean.getFileId();
+                        String integralNumber = sqBean.getFileId();
+                        mUserInfo.setUserPhoto(integralNumber);
+                        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
                         showToast("正在更新头像");
                         setImage(integralNumber);
                     }

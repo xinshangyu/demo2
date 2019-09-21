@@ -16,11 +16,19 @@ public class TrackBean implements Serializable{
     }
 
     public static class FootprintBean {
+        /**
+         * "footprintOrder":"1",
+            "footprintName":"小脚丫",
+            "id":"402880296d48eab9016d48eab9a50000",
+            "footprintImgSrc":"111",
+            "footprintLevel":"1"
+         */
         private String footprintOrder;
         private String footprintName;
         private String id;
         private String footprintDescribe;
         private String footprintImgSrc;
+        private String footprintLevel;
         private boolean add;
 
         public String getFootprintOrder() {
@@ -61,6 +69,14 @@ public class TrackBean implements Serializable{
 
         public void setFootprintImgSrc(String footprintImgSrc) {
             this.footprintImgSrc = footprintImgSrc;
+        }
+
+        public String getFootprintLevel() {
+            return footprintLevel;
+        }
+
+        public void setFootprintLevel(String footprintLevel) {
+            this.footprintLevel = footprintLevel;
         }
 
         public boolean isAdd() {

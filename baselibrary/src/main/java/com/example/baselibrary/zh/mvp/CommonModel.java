@@ -94,7 +94,7 @@ public class CommonModel {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("ldh 返回数据1" + new Gson().toJson(weatherResult));
+                LogUtil.e("ldh 返回数据2" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {//code==200不是等于1
                     commonPresenter.toData(weatherResult);
                     return;

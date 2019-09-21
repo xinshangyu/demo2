@@ -9,15 +9,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.entity.ImgBean;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
 import com.example.administrator.demo.weight.nice.ViewHolder;
+import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.ToastUtils;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ImageLoader;
+import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -26,6 +36,7 @@ import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +59,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
     TextView tv2;
 
     private List<LocalMedia> selectList = new ArrayList<>();
+    private String mIvPath;
 
     @Override
     protected int getLayout() {
@@ -66,10 +78,13 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initDate() {
+
     }
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override
@@ -121,9 +136,13 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
             case R.id.tv_save:
                 if (TextUtils.isEmpty(editText.getText().toString().trim())) {
                     showToast("请输入标题");
-
                     return;
                 }
+                if(TextUtils.isEmpty(mIvPath)){
+                    showToast("请选择图片");
+                    return;
+                }
+                upLoadFile(mIvPath);
                 break;
             case R.id.tv_do_cancel:
                 finish();
@@ -230,12 +249,51 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                         // 原图
                         path = media.getPath();
                     }
+                    mIvPath = path;
                     imageView.setPadding(0, 0, 0, 0);
                     ImageLoader.getInstance().loadingImage(this, path, imageView);
                     //提交图片
                     break;
             }
         }
+    }
+
+    /**
+     * //将图片传给服务器
+     */
+    private void upLoadFile(String compressPath) {
+        File file = new File(compressPath);
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        MultipartBody.Part file1 = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+                    ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
+                    if (sqBean != null) {
+                        String integralNumber = sqBean.getFileId();
+                        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+                        cMap.put("footprintName", editText.getText().toString().trim());
+                        cMap.put("footprintImgSrc", integralNumber);
+                        cPresenter.requestData(mContext, cMap, Address.add_footprint);
+                    }
+                } else {
+                    ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
+                }
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
     }
 
 
