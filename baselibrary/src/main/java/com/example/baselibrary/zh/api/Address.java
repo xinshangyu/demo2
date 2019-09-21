@@ -85,8 +85,10 @@ public class Address {
     public final static String pointsRules = "store/pointsMall/pointsRules?";
     /**
      * 我的--设置--检查更新    GET   http://192.168.0.195:9993/user/me/setting/checkForUpdates
+     *
      */
-    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
+//    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
+    public final static String checkForUpdates = "user/appVersion/checkForUpdates？";
     /**
      * 我的--设置--账号与安全--修改密码（用户短信码）  GET
      */
