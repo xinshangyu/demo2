@@ -3,7 +3,7 @@
     android:id="@+id/ll_check"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -57,7 +57,7 @@
         android:id="@+id/sp"
         android:layout_width="match_parent"
         android:visibility="gone"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:background="@color/colorBackGround_F7F7F7"/>
 
 </LinearLayout>
