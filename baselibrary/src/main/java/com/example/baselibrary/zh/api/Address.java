@@ -10,9 +10,17 @@ public class Address {
     //TODO:Token更换
     public static final String token = "user/login/token/refresh?";
     /**
-     * 我的--设置--账号与安全--变更手机号  GET  http://192.168.0.195:9993/user/me/setting/changePhone
+     * 我的--设置--账号与安全--变更手机号  GET  http://192.168.0.195:8980/user/userinfo/changePhone
      */
-    public final static String update_number_zh = "user/me/setting/changePhone?";
+    public final static String update_number_zh = "user/userinfo/changePhone?";
+    /**
+     * 我的--设置--账号与安全--验证码  GET  http://192.168.0.195:8980/message/userSmsRecord/sendSmsCode
+     */
+    public final static String sendSmsCode = "message/userSmsRecord/sendSmsCode?";
+    /**
+     * 我的--设置--账号与安全--校验验证码  GET  http://192.168.0.195:8980/message/userSmsRecord/smsVerify
+     */
+    public final static String smsVerify = "message/userSmsRecord/smsVerify?";
     /**
      * 我的--设置--账号与安全--绑定 邮箱   GET   http://192.168.0.195:9993/user/me/setting/changeEmail
      */
@@ -38,15 +46,15 @@ public class Address {
      */
     public final static String findServiceInfo = "user/sysinfo/findServiceInfo?";
     /**
-     * 我的--帮助中心--意见反馈   POST  http://192.168.0.195:9993/user/me/helpCenter/feedbackProblem
+     * 我的--帮助中心--意见反馈   POST http://192.168.0.195:8980/user/userproblemrecord/feedbackProblem
      */
-    public final static String feedbackProblem = "user/me/helpCenter/feedbackProblem?";
+    public final static String feedbackProblem = "user/userproblemrecord/feedbackProblem?";
     /**
      * 我的--帮助中心--意见反馈   POST http://192.168.0.195:8980/user/userproblemrecord/problemFeedback
      */
     public final static String problemFeedback = "user/userproblemrecord/problemFeedback?";
     /**
-     * 我的--积分商城--个人积分   GET http://192.168.0.195:8980/user/pointsMall/personalPoints
+     * 我的--积分商城--个人积分   GEThttp://192.168.0.195:8980/user/pointsMall/personalPoints
      */
     public final static String personalPoints = "user/pointsMall/personalPoints?";
     /**
@@ -54,7 +62,7 @@ public class Address {
      */
     public final static String exchangeRecords = "store/pointsMall/exchangeRecords?";
     /**
-     * 我的--积分商城--精选兑换   GET   http://192.168.0.195:8980/user/pointsMall/selectedFor
+     * 我的--积分商城--精选兑换   GET  http://192.168.0.195:8980/user/pointsMall/selectedFor
      */
     public final static String selectedFor = "user/pointsMall/selectedFor?";
     /**
@@ -71,7 +79,8 @@ public class Address {
      */
     public final static String txnRecord = "user/wallet/txnRecord?";
     /**
-     * 积分规则   GET  http://192.168.0.195:8980/store/pointsMall/pointsRules
+     * 积分规则   GET
+     * //       http://192.168.0.195:8980/store/pointsMall/pointsRules
      */
     public final static String pointsRules = "store/pointsMall/pointsRules?";
     /**
@@ -83,9 +92,9 @@ public class Address {
      */
     public final static String bySmsCode = "user/me/setting/modifyPwd/bySmsCode?";
     /**
-     * 我的--设置--账号与安全--修改密码(用旧密码)   GET   http://192.168.0.195:9993/user/me/setting/modifyPwd/byOldPwd
+     * 我的--设置--账号与安全--修改密码(用旧密码)   GET  http://192.168.0.195:8980/user/usercode/modifyPwd/byOldPwd
      */
-    public final static String byOldPwd = "user/me/setting/modifyPwd/byOldPwd?";
+    public final static String byOldPwd = "user/usercode/modifyPwd/byOldPwd?";
     /**
      * 我的--首页   GET
      */
@@ -111,7 +120,7 @@ public class Address {
      */
     public final static String payAttentionToFans = "user/userRelationRecord/list/fans?";
     /**
-     * 我的--首页--获取关注人列表  http://192.168.0.195:8980/user/userRelationRecord/list/attention
+     * 我的--首页--获取关注人列表  http://192.168.0.195:8980/store/enterpriseMyOrganization/getAttentionList
      */
     public final static String follow = "user/userRelationRecord/list/attention?";
     /**

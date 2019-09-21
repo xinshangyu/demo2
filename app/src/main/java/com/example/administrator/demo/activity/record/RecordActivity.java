@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.FundDetailsAdapter;
+import com.example.administrator.demo.entity.DhBean;
+import com.example.administrator.demo.entity.JyjlBean;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -30,7 +32,7 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
     SmartRefreshLayout mSmartRefreshLayout;
 
     FundDetailsAdapter mAdapter;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    private ArrayList<JyjlBean.VirtualCurrencyRecordBean> mBeanList = new ArrayList<>();
 
     @Override
     protected int getLayout() {
@@ -40,16 +42,12 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
     @Override
     protected void initView(Bundle savedInstanceState) {
 
-
-
         setTitleBar(getResources().getString(R.string.record), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-
 
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -72,6 +70,11 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
 
     @Override
     public void onData(WeatherResult weatherResult) {
+        JyjlBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), JyjlBean.class);
+        if (sqBean != null && sqBean.getVirtualCurrencyRecord() != null && sqBean.getVirtualCurrencyRecord().size() > 0) {
+            mBeanList.addAll(sqBean.getVirtualCurrencyRecord());
+            mAdapter.notifyDataSetChanged();
+        }
 
     }
 

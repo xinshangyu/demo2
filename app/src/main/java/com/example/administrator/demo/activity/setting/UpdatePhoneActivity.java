@@ -10,16 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.entity.CodeBean;
+import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.utils.SmsTimeUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.ViewHolder;
+import com.example.baselibrary.LogUtil;
+import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
+import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.example.baselibrary.SharedPreferencesHelper;
-import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +50,9 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     private Map<String, String> paramMap;
     private static ConfirmDialog sDialog;
+    private String code;
+    private String phone;
+    private String integralNumber;
 
     @Override
     protected int getLayout() {
@@ -91,18 +98,15 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
-        String phone = etNumber.getText().toString();
-        String code = etCode.getText().toString();
+        phone = etNumber.getText().toString();
+        code = etCode.getText().toString();
         switch (view.getId()) {
             case R.id.tv_code:
                 if (TextUtils.isEmpty(phone)) {
                     showToast(R.string.login_phone_error_hint);
                 } else {
-                    // TODO: 2019/8/21 调用接口返回成功后显示下面内容，目前没接口
-                    showToast(R.string.login_phone_code_success);
-                    SmsTimeUtils.check(SmsTimeUtils.SETTING_FINANCE_ACCOUNT_TIME, false);
-                    SmsTimeUtils.startCountdown(tvCode, mContext);
-
+                    // TODO: 2019/8/21 调用接口返回成功后显示下面内容
+                    updatePhoneCode(mContext, phone);
                 }
                 break;
             case R.id.tv_save:
@@ -113,11 +117,83 @@ public class UpdatePhoneActivity extends BaseActivity {
                     showToast(R.string.login_code_error_hint);
                     return;
                 } else {
-                    // TODO: 2019/8/21 调用接口跳转
-                    updatePhone(mContext, phone, code);
+                    //校验验证码
+
+                    JyCodePhone(mContext);
+
                 }
                 break;
         }
+    }
+
+    private void JyCodePhone(Context mContext) {
+        paramMap = new HashMap<>();
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        paramMap.put("smsCode", code);
+        paramMap.put("id", integralNumber);
+
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.smsVerify, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                LogUtil.e("ldh" + new Gson().toJson(weatherResult));
+                if (weatherResult.getCode() == 200) {
+
+                    updatePhone(mContext, phone, code);
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
+
+
+    }
+
+    private void updatePhoneCode(Context mContext, String phone) {
+        paramMap = new HashMap<>();
+        paramMap.put("userPhone", phone);
+        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        paramMap.put("smsCode", "SMS_173696406");
+
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.sendSmsCode, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
+
+            }
+
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                LogUtil.e("ldh" + new Gson().toJson(weatherResult));
+                if (weatherResult.getCode() == 200) {
+                    CodeBean codeBeanBean=  new Gson().fromJson(new Gson().toJson(weatherResult), CodeBean.class);
+                    integralNumber = codeBeanBean.getData().getSmsId();
+
+                    showToast(R.string.login_phone_code_success);
+                    SmsTimeUtils.check(SmsTimeUtils.SETTING_FINANCE_ACCOUNT_TIME, false);
+                    SmsTimeUtils.startCountdown(tvCode, mContext);
+
+                } else {
+                    showToast("" + weatherResult.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
+
     }
 
     public void updatePhone(Context context, String userPhone, String userCodeBea) {
@@ -136,8 +212,8 @@ public class UpdatePhoneActivity extends BaseActivity {
                 Log.d("zhh", weatherResult.getCode() + "==code");
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePhoneSuccessActivity.class);
-                }else {
-                    showToast(""+weatherResult.getMsg());
+                } else {
+                    showToast("" + weatherResult.getMsg());
                 }
 
             }
@@ -148,6 +224,7 @@ public class UpdatePhoneActivity extends BaseActivity {
             }
         });
     }
+
     public static class ConfirmDialog extends BaseNiceDialog {
         private String type;
 
