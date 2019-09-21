@@ -183,48 +183,48 @@ public class SettingActivity extends BaseActivity implements CommonView {
 
     @Override
     public void onData(WeatherResult weatherResult) {
-        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
+//        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
         if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
             VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
             if (sqBean != null && sqBean.getAppVersion() != null) {
                 int currentVersion = getVersionCode();
                 int lastVersion = NumberFormatUtils.getIntegerByString(sqBean.getAppVersion().getVersionCode());
-                if (lastVersion > currentVersion) {
+                if (002 > currentVersion) {
+                    NiceDialog.init()
+                            .setLayoutId(R.layout.dialog_update)
+                            .setConvertListener(new ViewConvertListener() {
+                                @Override
+                                protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                    holder.setText(R.id.tv1, "Android " + sqBean.getAppVersion().getVersionNumber());
+                                    holder.setText(R.id.tv2, sqBean.getAppVersion().getVersionDescribe());
+                                    holder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            RetrofitRequest.fileDownload(sqBean.getAppVersion().getVersionUrl(), new RetrofitRequest.DownloadHandler() {
+                                                @Override
+                                                public void onBody(ResponseBody body) {
 
+                                                }
+
+                                                @Override
+                                                public void onError() {
+
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                }
+                            })
+                            .setMargin(40)
+                            .show(getSupportFragmentManager());
                 } else {
                     NiceDialog.init()
                             .setLayoutId(R.layout.dialog_show_toast)
                             .setMargin(60)
                             .show(getSupportFragmentManager());
                 }
-                NiceDialog.init()
-                        .setLayoutId(R.layout.dialog_update)
-                        .setConvertListener(new ViewConvertListener() {
-                            @Override
-                            protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
-                                holder.setText(R.id.tv1, "Android " + sqBean.getAppVersion().getVersionNumber());
-                                holder.setText(R.id.tv2, sqBean.getAppVersion().getVersionDescribe());
-                                holder.setOnClickListener(R.id.tv_save, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        RetrofitRequest.fileDownload(sqBean.getAppVersion().getVersionUrl(), new RetrofitRequest.DownloadHandler() {
-                                            @Override
-                                            public void onBody(ResponseBody body) {
 
-                                            }
-
-                                            @Override
-                                            public void onError() {
-
-                                            }
-                                        });
-                                    }
-                                });
-
-                            }
-                        })
-                        .setMargin(40)
-                        .show(getSupportFragmentManager());
             }
 
         }

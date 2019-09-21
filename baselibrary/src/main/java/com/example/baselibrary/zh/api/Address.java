@@ -88,7 +88,7 @@ public class Address {
      *
      */
 //    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
-    public final static String checkForUpdates = "user/appVersion/checkForUpdates？";
+    public final static String checkForUpdates = "user/appVersion/checkForUpdates?";
     /**
      * 我的--设置--账号与安全--修改密码（用户短信码）  GET
      */
