@@ -11,8 +11,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+
+import okhttp3.ResponseBody;
 
 /**
  * 文件类 所有文件操作 2014-06-04
@@ -962,6 +966,66 @@ public class FileUtils {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 下载到本地
+	 *
+	 * @param body 内容
+	 * @return 成功或者失败
+	 */
+	public static boolean writeResponseBodyToDisk(ResponseBody body) {
+		try {
+			//判断文件夹是否存在
+			File files = new File(getCacheMD());//跟目录一个文件夹
+			if (!files.exists()) {
+				//不存在就创建出来
+				files.mkdirs();
+			}
+			//创建一个文件
+			File futureStudioIconFile = new File(getCacheMD() + "xinshangyu.apk");
+			//初始化输入流
+			InputStream inputStream = null;
+			//初始化输出流
+			OutputStream outputStream = null;
+			try {
+				//设置每次读写的字节
+				byte[] fileReader = new byte[4096];
+				long fileSize = body.contentLength();
+				long fileSizeDownloaded = 0;
+				//请求返回的字节流
+				inputStream = body.byteStream();
+				//创建输出流
+				outputStream = new FileOutputStream(futureStudioIconFile);
+				//进行读取操作
+				while (true) {
+					int read = inputStream.read(fileReader);
+					if (read == -1) {
+						break;
+					}
+					//进行写入操作
+					outputStream.write(fileReader, 0, read);
+					fileSizeDownloaded += read;
+				}
+
+				//刷新
+				outputStream.flush();
+				return true;
+			} catch (IOException e) {
+				return false;
+			} finally {
+				if (inputStream != null) {
+					//关闭输入流
+					inputStream.close();
+				}
+				if (outputStream != null) {
+					//关闭输出流
+					outputStream.close();
+				}
+			}
+		} catch (IOException e) {
+			return false;
 		}
 	}
 }

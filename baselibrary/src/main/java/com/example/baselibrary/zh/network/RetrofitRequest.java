@@ -1,6 +1,7 @@
 package com.example.baselibrary.zh.network;
 
 import android.content.Context;
+import android.os.Environment;
 
 import com.example.baselibrary.zh.bean.TokenBen;
 import com.example.baselibrary.zh.network.result.BaseResult;
@@ -13,7 +14,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.security.cert.CertificateException;
@@ -280,6 +284,8 @@ public class RetrofitRequest {
                 if (response.isSuccessful()) {
                     // 写入文件
                     downloadHandler.onBody(response.body());
+                    writeResponseBodyToDisk(response.body(), downloadHandler);
+
                 } else {
                     downloadHandler.onError();
                 }
@@ -387,11 +393,113 @@ public class RetrofitRequest {
          *
          * @param body 响应体
          */
-        public void onBody(ResponseBody body);
+        void onBody(ResponseBody body);
+
+        /**
+         * 下载进度
+         *
+         * @param progress 当前进度
+         */
+        void onProgress(int progress);
+        /**
+         * 下载完成
+         *
+         * @param file 下载成功文件
+         */
+        void onDownLoadSuccess(File file);
 
         /**
          * 文件下载出错
          */
-        public void onError();
+        void onError();
+    }
+
+    /**
+     * 下载到本地
+     *
+     * @param body 内容
+     * @param downloadHandler
+     * @return 成功或者失败
+     */
+    public static boolean writeResponseBodyToDisk(ResponseBody body, DownloadHandler downloadHandler) {
+        try {
+            //判断文件夹是否存在
+            File files = new File(getCacheMD());//跟目录一个文件夹
+            if (!files.exists()) {
+                //不存在就创建出来
+                files.mkdirs();
+            }
+            //创建一个文件
+            File futureStudioIconFile = new File(getCacheMD() + "xinshangyu.apk");
+            //初始化输入流
+            InputStream inputStream = null;
+            //初始化输出流
+            OutputStream outputStream = null;
+            try {
+                //设置每次读写的字节
+                byte[] fileReader = new byte[4096];
+                long fileSize = body.contentLength();
+                long fileSizeDownloaded = 0;
+                //请求返回的字节流
+                inputStream = body.byteStream();
+                //创建输出流
+                outputStream = new FileOutputStream(futureStudioIconFile);
+                //进行读取操作
+                while (true) {
+                    int read = inputStream.read(fileReader);
+                    if (read == -1) {
+                        break;
+                    }
+                    //进行写入操作
+                    outputStream.write(fileReader, 0, read);
+                    fileSizeDownloaded += read;
+                    if(downloadHandler != null){
+                        int progress = (int) (fileSizeDownloaded * 1.0f / fileSize * 100);
+                        downloadHandler.onProgress(progress);
+                    }
+                }
+
+                //刷新
+                outputStream.flush();
+                downloadHandler.onDownLoadSuccess(futureStudioIconFile);
+                return true;
+            } catch (IOException e) {
+                return false;
+            } finally {
+                if (inputStream != null) {
+                    //关闭输入流
+                    inputStream.close();
+                }
+                if (outputStream != null) {
+                    //关闭输出流
+                    outputStream.close();
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    /** 最外层目录 **/
+    public static String SYS_TEMMD = "xinshangyu";
+
+    /** 缓存目录 **/
+    public static String CACHE = "cache";
+
+    /**
+     * 得到缓存目录
+     *
+     * @param
+     * @return
+     */
+    public static String getCacheMD() {
+        String sdcard = Environment.getExternalStorageDirectory().toString();
+        File file = new File(sdcard + "/" + SYS_TEMMD);
+        if (!file.exists())
+            file.mkdir();
+        File file2 = new File(sdcard + "/" + SYS_TEMMD + "/" + CACHE);
+        if (!file2.exists())
+            file2.mkdir();
+        return sdcard + "/" + SYS_TEMMD + "/" + CACHE + "/";
     }
 }
