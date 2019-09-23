@@ -1,5 +1,8 @@
 package com.example.administrator.demo.activity.setting;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -234,6 +237,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                                     if(downloadDialog != null && downloadDialog.getShowsDialog()){
                                                         downloadDialog.dismiss();
                                                         //AppUtils.installApp(file);
+                                                        installApk(mContext, file);
                                                     }
                                                 }
 
@@ -316,4 +320,17 @@ public class SettingActivity extends BaseActivity implements CommonView {
             }
         }
     };
+
+    public static void installApk(Context context, File file) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setType("application/vnd.android.package-archive");
+        intent.setData(Uri.fromFile(file));
+        intent.setDataAndType(Uri.fromFile(file),
+                "application/vnd.android.package-archive");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
 }
