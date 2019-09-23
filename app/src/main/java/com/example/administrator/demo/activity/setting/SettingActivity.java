@@ -194,7 +194,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
             if (sqBean != null && sqBean.getAppVersion() != null) {
                 int currentVersion = getVersionCode();
                 int lastVersion = NumberFormatUtils.getIntegerByString(sqBean.getAppVersion().getVersionCode());
-                if (002 > currentVersion) {
+                if (lastVersion > currentVersion) {
                     NiceDialog.init()
                             .setLayoutId(R.layout.dialog_update)
                             .setConvertListener(new ViewConvertListener() {
@@ -233,7 +233,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                                 public void onDownLoadSuccess(File file) {
                                                     if(downloadDialog != null && downloadDialog.getShowsDialog()){
                                                         downloadDialog.dismiss();
-                                                        AppUtils.installApp(file);
+                                                        //AppUtils.installApp(file);
                                                     }
                                                 }
 
