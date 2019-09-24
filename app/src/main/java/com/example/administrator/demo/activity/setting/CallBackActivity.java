@@ -279,7 +279,7 @@ public class CallBackActivity extends BaseActivity {
     }
 
     private String video_id = "";
-    private String id;
+    private String id = "";
 
 
     private void subPics() {
@@ -329,7 +329,7 @@ public class CallBackActivity extends BaseActivity {
 
                                 String fileId = sqBean.getFileId();
                                 SPUtils.put(Const.TALK_TYPE, fileId);
-                                id = (String) SPUtils.get(Const.TALK_TYPE, "")+","+fileId;
+                                id = (String) SPUtils.get(Const.TALK_TYPE, "") + "," + fileId;
                                 list.add(fileId);
 
 
@@ -348,9 +348,9 @@ public class CallBackActivity extends BaseActivity {
 
             }
 
+            Log.d("ldh", "subPics: ==" + id);
             for (int i = 0; i < list.size(); i++) {
                 String s = list.get(i).toString();
-                Log.d("ldh", "subPics: ==" + s);
             }
 
         }
