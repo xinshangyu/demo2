@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.CodeBean;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.utils.SmsTimeUtils;
 import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.baselibrary.LogUtil;
@@ -21,6 +22,8 @@ import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +47,7 @@ public class UpdateOtherPwdActivity extends BaseActivity {
     @BindView(R.id.common_toolbar)
     Toolbar commonToolbar;
     @BindView(R.id.et_number)
-    EditText etNumber;
+    TextView etNumber;
     @BindView(R.id.et_code)
     EditText etCode;
     @BindView(R.id.tv_code)
@@ -95,13 +98,14 @@ public class UpdateOtherPwdActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
+        phone = (String) SPUtils.get("Phone", "");
+        etNumber.setText(phone);
 
     }
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
-        phone = etNumber.getText().toString();
+//        phone = etNumber.getText().toString();
         code = etCode.getText().toString();
         switch (view.getId()) {
             case R.id.tv_code:
@@ -201,10 +205,4 @@ public class UpdateOtherPwdActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

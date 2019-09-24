@@ -182,7 +182,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                 .compress(true)// 是否压缩 true or false
                 .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .isGif(false)// 是否显示gif图片 true or false
-                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+                .circleDimmedLayer(false)// 是否圆形裁剪 true or false
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
                 .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
                 .minimumCompressSize(30)// 小于100kb的图片不压缩
