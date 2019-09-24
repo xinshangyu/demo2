@@ -33,6 +33,7 @@ public class ActivityUtils {
     public static void startActivity(@NonNull Context context, @NonNull Class<?> clz, Bundle bundle) {
         Intent intent = new Intent(context, clz);
         if (null != bundle) intent.putExtras(bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 

@@ -77,7 +77,7 @@ public class HositoryFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-
+        setFinishRefresh(mSmartRefreshLayout, false);//
     }
 
 

@@ -14,6 +14,10 @@ public class Address {
      */
     public final static String update_number_zh = "user/userinfo/changePhone?";
     /**
+     * 我的--设置--账号与安全--变更手机号唯一校验  GET  http://192.168.0.195:8980/user/usercode/isHavePhone
+     */
+    public final static String isHavePhone = "user/usercode/isHavePhone?";
+    /**
      * 我的--设置--账号与安全--验证码  GET  http://192.168.0.195:8980/message/userSmsRecord/sendSmsCode
      */
     public final static String sendSmsCode = "message/userSmsRecord/sendSmsCode?";
@@ -21,6 +25,10 @@ public class Address {
      * 我的--设置--账号与安全--校验验证码  GET  http://192.168.0.195:8980/message/userSmsRecord/smsVerify
      */
     public final static String smsVerify = "message/userSmsRecord/smsVerify?";
+    /**
+     * 我的--设置--账号与安全--修改密码  GET  http://192.168.0.195:8980/user/usercode/modifyPwd/bySmsCode
+     */
+    public final static String bySmsCode = "user/usercode/modifyPwd/bySmsCode?";
     /**
      * 我的--设置--账号与安全--绑定 邮箱   GET   http://192.168.0.195:9993/user/me/setting/changeEmail
      */
@@ -88,10 +96,6 @@ public class Address {
      */
 //    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
     public final static String checkForUpdates = "user/appVersion/checkForUpdates?";
-    /**
-     * 我的--设置--账号与安全--修改密码（用户短信码）  GET
-     */
-    public final static String bySmsCode = "user/me/setting/modifyPwd/bySmsCode?";
     /**
      * 我的--设置--账号与安全--修改密码(用旧密码)   GET  http://192.168.0.195:8980/user/usercode/modifyPwd/byOldPwd
      */

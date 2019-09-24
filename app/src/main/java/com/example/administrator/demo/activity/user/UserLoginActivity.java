@@ -7,6 +7,7 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.base.BaseActivity;
 import com.example.administrator.demo.mvp.iview.UserLoginView;
 import com.example.administrator.demo.mvp.presenter.UserLoginPresenter;
+import com.example.administrator.demo.utils.SPUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,6 +53,7 @@ public class UserLoginActivity extends BaseActivity implements UserLoginView {
      */
     @Override
     public void onLoginStatus(int status, String msg, int isFirstLogin) {
+        SPUtils.put("Phone",  userAccount.getText().toString());
         startActivity(MainActivity.class, 1);
     }
 }

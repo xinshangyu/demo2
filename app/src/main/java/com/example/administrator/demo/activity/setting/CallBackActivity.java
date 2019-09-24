@@ -279,7 +279,7 @@ public class CallBackActivity extends BaseActivity {
     }
 
     private String video_id = "";
-    private String id;
+    private String id = "";
 
 
     private void subPics() {

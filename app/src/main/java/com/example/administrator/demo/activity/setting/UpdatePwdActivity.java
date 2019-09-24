@@ -109,7 +109,7 @@ public class UpdatePwdActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ll_pwd:
 
-
+                ActivityUtils.startActivity(mContext, UpdateOtherPwdActivity.class);
 
                 break;
             case R.id.tv_save:

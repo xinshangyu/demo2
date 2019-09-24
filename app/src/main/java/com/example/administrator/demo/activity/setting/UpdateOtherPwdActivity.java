@@ -2,21 +2,17 @@ package com.example.administrator.demo.activity.setting;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.CodeBean;
-import com.example.administrator.demo.entity.MyModularBen;
-import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.utils.SmsTimeUtils;
 import com.example.administrator.demo.weight.AppActivityUtils;
-import com.example.administrator.demo.weight.nice.BaseNiceDialog;
-import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -24,7 +20,6 @@ import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -32,17 +27,24 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
-/**
- * 修改手机号
- */
-public class UpdatePhoneActivity extends BaseActivity {
+public class UpdateOtherPwdActivity extends BaseActivity {
+
+    @BindView(R.id.common_toolBar_image_right)
+    ImageButton commonToolBarImageRight;
+    @BindView(R.id.common_toolBar_text_right)
+    TextView commonToolBarTextRight;
+    @BindView(R.id.common_toolBar_title)
+    TextView commonToolBarTitle;
+    @BindView(R.id.common_toolbar)
+    Toolbar commonToolbar;
     @BindView(R.id.et_number)
-    TextView etNumber;
+    EditText etNumber;
     @BindView(R.id.et_code)
     EditText etCode;
     @BindView(R.id.tv_code)
@@ -51,7 +53,7 @@ public class UpdatePhoneActivity extends BaseActivity {
     TextView tvSave;
 
     private Map<String, String> paramMap;
-    private static ConfirmDialog sDialog;
+    private static UpdatePhoneActivity.ConfirmDialog sDialog;
     private String code;
     private String phone;
     private String integralNumber;
@@ -63,7 +65,7 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar(getResources().getString(R.string.update_number), new View.OnClickListener() {
+        setTitleBar("设置密码", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -93,14 +95,13 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        phone = (String) SPUtils.get("Phone", "");
-        etNumber.setText(phone);
-    }
 
+
+    }
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
-//        phone = etNumber.getText().toString();
+        phone = etNumber.getText().toString();
         code = etCode.getText().toString();
         switch (view.getId()) {
             case R.id.tv_code:
@@ -126,42 +127,6 @@ public class UpdatePhoneActivity extends BaseActivity {
                 }
                 break;
         }
-    }
-
-    private void JyCodePhone(Context mContext) {
-        paramMap = new HashMap<>();
-        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        paramMap.put("smsCode", code);
-        paramMap.put("id", integralNumber);
-
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.smsVerify, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-            @Override
-            public void onBeforeResult() {
-
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("ldh" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 200) {
-
-
-                    AppActivityUtils.StartPhoneActivity(getApplicationContext(), code, integralNumber, phone);
-
-//                    updatePhone(mContext, phone, code);
-                } else {
-                    showToast("" + weatherResult.getMsg());
-                }
-
-            }
-
-            @Override
-            public void onAfterFailure() {
-                showToast("请求失败");
-            }
-        });
-
-
     }
 
     private void updatePhoneCode(Context mContext, String phone) {
@@ -201,12 +166,13 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     }
 
-    public void updatePhone(Context context, String userPhone, String userCodeBea) {
+    private void JyCodePhone(Context mContext) {
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        paramMap.put("userPhone", userPhone);
-        paramMap.put("smsCount", userCodeBea);
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
+        paramMap.put("smsCode", code);
+        paramMap.put("id", integralNumber);
+
+        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.smsVerify, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
 
@@ -214,9 +180,12 @@ public class UpdatePhoneActivity extends BaseActivity {
 
             @Override
             public void onResult(WeatherResult weatherResult) {
-                Log.d("zhh", weatherResult.getCode() + "==code");
+                LogUtil.e("ldh" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {
-                    ActivityUtils.startActivity(mContext, UpdatePhoneSuccessActivity.class);
+
+                    AppActivityUtils.StartPwdActivity(getApplicationContext(), code,integralNumber);
+//                    finish();
+
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
@@ -228,36 +197,14 @@ public class UpdatePhoneActivity extends BaseActivity {
                 showToast("请求失败");
             }
         });
+
+
     }
 
-    public static class ConfirmDialog extends BaseNiceDialog {
-        private String type;
-
-        public static ConfirmDialog newInstance(String type) {
-            Bundle bundle = new Bundle();
-            bundle.putString("type", type);
-            sDialog = new ConfirmDialog();
-            sDialog.setArguments(bundle);
-            return sDialog;
-        }
-
-        @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            Bundle bundle = getArguments();
-            if (bundle == null) {
-                return;
-            }
-            type = bundle.getString("type");
-        }
-
-        @Override
-        public int intLayoutId() {
-            return R.layout.dialog_content;
-        }
-
-        @Override
-        public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
-        }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
