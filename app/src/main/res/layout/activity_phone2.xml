@@ -19,13 +19,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="@string/my_phone"
+            android:text="新手机号"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/text_16sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,7 +55,7 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="@string/number_format"
             android:textColor="@color/colorBlack0"

@@ -57,6 +57,8 @@ public class UserLoginModel {
 //                    uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), Integer.parseInt(userCodeBea.getIsFirstLogin()));
                     uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
                     return;
+                }else {
+
                 }
 
                 uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);

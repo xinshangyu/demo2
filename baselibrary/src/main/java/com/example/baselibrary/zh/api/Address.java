@@ -14,6 +14,10 @@ public class Address {
      */
     public final static String update_number_zh = "user/userinfo/changePhone?";
     /**
+     * 我的--设置--账号与安全--变更手机号唯一校验  GET  http://192.168.0.195:8980/user/usercode/isHavePhone
+     */
+    public final static String isHavePhone = "user/usercode/isHavePhone?";
+    /**
      * 我的--设置--账号与安全--验证码  GET  http://192.168.0.195:8980/message/userSmsRecord/sendSmsCode
      */
     public final static String sendSmsCode = "message/userSmsRecord/sendSmsCode?";

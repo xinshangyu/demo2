@@ -22,10 +22,12 @@ public class SmsTimeUtils {
     /*发送验证码*/
     public final static int SETTING_FINANCE_ACCOUNT_TIME = 1;
     public final static int SETTING_FINANCE_ACCOUNT_TIME2 = 2;
+    public final static int SETTING_FINANCE_ACCOUNT_TIME3 = 3;
     public final static int WITHDRAW_CASH = 4;
 
     private static long SETTING_FINANCE_ACCOUNT_TIME_END = 0;
     private static long SETTING_FINANCE_ACCOUNT_TIME_END2 = 0;
+    private static long SETTING_FINANCE_ACCOUNT_TIME_END3 = 0;
     private static long WITHDRAW_CASH_END = 0;
 
     private static Timer countdownTimer;
@@ -49,6 +51,9 @@ public class SmsTimeUtils {
             case SETTING_FINANCE_ACCOUNT_TIME2:
                 time = SETTING_FINANCE_ACCOUNT_TIME_END2;
                 break;
+            case SETTING_FINANCE_ACCOUNT_TIME3:
+                time = SETTING_FINANCE_ACCOUNT_TIME_END3;
+                break;
             case WITHDRAW_CASH:
                 time = WITHDRAW_CASH_END;
                 break;
@@ -64,6 +69,9 @@ public class SmsTimeUtils {
                         break;
                     case SETTING_FINANCE_ACCOUNT_TIME2:
                         SETTING_FINANCE_ACCOUNT_TIME_END2 = time;
+                        break;
+                    case SETTING_FINANCE_ACCOUNT_TIME3:
+                        SETTING_FINANCE_ACCOUNT_TIME_END3 = time;
                         break;
                     case WITHDRAW_CASH:
                         WITHDRAW_CASH_END = time;

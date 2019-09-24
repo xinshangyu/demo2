@@ -28,14 +28,7 @@ import butterknife.OnClick;
 
 public class Pwd2Activity extends BaseActivity {
 
-    @BindView(R.id.common_toolBar_image_right)
-    ImageButton commonToolBarImageRight;
-    @BindView(R.id.common_toolBar_text_right)
-    TextView commonToolBarTextRight;
-    @BindView(R.id.common_toolBar_title)
-    TextView commonToolBarTitle;
-    @BindView(R.id.common_toolbar)
-    Toolbar commonToolbar;
+
     @BindView(R.id.et_new_number)
     EditText etNewNumber;
     @BindView(R.id.login_password_watch2)

@@ -37,6 +37,7 @@
         <activity android:name=".activity.setting.AccountActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.UpdateOtherPwdActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.Pwd2Activity" />
+        <activity android:name="com.example.administrator.demo.activity.setting.Phone2Activity" />
         <activity android:name=".activity.setting.UpdatePhoneActivity" />
         <activity android:name=".activity.setting.UpdatePhoneSuccessActivity" />
         <activity android:name=".activity.setting.UpdatePwdSuccessActivity" />
