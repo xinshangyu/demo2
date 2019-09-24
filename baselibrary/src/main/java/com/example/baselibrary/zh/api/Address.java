@@ -22,6 +22,10 @@ public class Address {
      */
     public final static String smsVerify = "message/userSmsRecord/smsVerify?";
     /**
+     * 我的--设置--账号与安全--修改密码  GET  http://192.168.0.195:8980/user/usercode/modifyPwd/bySmsCode
+     */
+    public final static String bySmsCode = "user/usercode/modifyPwd/bySmsCode?";
+    /**
      * 我的--设置--账号与安全--绑定 邮箱   GET   http://192.168.0.195:9993/user/me/setting/changeEmail
      */
     public final static String update_email = "user/me/setting/changeEmail?";
@@ -88,10 +92,6 @@ public class Address {
      */
 //    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
     public final static String checkForUpdates = "user/appVersion/checkForUpdates?";
-    /**
-     * 我的--设置--账号与安全--修改密码（用户短信码）  GET
-     */
-    public final static String bySmsCode = "user/me/setting/modifyPwd/bySmsCode?";
     /**
      * 我的--设置--账号与安全--修改密码(用旧密码)   GET  http://192.168.0.195:8980/user/usercode/modifyPwd/byOldPwd
      */

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.administrator.demo.activity.my.TheInfoActivity;
 import com.example.administrator.demo.activity.record.JyXqActivity;
 import com.example.administrator.demo.activity.setting.MoreActivity;
+import com.example.administrator.demo.activity.setting.Pwd2Activity;
 import com.example.administrator.demo.activity.user.UserLoginActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
@@ -29,6 +30,16 @@ public class AppActivityUtils extends ActivityUtils {
         Bundle bundle = new Bundle();
         bundle.putString("CONTENT", content);//Tab标识
         startActivity(context, JyXqActivity.class, bundle);
+    }
+
+    /**
+     * 跳转
+     */
+    public static void StartPwdActivity(Context context, String content, String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("CONTENT", content);//Tab标识
+        bundle.putString("ID", id);//Tab标识
+        startActivity(context, Pwd2Activity.class, bundle);
     }
 
     /**
