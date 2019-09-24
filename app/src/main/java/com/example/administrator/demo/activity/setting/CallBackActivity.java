@@ -288,10 +288,8 @@ public class CallBackActivity extends BaseActivity {
 
         if (selectList.size() > 0) {
             upList.addAll(selectList);
-
             String path;
-            ArrayList<MultipartBody.Part> parts = new ArrayList<>();
-            ArrayList<String> list = new ArrayList<>();
+            List<File> files = new ArrayList<>();
             for (int i = 0; i < upList.size(); i++) {
                 LocalMedia media = upList.get(i);
                 if (media.isCut() && !media.isCompressed()) {
@@ -304,54 +302,41 @@ public class CallBackActivity extends BaseActivity {
                     // 原图
                     path = media.getPath();
                 }
-                lastSub.add(media.getPath());
+//                lastSub.add(media.getPath());
                 File file = new File(path);
-//                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//                MultipartBody.Part file1 = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
-//                parts.add(file1);
+                files.add(file);
 
-                RetrofitRequest.fileUploads(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            }
 
-
-                    @Override
-                    public void onBeforeResult() {
-
-                    }
-
-                    @Override
-                    public void onResult(WeatherResult weatherResult) {
-                        String json = new Gson().toJson(weatherResult);
-                        LogUtil.e("返回数据" + json);
-                        if (weatherResult.getCode() == 200) {
-                            ImgBean sqBean = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), ImgBean.class);
-                            if (sqBean != null) {
-                                showToast("请求失asfva败");
-
-                                String fileId = sqBean.getFileId();
-                                SPUtils.put(Const.TALK_TYPE, fileId);
-                                id = (String) SPUtils.get(Const.TALK_TYPE, "")+","+fileId;
-                                list.add(fileId);
+            RetrofitRequest.fileUploads(ApiKeys.getApiUrl() + Address.uploadFiles, files, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
 
 
-                                video_id = video_id + "," + fileId;
-                            }
-                        } else {
-                            ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
+                @Override
+                public void onBeforeResult() {
+
+                }
+
+                @Override
+                public void onResult(WeatherResult weatherResult) {
+                    String json = new Gson().toJson(weatherResult);
+                    LogUtil.e("返回数据" + json);
+                    if (weatherResult.getCode() == 200) {
+                        ImgBean sqBean = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), ImgBean.class);
+                        if (sqBean != null) {
+                            showToast("上传成功id = " + sqBean.getFileId());
+
                         }
+                    } else {
+                        ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
                     }
+                }
 
-                    @Override
-                    public void onAfterFailure() {
-                        showToast("请求失败");
-                    }
-                });
+                @Override
+                public void onAfterFailure() {
+                    showToast("请求失败");
+                }
+            });
 
-            }
-
-            for (int i = 0; i < list.size(); i++) {
-                String s = list.get(i).toString();
-                Log.d("ldh", "subPics: ==" + s);
-            }
 
         }
 

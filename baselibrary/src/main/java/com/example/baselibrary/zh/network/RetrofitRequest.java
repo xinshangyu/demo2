@@ -230,7 +230,6 @@ public class RetrofitRequest {
 
         Map<String, RequestBody> paramMap = new HashMap<>();
 
-//        addMultiPart(paramMap, "userId", SharedPreferencesHelper.getPrefString("userId", ""));
         addMultiPart(paramMap, "file", file);
 
         // 构建请求
@@ -263,7 +262,7 @@ public class RetrofitRequest {
         });
     }
 
-    public static <T extends BaseResult> void fileUploads(String url, File file, final Class<T> clazz, final ResultHandler<T> resultHandler) {
+    public static <T extends BaseResult> void fileUploads(String url, List<File> files, final Class<T> clazz, final ResultHandler<T> resultHandler) {
         // 判断网络连接状况
         if (resultHandler.isNetDisconnected()) {
             resultHandler.onAfterFailure();
@@ -280,7 +279,7 @@ public class RetrofitRequest {
 //        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 //        list.add(filePart);
 
-        addMultiPart(paramMap, "file", file);
+        addMultiParts(paramMap, "file", files);
 
         // 构建请求
         Call<ResponseBody> call = fileRequest.postFile(url, paramMap);
@@ -364,6 +363,28 @@ public class RetrofitRequest {
         } else if (obj instanceof File) {
             RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), (File) obj);
             paramMap.put(key + "\"; filename=\"" + ((File) obj).getName() + "", body);
+        }
+    }
+
+    /**
+     * 添加多媒体类型
+     *
+     * @param paramMap 参数对
+     * @param key      键
+     * @param obj      值
+     */
+    private static void addMultiParts(Map<String, RequestBody> paramMap, String key, Object obj) {
+        if (obj instanceof String) {
+            RequestBody body = RequestBody.create(MediaType.parse("text/plain;charset=UTF-8"), (String) obj);
+            paramMap.put(key, body);
+        } else if (obj instanceof List) {
+            List<File> files = (List<File>) obj;
+            for(int i = 0; i < files.size(); i++){
+                RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), (File) files.get(i));
+                paramMap.put(key + "\"; filename=\"" + ((File) obj).getName() + "", body);
+            }
+
+
         }
     }
 

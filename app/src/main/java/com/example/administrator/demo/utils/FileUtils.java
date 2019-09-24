@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 
 import okhttp3.ResponseBody;
 
@@ -1028,4 +1029,60 @@ public class FileUtils {
 			return false;
 		}
 	}
+
+	public static void hex(String hexStr) {
+		String javaStr= new BigInteger(hexStr, 16).intValue() + 1 + "";
+		byte [] bytes = hexStringToByte(javaStr);
+		byte temp;
+		for(int i=0;i<bytes.length;i++){
+			temp = bytes[i];
+			bytes[i] = (byte) (~temp);
+		}
+		String bths = bytesToHexString(bytes);
+		System.out.println(bths.toUpperCase());
+	}
+
+	/**
+      * 将数字字符串转化为二进制byte数组
+      * @param hex
+      * @return
+      */
+		public static byte[] hexStringToByte(String hex) {
+		int len = (hex.length() / 2);
+		byte[] result = new byte[len];
+		char[] achar = hex.toCharArray();
+		for (int i = 0; i < len; i++) {
+			int pos = i * 2;
+			result[i] = (byte) (toByte(achar[pos]) << 4 | toByte(achar[pos + 1]));
+		}
+		return result;
+	}
+
+		private static byte toByte(char c) {
+		byte b = (byte) "0123456789ABCDEF".indexOf(c);
+		return b;
+	}
+	/**
+      * 将二进制数组转化为16进制字符串
+      * @param src
+      * @return
+      */
+	public static String bytesToHexString(byte[] src){
+		StringBuilder stringBuilder = new StringBuilder();
+		if (src == null || src.length <= 0) {
+			return null;
+		}
+		for (int i = 0; i < src.length; i++) {
+			int v = src[i] & 0xFF;
+			String hv = Integer.toHexString(v);
+			//stringBuilder.append(i + ":");//序号 2个数字为1组
+			if (hv.length() < 2) {
+				stringBuilder.append(0);
+			}
+			stringBuilder.append(hv);
+		}
+		return stringBuilder.toString();
+	}
+
+
 }
