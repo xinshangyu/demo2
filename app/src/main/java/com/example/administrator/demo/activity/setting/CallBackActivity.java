@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.entity.Const;
+import com.example.administrator.demo.entity.ImgBean;
+import com.example.administrator.demo.entity.MyModularBen;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.weight.FullyGridLayoutManager;
 import com.example.administrator.demo.weight.GridImageAdapter;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
@@ -19,6 +25,7 @@ import com.example.administrator.demo.weight.nice.ViewConvertListener;
 import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
+import com.example.baselibrary.ToastUtils;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -225,18 +232,66 @@ public class CallBackActivity extends BaseActivity {
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
                     //提交图片
-                    subPics();
+
                     break;
             }
         }
     }
 
+
+    @Override
+    protected void initDate() {
+//        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+//        cMap.put("content", editContent.getText().toString());//
+//        cMap.put("visitTel", etNumber.getText().toString());// TODO: 2019/8/28 意见反馈
+//        cMap.put("imgIds", "");
+//
+//        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.feedbackProblem, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+//            @Override
+//            public void onBeforeResult() {
+//
+//            }
+//
+//            @Override
+//            public void onResult(WeatherResult weatherResult) {
+//                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
+//                if (weatherResult.getCode() == 200) {
+//
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onAfterFailure() {
+//
+//            }
+//        });
+
+
+    }
+
+
+    @OnClick(R.id.tv_save)
+    public void onViewClicked() {
+        subPics();
+
+
+    }
+
+    private String video_id = "";
+    private String id;
+
+
     private void subPics() {
+        if (SPUtils.contains(Const.TALK_TYPE))
+            SPUtils.remove(Const.TALK_TYPE);
+
         if (selectList.size() > 0) {
             upList.addAll(selectList);
 
             String path;
             ArrayList<MultipartBody.Part> parts = new ArrayList<>();
+            ArrayList<String> list = new ArrayList<>();
             for (int i = 0; i < upList.size(); i++) {
                 LocalMedia media = upList.get(i);
                 if (media.isCut() && !media.isCompressed()) {
@@ -251,59 +306,55 @@ public class CallBackActivity extends BaseActivity {
                 }
                 lastSub.add(media.getPath());
                 File file = new File(path);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part file1 = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
-                parts.add(file1);
+//                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//                MultipartBody.Part file1 = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
+//                parts.add(file1);
+
+                RetrofitRequest.fileUploads(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+
+
+                    @Override
+                    public void onBeforeResult() {
+
+                    }
+
+                    @Override
+                    public void onResult(WeatherResult weatherResult) {
+                        String json = new Gson().toJson(weatherResult);
+                        LogUtil.e("返回数据" + json);
+                        if (weatherResult.getCode() == 200) {
+                            ImgBean sqBean = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), ImgBean.class);
+                            if (sqBean != null) {
+                                showToast("请求失asfva败");
+
+                                String fileId = sqBean.getFileId();
+                                SPUtils.put(Const.TALK_TYPE, fileId);
+                                id = (String) SPUtils.get(Const.TALK_TYPE, "")+","+fileId;
+                                list.add(fileId);
+
+
+                                video_id = video_id + "," + fileId;
+                            }
+                        } else {
+                            ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onAfterFailure() {
+                        showToast("请求失败");
+                    }
+                });
 
             }
-//            DataManager.getInstance().uploads(parts, "feedback")
-//                    .compose(DataManager.setThread())
-//                    .subscribe(new BaseObserver(this, new RxHttpCallBack(this) {
-//                        @Override
-//                        public void onSuccess(CommonResponseBean t) {
-//                            super.onSuccess(t);
-//                            if (t.isSuccess()) {
-//                                imgs = JsonUtils.getInstance().getGson().toJson(t.getData());
-//                            }
-//                        }
-//                    }));
+
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i).toString();
+                Log.d("ldh", "subPics: ==" + s);
+            }
+
         }
-    }
-
-    @Override
-    protected void initDate() {
-        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        cMap.put("content", editContent.getText().toString());//
-        cMap.put("visitTel", etNumber.getText().toString());// TODO: 2019/8/28 意见反馈
-        cMap.put("imgIds", "");
-
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.feedbackProblem, cMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
-            @Override
-            public void onBeforeResult() {
-
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                LogUtil.e("返回数据" + new Gson().toJson(weatherResult));
-                if (weatherResult.getCode() == 200) {
 
 
-                }
-            }
-
-            @Override
-            public void onAfterFailure() {
-
-            }
-        });
-
-
-    }
-
-
-    @OnClick(R.id.tv_save)
-    public void onViewClicked() {
-        showToast("需要对接接口...");
     }
 }

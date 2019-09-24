@@ -85,7 +85,6 @@ public class Address {
     public final static String pointsRules = "store/pointsMall/pointsRules?";
     /**
      * 我的--设置--检查更新    GET   http://192.168.0.195:9993/user/me/setting/checkForUpdates
-     *
      */
 //    public final static String checkForUpdates = "user/me/setting/checkForUpdates?";
     public final static String checkForUpdates = "user/appVersion/checkForUpdates?";
@@ -166,6 +165,11 @@ public class Address {
      * 我的--头像上传--http://192.168.0.195:8980/file/resourceFiles/uploadFile   POST
      */
     public final static String uploadFile = "file/resourceFiles/uploadFile?";
+
+    /**
+     * 我的--图片集合上传--http://192.168.0.195:8980/file/resourceFiles/uploadFiles   POST
+     */
+    public final static String uploadFiles = "file/resourceFiles/uploadFiles?";
 
     /**
      * 我的--头像获取--http://192.168.0.113:8980/file/resourceFiles/download/image?fileId=   POST

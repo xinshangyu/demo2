@@ -21,7 +21,9 @@ import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,6 +33,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -260,6 +263,55 @@ public class RetrofitRequest {
         });
     }
 
+    public static <T extends BaseResult> void fileUploads(String url, File file, final Class<T> clazz, final ResultHandler<T> resultHandler) {
+        // 判断网络连接状况
+        if (resultHandler.isNetDisconnected()) {
+            resultHandler.onAfterFailure();
+            return;
+        }
+        FileRequest fileRequest = retrofit.create(FileRequest.class);
+
+        Map<String, RequestBody> paramMap = new HashMap<>();
+
+//        addMultiPart(paramMap, "userId", SharedPreferencesHelper.getPrefString("userId", ""));
+
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        List<MultipartBody.Part> list = new ArrayList<>();
+//        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+//        list.add(filePart);
+
+        addMultiPart(paramMap, "file", file);
+
+        // 构建请求
+        Call<ResponseBody> call = fileRequest.postFile(url, paramMap);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                resultHandler.onBeforeResult();
+                try {
+                    ResponseBody body = response.body();
+                    if (body == null) {
+                        resultHandler.onServerError();
+                        return;
+                    }
+                    String string = body.string();
+                    T t = new Gson().fromJson(string, clazz);
+
+                    resultHandler.onResult(t);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    resultHandler.onFailure(e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                resultHandler.onFailure(t);
+                resultHandler.onAfterFailure();
+            }
+        });
+    }
+
     /**
      * 文件下载
      *
@@ -371,14 +423,14 @@ public class RetrofitRequest {
                 // 连接异常
                 if (NetworkUtil.isNetworkConnected(context)) {
                     // 服务器连接出错
-                  //  ToastUtils.showShort(context, R.string.net_server_connected_error);
+                    //  ToastUtils.showShort(context, R.string.net_server_connected_error);
                 } else {
                     // 手机网络不通
-                 //   ToastUtils.showShort(context, R.string.net_not_connected);
+                    //   ToastUtils.showShort(context, R.string.net_not_connected);
                 }
             } else if (t instanceof Exception) {
                 // 功能异常
-              //  ToastUtils.showShort(context,"未知错误，请稍后重试");
+                //  ToastUtils.showShort(context,"未知错误，请稍后重试");
                 LogUtil.e("功能异常" + t.toString());
             }
         }
@@ -401,6 +453,7 @@ public class RetrofitRequest {
          * @param progress 当前进度
          */
         void onProgress(int progress);
+
         /**
          * 下载完成
          *
@@ -417,7 +470,7 @@ public class RetrofitRequest {
     /**
      * 下载到本地
      *
-     * @param body 内容
+     * @param body            内容
      * @param downloadHandler
      * @return 成功或者失败
      */
@@ -453,7 +506,7 @@ public class RetrofitRequest {
                     //进行写入操作
                     outputStream.write(fileReader, 0, read);
                     fileSizeDownloaded += read;
-                    if(downloadHandler != null){
+                    if (downloadHandler != null) {
                         int progress = (int) (fileSizeDownloaded * 1.0f / fileSize * 100);
                         downloadHandler.onProgress(progress);
                     }
@@ -480,10 +533,14 @@ public class RetrofitRequest {
         }
     }
 
-    /** 最外层目录 **/
+    /**
+     * 最外层目录
+     **/
     public static String SYS_TEMMD = "xinshangyu";
 
-    /** 缓存目录 **/
+    /**
+     * 缓存目录
+     **/
     public static String CACHE = "cache";
 
     /**

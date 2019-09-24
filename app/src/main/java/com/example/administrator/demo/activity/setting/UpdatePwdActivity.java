@@ -108,7 +108,9 @@ public class UpdatePwdActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_pwd:
-                showToast("开发中...");
+
+
+
                 break;
             case R.id.tv_save:
                 // TODO: 2019/8/21 修改密码
