@@ -278,10 +278,6 @@ public class CallBackActivity extends BaseActivity {
 
     }
 
-    private String video_id = "";
-    private String id = "";
-
-
     private void subPics() {
         if (SPUtils.contains(Const.TALK_TYPE))
             SPUtils.remove(Const.TALK_TYPE);
