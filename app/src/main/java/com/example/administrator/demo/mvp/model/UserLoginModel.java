@@ -58,10 +58,11 @@ public class UserLoginModel {
                     uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
                     return;
                 }else {
+                    uUserLoginPresenter.toError(weatherResult.getMsg());
 
                 }
 
-                uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
+//                uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
             }
 
             @Override

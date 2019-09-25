@@ -6,4 +6,6 @@ package com.example.administrator.demo.mvp.iview;
  **/
 public interface UserLoginView {
     void onLoginStatus(int status, String msg, int isFirstLogin); //注册返回状态
+
+    void onLoginError(String msg);
 }

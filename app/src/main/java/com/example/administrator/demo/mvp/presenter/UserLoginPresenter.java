@@ -30,4 +30,9 @@ public class UserLoginPresenter implements UUserLoginPresenter {
     public void toRegister(int state, String msg,int isFirstLogin) {
         userLoginView.onLoginStatus(state, msg,isFirstLogin);
     }
+
+    @Override
+    public void toError(String msg) {
+        userLoginView.onLoginError(msg);
+    }
 }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -131,7 +132,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         mUserInfo = SPUtils.getUserInfo(mContext);
         if (mUserInfo != null) {
             String userPhoto = mUserInfo.getUserPhoto();
-            integralNumber= mUserInfo.getUserPhoto();
+            integralNumber = mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userPhoto, ivMyHead,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
@@ -229,9 +230,24 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 paramMap.put("userName", tvNick.getText().toString());
                 paramMap.put("nickName", et_nick.getText().toString());
                 paramMap.put("userPhoto", integralNumber);
-                paramMap.put("userSex", sex);
+
+                if (TextUtils.isEmpty(sex)) {
+                    String opt = (String) SPUtils.get("sex", "");
+                    paramMap.put("userSex", opt);
+                } else {
+                    SPUtils.put("sex", sex);
+                    paramMap.put("userSex", sex);
+                }
+
                 paramMap.put("graduationSchool", tvByyx.getText().toString());
-                paramMap.put("educationBackground", opt2tx);
+
+                if (TextUtils.isEmpty(opt2tx)) {
+                    String opt = (String) SPUtils.get("opt", "");
+                    paramMap.put("educationBackground", opt);
+                } else {
+                    SPUtils.put("opt", opt2tx);
+                    paramMap.put("educationBackground", opt2tx);
+                }
                 paramMap.put("profession", tvZy.getText().toString());
                 paramMap.put("homeSite", tvAddress.getText().toString());
 

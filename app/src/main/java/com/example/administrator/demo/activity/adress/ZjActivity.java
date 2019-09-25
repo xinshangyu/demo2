@@ -37,7 +37,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
 //    @BindView(R.id.SmartRefreshLayout)
 //    SmartRefreshLayout mSmartRefreshLayout;
 
-    TrackAdapter mAdapter;
+    private TrackAdapter mAdapter;
     private ArrayList<TrackBean.FootprintBean> mBeanList = new ArrayList<>();
     private TrackBean.FootprintBean footprintBean;
 
@@ -152,7 +152,7 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_OK && requestCode == 100){
+        if(resultCode == RESULT_OK && requestCode == 100){
             cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
             cPresenter.requestData2(this, cMap, Address.footprint_list);
         }

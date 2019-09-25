@@ -9,6 +9,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.TrackBean;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.utils.BaseUtils;
 import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
@@ -33,7 +35,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
             }else{
                 int size = BaseUtils.dip2px(mContext, 0);
                 imageView.setPadding(size,size,size,size);
-                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), imageView,
+                ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + item.getFootprintImgSrc(), imageView,
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
 
@@ -54,7 +56,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
             }else{
                 int size = BaseUtils.dip2px(mContext, 0);
                 imageView.setPadding(size,size,size,size);
-                ImageLoader.getInstance().loadingImage(mContext, item.getFootprintImgSrc(), imageView,
+                ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + item.getFootprintImgSrc(), imageView,
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
 
