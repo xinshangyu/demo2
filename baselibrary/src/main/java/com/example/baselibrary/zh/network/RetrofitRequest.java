@@ -381,7 +381,7 @@ public class RetrofitRequest {
             List<File> files = (List<File>) obj;
             for(int i = 0; i < files.size(); i++){
                 RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), (File) files.get(i));
-                paramMap.put(key + "\"; filename=\"" + ((File) obj).getName() + "", body);
+                paramMap.put(key + "\"; filename=\"" + ((File) files.get(i)).getName() + "", body);
             }
 
 
