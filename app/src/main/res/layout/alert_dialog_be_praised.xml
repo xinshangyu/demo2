@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="280dp"
+    android:layout_height="280dp"
+    android:background="@drawable/shape_background_white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,16 +13,23 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="彭于晏获得"
+            android:text="彭于晏"
+            android:textColor="@color/heise"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获得"
             android:textColor="@color/heise"
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="56"
             android:textColor="@color/themeColor"
             android:textSize="20dp" />
 
@@ -37,8 +45,8 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="97dp"
+        android:layout_height="93dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:src="@mipmap/huozan_pic" />

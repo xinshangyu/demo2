@@ -198,18 +198,26 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.ll_personal_user_identify)
     void onIdentify() {
-        AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.alert_dialog_be_praised, null);
-        localBuilder.setView(view);
-        final AlertDialog dia = localBuilder.show();
-        TextView understand = view.findViewById(R.id.tv_praised_understand);
-        understand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dia.dismiss();
-            }
-        });
-
+        NiceDialog.init()
+                .setLayoutId(R.layout.alert_dialog_be_praised)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                        TextView view = viewHolder.getView(R.id.tv_name);
+                        TextView tv = viewHolder.getView(R.id.tv);
+                        tv.setText("" + mUserInfo.getPraiseNumber());
+                        TextView tv_praised_understand = viewHolder.getView(R.id.tv_praised_understand);
+                        view.setText(mUserInfo.getPetName());
+                        tv_praised_understand.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setMargin(60)
+                .show(getSupportFragmentManager());
     }
 
     /**
