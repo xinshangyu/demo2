@@ -20,6 +20,10 @@ import com.example.administrator.demo.fragment.HositoryFragment;
 import com.example.administrator.demo.fragment.My_ReadFragment;
 import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.weight.NoPreloadViewPager;
+import com.example.administrator.demo.weight.nice.BaseNiceDialog;
+import com.example.administrator.demo.weight.nice.NiceDialog;
+import com.example.administrator.demo.weight.nice.ViewConvertListener;
+import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -163,18 +167,26 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
      **/
     @OnClick(R.id.ll_personal_user_identify)
     void onIdentify() {
-        AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.alert_dialog_be_praised, null);
-        localBuilder.setView(view);
-        final AlertDialog dia = localBuilder.show();
-        TextView understand = view.findViewById(R.id.tv_praised_understand);
-        understand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dia.dismiss();
-            }
-        });
-
+        NiceDialog.init()
+                .setLayoutId(R.layout.alert_dialog_be_praised)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder viewHolder, final BaseNiceDialog dialog) {
+                        TextView view = viewHolder.getView(R.id.tv_name);
+                        TextView tv = viewHolder.getView(R.id.tv);
+                        tv.setText("" + mUserInfo.getPraiseNumber());
+                        TextView tv_praised_understand = viewHolder.getView(R.id.tv_praised_understand);
+                        view.setText(mUserInfo.getPetName());
+                        tv_praised_understand.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setMargin(60)
+                .show(getSupportFragmentManager());
     }
 
     @Override
