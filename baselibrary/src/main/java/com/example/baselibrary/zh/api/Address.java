@@ -1,5 +1,7 @@
 package com.example.baselibrary.zh.api;
 
+import retrofit2.http.GET;
+
 /**
  * 接口定义
  */
@@ -133,6 +135,12 @@ public class Address {
      */
     public final static String attention = "user/userRelationRecord/getAttentions/attention?";
     /**
+     * 我的-- /**
+     * * 1.我的--首页--用户个人基本信息--我在阅读  GET
+     * GET http://192.168.0.195:8980/user/userInfo/readingBooks
+     */
+    public final static String readingBooks = "user/userInfo/readingBooks?";
+    /**
      * 我的--首页--浏览历史   GET
      */
     public final static String browerHistoty = "area/me/browerHistoty?";
@@ -187,10 +195,7 @@ public class Address {
      * 我的--首页--用户个人基本信息--历史成绩   GET
      */
     public final static String historyRanking = "user/userInfo/historyRanking?";
-    /**
-     * 1.我的--首页--用户个人基本信息--我在阅读  GET
-     */
-    public final static String readingBooks = "user/userInfo/readingBooks?";
+
     /**
      * 1.我的--我的组织--待审批列表   GET
      */

@@ -29,7 +29,7 @@ import butterknife.BindView;
 /**
  * 我在阅读
  */
-public class My_ReadFragment extends BaseFragment implements RefreshCallBack {
+public class My_ReadFragment extends BaseFragment implements RefreshCallBack ,CommonView{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -65,10 +65,8 @@ public class My_ReadFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentFirstVisible() {
-
-        for (int i = 0; i < 10; i++) {
-            mBeanList.add("看啥");
-        }
+        cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+        cPresenter.requestData(getActivity(), cMap, Address.readingBooks);
 
         setRefresh(mSmartRefreshLayout, this);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
@@ -82,4 +80,13 @@ public class My_ReadFragment extends BaseFragment implements RefreshCallBack {
     }
 
 
+    @Override
+    public void onData(WeatherResult weatherResult) {
+
+    }
+
+    @Override
+    public void onError() {
+
+    }
 }
