@@ -132,12 +132,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         mUserInfo = SPUtils.getUserInfo(mContext);
         if (mUserInfo != null) {
             String userPhoto = mUserInfo.getUserPhoto();
-            integralNumber = mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userPhoto, ivMyHead,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
         }
-
 
         EventBus.getDefault().register(this);
         cMap.put("userId", "" + SharedPreferencesHelper.getPrefString("userId", ""));
@@ -260,11 +258,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     @Override
                     public void onResult(WeatherResult weatherResult) {
                         String json = new Gson().toJson(weatherResult);
-                        LogUtil.e("返回数据" + json);
                         if (weatherResult.getCode() == 200) {
-                            mUserInfo.setUserPhoto(integralNumber);
-                            SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
-
                             showToast("保存成功");
                             finish();
                         } else {
@@ -501,8 +495,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
      */
     private void upLoadFile(String compressPath) {
         File file = new File(compressPath);
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        MultipartBody.Part file1 = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
@@ -516,7 +508,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 if (weatherResult.getCode() == 200) {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
-                        String integralNumber = sqBean.getFileId();
+                        integralNumber = sqBean.getFileId();
                         mUserInfo.setUserPhoto(integralNumber);
                         SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
                         showToast("正在更新头像");

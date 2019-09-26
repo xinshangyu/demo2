@@ -85,6 +85,18 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mUserInfo = SPUtils.getUserInfo(getApplicationContext());
+        if (mUserInfo != null) {
+            String userPhoto = mUserInfo.getUserPhoto();
+            ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
+                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+        }
+    }
+
+
     /***
      * 返回
      */

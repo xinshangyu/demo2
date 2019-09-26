@@ -86,7 +86,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
             ralationType = "0";
         }
 
-        initData(fansId, ralationType, userId,position);
+        initData(fansId, ralationType, userId, position);
     }
 
     /**
@@ -112,7 +112,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
      * @param fansId
      * @param ralationType
      */
-    private void initData(String fansId, String ralationType, String userId,int pos) {
+    private void initData(String fansId, String ralationType, String userId, int pos) {
         paramMap = new HashMap<>();
         paramMap.put("userId", userId);
         paramMap.put("ralationType", ralationType);
