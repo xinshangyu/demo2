@@ -3,6 +3,7 @@ package com.example.baselibrary.zh.base;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
@@ -95,7 +96,18 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
         StatusBar.translucentStatusBar(this, true);
         StatusBar.changeToLightStatusBar(this);
     }
-
+    /**
+     * 跳转Activity
+     * 带参数
+     */
+    public void startActivity(Class<?> clz, Bundle bundle) {
+        Intent intent = new Intent();
+        intent.setClass(this, clz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
     /**
      * 设置标题
      */

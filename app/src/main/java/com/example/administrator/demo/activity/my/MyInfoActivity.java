@@ -3,6 +3,7 @@ package com.example.administrator.demo.activity.my;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.personal.MyPersonalSQActivity;
+import com.example.administrator.demo.activity.user.UserFollowActivity;
 import com.example.administrator.demo.adapter.PagerAdapter;
 import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.entity.TabBean;
@@ -85,7 +88,7 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_imageView,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
             tv_name.setText("" + mUserInfo.getPetName());
-            tv_date.setText("" + mUserInfo.getUserSignature());
+            tv_date.setText("" + mUserInfo.getCityId());
             tv_date2.setText("" + mUserInfo.getUserSignature());
 
             tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
@@ -135,6 +138,73 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     public void onTabReselect(int position) {
+
+    }
+    /**
+     * 关注
+     **/
+    @OnClick(R.id.ll_personal_user_follow)
+    void onFollow() {
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "0");
+        startActivity(UserFollowActivity.class, bundle);
+    }
+
+
+    /**
+     * 粉丝
+     **/
+    @OnClick(R.id.ll_personal_user_fans)
+    void onFans() {
+        Bundle bundle = new Bundle();
+        bundle.putString("tabNum", "1");
+        startActivity(UserFollowActivity.class, bundle);
+    }
+
+    /**
+     * 商圈
+     **/
+    @OnClick(R.id.ll_personal_user_circle)
+    void onCircle() {
+        ActivityUtils.startActivity(this, MyPersonalSQActivity.class);
+    }
+
+    /**
+     * 获赞
+     **/
+    @OnClick(R.id.ll_personal_user_identify)
+    void onIdentify() {
+        AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.alert_dialog_be_praised, null);
+        localBuilder.setView(view);
+        final AlertDialog dia = localBuilder.show();
+        TextView understand = view.findViewById(R.id.tv_praised_understand);
+        understand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dia.dismiss();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mUserInfo = SPUtils.getUserInfo(getApplicationContext());
+        if (mUserInfo != null) {
+            String userPhoto = mUserInfo.getUserPhoto();
+            ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_imageView,
+                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+            tv_name.setText("" + mUserInfo.getPetName());
+            tv_date.setText("" + mUserInfo.getCityId());
+            tv_date2.setText("" + mUserInfo.getUserSignature());
+
+            tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
+            tvUserFollw.setText(replaceNULL(mUserInfo.getAttentionNumber() + ""));
+            tvUserIdentify.setText(replaceNULL(mUserInfo.getPraiseNumber() + ""));
+            tvUserFans.setText(replaceNULL(mUserInfo.getFansNumber() + ""));
+        }
 
     }
 

@@ -30,16 +30,16 @@
             android:id="@+id/tv_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="7dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/shape_color_text_background2"
             android:gravity="right"
-            android:paddingLeft="2dp"
-            android:paddingTop="4dp"
-            android:paddingRight="2dp"
-            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="6dp"
             android:text="@string/update_data"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_15sp" />
+            android:textSize="@dimen/text_13sp" />
 
     </LinearLayout>
 
@@ -233,6 +233,7 @@
         android:layout_height="48dp"
         app:tl_textSelectColor="@color/themeColor"
         app:tl_textUnselectColor="@color/heise"
+        app:tl_underline_color="@color/themeColor"
         app:tl_textsize="@dimen/text_16sp" />
 
     <android.support.v4.view.ViewPager

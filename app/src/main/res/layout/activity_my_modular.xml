@@ -531,8 +531,12 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_20">
@@ -582,6 +586,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_20">
@@ -628,8 +633,12 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_20">
