@@ -201,34 +201,6 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     }
 
-    public void updatePhone(Context context, String userPhone, String userCodeBea) {
-        paramMap = new HashMap<>();
-        paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
-        paramMap.put("userPhone", userPhone);
-        paramMap.put("smsCount", userCodeBea);
-        RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
-            @Override
-            public void onBeforeResult() {
-
-            }
-
-            @Override
-            public void onResult(WeatherResult weatherResult) {
-                Log.d("zhh", weatherResult.getCode() + "==code");
-                if (weatherResult.getCode() == 200) {
-                    ActivityUtils.startActivity(mContext, UpdatePhoneSuccessActivity.class);
-                } else {
-                    showToast("" + weatherResult.getMsg());
-                }
-
-            }
-
-            @Override
-            public void onAfterFailure() {
-                showToast("请求失败");
-            }
-        });
-    }
 
     public static class ConfirmDialog extends BaseNiceDialog {
         private String type;

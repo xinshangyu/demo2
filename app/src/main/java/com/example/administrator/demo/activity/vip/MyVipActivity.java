@@ -85,7 +85,7 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 
 

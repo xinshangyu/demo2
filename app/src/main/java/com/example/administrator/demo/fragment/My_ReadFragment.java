@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyReadAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
+import com.example.administrator.demo.entity.ReadBean;
+import com.example.administrator.demo.entity.SCBean;
 import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
@@ -29,7 +32,7 @@ import butterknife.BindView;
 /**
  * 我在阅读
  */
-public class My_ReadFragment extends BaseFragment implements RefreshCallBack ,CommonView{
+public class My_ReadFragment extends BaseFragment implements RefreshCallBack, CommonView {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -41,7 +44,7 @@ public class My_ReadFragment extends BaseFragment implements RefreshCallBack ,Co
     SmartRefreshLayout mSmartRefreshLayout;
 
     private MyReadAdapter mAdapter;
-    private ArrayList<String> mBeanList = new ArrayList<>();
+    private ArrayList<ReadBean.BookInfosBean> mBeanList = new ArrayList<>();
 
     public static My_ReadFragment newInstance(String param1, String param2) {
         My_ReadFragment fragment = new My_ReadFragment();
@@ -82,11 +85,15 @@ public class My_ReadFragment extends BaseFragment implements RefreshCallBack ,Co
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
+        ReadBean scBean = gson.fromJson(gson.toJson(weatherResult.getData()), ReadBean.class);
+        if (scBean != null && scBean.getBookInfos() != null && scBean.getBookInfos().size() > 0) {
+            mBeanList.addAll(scBean.getBookInfos());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 }

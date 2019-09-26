@@ -91,13 +91,6 @@ public class Pwd2Activity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.tv_save)
     public void onViewClicked() {
         String mEtNewNumber = etNewNumber.getText().toString();

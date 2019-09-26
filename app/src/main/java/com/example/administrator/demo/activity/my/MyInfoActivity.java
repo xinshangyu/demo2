@@ -19,6 +19,7 @@ import com.example.administrator.demo.entity.TabBean;
 import com.example.administrator.demo.fragment.HositoryFragment;
 import com.example.administrator.demo.fragment.My_ReadFragment;
 import com.example.administrator.demo.utils.SPUtils;
+import com.example.administrator.demo.weight.NoPreloadViewPager;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
@@ -39,12 +40,12 @@ import static com.example.administrator.demo.base.BaseActivity.replaceNULL;
 /**
  * 个人中心
  */
-public class MyInfoActivity extends BaseActivity implements OnTabSelectListener, ViewPager.OnPageChangeListener {
+public class MyInfoActivity extends BaseActivity implements OnTabSelectListener, NoPreloadViewPager.OnPageChangeListener {
 
     @BindView(R.id.home_tabLayout)
     CommonTabLayout mTabLayout;
     @BindView(R.id.home_NoScrollViewPager)
-    ViewPager mViewPager;
+    NoPreloadViewPager mViewPager;
     @BindView(R.id.iv_imageView)
     ImageView iv_imageView;
     @BindView(R.id.tv_name)
@@ -107,8 +108,8 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
         mTabLayout.setOnTabSelectListener(this);
         mViewPager.setAdapter(new PagerAdapter(this.getSupportFragmentManager(), mTitles, mFragments));
 
-        mViewPager.addOnPageChangeListener(this);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOnPageChangeListener(this);
+        mViewPager.setOffscreenPageLimit(1);
     }
 
     @Override
@@ -117,19 +118,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     }
 
-    @Override
-    public void onPageScrolled(int i, float v, int i1) {
-
-    }
-
-    @Override
-    public void onPageSelected(int i) {
-        mTabLayout.setCurrentTab(i);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-    }
 
     @Override
     public void onTabSelect(int position) {
@@ -140,6 +128,7 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
     public void onTabReselect(int position) {
 
     }
+
     /**
      * 关注
      **/
@@ -218,5 +207,20 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
                 ActivityUtils.startActivity(mContext, UpdateMyInfoActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        mTabLayout.setCurrentTab(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

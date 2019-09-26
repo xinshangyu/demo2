@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.adapter.MyLisiAdapter;
 import com.example.administrator.demo.adapter.MyReadAdapter;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
@@ -39,7 +40,7 @@ public class HositoryFragment extends BaseFragment implements RefreshCallBack {
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    private MyReadAdapter mAdapter;
+    private MyLisiAdapter mAdapter;
     private ArrayList<String> mBeanList = new ArrayList<>();
 
     public static My_ReadFragment newInstance(String param1, String param2) {
@@ -59,20 +60,20 @@ public class HositoryFragment extends BaseFragment implements RefreshCallBack {
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-        if (isVisible) mAdapter.notifyDataSetChanged();
+//        if (isVisible) mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onFragmentFirstVisible() {
 
-        for (int i = 0; i < 10; i++) {
-            mBeanList.add("看啥");
-        }
-
-        setRefresh(mSmartRefreshLayout, this);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
-        mAdapter = new MyReadAdapter(mContext, mBeanList);
-        mRecyclerView.setAdapter(mAdapter);
+//        for (int i = 0; i < 10; i++) {
+//            mBeanList.add("看啥");
+//        }
+//
+//        setRefresh(mSmartRefreshLayout, this);
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+//        mAdapter = new MyLisiAdapter(mContext, mBeanList);
+//        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
