@@ -67,12 +67,11 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-        initDate();
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
     public void onData(WeatherResult weatherResult) {
-
         DaojuBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), DaojuBean.class);
         if (sqBean != null && sqBean.getPropsAssets() != null && sqBean.getPropsAssets().size() > 0) {
             mBeanList.clear();
@@ -84,6 +83,6 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 }

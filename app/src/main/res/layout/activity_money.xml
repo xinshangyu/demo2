@@ -109,7 +109,7 @@
     <Spinner
         android:background="@color/colorBackGround_F7F7F7"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
+        android:layout_height="1dp"/>
 
     <RelativeLayout
         android:id="@+id/rl_daoju"
@@ -147,7 +147,7 @@
     <Spinner
         android:background="@color/colorBackGround_F7F7F7"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
+        android:layout_height="1dp"/>
     <RelativeLayout
         android:id="@+id/rl_jyjl"
         android:layout_width="match_parent"
