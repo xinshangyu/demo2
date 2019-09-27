@@ -80,15 +80,26 @@
                 android:textColor="@color/colorBlack0"
                 android:textSize="@dimen/text_18sp" />
 
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="2dp"
+    android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
                 android:text="@string/app_name"
                 android:textColor="@color/colorBlack9"
                 android:textSize="@dimen/text_9sp" />
+    <TextView
+                android:id="@+id/tv_da"
+        android:layout_marginLeft="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/colorBlack9"
+                android:textSize="@dimen/text_9sp" /></LinearLayout>
 
             <TextView
                 android:id="@+id/tv_date2"

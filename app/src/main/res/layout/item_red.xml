@@ -11,8 +11,7 @@
     <ImageView
         android:id="@+id/iv"
         android:layout_width="68dp"
-        android:layout_height="94dp"
-        android:src="@drawable/deful_back" />
+        android:layout_height="94dp" />
 
 
 </LinearLayout>

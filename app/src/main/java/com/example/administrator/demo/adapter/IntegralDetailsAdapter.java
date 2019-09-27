@@ -21,9 +21,8 @@ public class IntegralDetailsAdapter extends CommonAdapter<IntegralBean.IntegralR
     @Override
     protected void convert(ViewHolder holder, IntegralBean.IntegralRecordBean messageListBean, int position) {
         holder.setText(R.id.tv_date, messageListBean.getCommodityName())
-        .setText(R.id.tv_text, messageListBean.getCreateTime())
-        .setText(R.id.tv_money, ""+messageListBean.getIntegralNumber())
-        ;
+                .setText(R.id.tv_text, messageListBean.getCreateTime())
+                .setText(R.id.tv_money, "" + messageListBean.getIntegralNumber());
 
     }
 }

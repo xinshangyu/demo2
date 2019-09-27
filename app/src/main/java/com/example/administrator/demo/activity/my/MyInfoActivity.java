@@ -56,6 +56,8 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
     TextView tv_name;
     @BindView(R.id.tv_date)
     TextView tv_date;
+    @BindView(R.id.tv_da)
+    TextView tv_da;
     @BindView(R.id.tv_date2)
     TextView tv_date2;
     //关注个数
@@ -93,7 +95,8 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_imageView,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
             tv_name.setText("" + mUserInfo.getPetName());
-            tv_date.setText("" + mUserInfo.getCityId());
+            tv_date.setText("" + mUserInfo.getProvinceId());
+            tv_da.setText("" + mUserInfo.getCityId());
             tv_date2.setText("" + mUserInfo.getUserSignature());
 
             tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
@@ -198,7 +201,8 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_imageView,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
             tv_name.setText("" + mUserInfo.getPetName());
-            tv_date.setText("" + mUserInfo.getCityId());
+            tv_date.setText("" + mUserInfo.getProvinceId());
+            tv_da.setText("" + mUserInfo.getCityId());
             tv_date2.setText("" + mUserInfo.getUserSignature());
 
             tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));

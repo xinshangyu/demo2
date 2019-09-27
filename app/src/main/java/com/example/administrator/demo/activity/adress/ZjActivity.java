@@ -30,7 +30,7 @@ import butterknife.BindView;
 /**
  * 足迹
  */
-public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonView {
+public class ZjActivity extends BaseActivity implements CommonView {
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
@@ -129,16 +129,11 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
     }
 
     @Override
-    public void getRefreshDate(int stat, int page, int count) {
-
-    }
-
-    @Override
     public void onData(WeatherResult weatherResult) {
         TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);
         if (trackBean != null && trackBean.getFootprint() != null && trackBean.getFootprint().size() > 0) {
             mBeanList.clear();
-            mBeanList.addAll(0, trackBean.getFootprint());
+            mBeanList.addAll(trackBean.getFootprint());
             mBeanList.add(footprintBean);
             mAdapter.notifyDataSetChanged();
         }
@@ -146,13 +141,13 @@ public class ZjActivity extends BaseActivity implements RefreshCallBack, CommonV
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == 100){
+        if (resultCode == RESULT_OK && requestCode == 100) {
             cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
             cPresenter.requestData2(this, cMap, Address.footprint_list);
         }

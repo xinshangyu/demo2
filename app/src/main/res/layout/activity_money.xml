@@ -2,16 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_color_text_background_bg" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="206dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="5dp"
         android:layout_marginBottom="15dp"
         android:background="@color/white">
 
@@ -52,11 +61,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/shape_color_text_background"
+            android:background="@drawable/shape_color_text_background2"
             android:paddingLeft="120dp"
-            android:paddingTop="15dp"
+            android:paddingTop="13dp"
             android:paddingRight="120dp"
-            android:paddingBottom="15dp"
+            android:paddingBottom="13dp"
             android:text="@string/set_money"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14sp" />
@@ -67,8 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="0.5dp"
-        android:background="@android:color/white"
         android:paddingLeft="20dp"
         android:paddingRight="16dp">
 
@@ -99,12 +106,15 @@
 
     </RelativeLayout>
 
+    <Spinner
+        android:background="@color/colorBackGround_F7F7F7"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
     <RelativeLayout
         android:id="@+id/rl_daoju"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="0.5dp"
-        android:background="@android:color/white"
         android:paddingLeft="20dp"
         android:paddingRight="16dp">
 
@@ -134,13 +144,14 @@
             android:background="@drawable/right" />
 
     </RelativeLayout>
-
+    <Spinner
+        android:background="@color/colorBackGround_F7F7F7"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
     <RelativeLayout
         android:id="@+id/rl_jyjl"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginBottom="0.5dp"
-        android:background="@android:color/white"
         android:paddingLeft="20dp"
         android:paddingRight="16dp">
 

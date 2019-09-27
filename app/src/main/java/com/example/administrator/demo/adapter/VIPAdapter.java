@@ -25,7 +25,7 @@ public class VIPAdapter extends BaseQuickAdapter<VIPBean.UserInfoBean.VipEquitie
 
     @Override
     protected void convert(BaseViewHolder helper, VIPBean.UserInfoBean.VipEquitiesRuleBean item) {
-        helper.setText(R.id.tv_date, item.getVipName());
-        helper.setText(R.id.tv_vip, item.getVipCode());
+        helper.setText(R.id.tv_date, item.getVipName())
+                .setText(R.id.tv_vip, item.getVipCode());
     }
 }

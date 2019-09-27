@@ -8,11 +8,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.VIPAdapter;
+import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.entity.VIPBean;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
@@ -43,6 +47,7 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     private VIPAdapter mAdapter;
     private List<VIPBean.UserInfoBean.VipEquitiesRuleBean> mBeanList = new ArrayList<>();
+    private MyModularBen.DataBean.UserInfoBean mUserInfo;
 
     @Override
     protected int getLayout() {
@@ -56,13 +61,11 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initDate() {
-
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData(this, cMap, Address.vip_getVipEquities);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new VIPAdapter(mContext, mBeanList);
         recyclerView.setAdapter(mAdapter);
-
     }
 
 
@@ -70,8 +73,8 @@ public class MyVipActivity extends BaseActivity implements CommonView {
     public void onData(WeatherResult weatherResult) {
         VIPBean vipBean = gson.fromJson(gson.toJson(weatherResult.getData()), VIPBean.class);
         if (vipBean.getUserInfo() != null) {
-            ImageLoader.getInstance().loadingImage(mContext, vipBean.getUserInfo().getUserPhoto(), ivTitle,
-                    new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
+            ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + vipBean.getUserInfo().getUserPhoto(), ivTitle,
+                    new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
             mTvName.setText(vipBean.getUserInfo().getNickName());
             mTvVip.setText(vipBean.getUserInfo().getVipCode() + "");
             mTvAdd.setText("立即升级");
@@ -80,7 +83,6 @@ public class MyVipActivity extends BaseActivity implements CommonView {
                 mAdapter.notifyDataSetChanged();
             }
         }
-
     }
 
     @Override

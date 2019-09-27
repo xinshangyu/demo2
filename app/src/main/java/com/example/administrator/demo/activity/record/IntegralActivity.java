@@ -30,7 +30,7 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack, C
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    IntegralDetailsAdapter mAdapter;
+    private IntegralDetailsAdapter mAdapter;
     private ArrayList<IntegralBean.IntegralRecordBean> mBeanList = new ArrayList<>();
 
     @Override
@@ -40,7 +40,7 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack, C
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar(getResources().getString(R.string.record), new View.OnClickListener() {
+        setTitleBar("兑换记录", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -58,12 +58,11 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack, C
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.exchangeRecords);
-
     }
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-        initDate();
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
@@ -77,6 +76,6 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack, C
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 }

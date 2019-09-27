@@ -81,7 +81,6 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
     @Override
     protected void initDate() {
         cPresenter.requestData(this, cMap, Address.selectedFor);
-
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.personalPoints, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {

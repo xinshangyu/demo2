@@ -31,7 +31,7 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
     @BindView(R.id.SmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
-    FundDetailsAdapter mAdapter;
+    private FundDetailsAdapter mAdapter;
     private ArrayList<JyjlBean.VirtualCurrencyRecordBean> mBeanList = new ArrayList<>();
 
     @Override
