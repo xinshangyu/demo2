@@ -124,6 +124,8 @@
         <!--二级-->
 
         <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -433,8 +435,9 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@color/colorBackGround_F7F7F7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dp_20">
 
 
@@ -531,14 +534,11 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
+
                 <RelativeLayout
-                    android:visibility="gone"
+                    android:background="@color/colorBackGround_F7F7F7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dp_20">
 
 
@@ -633,10 +633,14 @@
                         android:padding="@dimen/dp_10"
                         android:src="@mipmap/youjin" />
                 </RelativeLayout>
-                <Spinner
+                <RelativeLayout
+                    android:background="@color/colorBackGround_F7F7F7"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dp_20">
+
+
+                </RelativeLayout>
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -738,8 +742,9 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@color/colorBackGround_F7F7F7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dp_20">
 
 
@@ -786,8 +791,9 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@color/colorBackGround_F7F7F7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dp_20">
 
 

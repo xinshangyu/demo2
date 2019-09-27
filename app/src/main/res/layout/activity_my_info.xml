@@ -208,7 +208,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/colorWebViewIndicator"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
@@ -248,7 +248,7 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/colorWebViewIndicator"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView

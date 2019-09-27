@@ -227,7 +227,12 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 paramMap.put("id", SharedPreferencesHelper.getPrefString("userId", ""));
                 paramMap.put("userName", tvNick.getText().toString());
                 paramMap.put("nickName", et_nick.getText().toString());
-                paramMap.put("userPhoto", integralNumber);
+
+                if (TextUtils.isEmpty(integralNumber)) {
+                    paramMap.put("userPhoto", mUserInfo.getUserPhoto());
+                } else {
+                    paramMap.put("userPhoto", integralNumber);
+                }
 
                 if (TextUtils.isEmpty(sex)) {
                     String opt = (String) SPUtils.get("sex", "");

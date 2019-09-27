@@ -30,7 +30,7 @@ public class FundDetailsAdapter extends CommonAdapter<JyjlBean.VirtualCurrencyRe
         .setOnClickListener(R.id.ll_check, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppActivityUtils.StartJxxqActivity((Activity) mContext, "" );
+                AppActivityUtils.StartJxxqActivity((Activity) mContext, messageListBean.getDealCost(),messageListBean.getDealWay(),messageListBean.getCreateTime(),messageListBean.getDealId(),messageListBean.getSurplusCost() );
             }
         })
         ;

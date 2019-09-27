@@ -27,9 +27,13 @@ public class AppActivityUtils extends ActivityUtils {
     /**
      * 跳转交易详情页面
      */
-    public static void StartJxxqActivity(Context context, String content) {
+    public static void StartJxxqActivity(Context context, String dealCost, String dealWay, String createTime, String dealId, String content) {
         Bundle bundle = new Bundle();
-        bundle.putString("CONTENT", content);//Tab标识
+        bundle.putString("CONTENT1", dealCost);//Tab标识
+        bundle.putString("CONTENT2", dealWay);//Tab标识
+        bundle.putString("CONTENT3", createTime);//Tab标识
+        bundle.putString("CONTENT4", dealId);//Tab标识
+        bundle.putString("CONTENT5", content);//Tab标识
         startActivity(context, JyXqActivity.class, bundle);
     }
 

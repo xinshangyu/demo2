@@ -19,16 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
+            android:text="交易金额"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
         <TextView
+            android:id="@+id/tv_rzje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
             android:textColor="@color/colorText_back"
             android:textSize="29sp" />
 
@@ -46,17 +46,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
+            android:text="交易途径"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
 
         <TextView
+            android:id="@+id/tv_zffs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
@@ -74,17 +74,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
+            android:text="时间"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
@@ -102,17 +102,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
+            android:text="交易单号"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
 
         <TextView
+            android:id="@+id/tv_jydh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
@@ -130,17 +130,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
+            android:text="剩余金币"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 
 
         <TextView
+            android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/check_this_is_Newest"
             android:textColor="@color/colorBlack9"
             android:textSize="@dimen/text_15sp" />
 

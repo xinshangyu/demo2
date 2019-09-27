@@ -82,6 +82,9 @@ public class MyVipActivity extends BaseActivity implements CommonView {
                 mBeanList.addAll(vipBean.getUserInfo().getVipEquitiesRule());
                 mAdapter.notifyDataSetChanged();
             }
+
+            String userId = vipBean.getUserInfo().getVipCode().substring(3);
+            recyclerView.scrollToPosition((Integer.parseInt(userId)) + 1);
         }
     }
 
