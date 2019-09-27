@@ -49,7 +49,7 @@ public class JfGzActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initDate() {
-        cMap.put("protocolType", "2");
+        cMap.put("protocolType", "4");
         cPresenter.requestData(this, cMap, Address.pointsRules);
 
     }
