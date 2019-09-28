@@ -29,7 +29,6 @@ public class BindEmailSuccessActivity extends BaseActivity {
     @Override
     protected void initDate() {
 
-
     }
 
 

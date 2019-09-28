@@ -73,6 +73,7 @@ public class TheInfoActivity extends BaseActivity implements OnTabSelectListener
     protected void initDate() {
 
     }
+
     @Override
     public void onPageScrolled(int i, float v, int i1) {
 

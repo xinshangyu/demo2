@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.FundDetailsAdapter;
-import com.example.administrator.demo.entity.DhBean;
 import com.example.administrator.demo.entity.JyjlBean;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -24,7 +23,7 @@ import butterknife.BindView;
 /**
  * 交易记录
  */
-public class RecordActivity extends BaseActivity implements CommonView,RefreshCallBack {
+public class RecordActivity extends BaseActivity implements CommonView, RefreshCallBack {
 
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
@@ -80,6 +79,6 @@ public class RecordActivity extends BaseActivity implements CommonView,RefreshCa
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 }

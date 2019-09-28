@@ -65,6 +65,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.example.administrator.demo.base.BaseActivity.replaceNULL;
+
 /**
  * 编辑个人中心
  */
@@ -323,20 +325,21 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     public void onData(WeatherResult weatherResult) {
         UpdateUserInfoBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), UpdateUserInfoBean.class);
         if (sqBean != null && sqBean.getUserInfo() != null) {
-            tvNick.setText("" + sqBean.getUserInfo().getUserName());
-            tvSex.setText("" + sqBean.getUserInfo().getUserSexValue());
-            et_nick.setText("" + sqBean.getUserInfo().getNickName());
-            tvByyx.setText("" + sqBean.getUserInfo().getGraduationSchool());
-            tvXl.setText("" + sqBean.getUserInfo().getEducationBackgroundValue());
-            tvGsmc.setText("" + sqBean.getUserInfo().getOrgInfo().getCompanyName());
-            tvBm.setText("" + sqBean.getUserInfo().getOrgInfo().getDeptName());
-            tvZy.setText("" + sqBean.getUserInfo().getProfession());
-            tvAddress.setText("" + sqBean.getUserInfo().getHomeSite());
+            tvNick.setText(replaceNULL(sqBean.getUserInfo().getUserName()));
+            tvSex.setText(replaceNULL(sqBean.getUserInfo().getUserSexValue()));
+            et_nick.setText(replaceNULL(sqBean.getUserInfo().getNickName()));
+            tvByyx.setText(replaceNULL(sqBean.getUserInfo().getGraduationSchool()));
+            tvXl.setText(replaceNULL(sqBean.getUserInfo().getEducationBackgroundValue()));
+            tvGsmc.setText(replaceNULL(sqBean.getUserInfo().getOrgInfo().getCompanyName()));
+            tvBm.setText(replaceNULL(sqBean.getUserInfo().getOrgInfo().getDeptName()));
+            tvZy.setText(replaceNULL(sqBean.getUserInfo().getProfession()));
+            tvAddress.setText(replaceNULL(sqBean.getUserInfo().getHomeSite()));
         }
     }
 
     @Override
     public void onError() {
+        showToast("请求失败");
 
     }
 

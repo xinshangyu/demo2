@@ -314,7 +314,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.onclickOrganization)
     void onclickOrganization() {
-
     }
 
 

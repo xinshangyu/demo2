@@ -140,6 +140,6 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 }

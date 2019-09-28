@@ -85,7 +85,6 @@ public class BindEmailActivity extends BaseActivity {
     @Override
     protected void initDate() {
 
-
     }
 
 

@@ -9,10 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.ImgBean;
-import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -138,7 +136,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                     showToast("请输入标题");
                     return;
                 }
-                if(TextUtils.isEmpty(mIvPath)){
+                if (TextUtils.isEmpty(mIvPath)) {
                     showToast("请选择图片");
                     return;
                 }
@@ -229,14 +227,6 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
                     selectList = PictureSelector.obtainMultipleResult(data);
-                    // 例如 LocalMedia 里面返回三种path
-                    // 1.media.getPath(); 为原图path
-                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
-//                    for (LocalMedia media : selectList) {
-//                        Log.i("图片-----》", media.getPath());
-//                    }
                     LocalMedia media = selectList.get(0);
                     String path = "";
                     if (media.isCut() && !media.isCompressed()) {
@@ -263,8 +253,6 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
      */
     private void upLoadFile(String compressPath) {
         File file = new File(compressPath);
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        MultipartBody.Part file1 = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {

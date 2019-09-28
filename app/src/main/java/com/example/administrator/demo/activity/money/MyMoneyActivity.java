@@ -112,7 +112,6 @@ public class MyMoneyActivity extends BaseActivity {
                 break;
             case R.id.rl_daoju:
                 ActivityUtils.startActivity(mContext,DaoJuActivity.class);
-
                 break;
             case R.id.rl_jyjl:
                 ActivityUtils.startActivity(mContext, RecordActivity.class);

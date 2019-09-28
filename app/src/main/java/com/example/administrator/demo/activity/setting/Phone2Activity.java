@@ -67,7 +67,6 @@ public class Phone2Activity extends BaseActivity {
     @Override
     protected void initDate() {
 
-
     }
 
 
@@ -83,7 +82,6 @@ public class Phone2Activity extends BaseActivity {
                     // TODO: 2019/8/21 先唯一校验
 
                     updatePhoneCodeOne(mContext, phone);
-
 
                 }
                 break;

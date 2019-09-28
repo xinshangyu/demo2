@@ -100,7 +100,6 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
-//        phone = etNumber.getText().toString();
         code = etCode.getText().toString();
         switch (view.getId()) {
             case R.id.tv_code:
@@ -148,7 +147,6 @@ public class UpdatePhoneActivity extends BaseActivity {
 
                     AppActivityUtils.StartPhoneActivity(getApplicationContext(), code, integralNumber, phone);
 
-//                    updatePhone(mContext, phone, code);
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }

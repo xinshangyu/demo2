@@ -105,7 +105,6 @@ public class UpdateOtherPwdActivity extends BaseActivity {
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
-//        phone = etNumber.getText().toString();
         code = etCode.getText().toString();
         switch (view.getId()) {
             case R.id.tv_code:

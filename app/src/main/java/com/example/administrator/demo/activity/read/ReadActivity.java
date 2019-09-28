@@ -55,13 +55,13 @@ public class ReadActivity extends BaseActivity {
     protected void initDate() {
 
         for (int i = 0; i < 5; i++) {
-            mListData.add("的的f" + i);
+            mListData.add("不用写" + i);
         }
         for (int i = 0; i < 5; i++) {
             if (i == 0)
-                mListData2.add("的的成第1" + i);
-            else if (i == 1) mListData2.add("的的成1" + i);
-            else mListData2.add("的的成ac地方第1" + i);
+                mListData2.add("不用写" + i);
+            else if (i == 1) mListData2.add("不用写" + i);
+            else mListData2.add("不用写的页面" + i);
         }
 
         RecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -73,9 +73,9 @@ public class ReadActivity extends BaseActivity {
                 mListData2.clear();
                 for (int i = 0; i < 5; i++) {
                     if (i == 0)
-                        mListData2.add("的的成第" + position);
-                    else if (i == 1) mListData2.add("的的成" + position);
-                    else mListData2.add("的的成ac地方第" + position);
+                        mListData2.add("不用写" + position);
+                    else if (i == 1) mListData2.add("不用写" + position);
+                    else mListData2.add("不用写的页面" + position);
                 }
                 tagAdapter.notifyDataChanged();
             }

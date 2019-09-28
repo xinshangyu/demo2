@@ -2,8 +2,6 @@ package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -121,7 +119,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     protected void initDate() {
-
 
     }
 

@@ -129,11 +129,4 @@ public class HelpActivity extends BaseActivity implements CommonView {
         showToast("请求失败");
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
 }

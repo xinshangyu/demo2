@@ -44,7 +44,7 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitleBar(getResources().getString(R.string.money), new View.OnClickListener() {
+        setTitleBar("道具", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
