@@ -194,7 +194,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_plan_name"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/colorWebViewIndicator"
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
@@ -234,7 +234,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_department"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/colorWebViewIndicator"
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView

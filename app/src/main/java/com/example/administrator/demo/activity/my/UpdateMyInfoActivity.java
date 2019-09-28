@@ -254,7 +254,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     paramMap.put("educationBackground", opt2tx);
                 }
                 paramMap.put("profession", tvZy.getText().toString());
-                paramMap.put("homeSite", tvAddress.getText().toString());
+                String s = tvAddress.getText().toString();
+                paramMap.put("homeSite",s );
 
                 RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.save, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
                     @Override
