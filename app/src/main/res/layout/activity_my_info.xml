@@ -198,7 +198,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
-                    android:hint="请选择"
+                    android:hint="不可选"
                     android:id="@+id/tv_gsmc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
-                    android:hint="请选择"
+                    android:hint="不可选"
                     android:id="@+id/tv_bm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

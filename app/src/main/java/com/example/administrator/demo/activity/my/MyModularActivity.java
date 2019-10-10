@@ -82,6 +82,12 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
             String userPhoto = mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+
+            tvUserName.setText(replaceNULL(mUserInfo.getPetName()));
+            tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
+            tvUserFollw.setText(replaceNULL(mUserInfo.getAttentionNumber() + ""));
+            tvUserIdentify.setText(replaceNULL(mUserInfo.getPraiseNumber() + ""));
+            tvUserFans.setText(replaceNULL(mUserInfo.getFansNumber() + ""));
         }
     }
 
@@ -93,6 +99,14 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
             String userPhoto = mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+
+
+            tvUserName.setText(replaceNULL(mUserInfo.getPetName()));
+            tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
+            tvUserFollw.setText(replaceNULL(mUserInfo.getAttentionNumber() + ""));
+            tvUserIdentify.setText(replaceNULL(mUserInfo.getPraiseNumber() + ""));
+            tvUserFans.setText(replaceNULL(mUserInfo.getFansNumber() + ""));
+
         }
     }
 
@@ -366,5 +380,9 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
         tvUserFollw.setText(replaceNULL(myModularBen.getData().getUserInfo().getAttentionNumber() + ""));
         tvUserIdentify.setText(replaceNULL(myModularBen.getData().getUserInfo().getPraiseNumber() + ""));
         tvUserFans.setText(replaceNULL(myModularBen.getData().getUserInfo().getFansNumber() + ""));
+
+        String userPhoto = myModularBen.getData().getUserInfo().getUserPhoto();
+        ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
+                new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
     }
 }

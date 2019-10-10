@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.administrator.demo.R;
@@ -21,6 +22,7 @@ import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +88,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-        setFinishRefresh(mSmartRefreshLayout, false);
+        onFragmentFirstVisible();
     }
 
     @Override
@@ -128,8 +130,10 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("返回数据" + json);
                 if (weatherResult.getCode() == 200) {
-                    mBeanList.remove(pos);
+//                    mBeanList.remove(pos);
+                    mBeanList.get(pos).setRalationType(ralationType);
                     mAdapter.notifyDataSetChanged();
+
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }

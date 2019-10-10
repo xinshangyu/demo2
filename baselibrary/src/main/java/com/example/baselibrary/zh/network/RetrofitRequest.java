@@ -444,14 +444,16 @@ public class RetrofitRequest {
                 // 连接异常
                 if (NetworkUtil.isNetworkConnected(context)) {
                     // 服务器连接出错
+                    ToastUtils.showShort(context,"服务器连接出错，请稍后重试");
                     //  ToastUtils.showShort(context, R.string.net_server_connected_error);
                 } else {
+                    ToastUtils.showShort(context,"网络连接失败，请稍后重试");
                     // 手机网络不通
                     //   ToastUtils.showShort(context, R.string.net_not_connected);
                 }
             } else if (t instanceof Exception) {
                 // 功能异常
-                //  ToastUtils.showShort(context,"未知错误，请稍后重试");
+                  ToastUtils.showShort(context,"未知错误，请稍后重试");
                 LogUtil.e("功能异常" + t.toString());
             }
         }

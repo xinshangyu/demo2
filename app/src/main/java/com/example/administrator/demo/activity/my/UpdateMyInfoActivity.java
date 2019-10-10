@@ -225,6 +225,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
 
                 break;
             case R.id.tv_save:
+                String name = tvNick.getText().toString();
+                String nickName = et_nick.getText().toString();
                 paramMap = new HashMap<>();
                 paramMap.put("id", SharedPreferencesHelper.getPrefString("userId", ""));
                 paramMap.put("userName", tvNick.getText().toString());
@@ -265,8 +267,11 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
 
                     @Override
                     public void onResult(WeatherResult weatherResult) {
-                        String json = new Gson().toJson(weatherResult);
                         if (weatherResult.getCode() == 200) {
+
+                            mUserInfo.setPetName(nickName);
+                            SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
+
                             showToast("保存成功");
                             finish();
                         } else {
@@ -279,8 +284,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                         showToast("请求失败");
                     }
                 });
-
-
                 break;
         }
     }

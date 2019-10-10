@@ -83,7 +83,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
