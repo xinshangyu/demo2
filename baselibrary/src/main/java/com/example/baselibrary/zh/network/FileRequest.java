@@ -35,6 +35,17 @@ public interface FileRequest {
     @POST
     Call<ResponseBody> postFile(@Url String url, @PartMap Map<String, RequestBody> paramMap);
 
+    /**
+     * 上传文件请求
+     *
+     * @param url      URL路径
+     * @param paramMap 请求参数
+     * @return
+     */
+    @Multipart
+    @POST
+    Call<ResponseBody> postFiles(@Url String url, @PartMap Map<String, List<RequestBody>> paramMap);
+
 
     /**
      * 下载文件get请求
