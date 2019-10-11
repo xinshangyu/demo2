@@ -23,7 +23,7 @@
     <string name="show_wt">问题截图</string>
     <string name="please_set">请输入...</string>
 
-    <string name="dialog_save_my_info">保存成功，并获得%d积分！</string>
+    <string name="dialog_save_my_info">保存成功，并获得%d</string>
     <string name="save_my_info">保存</string>
     <string name="set_money">充值</string>
 

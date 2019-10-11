@@ -9,6 +9,7 @@
     <color name="light_gray_text">#949494</color>
     <color name="common_list_divider">#dfdfdf</color>
     <color name="heise">#FF333333</color>
+    <color name="ztys">#333333</color>
     <color name="huise">#CDCDCD</color>
     <!--主题色-->
     <color name="purple_button">#855090</color>
@@ -38,6 +39,7 @@
     <color name="colorBlack0">#000000</color>
     <color name="colorWhite60">#99FFFFFF</color>
     <color name="colorBlack60">#99000000</color>
+    <color name="colorBlack80">#80000000</color>
     <color name="colorBackGround_F7F7F7">#F7F7F7</color>
     <color name="colorGrayC">#CCCCCC</color>
     <color name="colorGrayEF">#EFEFEF</color>

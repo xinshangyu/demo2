@@ -13,9 +13,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="122dp"
-            android:background="@color/themeColor">
+            android:background="@drawable/shape_color_text_background_sy">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/iv_run"
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
@@ -44,11 +45,20 @@
 
         </RelativeLayout>
 
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_marginTop="-35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_90"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="-35dp"
             android:layout_marginRight="@dimen/dp_15"
             card_view:cardCornerRadius="@dimen/dp_10">
 
@@ -72,8 +82,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="名字"
-                    android:textColor="@color/heise"
-                    android:textSize="@dimen/dp_18" />
+                    android:textColor="@color/ztys"
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:visibility="gone"
@@ -124,8 +134,8 @@
         <!--二级-->
 
         <LinearLayout
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -148,6 +158,7 @@
                     android:textSize="@dimen/dp_13" />
 
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="商圈"
@@ -175,6 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="关注"
+                    android:layout_marginTop="5dp"
                     android:textColor="#FF666666"
                     android:textSize="@dimen/dp_13" />
 
@@ -200,6 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="粉丝"
+                    android:layout_marginTop="5dp"
                     android:textColor="#FF666666"
                     android:textSize="@dimen/dp_13" />
 
@@ -227,6 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="获赞"
+                    android:layout_marginTop="5dp"
                     android:textColor="#FF666666"
                     android:textSize="@dimen/dp_13" />
 
@@ -238,10 +252,6 @@
             android:layout_height="10dp"
             android:background="@color/colorBackGround_F7F7F7"></Spinner>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -250,11 +260,13 @@
 
                 <!--三级-->
                 <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginRight="27dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_10"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/ll_personal_operation1"
@@ -277,8 +289,7 @@
                             android:gravity="center"
                             android:text="我的收藏"
                             android:textColor="#FF666666"
-                            android:textSize="@dimen/dp_14"
-
+                            android:textSize="@dimen/dp_13"
                             />
 
                     </LinearLayout>
@@ -306,7 +317,7 @@
                             android:gravity="center"
                             android:text="浏览记录"
                             android:textColor="#FF666666"
-                            android:textSize="@dimen/dp_14" />
+                            android:textSize="@dimen/dp_13" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -332,7 +343,7 @@
                             android:gravity="center"
                             android:text="我的评论"
                             android:textColor="#FF666666"
-                            android:textSize="@dimen/dp_14" />
+                            android:textSize="@dimen/dp_13" />
 
 
                     </LinearLayout>
@@ -360,7 +371,7 @@
                             android:gravity="center"
                             android:text="我的点赞"
                             android:textColor="#FF666666"
-                            android:textSize="@dimen/dp_14" />
+                            android:textSize="@dimen/dp_13" />
 
 
                     </LinearLayout>
@@ -375,7 +386,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickWallet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5">
 
                     <LinearLayout
@@ -398,7 +409,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="钱包"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -419,16 +430,15 @@
                             android:background="@drawable/corners_bg_shopping_che"
                             android:gravity="center"
                             android:padding="@dimen/dp_5"
+                            android:layout_marginRight="10dp"
                             android:text="充值"
-                            android:textColor="@color/white"
-
-                            />
+                            android:textColor="@color/white" />
 
                         <ImageView
                             android:layout_width="@dimen/dp_40"
                             android:layout_height="@dimen/dp_40"
                             android:padding="@dimen/dp_10"
-                            android:src="@mipmap/youjin" />
+                            android:src="@drawable/right" />
 
                     </LinearLayout>
 
@@ -446,7 +456,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickVIP"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5">
 
                     <LinearLayout
@@ -469,7 +479,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="我的VIP"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -481,24 +491,17 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="@color/colorBackGround_F7F7F7"></Spinner>
-                <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="@dimen/dp_20">-->
-
-
-                <!--</RelativeLayout>-->
+                    android:background="@color/colorBackGround_F7F7F7"/>
 
                 <RelativeLayout
                     android:id="@+id/onclickFootprint"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="5dp">
 
                     <LinearLayout
@@ -521,7 +524,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="足迹"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
 
@@ -532,7 +535,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -547,7 +550,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickOrganization"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5"
                     android:visibility="gone">
 
@@ -597,7 +600,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickIntegral"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5">
 
                     <LinearLayout
@@ -609,8 +612,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
+                            android:layout_width="22dp"
+                            android:layout_height="@dimen/dp_22"
                             android:src="@mipmap/wode_jifen" />
 
                         <TextView
@@ -620,7 +623,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="积分商城"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -631,7 +634,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:background="@color/colorBackGround_F7F7F7"
@@ -653,7 +656,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickNews"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="5dp">
 
                     <LinearLayout
@@ -665,8 +668,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
+                            android:layout_width="@dimen/dp_22"
+                            android:layout_height="@dimen/dp_22"
                             android:src="@mipmap/wode_xiaoxi" />
 
                         <TextView
@@ -676,7 +679,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="消息通知"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -687,7 +690,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
                 <Spinner
                     android:layout_width="match_parent"
@@ -704,7 +707,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickHelp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5">
 
                     <LinearLayout
@@ -716,8 +719,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
+                            android:layout_width="@dimen/dp_22"
+                            android:layout_height="@dimen/dp_22"
                             android:src="@mipmap/wode_banzhu" />
 
                         <TextView
@@ -727,7 +730,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="帮助中心"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
 
@@ -738,7 +741,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -753,7 +756,7 @@
                 <RelativeLayout
                     android:id="@+id/onclickSet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="@dimen/dp_5">
 
                     <LinearLayout
@@ -765,8 +768,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
+                            android:layout_width="@dimen/dp_22"
+                            android:layout_height="@dimen/dp_22"
                             android:src="@mipmap/wode_shezhi" />
 
                         <TextView
@@ -776,7 +779,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:text="设置"
                             android:textColor="@color/heise"
-                            android:textSize="@dimen/dp_18" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -784,10 +787,9 @@
                         android:layout_width="@dimen/dp_40"
                         android:layout_height="@dimen/dp_40"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
-                        android:src="@mipmap/youjin" />
+                        android:src="@drawable/right" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -796,14 +798,12 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dp_20">
 
-
                 </RelativeLayout>
-
 
             </LinearLayout>
 
+    </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 
 </RelativeLayout>

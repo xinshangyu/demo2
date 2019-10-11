@@ -31,7 +31,7 @@
             android:layout_marginLeft="23dp"
             android:layout_marginTop="20dp"
             android:text="@string/xnb"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -44,14 +44,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="￥"
-                android:textColor="@color/colorBlack0"
+                android:textColor="@color/ztys"
                 android:textSize="29sp" />
 
             <TextView
                 android:id="@+id/tv_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack0"
+                android:textColor="@color/ztys"
                 android:textSize="29sp" />
         </LinearLayout>
 
@@ -93,7 +93,7 @@
             android:layout_marginLeft="14dp"
             android:layout_toRightOf="@+id/iv1"
             android:text="@string/my_quan"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_15sp" />
 
 
@@ -132,7 +132,7 @@
             android:layout_marginLeft="14dp"
             android:layout_toRightOf="@+id/iv_my_head"
             android:text="@string/my_car"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_15sp" />
 
 
@@ -169,7 +169,7 @@
             android:layout_marginLeft="14dp"
             android:layout_toRightOf="@+id/iv"
             android:text="@string/record"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_15sp" />
 
 

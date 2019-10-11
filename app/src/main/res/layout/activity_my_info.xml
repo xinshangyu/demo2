@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -36,7 +36,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_head_img"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <ImageView
@@ -50,10 +50,10 @@
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -62,7 +62,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_name"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
@@ -80,21 +80,21 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="18dp"
                     android:background="@null"
                     android:ellipsize="end"
                     android:hint="请输入"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -104,7 +104,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -113,7 +113,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_nick_name"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
@@ -122,21 +122,21 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="18dp"
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:hint="请输入"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -146,7 +146,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -155,7 +155,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_six"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
@@ -164,20 +164,20 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="18dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:hint="请选择"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -185,7 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="17dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
@@ -213,10 +213,10 @@
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -225,7 +225,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -244,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="17dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
@@ -253,10 +253,10 @@
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -264,7 +264,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -273,7 +273,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_school"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
@@ -284,19 +284,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -306,7 +306,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -315,7 +315,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_Education"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <TextView
@@ -325,19 +325,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -345,7 +345,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -354,7 +354,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_major"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
@@ -365,19 +365,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -386,7 +386,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -395,7 +395,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/my_dress"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="@color/ztys"
                     android:textSize="@dimen/text_16sp" />
 
                 <EditText
@@ -405,20 +405,20 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="15dp"
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:textColor="@color/colorBlack0"
+                    android:textColor="#C4C4C4"
                     android:textSize="@dimen/text_14sp" />
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 
@@ -427,7 +427,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
-                android:paddingLeft="14dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="16dp">
 
                 <TextView
@@ -456,10 +456,10 @@
 
                 <ImageView
                     android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:layout_height="14dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/right" />
+                    android:src="@drawable/right" />
 
             </RelativeLayout>
 

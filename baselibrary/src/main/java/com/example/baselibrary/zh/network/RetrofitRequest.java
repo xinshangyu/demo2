@@ -272,13 +272,6 @@ public class RetrofitRequest {
 
         Map<String, RequestBody> paramMap = new HashMap<>();
 
-//        addMultiPart(paramMap, "userId", SharedPreferencesHelper.getPrefString("userId", ""));
-
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        List<MultipartBody.Part> list = new ArrayList<>();
-//        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-//        list.add(filePart);
-
         addMultiParts(paramMap, "file", files);
 
         // 构建请求
@@ -371,20 +364,11 @@ public class RetrofitRequest {
      *
      * @param paramMap 参数对
      * @param key      键
-     * @param obj      值
      */
-    private static void addMultiParts(Map<String, RequestBody> paramMap, String key, Object obj) {
-        if (obj instanceof String) {
-            RequestBody body = RequestBody.create(MediaType.parse("text/plain;charset=UTF-8"), (String) obj);
-            paramMap.put(key, body);
-        } else if (obj instanceof List) {
-            List<File> files = (List<File>) obj;
-            for(int i = 0; i < files.size(); i++){
-                RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), files.get(i));
-                paramMap.put(key + "\"; filename=\"" + (files.get(i)).getName() + "", body);
-            }
-
-
+    private static void addMultiParts(Map<String, RequestBody> paramMap, String key, List<File> files) {
+        for (int i = 0; i < files.size(); i++) {
+            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), files.get(i));
+            paramMap.put(key + "\"; filename=\"" + files.get(i).getName() + "", body);
         }
     }
 
@@ -444,16 +428,16 @@ public class RetrofitRequest {
                 // 连接异常
                 if (NetworkUtil.isNetworkConnected(context)) {
                     // 服务器连接出错
-                    ToastUtils.showShort(context,"服务器连接出错，请稍后重试");
+                    ToastUtils.showShort(context, "服务器连接出错，请稍后重试");
                     //  ToastUtils.showShort(context, R.string.net_server_connected_error);
                 } else {
-                    ToastUtils.showShort(context,"网络连接失败，请稍后重试");
+                    ToastUtils.showShort(context, "网络连接失败，请稍后重试");
                     // 手机网络不通
                     //   ToastUtils.showShort(context, R.string.net_not_connected);
                 }
             } else if (t instanceof Exception) {
                 // 功能异常
-                  ToastUtils.showShort(context,"未知错误，请稍后重试");
+                ToastUtils.showShort(context, "未知错误，请稍后重试");
                 LogUtil.e("功能异常" + t.toString());
             }
         }

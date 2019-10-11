@@ -42,7 +42,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/jf1"
-                android:textColor="@color/colorBlack0"
+                android:textColor="@color/ztys"
                 android:textSize="@dimen/text_18sp" />
         </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/dhjl"
-                android:textColor="@color/colorBlack0"
+                android:textColor="@color/ztys"
                 android:textSize="@dimen/text_18sp" />
         </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/jfgz"
-                android:textColor="@color/colorBlack0"
+                android:textColor="@color/ztys"
                 android:textSize="@dimen/text_18sp" />
         </LinearLayout>
 
@@ -111,9 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="9dp"
         android:text="@string/jxdh"
-        android:textColor="@color/colorBlack0"
+        android:textColor="@color/ztys"
         android:textSize="@dimen/text_16sp" />
 
     <android.support.v7.widget.RecyclerView

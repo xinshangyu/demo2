@@ -257,7 +257,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 }
                 paramMap.put("profession", tvZy.getText().toString());
                 String s = tvAddress.getText().toString();
-                paramMap.put("homeSite",s );
+                paramMap.put("homeSite", s);
 
                 RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.save, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
                     @Override
@@ -272,7 +272,13 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                             mUserInfo.setPetName(nickName);
                             SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
 
-                            showToast("保存成功");
+                            NiceDialog.init()
+                                    .setLayoutId(R.layout.dialog_save_my_info)     //设置dialog布局文件
+                                    .setMargin(60)
+                                    .setOutCancel(true)
+                                    .show(getSupportFragmentManager());
+
+
                             finish();
                         } else {
                             ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
@@ -523,7 +529,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                         integralNumber = sqBean.getFileId();
                         mUserInfo.setUserPhoto(integralNumber);
                         SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
-                        showToast("正在更新头像");
                         setImage(integralNumber);
                     }
                 } else {

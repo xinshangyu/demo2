@@ -279,13 +279,11 @@ public class CallBackActivity extends BaseActivity {
     }
 
     private void subPics() {
-        if (SPUtils.contains(Const.TALK_TYPE))
-            SPUtils.remove(Const.TALK_TYPE);
-
+        upList.clear();
+        List<File> files = new ArrayList<>();
         if (selectList.size() > 0) {
             upList.addAll(selectList);
             String path;
-            List<File> files = new ArrayList<>();
             for (int i = 0; i < upList.size(); i++) {
                 LocalMedia media = upList.get(i);
                 if (media.isCut() && !media.isCompressed()) {
@@ -298,44 +296,36 @@ public class CallBackActivity extends BaseActivity {
                     // 原图
                     path = media.getPath();
                 }
-//                lastSub.add(media.getPath());
                 File file = new File(path);
                 files.add(file);
+            }
+        }
+
+        RetrofitRequest.fileUploads(ApiKeys.getApiUrl() + Address.uploadFiles, files, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onBeforeResult() {
 
             }
 
-            RetrofitRequest.fileUploads(ApiKeys.getApiUrl() + Address.uploadFiles, files, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
+            @Override
+            public void onResult(WeatherResult weatherResult) {
+                String json = new Gson().toJson(weatherResult);
+                LogUtil.e("返回数据" + json);
+                if (weatherResult.getCode() == 200) {
+                    ImgBean sqBean = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), ImgBean.class);
+                    if (sqBean != null) {
+                        showToast("上传成功id = " + sqBean.getFileId());
 
-
-                @Override
-                public void onBeforeResult() {
-
-                }
-
-                @Override
-                public void onResult(WeatherResult weatherResult) {
-                    String json = new Gson().toJson(weatherResult);
-                    LogUtil.e("返回数据" + json);
-                    if (weatherResult.getCode() == 200) {
-                        ImgBean sqBean = new Gson().fromJson(new Gson().toJson(weatherResult.getData()), ImgBean.class);
-                        if (sqBean != null) {
-                            showToast("上传成功id = " + sqBean.getFileId());
-
-                        }
-                    } else {
-                        ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
                     }
+                } else {
+                    ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
                 }
+            }
 
-                @Override
-                public void onAfterFailure() {
-                    showToast("请求失败");
-                }
-            });
-
-
-        }
-
-
+            @Override
+            public void onAfterFailure() {
+                showToast("请求失败");
+            }
+        });
     }
 }

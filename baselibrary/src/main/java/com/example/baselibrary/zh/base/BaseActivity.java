@@ -56,7 +56,7 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         mContext = this;
-        setStatusBarColor(R.color.design_default_color_primary);
+        setStatusBarColor(R.color.colorWhite);
         mBinder = ButterKnife.bind(this);
         if (this instanceof BaseView) {
             mPresenter = TUtil.getT(this, 0);

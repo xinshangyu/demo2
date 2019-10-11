@@ -19,7 +19,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="4dp"
         android:text="sdvsdbvsd"
-        android:textColor="@color/colorBlack0"
+        android:textColor="@color/ztys"
         android:textSize="@dimen/text_16sp" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="sdvsdbvsd"
-        android:textColor="@color/colorBlack9"
+        android:textColor="#999999"
         android:textSize="@dimen/text_15sp" />
 
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/my_name"
-        android:textColor="@color/colorBlack0"
+        android:textColor="@color/ztys"
         android:textSize="@dimen/text_20sp" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/my_name"
-        android:textColor="@color/colorBlack0"
+        android:textColor="@color/ztys"
         android:textSize="@dimen/text_16sp" />
 
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="@string/check_this_is_Newest"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
 
