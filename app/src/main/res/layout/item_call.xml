@@ -11,7 +11,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorBlack0"
+        android:textColor="#999999"
         android:textSize="@dimen/text_15sp" />
 
 </LinearLayout>
