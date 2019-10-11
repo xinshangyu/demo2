@@ -1,8 +1,10 @@
 package com.example.administrator.demo.activity.my;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -78,7 +80,7 @@ public class MyDataActivity extends BaseActivity {
         images.add(R.drawable.icon);
         banner.setImages(images).setImageLoader(new GlideImageLoader()).start();
         GridLayoutManager manager = new GridLayoutManager(MyDataActivity.this,3);
-
+        disableShiftMode(navigationView);
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
@@ -184,6 +186,22 @@ public class MyDataActivity extends BaseActivity {
                     String json = gson.toJson(mBeanList);
                     SharedPreferencesHelper.setPrefString("files", json);
                     mAdapter.notifyDataSetChanged();
+                } else if (item.getItemId() == R.id.m_all) {
+                    for (MyDataBean bean: mBeanList) {
+                       bean.setSelect(true);
+                    }
+                    mFileList.clear();
+                    mFileList.addAll(mBeanList);
+                    mAdapter.notifyDataSetChanged();
+                } else if (item.getItemId() == R.id.m_cancel) {
+                    if(mAdapter.getShow()){
+                        mAdapter.setShow(false);
+                        mFileList.clear();
+                        for (MyDataBean bean: mBeanList) {
+                            bean.setSelect(false);
+                        }
+                        navigationView.setVisibility(View.GONE);
+                    }
                 }
                 return true;
             }
@@ -297,6 +315,18 @@ public class MyDataActivity extends BaseActivity {
                 }).start();
     }
 
+    @SuppressLint("RestrictedApi")
+    public static void disableShiftMode(BottomNavigationView view) {
+        int count = view.getChildCount();
+        if (count > 0) {
+            BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+            if (menuView != null) {
+                menuView.setLabelVisibilityMode(1);
+                menuView.updateMenuView();
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -348,7 +378,6 @@ public class MyDataActivity extends BaseActivity {
     public void onBackPressed() {
         if(mAdapter.getShow()){
             mAdapter.setShow(false);
-            mFileList.clear();
             mFileList.clear();
             for (MyDataBean bean: mBeanList) {
                 bean.setSelect(false);

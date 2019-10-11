@@ -380,8 +380,8 @@ public class RetrofitRequest {
         } else if (obj instanceof List) {
             List<File> files = (List<File>) obj;
             for(int i = 0; i < files.size(); i++){
-                RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), (File) files.get(i));
-                paramMap.put(key + "\"; filename=\"" + ((File) files.get(i)).getName() + "", body);
+                RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), files.get(i));
+                paramMap.put(key + "\"; filename=\"" + (files.get(i)).getName() + "", body);
             }
 
 

@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/m_all"
+        android:icon="@null"
+        android:title="全选"
+        />
+
+    <item
         android:id="@+id/m_delete"
         android:title="删除"
         android:icon="@drawable/icon_data_delete"/>
 
     <item
-        android:id="@+id/m_add"
-        android:title="创建文件夹"
-        android:icon="@drawable/icon_data_add"/>
+        android:id="@+id/m_top"
+        android:title="移动到"
+        android:icon="@drawable/icon_data_top"/>
 
     <item
-        android:id="@+id/m_top"
-        android:title="移动到最顶端"
-        android:icon="@drawable/icon_data_top"/>
+        android:id="@+id/m_cancel"
+        android:icon="@null"
+        android:title="取消"
+        />
 </menu>
