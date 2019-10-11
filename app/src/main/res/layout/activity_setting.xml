@@ -26,7 +26,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/safe_number"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -45,7 +45,7 @@
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -67,7 +67,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/read"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -86,7 +86,7 @@
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -108,7 +108,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/unit"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -127,7 +127,7 @@
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -149,7 +149,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/clear"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -162,7 +162,7 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:textColor="@color/colorGrayC"
+            android:textColor="#C4C4C4"
             android:textSize="@dimen/text_14sp" />
 
         <ImageView
@@ -189,7 +189,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/check_update"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -202,12 +202,12 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:textColor="@color/colorGrayC"
+            android:textColor="#C4C4C4"
             android:textSize="@dimen/text_14sp" />
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />
@@ -229,7 +229,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="@string/login_out"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -248,7 +248,7 @@
 
         <ImageView
             android:layout_width="13dp"
-            android:layout_height="13dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/right" />

@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/yjj"
-            android:textColor="@color/colorText_back"
+            android:textColor="#7774DA"
             android:textSize="@dimen/text_15sp" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:layout_marginLeft="21dp"
             android:layout_marginRight="11dp"
             android:text="@string/wjj"
-            android:textColor="@color/colorText_back"
+            android:textColor="#7774DA"
             android:textSize="@dimen/text_15sp" />
 
 

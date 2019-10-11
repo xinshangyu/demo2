@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="9dp"
-        android:text="@string/do_clear_show"
+        android:text="@string/do_setting"
         android:textColor="@color/colorBlack0"
         android:textSize="@dimen/text_18sp" />
 
@@ -22,7 +22,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
-        android:text="@string/do_clear_show_text"
+        android:text="@string/do_setting_show"
         android:textColor="@color/colorText_gray"
         android:textSize="@dimen/text_15sp" />
 
