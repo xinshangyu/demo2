@@ -22,7 +22,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="新手机号"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <EditText

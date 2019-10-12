@@ -14,8 +14,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:orientation="horizontal"
         android:padding="@dimen/dp_15">
 
@@ -28,7 +26,7 @@
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:text="VIP"
-            android:textColor="@android:color/black"
+            android:textColor="#666666"
             android:textSize="@dimen/text_19sp" />
 
         <TextView
@@ -49,8 +47,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="15dp"
@@ -63,7 +59,7 @@
             android:layout_weight="1"
             android:gravity="left"
             android:text="@string/app_name"
-            android:textColor="@color/colorBlack0"
+            android:textColor="#666666"
             android:textSize="@dimen/text_15sp" />
 
     </LinearLayout>

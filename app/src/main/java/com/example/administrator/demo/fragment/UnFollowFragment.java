@@ -143,7 +143,7 @@ public class UnFollowFragment extends BaseFragment implements RefreshCallBack, C
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("返回数据" + json);
                 if (weatherResult.getCode() == 200) {
-                    mBeanList.remove(pos);
+                    mBeanList.get(pos).setRalationType(ralationType);
                     mAdapter.notifyDataSetChanged();
                 } else {
                     showToast("" + weatherResult.getMsg());

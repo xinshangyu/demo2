@@ -25,7 +25,7 @@ public class JfgzDetailsAdapter extends CommonAdapter<JFGZBean.ProtocolRulesBean
         TextView tv_content = holder.getView(R.id.tv_content);
         holder.setText(R.id.tv_name, messageListBean.getProtocolName())
                 .setText(R.id.tv_content, messageListBean.getProtocolCount())
-                .setOnClickListener(R.id.iv, new View.OnClickListener() {
+                .setOnClickListener(R.id.ll_check, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         tv_content.setVisibility(tv_content.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);

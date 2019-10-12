@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_phone"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:gravity="center_vertical"
             android:hint="@string/login_phone_hint"
             android:inputType="phone"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
     </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/number_format"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <EditText
@@ -70,7 +70,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_code_hint"
-            android:textColor="@color/colorBlack0"
+            android:textColor="@color/ztys"
             android:textSize="@dimen/text_16sp" />
 
         <TextView

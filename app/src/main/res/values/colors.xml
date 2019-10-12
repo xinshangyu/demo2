@@ -36,7 +36,7 @@
     <color name="colorBackground">#E42112</color>
     <color name="colorBlack9">#999999</color>
     <color name="colorBlack6">#666666</color>
-    <color name="colorBlack0">#000000</color>
+    <color name="colorBlack0">#333333</color>
     <color name="colorWhite60">#99FFFFFF</color>
     <color name="colorBlack60">#99000000</color>
     <color name="colorBlack80">#80000000</color>
@@ -57,6 +57,6 @@
     <color name="colorText_back">#FF6988F8</color>
     <color name="colorText_gray">#FF888888</color>
 
-    <color name="colorgray1">#FFE5CC9B</color>
-    <color name="colorgray2">#FFB4966B</color>
+    <color name="colorgray1">#F4C887</color>
+    <color name="colorgray2">#B07E35</color>
 </resources>

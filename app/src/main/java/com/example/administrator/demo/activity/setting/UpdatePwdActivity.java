@@ -131,6 +131,12 @@ public class UpdatePwdActivity extends BaseActivity {
                 } else if (!mEtNewNumber.equals(mEetNewNumber2)) {
                     showToast(R.string.set_pwd4);
                     return;
+                } else if (mEtNewNumber.equals(mEtOldNumber)) {
+                    showToast(R.string.set_pwd7);
+                    return;
+                }else if (mEetNewNumber2.equals(mEtOldNumber)) {
+                    showToast(R.string.set_pwd7);
+                    return;
                 } else {
                     updatePWD(mContext, mEtOldNumber, mEtNewNumber);
                 }

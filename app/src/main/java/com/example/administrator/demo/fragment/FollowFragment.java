@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.UnFollowBen;
+import com.example.administrator.demo.utils.SPUtils;
 import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
@@ -88,7 +89,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
 
     @Override
     public void getRefreshDate(int stat, int page, int count) {
-        onFragmentFirstVisible();
+        setFinishRefresh(mSmartRefreshLayout, false);
     }
 
     @Override
@@ -130,7 +131,6 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
                 String json = new Gson().toJson(weatherResult);
                 LogUtil.e("返回数据" + json);
                 if (weatherResult.getCode() == 200) {
-//                    mBeanList.remove(pos);
                     mBeanList.get(pos).setRalationType(ralationType);
                     mAdapter.notifyDataSetChanged();
 

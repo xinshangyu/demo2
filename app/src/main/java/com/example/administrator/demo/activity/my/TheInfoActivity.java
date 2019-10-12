@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.PagerAdapter;
 import com.example.administrator.demo.entity.TabBean;
 import com.example.administrator.demo.fragment.HositoryFragment;
 import com.example.administrator.demo.fragment.My_ReadFragment;
+import com.example.administrator.demo.weight.NoPreloadViewPager;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -20,12 +22,13 @@ import java.util.ArrayList;
 import butterknife.BindString;
 import butterknife.BindView;
 
-public class TheInfoActivity extends BaseActivity implements OnTabSelectListener, ViewPager.OnPageChangeListener {
+public class TheInfoActivity extends BaseActivity implements OnTabSelectListener, NoPreloadViewPager.OnPageChangeListener {
 
     @BindView(R.id.home_tabLayout)
-    CommonTabLayout mTabLayout;
+    CommonTabLayout mTabLayout;@BindView(R.id.tv_name)
+    TextView tv_name;
     @BindView(R.id.home_NoScrollViewPager)
-    ViewPager mViewPager;
+    NoPreloadViewPager mViewPager;
 
     @BindString(R.string.my_see)
     String home;
@@ -64,28 +67,14 @@ public class TheInfoActivity extends BaseActivity implements OnTabSelectListener
         mTabLayout.setOnTabSelectListener(this);
         mViewPager.setAdapter(new PagerAdapter(this.getSupportFragmentManager(), mTitles, mFragments));
 
-        mViewPager.addOnPageChangeListener(this);
+        mViewPager.setOnPageChangeListener(this);
         mViewPager.setOffscreenPageLimit(2);
 
     }
 
     @Override
     protected void initDate() {
-
-    }
-
-    @Override
-    public void onPageScrolled(int i, float v, int i1) {
-
-    }
-
-    @Override
-    public void onPageSelected(int i) {
-        mTabLayout.setCurrentTab(i);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
+        tv_name.setText(content);
     }
 
     @Override
@@ -98,4 +87,18 @@ public class TheInfoActivity extends BaseActivity implements OnTabSelectListener
 
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int i) {
+        mTabLayout.setCurrentTab(i);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }

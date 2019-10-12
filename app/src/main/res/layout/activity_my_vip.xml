@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/shape_color_text_background_vip_main"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <ImageView
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_gravity="bottom"
-        android:background="@color/colorWhite" />
+        android:src="@drawable/vips"
+        android:layout_height="302dp"/>
 
+<RelativeLayout
+    android:id="@+id/rl_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/ll"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -27,7 +30,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:src="@mipmap/run" />
 
             <TextView
@@ -43,7 +46,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="9.5dp"
             android:background="@drawable/vip"
             android:orientation="vertical">
@@ -51,7 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -89,7 +92,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -162,6 +165,7 @@
                 android:layout_marginRight="@dimen/dp_15"
                 android:background="@color/colorBackGround_F7F7F7"></Spinner>
 
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
@@ -170,7 +174,10 @@
                 android:layout_marginTop="@dimen/dp_15"
                 android:layout_marginRight="@dimen/dp_15" />
 
-
         </LinearLayout>
+
+
     </LinearLayout>
+</RelativeLayout>
+
 </FrameLayout>

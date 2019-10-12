@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.MultiTransformation;
@@ -18,6 +21,7 @@ import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
+import com.example.baselibrary.zh.utils.BarUtils;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.ArrayList;
@@ -41,6 +45,8 @@ public class MyVipActivity extends BaseActivity implements CommonView {
     TextView mTvAdd;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.ll)
+    LinearLayout ll;
 
     private VIPAdapter mAdapter;
     private List<VIPBean.UserInfoBean.VipEquitiesRuleBean> mBeanList = new ArrayList<>();
@@ -53,7 +59,14 @@ public class MyVipActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setStatusBarColor(R.color.colorgray1);
+        setStatusBarColorToLight();
+
+        RelativeLayout.LayoutParams closeLayoutParams = (RelativeLayout.LayoutParams) ll.getLayoutParams();
+        int statusBarHeight = BarUtils.getStatusBarHeight();
+        closeLayoutParams.topMargin = statusBarHeight;
+        closeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        ll.setLayoutParams(closeLayoutParams);
+
     }
 
     @Override

@@ -25,7 +25,7 @@ public class FundDetailsAdapter extends CommonAdapter<JyjlBean.VirtualCurrencyRe
     protected void convert(ViewHolder holder, JyjlBean.VirtualCurrencyRecordBean messageListBean, int position) {
         holder.setText(R.id.tv_date, messageListBean.getDealWay())
                 .setText(R.id.tv_text, messageListBean.getCreateTime())
-                .setText(R.id.tv_money, messageListBean.getDealCost())
+                .setText(R.id.tv_money, "+"+messageListBean.getDealCost())
 
         .setOnClickListener(R.id.ll_check, new View.OnClickListener() {
             @Override

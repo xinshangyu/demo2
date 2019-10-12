@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/phone_success"
-        android:textColor="@color/colorBlack0"
+        android:textColor="@color/ztys"
         android:textSize="@dimen/text_17sp" />
 
     <RelativeLayout

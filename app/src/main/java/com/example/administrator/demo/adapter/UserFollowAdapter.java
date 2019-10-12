@@ -36,7 +36,7 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
                 .setOnClickListener(R.id.fl_content, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppActivityUtils.StartTheActivity((Activity) mContext, "他的资料");
+                        AppActivityUtils.StartTheActivity((Activity) mContext, userFollowBen.getUserName());
                     }
                 })
                 .setOnClickListener(R.id.iv_r, new View.OnClickListener() {

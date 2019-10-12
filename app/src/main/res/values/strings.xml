@@ -89,6 +89,7 @@
     <string name="set_pwd2">请输入新密码</string>
     <string name="set_pwd3">请再次输入新密码</string>
     <string name="set_pwd4">请验证二次新密码是否正确</string>
+    <string name="set_pwd7">新密码与旧密码一致，请确认</string>
     <string name="set_pwd5">密码修改成功</string>
     <string name="set_pwd6">设置密码</string>
 
