@@ -54,7 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="22dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -102,9 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/shape_color_text_background_vip"
-                    android:paddingLeft="13dp"
+                    android:paddingLeft="8dp"
                     android:paddingTop="3dp"
-                    android:paddingRight="13dp"
+                    android:paddingRight="8dp"
                     android:paddingBottom="3dp"
                     android:text="@string/ljql"
                     android:textColor="@android:color/white"
