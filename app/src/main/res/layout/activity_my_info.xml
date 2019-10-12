@@ -57,10 +57,16 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
                 android:id="@+id/rl_tv_nick_update"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -97,12 +103,16 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:id="@+id/rl_tv_nick"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -139,12 +149,16 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -180,7 +194,12 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -219,11 +238,15 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -259,7 +282,12 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -299,12 +327,16 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:id="@+id/rl_xl"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -340,7 +372,12 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -380,11 +417,15 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
                 android:background="@android:color/white"
                 android:paddingLeft="15dp"
                 android:paddingRight="16dp">
@@ -421,7 +462,12 @@
                     android:src="@drawable/right" />
 
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#E5E5E5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"

@@ -32,6 +32,7 @@ import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -317,7 +318,7 @@ public class CallBackActivity extends BaseActivity {
                                 public void onResult(WeatherResult weatherResult) {
                                     LogUtil.e("ldh" + new Gson().toJson(weatherResult));
                                     if (weatherResult.getCode() == 200) {
-                                        showToast("感谢您的反馈~");
+                                        ActivityUtils.startActivity(mContext, CallBackSuccessActivity.class);
                                         finish();
                                     }
                                 }

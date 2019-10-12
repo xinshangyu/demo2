@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Selection;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -142,10 +143,12 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         EventBus.getDefault().register(this);
         cMap.put("userId", "" + SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.edit);
+
+
     }
 
 
-    @OnClick({R.id.iv_my_head, R.id.rl_my_headImage, R.id.rl_sex, R.id.rl_xl, R.id.tv_save})
+    @OnClick({R.id.iv_my_head, R.id.rl_my_headImage, R.id.rl_sex, R.id.rl_xl, R.id.tv_save, R.id.et_nick, R.id.tv_nick, R.id.tv_byyx, R.id.tv_zy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_my_head:
@@ -156,6 +159,19 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 // TODO: 2019/9/10 头像选择
                 doSelectHead();
 
+                break;
+            case R.id.tv_byyx:
+                tvByyx.setSelection(tvByyx.getText().toString().length());//将光标移至文字末尾
+                break;
+            case R.id.tv_zy:
+                tvZy.setSelection(tvZy.getText().toString().length());//将光标移至文字末尾
+                break;
+            case R.id.tv_nick:
+                tvNick.setSelection(tvNick.getText().toString().length());//将光标移至文字末尾
+                break;
+            case R.id.et_nick:
+                int length = et_nick.getText().toString().length();
+                et_nick.setSelection(length);//将光标移至文字末尾
                 break;
             case R.id.rl_sex:
                 if (SoftKeyboardUtils.isSoftShowing(this)) {

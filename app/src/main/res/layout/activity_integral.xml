@@ -125,7 +125,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="18dp"
         android:gravity="bottom">
 
         <TextView
@@ -135,9 +135,9 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/shape_color_text_background"
             android:paddingLeft="139dp"
-            android:paddingTop="15dp"
+            android:paddingTop="14dp"
             android:paddingRight="139dp"
-            android:paddingBottom="15dp"
+            android:paddingBottom="14dp"
             android:text="@string/go_shapping"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14sp" />

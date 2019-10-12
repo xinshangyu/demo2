@@ -195,10 +195,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_color_text_kong2"
                     android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="4dp"
                     android:text="私信"
                     android:textColor="@color/colorBlack0"
                     android:textSize="@dimen/text_14sp" />
@@ -211,10 +211,10 @@
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/shape_color_text_background2"
                     android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="4dp"
                     android:text="关注"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14sp" />
@@ -231,17 +231,22 @@
         android:background="@color/colorBackGround_F7F7F7" />
 
     <com.flyco.tablayout.CommonTabLayout
+        android:layout_gravity="center"
         android:id="@+id/home_tabLayout"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:tl_textSelectColor="#666666"
         app:tl_textUnselectColor="#666666"
         app:tl_indicator_width="80dp"
         android:paddingBottom="11dp"
-        app:tl_underline_color="@color/common_list_divider"
         app:tl_underline_height="1dp"
         app:tl_indicator_color="#5579FC"
         app:tl_textsize="@dimen/text_16sp" />
+
+    <Spinner
+        android:background="@color/common_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
     <com.example.administrator.demo.weight.NoPreloadViewPager
         android:layout_marginTop="11dp"
