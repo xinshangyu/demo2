@@ -8,7 +8,7 @@
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="light_gray_text">#949494</color>
     <color name="common_list_divider">#dfdfdf</color>
-    <color name="heise">#FF333333</color>
+    <color name="heise">#333333</color>
     <color name="ztys">#333333</color>
     <color name="huise">#CDCDCD</color>
     <!--主题色-->

@@ -39,7 +39,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/colorBlack3"
-        android:textSize="@dimen/text_18sp" />
+        android:textSize="@dimen/text_19sp" />
 
 
 </android.support.v7.widget.Toolbar>

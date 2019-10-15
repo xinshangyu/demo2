@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.user.UserLoginActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -64,7 +64,9 @@
         <activity android:name=".activity.read.ReadActivity" />
         <activity android:name=".activity.adress.ZjAddActivity" />
         <activity android:name=".activity.my.MyInfoActivity" />
-        <activity android:name=".activity.my.UpdateMyInfoActivity" />
+        <activity android:name=".activity.my.UpdateMyInfoActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
         <activity android:name=".activity.record.JfGzActivity" />
         <activity android:name=".activity.my.MyDataActivity" >
             <!--<intent-filter>-->
