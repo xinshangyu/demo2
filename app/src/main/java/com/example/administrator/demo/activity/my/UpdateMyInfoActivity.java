@@ -20,6 +20,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.administrator.demo.MainActivity;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.dialog.SexDialog;
 import com.example.administrator.demo.entity.ImgBean;
@@ -49,6 +50,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -159,19 +161,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 // TODO: 2019/9/10 头像选择
                 doSelectHead();
 
-                break;
-            case R.id.tv_byyx:
-                tvByyx.setSelection(tvByyx.getText().toString().length());//将光标移至文字末尾
-                break;
-            case R.id.tv_zy:
-                tvZy.setSelection(tvZy.getText().toString().length());//将光标移至文字末尾
-                break;
-            case R.id.tv_nick:
-                tvNick.setSelection(tvNick.getText().toString().length());//将光标移至文字末尾
-                break;
-            case R.id.et_nick:
-                int length = et_nick.getText().toString().length();
-                et_nick.setSelection(length);//将光标移至文字末尾
                 break;
             case R.id.rl_sex:
                 if (SoftKeyboardUtils.isSoftShowing(this)) {
@@ -284,7 +273,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     @Override
                     public void onResult(WeatherResult weatherResult) {
                         if (weatherResult.getCode() == 200) {
-
+                            mUserInfo.setUserPhoto(integralNumber);
                             mUserInfo.setPetName(nickName);
                             SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
 
@@ -387,6 +376,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        //包括裁剪和压缩后的缓存，要在上传成功后调用，注意：需要系统sd卡权限
+        PictureFileUtils.deleteCacheDirFile(UpdateMyInfoActivity.this);
     }
 
     //选择头像
@@ -496,7 +487,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (RESULT_OK == resultCode) {
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片、视频、音频选择结果回调
@@ -521,7 +512,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     }
                     break;
             }
-        }
+            }
     }
 
     /**
@@ -542,11 +533,9 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 if (weatherResult.getCode() == 200) {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
-                        integralNumber = sqBean.getFileId();
-                        mUserInfo.setUserPhoto(integralNumber);
-                        SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
-                        setImage(integralNumber);
+                        setImage(sqBean.getFileId());
                     }
+
                 } else {
                     ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
                 }
@@ -558,6 +547,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
             }
         });
     }
+
 
     /**
      * 设置图片

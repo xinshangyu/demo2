@@ -11,6 +11,8 @@ import com.example.administrator.demo.entity.UnFollowBen;
 import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.baselibrary.zh.adapter.CommonAdapter;
 import com.example.baselibrary.zh.adapter.base.ViewHolder;
+import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
                     }
                 })
         ;
-        ImageLoader.getInstance().loadingImage(mContext, userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
+        ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId +userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
         if ("0".equals(userFollowBen.getRalationType())) {

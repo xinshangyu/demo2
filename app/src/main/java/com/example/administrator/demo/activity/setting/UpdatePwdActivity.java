@@ -119,7 +119,7 @@ public class UpdatePwdActivity extends BaseActivity {
                 String mEetNewNumber2 = etNewNumber2.getText().toString();
                 String userPwd = SharedPreferencesHelper.getPrefString("userPwd", "");
 
-                if (TextUtils.isEmpty(mEtOldNumber) && !userPwd.equals(mEtOldNumber)) {
+                if (!userPwd.equals(mEtOldNumber)) {
                     showToast(getString(R.string.set_pwd));
                     return;
                 } else if (TextUtils.isEmpty(mEtNewNumber)) {
@@ -134,8 +134,11 @@ public class UpdatePwdActivity extends BaseActivity {
                 } else if (mEtNewNumber.equals(mEtOldNumber)) {
                     showToast(R.string.set_pwd7);
                     return;
-                }else if (mEetNewNumber2.equals(mEtOldNumber)) {
+                } else if (mEetNewNumber2.equals(mEtOldNumber)) {
                     showToast(R.string.set_pwd7);
+                    return;
+                } else if (mEtNewNumber.length() < 8 || mEetNewNumber2.length() < 8) {
+                    showToast(R.string.set_pwd8);
                     return;
                 } else {
                     updatePWD(mContext, mEtOldNumber, mEtNewNumber);
@@ -162,8 +165,8 @@ public class UpdatePwdActivity extends BaseActivity {
                 Log.d("zhh", weatherResult.getCode() + "==code");
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePwdSuccessActivity.class);
-                }else {
-                    showToast(""+weatherResult.getMsg());
+                } else {
+                    showToast("" + weatherResult.getMsg());
                 }
 
             }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -97,7 +98,9 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
                     try {
                         JSONObject object = new JSONObject(json);
                         String currencyNumber = object.optString("integralNumber");
-                        tv.setText("" + currencyNumber);
+                        if (TextUtils.isEmpty(currencyNumber)) tv.setText("积分0");
+                        else
+                            tv.setText("积分" + currencyNumber);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

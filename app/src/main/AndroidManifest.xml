@@ -20,11 +20,11 @@
         </activity>
         <activity android:name=".MainActivity">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -46,7 +46,9 @@
         <activity android:name=".activity.setting.BindEmailActivity" />
         <activity android:name=".activity.setting.BindEmailSuccessActivity" />
         <activity android:name=".activity.setting.UpdateEmailSuccessActivity" />
-        <activity android:name=".activity.setting.CallBackActivity" />
+        <activity
+            android:name=".activity.setting.CallBackActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.setting.CallBackSuccessActivity" />
         <activity android:name=".activity.setting.HelpActivity" />
         <activity android:name=".activity.money.MyMoneyActivity" />
@@ -64,24 +66,17 @@
         <activity android:name=".activity.read.ReadActivity" />
         <activity android:name=".activity.adress.ZjAddActivity" />
         <activity android:name=".activity.my.MyInfoActivity" />
-        <activity android:name=".activity.my.UpdateMyInfoActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            />
+        <activity
+            android:name=".activity.my.UpdateMyInfoActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".activity.record.JfGzActivity" />
-        <activity android:name=".activity.my.MyDataActivity" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+        <activity android:name=".activity.my.MyDataActivity"></activity>
         <activity android:name="com.example.administrator.demo.activity.record.JyXqActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.ChaJianActivity" />
         <activity android:name="com.example.administrator.demo.activity.my.TheInfoActivity" />
 
 
     </application>
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -97,7 +92,6 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
 

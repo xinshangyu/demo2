@@ -169,7 +169,7 @@ public class Address {
      */
     public final static String userInfo = "user/userInfo?";
     /**
-     * 我的--首页--用户个人基本信息--编辑个人资料   POST   http://192.168.0.195:8980/user/userinfo/save
+     * 我的--首页--用户个人基本信息--               编辑个人资料   POST   http://192.168.0.195:8980/user/userinfo/save
      */
     public final static String edit = "user/userinfo/edit?";
 

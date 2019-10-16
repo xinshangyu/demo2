@@ -90,6 +90,7 @@
     <string name="set_pwd3">请再次输入新密码</string>
     <string name="set_pwd4">请验证二次新密码是否正确</string>
     <string name="set_pwd7">新密码与旧密码一致，请确认</string>
+    <string name="set_pwd8">新密码长度必须大或等于8，请确认</string>
     <string name="set_pwd5">密码修改成功</string>
     <string name="set_pwd6">设置密码</string>
 
@@ -140,7 +141,6 @@
     <string name="cnxw">猜你想问</string>
 
     <string name="dhjl">兑换记录</string>
-    <string name="jf1">积分10000</string>
     <string name="jf_sc">积分商城</string>
     <string name="jfgz">积分规则</string>
     <string name="go_shapping">去商城</string>
