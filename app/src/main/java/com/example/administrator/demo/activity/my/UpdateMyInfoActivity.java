@@ -31,16 +31,6 @@ import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.SexBean;
 import com.example.administrator.demo.entity.UpdateUserInfoBean;
 import com.example.administrator.demo.entity.XlBean;
-import com.example.administrator.demo.take_photo.takephoto.app.TakePhoto;
-import com.example.administrator.demo.take_photo.takephoto.compress.CompressConfig;
-import com.example.administrator.demo.take_photo.takephoto.model.CropOptions;
-import com.example.administrator.demo.take_photo.takephoto.model.InvokeParam;
-import com.example.administrator.demo.take_photo.takephoto.model.LubanOptions;
-import com.example.administrator.demo.take_photo.takephoto.model.TContextWrap;
-import com.example.administrator.demo.take_photo.takephoto.model.TResult;
-import com.example.administrator.demo.take_photo.takephoto.model.TakePhotoOptions;
-import com.example.administrator.demo.take_photo.takephoto.permission.InvokeListener;
-import com.example.administrator.demo.take_photo.takephoto.permission.PermissionManager;
 import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.utils.SoftKeyboardUtils;
 import com.example.administrator.demo.weight.BitmapUtil;
@@ -89,7 +79,7 @@ import static com.example.administrator.demo.base.BaseActivity.replaceNULL;
 /**
  * 编辑个人中心
  */
-public class UpdateMyInfoActivity extends BaseActivity implements CommonView, TakePhoto.TakeResultListener, InvokeListener {
+public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
 
     @BindView(R.id.iv_my_head)
     ImageView ivMyHead;
@@ -455,8 +445,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView, Ta
                 }).start();
     }
 
-    private TakePhoto takePhoto;
-    //    private CustomHelper customHelper;
     public static File outputFile;//相机拍照图片保存地址
     private static Uri imageUri;
 
@@ -487,20 +475,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView, Ta
             startActivityForResult(intent, 222);
         }
 
-//        if (takePhoto == null) {
-//            takePhoto = (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this, this));
-//        }
-//
-//        File file = new File(Environment.getExternalStorageDirectory(), "/temp/" + System.currentTimeMillis() + ".jpg");
-//        if (!file.getParentFile().exists()) {
-//            file.getParentFile().mkdirs();
-//        }
-//        Uri imageUri = Uri.fromFile(file);
-//
-//        configCompress(takePhoto);
-//        configTakePhotoOption(takePhoto);
-//
-//        takePhoto.onPickFromCaptureWithCrop(imageUri, getCropOptions());
 
 //        PictureSelector.create(UpdateMyInfoActivity.this)
 //                .openCamera(PictureMimeType.ofImage())
@@ -517,42 +491,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView, Ta
 //                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
 //                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
 //                .forResult(PictureConfig.CHOOSE_REQUEST);
-    }
-
-    private CropOptions getCropOptions() {
-        int height = 400;
-        int width = 400;
-        boolean withWonCrop = false;
-
-        CropOptions.Builder builder = new CropOptions.Builder();
-
-        builder.setAspectX(width).setAspectY(height);
-        builder.setWithOwnCrop(withWonCrop);
-        return builder.create();
-    }
-
-    private void configTakePhotoOption(TakePhoto takePhoto) {
-        TakePhotoOptions.Builder builder = new TakePhotoOptions.Builder();
-        builder.setCorrectImage(true);
-        takePhoto.setTakePhotoOptions(builder.create());
-
-    }
-
-    private void configCompress(TakePhoto takePhoto) {
-        takePhoto.onEnableCompress(null, false);
-        int maxSize = 800;
-        int width = 800;
-        int height = 800;
-        boolean showProgressBar = false;
-        boolean enableRawFile = true;
-        CompressConfig config;
-
-        LubanOptions option = new LubanOptions.Builder().setMaxHeight(height).setMaxWidth(width).setMaxSize(maxSize).create();
-        config = CompressConfig.ofLuban(option);
-        config.enableReserveRaw(enableRawFile);
-        takePhoto.onEnableCompress(config, showProgressBar);
-
-
     }
 
     //从本地相册中选择
@@ -648,7 +586,8 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView, Ta
                 if (weatherResult.getCode() == 200) {
                     ImgBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), ImgBean.class);
                     if (sqBean != null) {
-                        setImage(sqBean.getFileId());
+                        integralNumber = sqBean.getFileId();
+                        setImage(integralNumber);
                     }
 
                 } else {
@@ -671,37 +610,4 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView, Ta
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
     }
 
-    @Override
-    public void takeSuccess(TResult result) {
-        String compressPath = result.getImage().getCompressPath();
-        showToast("====" + compressPath);
-    }
-
-    @Override
-    public void takeFail(TResult result, String msg) {
-
-    }
-
-    @Override
-    public void takeCancel() {
-
-    }
-
-    private InvokeParam invokeParam;
-
-    @Override
-    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
-        PermissionManager.TPermissionType type = PermissionManager.checkPermission(TContextWrap.of(this), invokeParam.getMethod());
-        if (PermissionManager.TPermissionType.WAIT.equals(type)) {
-            this.invokeParam = invokeParam;
-        }
-        return type;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionManager.TPermissionType type = PermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionManager.handlePermissionsResult(this, type, invokeParam, this);
-    }
 }

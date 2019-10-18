@@ -94,6 +94,7 @@ public class UCropUtils {
         //是否能调整裁剪框
         //是否隐藏底部容器，默认显示
         options.setHideBottomControls(true);
+        options.setCircleDimmedLayer(true);
 //        options.setFreeStyleCropEnabled(true);
         uCrop.withOptions(options);
         //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
