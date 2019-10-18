@@ -2,10 +2,13 @@ package com.example.administrator.demo.activity.my;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Selection;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -20,7 +23,6 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.example.administrator.demo.MainActivity;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.dialog.SexDialog;
 import com.example.administrator.demo.entity.ImgBean;
@@ -29,8 +31,20 @@ import com.example.administrator.demo.entity.QuickReturnTopEvent;
 import com.example.administrator.demo.entity.SexBean;
 import com.example.administrator.demo.entity.UpdateUserInfoBean;
 import com.example.administrator.demo.entity.XlBean;
+import com.example.administrator.demo.take_photo.takephoto.app.TakePhoto;
+import com.example.administrator.demo.take_photo.takephoto.compress.CompressConfig;
+import com.example.administrator.demo.take_photo.takephoto.model.CropOptions;
+import com.example.administrator.demo.take_photo.takephoto.model.InvokeParam;
+import com.example.administrator.demo.take_photo.takephoto.model.LubanOptions;
+import com.example.administrator.demo.take_photo.takephoto.model.TContextWrap;
+import com.example.administrator.demo.take_photo.takephoto.model.TResult;
+import com.example.administrator.demo.take_photo.takephoto.model.TakePhotoOptions;
+import com.example.administrator.demo.take_photo.takephoto.permission.InvokeListener;
+import com.example.administrator.demo.take_photo.takephoto.permission.PermissionManager;
 import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.utils.SoftKeyboardUtils;
+import com.example.administrator.demo.weight.BitmapUtil;
+import com.example.administrator.demo.weight.UCropUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
@@ -51,6 +65,7 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
+import com.yalantis.ucrop.UCrop;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -60,6 +75,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +89,7 @@ import static com.example.administrator.demo.base.BaseActivity.replaceNULL;
 /**
  * 编辑个人中心
  */
-public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
+public class UpdateMyInfoActivity extends BaseActivity implements CommonView, TakePhoto.TakeResultListener, InvokeListener {
 
     @BindView(R.id.iv_my_head)
     ImageView ivMyHead;
@@ -391,7 +407,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
-                                requestPermission(Permission.CAMERA);
+                                requestPermission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE);
                             }
                         });
                         viewHolder.setOnClickListener(R.id.tv_select_photo, new View.OnClickListener() {
@@ -439,27 +455,105 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 }).start();
     }
 
+    private TakePhoto takePhoto;
+    //    private CustomHelper customHelper;
+    public static File outputFile;//相机拍照图片保存地址
+    private static Uri imageUri;
+
     /**
      * 相机拍照
      */
     private void doTakePhoto() {
-        PictureSelector.create(UpdateMyInfoActivity.this)
-                .openCamera(PictureMimeType.ofImage())
-                .enableCrop(true)// 是否裁剪 true or false
-                .compress(true)// 是否压缩 true or false
-                .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-                .isGif(false)// 是否显示gif图片 true or false
-                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
-                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
-                .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
-                .minimumCompressSize(30)// 小于100kb的图片不压缩
-                .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
-                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
-                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
-                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
-                .forResult(PictureConfig.CHOOSE_REQUEST);
+        {// 调用android自带的照相机
+            outputFile = new File(UpdateMyInfoActivity.this.getExternalCacheDir(), System.currentTimeMillis() + "_temp.jpg");
+            try {
+                if (outputFile.exists()) {
+                    outputFile.delete();
+                }
+                outputFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (Build.VERSION.SDK_INT < 24) {
+                imageUri = Uri.fromFile(outputFile);
+            } else {
+                //Android 7.0系统开始 使用本地真实的Uri路径不安全,使用FileProvider封装共享Uri
+                //参数二:fileprovider绝对路径 com.dyb.testcamerademo：项目包名
+                imageUri = FileProvider.getUriForFile(UpdateMyInfoActivity.this, "com.example.administrator.demo.provider", outputFile);
+            }
+            // 启动相机程序
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            startActivityForResult(intent, 222);
+        }
+
+//        if (takePhoto == null) {
+//            takePhoto = (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this, this));
+//        }
+//
+//        File file = new File(Environment.getExternalStorageDirectory(), "/temp/" + System.currentTimeMillis() + ".jpg");
+//        if (!file.getParentFile().exists()) {
+//            file.getParentFile().mkdirs();
+//        }
+//        Uri imageUri = Uri.fromFile(file);
+//
+//        configCompress(takePhoto);
+//        configTakePhotoOption(takePhoto);
+//
+//        takePhoto.onPickFromCaptureWithCrop(imageUri, getCropOptions());
+
+//        PictureSelector.create(UpdateMyInfoActivity.this)
+//                .openCamera(PictureMimeType.ofImage())
+//                .enableCrop(true)// 是否裁剪 true or false
+//                .compress(true)// 是否压缩 true or false
+//                .glideOverride(100, 100)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+//                .isGif(false)// 是否显示gif图片 true or false
+//                .circleDimmedLayer(true)// 是否圆形裁剪 true or false
+//                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+//                .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
+//                .minimumCompressSize(30)// 小于100kb的图片不压缩
+//                .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+//                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+//                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+//                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+//                .forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
+    private CropOptions getCropOptions() {
+        int height = 400;
+        int width = 400;
+        boolean withWonCrop = false;
+
+        CropOptions.Builder builder = new CropOptions.Builder();
+
+        builder.setAspectX(width).setAspectY(height);
+        builder.setWithOwnCrop(withWonCrop);
+        return builder.create();
+    }
+
+    private void configTakePhotoOption(TakePhoto takePhoto) {
+        TakePhotoOptions.Builder builder = new TakePhotoOptions.Builder();
+        builder.setCorrectImage(true);
+        takePhoto.setTakePhotoOptions(builder.create());
+
+    }
+
+    private void configCompress(TakePhoto takePhoto) {
+        takePhoto.onEnableCompress(null, false);
+        int maxSize = 800;
+        int width = 800;
+        int height = 800;
+        boolean showProgressBar = false;
+        boolean enableRawFile = true;
+        CompressConfig config;
+
+        LubanOptions option = new LubanOptions.Builder().setMaxHeight(height).setMaxWidth(width).setMaxSize(maxSize).create();
+        config = CompressConfig.ofLuban(option);
+        config.enableReserveRaw(enableRawFile);
+        takePhoto.onEnableCompress(config, showProgressBar);
+
+
+    }
 
     //从本地相册中选择
     private void doSelectPhoto() {
@@ -511,8 +605,29 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                         upLoadFile(mCompressPath);
                     }
                     break;
+                case 222:
+                    try {
+                        if (imageUri != null) {
+                            UCropUtils.startUCrop(UpdateMyInfoActivity.this, imageUri, 1, 1);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showToast("拍照失败");
+                    }
+                    break;
+                case UCrop.REQUEST_CROP:
+                    final Uri resultUri = UCrop.getOutput(data);
+                    if (resultUri != null) {
+                        File file = UCropUtils.getFileByUri(resultUri, UpdateMyInfoActivity.this);
+
+                        if (file != null) {
+                            String path = BitmapUtil.compressToNewPath(UpdateMyInfoActivity.this, 500, file.getPath());
+                            upLoadFile(path);
+                        }
+                    }
+                    break;
             }
-            }
+        }
     }
 
     /**
@@ -548,12 +663,45 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         });
     }
 
-
     /**
      * 设置图片
      */
     private void setImage(String integralNumber) {
         ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + integralNumber, ivMyHead,
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        String compressPath = result.getImage().getCompressPath();
+        showToast("====" + compressPath);
+    }
+
+    @Override
+    public void takeFail(TResult result, String msg) {
+
+    }
+
+    @Override
+    public void takeCancel() {
+
+    }
+
+    private InvokeParam invokeParam;
+
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type = PermissionManager.checkPermission(TContextWrap.of(this), invokeParam.getMethod());
+        if (PermissionManager.TPermissionType.WAIT.equals(type)) {
+            this.invokeParam = invokeParam;
+        }
+        return type;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionManager.TPermissionType type = PermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionManager.handlePermissionsResult(this, type, invokeParam, this);
     }
 }
