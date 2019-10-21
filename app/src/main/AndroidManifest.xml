@@ -27,8 +27,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.administrator.demo.provider"
@@ -101,7 +99,7 @@
         <activity android:name="com.example.administrator.demo.activity.record.JyXqActivity" />
         <activity android:name="com.example.administrator.demo.activity.setting.ChaJianActivity" />
         <activity android:name="com.example.administrator.demo.activity.my.TheInfoActivity" />
-
+        <activity android:name="com.example.administrator.demo.activity.my.FolderActivity" />
 
     </application>
 

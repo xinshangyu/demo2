@@ -9,25 +9,24 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.MyDataBean;
-import com.example.baselibrary.zh.utils.AppUtils;
 import com.example.baselibrary.zh.utils.BaseUtils;
 import com.example.baselibrary.zh.utils.GlideRoundTransform;
 import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.List;
 
-public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> {
+public class FolderAdapter extends BaseQuickAdapter<MyDataBean.FolderBean, BaseViewHolder> {
 
     private boolean isShow;
-    private List<MyDataBean> datas;
+    private List<MyDataBean.FolderBean> datas;
 
-    public MyDataAdapter( @Nullable List<MyDataBean> data) {
+    public FolderAdapter(@Nullable List<MyDataBean.FolderBean> data) {
         super(R.layout.item_mydata, data);
         datas = data;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, MyDataBean item) {
+    protected void convert(BaseViewHolder helper, MyDataBean.FolderBean item) {
         ImageView imageView = helper.getView(R.id.iv);
 
         helper.setText(R.id.tv, item.getName())

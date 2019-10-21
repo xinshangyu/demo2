@@ -270,12 +270,12 @@ public class RetrofitRequest {
         }
         FileRequest fileRequest = retrofit.create(FileRequest.class);
 
-        Map<String, List<RequestBody>> paramMap = new HashMap<>();
+        Map<String, RequestBody> paramMap = new HashMap<>();
 
         addMultiParts(paramMap, "file", files);
 
         // 构建请求
-        Call<ResponseBody> call = fileRequest.postFiles(url, paramMap);
+        Call<ResponseBody> call = fileRequest.postFile(url, paramMap);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -365,14 +365,11 @@ public class RetrofitRequest {
      * @param paramMap 参数对
      * @param key      键
      */
-    private static void addMultiParts(Map<String, List<RequestBody>> paramMap, String key, List<File> files) {
-        List<RequestBody> bodyList = new ArrayList<>();
+    private static void addMultiParts(Map<String, RequestBody> paramMap, String key, List<File> files) {
         for (int i = 0; i < files.size(); i++) {
             RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data;charset=UTF-8"), files.get(i));
-            bodyList.add(body);
+            paramMap.put(key + "\"; filename=\"" + files.get(i).getName() + "", body);
         }
-        paramMap.put(key + "\"; filename=\"" + files.get(0).getName() + "", bodyList);
-
     }
 
     /**

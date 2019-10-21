@@ -47,6 +47,8 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     protected P mPresenter = null;
     protected M mModel = null;
     protected CommonPresenter cPresenter = null;
+    protected TextView mTextRight;
+    protected TextView mTextTitle;
 
     public Map<String, String> cMap;
     public Gson gson;
@@ -58,17 +60,16 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
         mContext = this;
         setStatusBarColor(R.color.colorWhite);
         mBinder = ButterKnife.bind(this);
+        gson = new Gson();
         if (this instanceof BaseView) {
             mPresenter = TUtil.getT(this, 0);
             mModel = TUtil.getT(this, 1);
             mPresenter.attachVM(this, mModel);
             mPresenter.setContext(mContext);
         }
-
         if (this instanceof CommonView) {
             cPresenter = new CommonPresenter((CommonView) this);
             cMap = new HashMap<>();
-            gson = new Gson();
         }
         initView(savedInstanceState);
         initDate();
@@ -129,9 +130,13 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
      */
     protected void setTitleBar(String title, View.OnClickListener listener, boolean isVisible, String right) {
         mToolbar = (Toolbar) findViewById(R.id.common_toolbar);
-        if (!TextUtils.isEmpty(title))
-            ((TextView) findViewById(R.id.common_toolBar_title)).setText(title);
-        TextView mTextRight = (TextView) findViewById(R.id.common_toolBar_text_right);
+        mTextTitle = ((TextView) findViewById(R.id.common_toolBar_title));
+        mTextTitle.setTextColor(getColorV4(R.color.white));
+        if (!TextUtils.isEmpty(title)){
+            mTextTitle.setText(title);
+        }
+        mTextRight = (TextView) findViewById(R.id.common_toolBar_text_right);
+        mTextRight.setTextColor(getColorV4(R.color.white));
         if (isVisible) {
             mTextRight.setVisibility(View.VISIBLE);
             mTextRight.setText(right);

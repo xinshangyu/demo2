@@ -849,44 +849,6 @@ public class FileUtils {
 
 		return readedStr;
 	}
-	
-	
-//	/**
-//	 * 根据报案号删除任务
-//	 * @param reportNo
-//	 */
-//	public void deleteTask(String reportNo){
-//
-//		try{
-//		String	fileName = getTaskInfo();
-//		if(new File(fileName).exists()){
-//
-//			List<TaskInfoDetailVO> taskInfoDetailVO = new ArrayList<TaskInfoDetailVO>();
-//			String resultJson = NFileUtils.getFile(fileName);
-//			ResponseNewTaskRequestVO result = JSON.parseObject(resultJson, ResponseNewTaskRequestVO.class);
-//			if (result.getResult().getCode().equals("1")) {
-//				taskInfoDetailVO = result.getData().getTaskInfoDetailList();
-//
-//				if(null!=taskInfoDetailVO && taskInfoDetailVO.size()>0){
-//
-//					for(int i=0;i<taskInfoDetailVO.size();i++){
-//						if(reportNo.equals(taskInfoDetailVO.get(i).getReportNo())){
-//							result.getData().getTaskInfoDetailList().remove(i);
-//							break;
-//						}
-//					}
-//
-//				}
-//			}
-//			NFileUtils.saveFile(JSON.toJSONString(result), fileName);
-//		}
-//
-//
-//		}catch(Exception e){
-//			e.printStackTrace();
-//
-//		}
-//	}
 
 	/**
 	 *  删除文件路径下所有文件

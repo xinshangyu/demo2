@@ -12,7 +12,7 @@
         android:icon="@drawable/icon_data_delete"/>
 
     <item
-        android:id="@+id/m_top"
+        android:id="@+id/m_move"
         android:title="移动到"
         android:icon="@drawable/icon_data_top"/>
 
