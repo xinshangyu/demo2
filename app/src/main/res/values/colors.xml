@@ -56,6 +56,7 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorText_back">#FF6988F8</color>
     <color name="colorText_gray">#FF888888</color>
+    <color name="color_bb">#FF888888</color>
 
     <color name="colorgray1">#F4C887</color>
     <color name="colorgray2">#B07E35</color>
