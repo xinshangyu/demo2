@@ -54,6 +54,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
         setTitleBar(getResources().getString(R.string.help), new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,8 @@
 package com.example.administrator.demo.adapter;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,8 +25,9 @@ public class JfgzDetailsAdapter extends CommonAdapter<JFGZBean.ProtocolRulesBean
     @Override
     protected void convert(ViewHolder holder, JFGZBean.ProtocolRulesBean messageListBean, int position) {
         TextView tv_content = holder.getView(R.id.tv_content);
+        tv_content.setText(Html.fromHtml(messageListBean.getProtocolDescribe()));
+
         holder.setText(R.id.tv_name, messageListBean.getProtocolName())
-                .setText(R.id.tv_content, messageListBean.getProtocolCount())
                 .setOnClickListener(R.id.ll_check, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

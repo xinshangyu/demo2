@@ -131,12 +131,12 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
     protected void setTitleBar(String title, View.OnClickListener listener, boolean isVisible, String right) {
         mToolbar = (Toolbar) findViewById(R.id.common_toolbar);
         mTextTitle = ((TextView) findViewById(R.id.common_toolBar_title));
-        mTextTitle.setTextColor(getColorV4(R.color.white));
+//        mTextTitle.setTextColor(getColorV4(R.color.white));
         if (!TextUtils.isEmpty(title)){
             mTextTitle.setText(title);
         }
         mTextRight = (TextView) findViewById(R.id.common_toolBar_text_right);
-        mTextRight.setTextColor(getColorV4(R.color.white));
+//        mTextRight.setTextColor(getColorV4(R.color.white));
         if (isVisible) {
             mTextRight.setVisibility(View.VISIBLE);
             mTextRight.setText(right);

@@ -2,6 +2,7 @@ package com.example.administrator.demo.activity.setting;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -69,7 +70,9 @@ public class MoreActivity extends BaseActivity implements CommonView {
         if (sqBean != null && sqBean.getFaqRecord().size() > 0) {
             id = sqBean.getFaqRecord().get(Integer.parseInt(content)).getId();
             tvName.setText(sqBean.getFaqRecord().get(Integer.parseInt(content)).getPreblemTitle());
-            tvContent.setText(sqBean.getFaqRecord().get(Integer.parseInt(content)).getProblemAnswers());
+            String problemAnswers = sqBean.getFaqRecord().get(Integer.parseInt(content)).getProblemAnswers();
+
+            tvContent.setText(Html.fromHtml(problemAnswers));
         }
     }
 
