@@ -47,6 +47,5 @@ public class CommentAdapter2 extends BaseQuickAdapter<CommertListBen.BizCircleBe
                 .setText(R.id.tv_content2, bizCircleBean.getContent());
         ImageLoader.getInstance().loadingImage(mContext, bizCircleBean.getUserInfo().getHeadPortrait(), holder.getView(R.id.iv_title),
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.defaulthead);
-
     }
 }

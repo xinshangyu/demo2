@@ -4,14 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.entity.CodeBean;
-import com.example.administrator.demo.entity.MyModularBen;
 import com.example.administrator.demo.utils.SPUtils;
 import com.example.administrator.demo.utils.SmsTimeUtils;
 import com.example.administrator.demo.weight.AppActivityUtils;
@@ -24,7 +22,6 @@ import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

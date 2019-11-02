@@ -34,6 +34,5 @@ public class CallAdapter extends CommonAdapter<Help2Bean.FaqRecordBean> {
                         AppActivityUtils.StartMoreActivity((Activity) mContext, "" + position);
                     }
                 });
-
     }
 }

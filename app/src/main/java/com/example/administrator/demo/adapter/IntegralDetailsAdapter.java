@@ -23,6 +23,5 @@ public class IntegralDetailsAdapter extends CommonAdapter<IntegralBean.IntegralR
         holder.setText(R.id.tv_date, messageListBean.getCommodityName())
                 .setText(R.id.tv_text, "" + messageListBean.getIntegralNumber() + "积分")
                 .setText(R.id.tv_money, "" + messageListBean.getCreateTime());
-
     }
 }

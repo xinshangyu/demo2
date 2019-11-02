@@ -181,7 +181,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
                         .placeholder(R.color.color_4d)
                         .diskCacheStrategy(DiskCacheStrategy.ALL);
 
-                ImageLoader.getInstance().loadRoundImage(context,path,5,viewHolder.mImg);
+                ImageLoader.getInstance().loadRoundImage(context, path, 5, viewHolder.mImg);
             }
             //itemView 的点击事件
             if (mItemClickListener != null) {

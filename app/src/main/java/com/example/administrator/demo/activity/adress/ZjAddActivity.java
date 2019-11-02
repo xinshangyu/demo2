@@ -87,7 +87,7 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
 
     @Override
     public void onError() {
-
+        showToast("请求失败");
     }
 
     @OnClick({R.id.tv_save, R.id.tv_do_cancel, R.id.iv})
@@ -203,20 +203,11 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
                 .isGif(false)// 是否显示gif图片 true or false
                 .isCamera(true)// 是否显示拍照按钮 true or false
                 .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
-//                    .enableCrop(true)// 是否裁剪 true or false
                 .compress(true)// 是否压缩 true or false
                 .glideOverride(160, 160)// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
                 .selectionMedia(selectList)
-//                    .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
-//                    .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
-////                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
-//                    .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(PictureConfig.CHOOSE_REQUEST);
-//                    .circleDimmedLayer(true)// 是否圆形裁剪 true or false
-//                    .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
-//                    .cropCompressQuality(30)// 裁剪压缩质量 默认90 int
-
     }
 
     @Override
@@ -283,6 +274,4 @@ public class ZjAddActivity extends BaseActivity implements CommonView {
             }
         });
     }
-
-
 }

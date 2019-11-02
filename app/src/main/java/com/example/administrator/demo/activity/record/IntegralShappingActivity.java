@@ -120,14 +120,14 @@ public class IntegralShappingActivity extends BaseActivity implements CommonView
         switch (view.getId()) {
             case R.id.ll_jf1:
                 break;
-            case R.id.ll_detail:
+            case R.id.ll_detail://跳转积分详情
                 ActivityUtils.startActivity(mContext, IntegralActivity.class);
                 break;
-            case R.id.ll_gz:
+            case R.id.ll_gz://跳转积分规则
                 ActivityUtils.startActivity(mContext, JfGzActivity.class);
                 break;
             case R.id.tv_save:
-                showToast("去商城");
+                showToast("目前不写这个接口");
                 break;
         }
     }

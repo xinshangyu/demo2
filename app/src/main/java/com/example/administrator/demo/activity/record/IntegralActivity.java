@@ -51,7 +51,6 @@ public class IntegralActivity extends BaseActivity implements RefreshCallBack, C
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new IntegralDetailsAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     @Override

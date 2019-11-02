@@ -3,7 +3,6 @@ package com.example.administrator.demo.activity.comment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,7 +82,6 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
         //接受状态值
         String string = getIntent().getStringExtra("tabNum");
         tabNum = Integer.parseInt(string);
@@ -123,7 +121,6 @@ public class Sc_Zan_Comment_LsActivity extends BaseActivity implements OnTabSele
     public void onTabSelect(int position) {
         mViewPager.setCurrentItem(position);
         tabNum = position;
-        Log.d("zhh", "onTabSelect: " + position);
     }
 
     @Override

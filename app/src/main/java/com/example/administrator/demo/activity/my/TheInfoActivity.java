@@ -2,7 +2,6 @@ package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,7 +24,8 @@ import butterknife.BindView;
 public class TheInfoActivity extends BaseActivity implements OnTabSelectListener, NoPreloadViewPager.OnPageChangeListener {
 
     @BindView(R.id.home_tabLayout)
-    CommonTabLayout mTabLayout;@BindView(R.id.tv_name)
+    CommonTabLayout mTabLayout;
+    @BindView(R.id.tv_name)
     TextView tv_name;
     @BindView(R.id.home_NoScrollViewPager)
     NoPreloadViewPager mViewPager;
@@ -84,12 +84,10 @@ public class TheInfoActivity extends BaseActivity implements OnTabSelectListener
 
     @Override
     public void onTabReselect(int position) {
-
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -99,6 +97,5 @@ public class TheInfoActivity extends BaseActivity implements OnTabSelectListener
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 }

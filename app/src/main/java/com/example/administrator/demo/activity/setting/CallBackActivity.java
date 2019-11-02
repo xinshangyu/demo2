@@ -90,6 +90,9 @@ public class CallBackActivity extends BaseActivity {
         initPicture();
     }
 
+    /**
+     * 初始化图片选择
+     */
     private void initPicture() {
         FullyGridLayoutManager manager = new FullyGridLayoutManager(CallBackActivity.this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -123,6 +126,9 @@ public class CallBackActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 图片点击事件
+     */
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
@@ -256,7 +262,9 @@ public class CallBackActivity extends BaseActivity {
         subPics();
     }
 
-
+    /**
+     * 提交图片
+     */
     private void subPics() {
         if (selectList.size() > 0) {
             upList.addAll(selectList);
@@ -318,6 +326,7 @@ public class CallBackActivity extends BaseActivity {
                                 public void onResult(WeatherResult weatherResult) {
                                     LogUtil.e("ldh" + new Gson().toJson(weatherResult));
                                     if (weatherResult.getCode() == 200) {
+                                        //意见反馈成功跳转成功页面
                                         ActivityUtils.startActivity(mContext, CallBackSuccessActivity.class);
                                         finish();
                                     }
@@ -329,7 +338,6 @@ public class CallBackActivity extends BaseActivity {
                             });
                         }
                     }
-
                     @Override
                     public void onAfterFailure() {
                         showToast("请求失败");
@@ -337,6 +345,5 @@ public class CallBackActivity extends BaseActivity {
                 });
             }
         }
-
     }
 }

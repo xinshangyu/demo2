@@ -15,13 +15,11 @@ import com.example.administrator.demo.R;
 import com.example.administrator.demo.activity.read.ReadActivity;
 import com.example.administrator.demo.entity.VersionBean;
 import com.example.administrator.demo.utils.CacheDataManager;
-import com.example.administrator.demo.utils.FileUtils;
 import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
 import com.example.administrator.demo.weight.nice.NiceDialog;
 import com.example.administrator.demo.weight.nice.ViewConvertListener;
 import com.example.administrator.demo.weight.nice.ViewHolder;
-import com.example.baselibrary.LogUtil;
 import com.example.baselibrary.NumberFormatUtils;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
@@ -32,7 +30,6 @@ import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 import com.example.baselibrary.zh.utils.AppUtils;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.HashMap;
@@ -96,16 +93,16 @@ public class SettingActivity extends BaseActivity implements CommonView {
     @OnClick({R.id.rl_number_and, R.id.rl_read, R.id.rl_cjian, R.id.rl_clear, R.id.rl_check, R.id.rl_login_out})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rl_number_and:
+            case R.id.rl_number_and://跳转账号安全
                 ActivityUtils.startActivity(mContext, AccountActivity.class);
                 break;
             case R.id.rl_read:
                 ActivityUtils.startActivity(mContext, ReadActivity.class);
                 break;
-            case R.id.rl_cjian:
+            case R.id.rl_cjian://跳转插件页面
                 ActivityUtils.startActivity(mContext, ChaJianActivity.class);
                 break;
-            case R.id.rl_clear:
+            case R.id.rl_clear://清除缓存
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_clear_show)
                         .setConvertListener(new ViewConvertListener() {
@@ -133,11 +130,11 @@ public class SettingActivity extends BaseActivity implements CommonView {
                         .setMargin(60)
                         .show(getSupportFragmentManager());
                 break;
-            case R.id.rl_check:
+            case R.id.rl_check://检查更新
                 cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
                 cPresenter.requestData2(this, cMap, Address.checkForUpdates);
                 break;
-            case R.id.rl_login_out:
+            case R.id.rl_login_out://退出登录
                 NiceDialog.init()
                         .setLayoutId(R.layout.dialog_login_out)     //设置dialog布局文件
                         .setConvertListener(new ViewConvertListener() {
@@ -164,6 +161,9 @@ public class SettingActivity extends BaseActivity implements CommonView {
         }
     }
 
+    /**
+     * 退出登录
+     */
     public void loginOut() {
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
@@ -191,7 +191,6 @@ public class SettingActivity extends BaseActivity implements CommonView {
 
     @Override
     public void onData(WeatherResult weatherResult) {
-//        LogUtil.e("ldh返回数据" + new Gson().toJson(weatherResult));
         if (weatherResult.getCode() == 200) {// TODO: 2019/8/29设置
             VersionBean sqBean = gson.fromJson(gson.toJson(weatherResult.getData()), VersionBean.class);
             if (sqBean != null && sqBean.getAppVersion() != null) {
@@ -212,7 +211,6 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                                 @Override
                                                 public void onBody(ResponseBody body) {
                                                     dialog.dismiss();
-
                                                 }
 
                                                 @Override
@@ -234,7 +232,7 @@ public class SettingActivity extends BaseActivity implements CommonView {
 
                                                 @Override
                                                 public void onDownLoadSuccess(File file) {
-                                                    if(downloadDialog != null && downloadDialog.getShowsDialog()){
+                                                    if (downloadDialog != null && downloadDialog.getShowsDialog()) {
                                                         downloadDialog.dismiss();
                                                         //AppUtils.installApp(file);
                                                         installApk(mContext, file);
@@ -248,7 +246,6 @@ public class SettingActivity extends BaseActivity implements CommonView {
                                             });
                                         }
                                     });
-
                                 }
                             })
                             .setMargin(40)
@@ -261,7 +258,6 @@ public class SettingActivity extends BaseActivity implements CommonView {
                 }
 
             }
-
         }
     }
 
@@ -269,7 +265,10 @@ public class SettingActivity extends BaseActivity implements CommonView {
     public void onError() {
         showToast("请求失败");
     }
-
+    /**
+     * 获取版本名
+     * @return
+     */
     private String getVersionName() {
         try {
             String pkName = this.getPackageName();
@@ -281,6 +280,10 @@ public class SettingActivity extends BaseActivity implements CommonView {
         return null;
     }
 
+    /**
+     * 获取版本号
+     * @return
+     */
     private int getVersionCode() {
         try {
             String pkName = this.getPackageName();
@@ -307,6 +310,9 @@ public class SettingActivity extends BaseActivity implements CommonView {
         }
     }
 
+    /**
+     * 清除缓存
+     */
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -321,6 +327,11 @@ public class SettingActivity extends BaseActivity implements CommonView {
         }
     };
 
+    /**
+     * apk下载安装
+     * @param context
+     * @param file
+     */
     public static void installApk(Context context, File file) {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");

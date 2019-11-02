@@ -36,7 +36,6 @@ import butterknife.BindView;
  * 关注
  */
 public class FollowFragment extends BaseFragment implements RefreshCallBack, CommonView, MultiItemTypeAdapter.OnItemClickListener {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -110,7 +109,7 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
     }
 
     /**
-     * 按钮接口
+     * 关注按钮接口
      *
      * @param fansId
      * @param ralationType
@@ -137,7 +136,6 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -145,7 +143,6 @@ public class FollowFragment extends BaseFragment implements RefreshCallBack, Com
                 showToast("请求失败");
             }
         });
-
     }
 
     @Override

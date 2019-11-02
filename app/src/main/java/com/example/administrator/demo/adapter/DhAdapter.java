@@ -32,11 +32,9 @@ public class DhAdapter extends CommonAdapter<DhBean.MallCommodityBean> {
     protected void convert(ViewHolder holder,DhBean.MallCommodityBean messageListBean, int position) {
         ImageView imageView = holder.getView(R.id.iv);
         holder.setText(R.id.tv_name, messageListBean.getCommodityName())
-                .setText(R.id.tv_content, messageListBean.getUnitPrice())
-        ;
+                .setText(R.id.tv_content, messageListBean.getUnitPrice());
 
         ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + messageListBean.getCommodityImg(), imageView,
                 new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
-
     }
 }

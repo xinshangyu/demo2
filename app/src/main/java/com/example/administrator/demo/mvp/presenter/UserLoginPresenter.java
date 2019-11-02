@@ -18,8 +18,6 @@ public class UserLoginPresenter implements UUserLoginPresenter {
         userLoginModel = new UserLoginModel(this);
     }
 
-
-
     //开始处理
     public void requestRanking(Context context, String userVcode, String userPasswork) {
 

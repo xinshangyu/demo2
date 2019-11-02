@@ -104,7 +104,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                     protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
                         holder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {//编辑
                             @Override
-                            public void onClick(View v) {// TODO: 2019/8/27  编辑商圈，看不懂咋编辑
+                            public void onClick(View v) {// TODO: 2019/8/27  编辑商圈
                                 dialog.dismiss();
 
                             }
@@ -129,7 +129,7 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                         if (weatherResult.getCode() == 200) {
                                             dialog.dismiss();
                                             NiceDialog.init()
-                                                    .setLayoutId(R.layout.dialog_delete_show)     //先看下效果，布局最后改
+                                                    .setLayoutId(R.layout.dialog_delete_show)
                                                     .setConvertListener(new ViewConvertListener() {
                                                         @Override
                                                         protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
@@ -139,7 +139,6 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                                                     dialog.dismiss();
                                                                     mBeanList.remove(position);
                                                                     mAdapter.notifyDataSetChanged();
-
                                                                 }
                                                             });
                                                             holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
@@ -151,17 +150,13 @@ public class MyPersonalSQActivity extends BaseActivity implements RefreshCallBac
                                                         }
                                                     })
                                                     .show(getSupportFragmentManager());
-
                                         }
                                     }
 
                                     @Override
                                     public void onAfterFailure() {
-
                                     }
                                 });
-
-
                             }
                         });
                         holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {//隐藏

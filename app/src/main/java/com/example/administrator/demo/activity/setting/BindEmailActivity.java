@@ -18,6 +18,7 @@ import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.example.baselibrary.zh.utils.ActivityUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -87,7 +88,6 @@ public class BindEmailActivity extends BaseActivity {
 
     }
 
-
     @OnClick({R.id.tv_code, R.id.tv_save})
     public void onViewClicked(View view) {
         String phone = etNumber.getText().toString();
@@ -117,8 +117,14 @@ public class BindEmailActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 更新email
+     *
+     * @param context
+     * @param userPhone
+     * @param userCodeBea
+     */
     public void updateEmail(Context context, String userPhone, String userCodeBea) {
-
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         paramMap.put("userMail", userPhone);
@@ -126,7 +132,6 @@ public class BindEmailActivity extends BaseActivity {
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.update_number_zh, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(context) {
             @Override
             public void onBeforeResult() {
-
             }
 
             @Override
@@ -134,10 +139,9 @@ public class BindEmailActivity extends BaseActivity {
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdateEmailSuccessActivity.class);
                     finish();
-                }else {
-                    showToast(""+weatherResult.getMsg());
+                } else {
+                    showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -147,6 +151,9 @@ public class BindEmailActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 重复操作布局
+     */
     public static class ConfirmDialog extends BaseNiceDialog {
         private String type;
 

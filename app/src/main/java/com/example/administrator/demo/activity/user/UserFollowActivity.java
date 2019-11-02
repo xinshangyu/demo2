@@ -104,7 +104,6 @@ public class UserFollowActivity extends BaseActivity implements OnTabSelectListe
 
     }
 
-
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();

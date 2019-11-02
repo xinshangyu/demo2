@@ -8,7 +8,6 @@ import com.example.administrator.demo.R;
 import com.example.baselibrary.zh.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

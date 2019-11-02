@@ -37,7 +37,6 @@ public class UpdatePhoneSuccessActivity extends BaseActivity {
     @Override
     protected void initDate() {
 
-
     }
 
     @OnClick(R.id.tv_save)

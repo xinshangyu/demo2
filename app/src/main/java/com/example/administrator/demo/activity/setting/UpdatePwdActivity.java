@@ -101,16 +101,13 @@ public class UpdatePwdActivity extends BaseActivity {
                 etNewNumber2.setSelection(etNewNumber2.length());
             }
         });
-
     }
 
     @OnClick({R.id.ll_pwd, R.id.tv_save})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_pwd:
-
                 ActivityUtils.startActivity(mContext, UpdateOtherPwdActivity.class);
-
                 break;
             case R.id.tv_save:
                 // TODO: 2019/8/21 修改密码
@@ -147,6 +144,12 @@ public class UpdatePwdActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 更新密码
+     * @param context
+     * @param etOldNumber
+     * @param etNewNumber
+     */
     public void updatePWD(Context context, String etOldNumber, String etNewNumber) {
 
         paramMap = new HashMap<>();
@@ -168,7 +171,6 @@ public class UpdatePwdActivity extends BaseActivity {
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -177,5 +179,4 @@ public class UpdatePwdActivity extends BaseActivity {
             }
         });
     }
-
 }

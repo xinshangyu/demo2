@@ -57,12 +57,9 @@ public class JyXqActivity extends BaseActivity {
         tvTime.setText(content3);
         tvJydh.setText(content4);
         tvMoney.setText(content5);
-
     }
 
     @Override
     protected void initDate() {
-
     }
-
 }

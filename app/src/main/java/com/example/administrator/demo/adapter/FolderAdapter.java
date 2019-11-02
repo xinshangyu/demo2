@@ -32,12 +32,12 @@ public class FolderAdapter extends BaseQuickAdapter<MyDataBean.FolderBean, BaseV
         helper.setText(R.id.tv, item.getName())
                 .setImageResource(R.id.select, item.isSelect() ? R.mipmap.yxz : R.mipmap.wxz)
                 .addOnClickListener(R.id.select);
-        if("-1".equals(item.getId())){
+        if ("-1".equals(item.getId())) {
             helper.setGone(R.id.select, false);
             imageView.setImageResource(R.drawable.icon_mydata_add);
             int size = BaseUtils.dip2px(mContext, 40);
             imageView.setPadding(size, size, size, size);
-        }else{
+        } else {
             imageView.setPadding(0, 0, 0, 0);
             helper.setGone(R.id.select, "2".equals(item.getType()) ? false : isShow);
             ImageLoader.getInstance().loadingImage(mContext, item.getSrc(), imageView,
@@ -46,12 +46,12 @@ public class FolderAdapter extends BaseQuickAdapter<MyDataBean.FolderBean, BaseV
 
     }
 
-    public void setShow(boolean isShow){
+    public void setShow(boolean isShow) {
         this.isShow = isShow;
         notifyDataSetChanged();
     }
 
-    public boolean getShow(){
+    public boolean getShow() {
         return isShow;
     }
 }

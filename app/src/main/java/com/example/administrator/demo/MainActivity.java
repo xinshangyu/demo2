@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.bt_my_data)
     void onMyData() {
         //TODO:根据业务需求添加功能实现
-        startActivity(MyDataActivity.class,0);
+        startActivity(MyDataActivity.class, 0);
     }
 
 }

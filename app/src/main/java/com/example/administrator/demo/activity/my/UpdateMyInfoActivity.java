@@ -123,6 +123,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     private String opt2tx;
     private String integralNumber;
 
+
+    public static File outputFile;//相机拍照图片保存地址
+    private static Uri imageUri;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_my_info;
@@ -138,6 +142,9 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         });
     }
 
+    /**
+     * 初始化数据
+     */
     @Override
     protected void initDate() {
         mUserInfo = SPUtils.getUserInfo(mContext);
@@ -145,14 +152,11 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
             String userPhoto = mUserInfo.getUserPhoto();
             ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userPhoto, ivMyHead,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
-
         }
 
         EventBus.getDefault().register(this);
         cMap.put("userId", "" + SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.edit);
-
-
     }
 
 
@@ -164,11 +168,11 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 if (SoftKeyboardUtils.isSoftShowing(this)) {
                     SoftKeyboardUtils.showORhideSoftKeyboard(this);
                 }
-                // TODO: 2019/9/10 头像选择
+                // 头像选择
                 doSelectHead();
 
                 break;
-            case R.id.rl_sex:
+            case R.id.rl_sex://性别选择
                 if (SoftKeyboardUtils.isSoftShowing(this)) {
                     SoftKeyboardUtils.showORhideSoftKeyboard(this);
                 }
@@ -202,7 +206,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 });
 
                 break;
-            case R.id.rl_xl:
+            case R.id.rl_xl://学历选择
                 if (SoftKeyboardUtils.isSoftShowing(this)) {
                     SoftKeyboardUtils.showORhideSoftKeyboard(this);
                 }
@@ -235,7 +239,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 });
 
                 break;
-            case R.id.tv_save:
+            case R.id.tv_save://保存
                 String name = tvNick.getText().toString();
                 String nickName = et_nick.getText().toString();
                 paramMap = new HashMap<>();
@@ -284,12 +288,10 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                             SPUtils.setUserInfo(getApplicationContext(), JSONObject.toJSONString(mUserInfo));
 
                             NiceDialog.init()
-                                    .setLayoutId(R.layout.dialog_save_my_info)     //设置dialog布局文件
+                                    .setLayoutId(R.layout.dialog_save_my_info)  //设置dialog布局文件
                                     .setMargin(60)
                                     .setOutCancel(true)
                                     .show(getSupportFragmentManager());
-
-
                             finish();
                         } else {
                             ToastUtils.showShort(mContext, "" + weatherResult.getMsg());
@@ -361,7 +363,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     @Override
     public void onError() {
         showToast("请求失败");
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
@@ -426,7 +427,7 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
     }
 
     /**
-     * Request permissions.
+     * 权限申请
      */
     private void requestPermission(String... permissions) {
         AndPermission.with(this).runtime().permission(permissions)
@@ -444,9 +445,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     }
                 }).start();
     }
-
-    public static File outputFile;//相机拍照图片保存地址
-    private static Uri imageUri;
 
     /**
      * 相机拍照
@@ -474,7 +472,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, 222);
         }
-
 
 //        PictureSelector.create(UpdateMyInfoActivity.this)
 //                .openCamera(PictureMimeType.ofImage())
@@ -511,7 +508,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                 .minimumCompressSize(30)// 小于100kb的图片不压缩
                 .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
                 .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
-//                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .forResult(PictureConfig.CHOOSE_REQUEST);
     }
@@ -557,7 +553,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
                     final Uri resultUri = UCrop.getOutput(data);
                     if (resultUri != null) {
                         File file = UCropUtils.getFileByUri(resultUri, UpdateMyInfoActivity.this);
-
                         if (file != null) {
                             String path = BitmapUtil.compressToNewPath(UpdateMyInfoActivity.this, 500, file.getPath());
                             upLoadFile(path);
@@ -576,7 +571,6 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         RetrofitRequest.fileUpload(ApiKeys.getApiUrl() + Address.uploadFile, file, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {
             @Override
             public void onBeforeResult() {
-
             }
 
             @Override
@@ -609,5 +603,4 @@ public class UpdateMyInfoActivity extends BaseActivity implements CommonView {
         ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + integralNumber, ivMyHead,
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
     }
-
 }

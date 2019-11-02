@@ -18,8 +18,6 @@ import java.util.UUID;
 
 /**
  * FileName: 图片相关工具
- * Author :  杜晓武
- * Create : 2018/10/10 14:44
  */
 public class BitmapUtil {
     private static final String TAG = "BitmapUtil";

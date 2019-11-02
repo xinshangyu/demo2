@@ -8,7 +8,6 @@ import com.example.administrator.demo.R;
 import com.example.baselibrary.zh.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 修改邮箱成功
@@ -39,7 +38,6 @@ public class UpdateEmailSuccessActivity extends BaseActivity {
     protected void initDate() {
         tvCode.setText(getString(R.string.email_success3));
         tvNick.setVisibility(View.GONE);
-
     }
 
 }

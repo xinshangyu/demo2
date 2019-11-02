@@ -17,8 +17,12 @@ import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.List;
 
+/**
+ * 足迹
+ */
 public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, BaseViewHolder> {
     private List<TrackBean.FootprintBean> data;
+
     public TrackAdapter(@Nullable List<TrackBean.FootprintBean> data) {
         super(R.layout.item_zuji, data);
         this.data = data;
@@ -26,15 +30,15 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
 
     @Override
     protected void convert(BaseViewHolder helper, TrackBean.FootprintBean item) {
-        if(helper.getPosition() % 2 == 0){
+        if (helper.getPosition() % 2 == 0) {
             ImageView imageView = helper.getView(R.id.iv);
-            if(item.isAdd()){
+            if (item.isAdd()) {
                 int size = BaseUtils.dip2px(mContext, 30);
-                imageView.setPadding(size,size,size,size);
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
-            }else{
+                imageView.setPadding(size, size, size, size);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView, null, R.drawable.deful_back);
+            } else {
                 int size = BaseUtils.dip2px(mContext, 0);
-                imageView.setPadding(size,size,size,size);
+                imageView.setPadding(size, size, size, size);
                 ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + item.getFootprintImgSrc(), imageView,
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
@@ -46,16 +50,16 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.iv, true)
                     .addOnClickListener(R.id.iv)
                     .setGone(R.id.tv, true)
-                    .setGone(R.id.lin, !(data.size()-1 == helper.getPosition()));
-        }else{
+                    .setGone(R.id.lin, !(data.size() - 1 == helper.getPosition()));
+        } else {
             ImageView imageView = helper.getView(R.id.iv1);
-            if(item.isAdd()){
+            if (item.isAdd()) {
                 int size = BaseUtils.dip2px(mContext, 30);
-                imageView.setPadding(size,size,size,size);
-                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView,null, R.drawable.deful_back);
-            }else{
+                imageView.setPadding(size, size, size, size);
+                ImageLoader.getInstance().loadingImage(mContext, R.mipmap.icon_zj_add, imageView, null, R.drawable.deful_back);
+            } else {
                 int size = BaseUtils.dip2px(mContext, 0);
-                imageView.setPadding(size,size,size,size);
+                imageView.setPadding(size, size, size, size);
                 ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + item.getFootprintImgSrc(), imageView,
                         new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.drawable.deful_back);
             }
@@ -64,7 +68,7 @@ public class TrackAdapter extends BaseQuickAdapter<TrackBean.FootprintBean, Base
                     .setGone(R.id.iv1, true)
                     .setGone(R.id.tv1, true)
                     .addOnClickListener(R.id.iv1)
-                    .setGone(R.id.lin1, !(data.size()-1 == helper.getPosition()))
+                    .setGone(R.id.lin1, !(data.size() - 1 == helper.getPosition()))
                     .setGone(R.id.iv, false)
                     .setGone(R.id.tv, false)
                     .setGone(R.id.lin, false);

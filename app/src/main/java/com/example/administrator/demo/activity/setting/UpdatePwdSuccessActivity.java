@@ -41,7 +41,7 @@ public class UpdatePwdSuccessActivity extends BaseActivity {
 
     @OnClick(R.id.tv_save)
     public void onClick() {
-        // TODO: 2019/8/21 重新登陆
+        //重新登陆
         AppActivityUtils.StartLoginTaskActivity(mContext);
     }
 }

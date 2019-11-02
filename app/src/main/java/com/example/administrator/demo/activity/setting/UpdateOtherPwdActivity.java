@@ -23,19 +23,19 @@ import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
+/**
+ * 设置密码
+ */
 public class UpdateOtherPwdActivity extends BaseActivity {
 
     @BindView(R.id.common_toolBar_image_right)
@@ -100,7 +100,6 @@ public class UpdateOtherPwdActivity extends BaseActivity {
     protected void initDate() {
         phone = (String) SPUtils.get("Phone", "");
         etNumber.setText(phone);
-
     }
 
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
@@ -124,9 +123,7 @@ public class UpdateOtherPwdActivity extends BaseActivity {
                     return;
                 } else {
                     //校验验证码
-
                     JyCodePhone(mContext);
-
                 }
                 break;
         }
@@ -158,7 +155,6 @@ public class UpdateOtherPwdActivity extends BaseActivity {
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -166,7 +162,6 @@ public class UpdateOtherPwdActivity extends BaseActivity {
                 showToast("请求失败");
             }
         });
-
     }
 
     private void JyCodePhone(Context mContext) {
@@ -186,13 +181,11 @@ public class UpdateOtherPwdActivity extends BaseActivity {
                 LogUtil.e("ldh" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {
 
-                    AppActivityUtils.StartPwdActivity(getApplicationContext(), code,integralNumber);
-//                    finish();
+                    AppActivityUtils.StartPwdActivity(getApplicationContext(), code, integralNumber);
 
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -200,8 +193,5 @@ public class UpdateOtherPwdActivity extends BaseActivity {
                 showToast("请求失败");
             }
         });
-
-
     }
-
 }

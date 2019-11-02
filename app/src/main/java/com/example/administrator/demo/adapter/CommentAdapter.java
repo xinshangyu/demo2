@@ -13,16 +13,15 @@ import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.ArrayList;
 
-
 /**
- *评论
+ * 评论
  **/
 public class CommentAdapter extends BaseQuickAdapter<SCBean.BizCircleBean, BaseViewHolder> {
     private final Context context;
     private boolean showCheck;
 
     public CommentAdapter(Context context, ArrayList<SCBean.BizCircleBean> beanList) {
-        super(R.layout.item_comment,beanList);
+        super(R.layout.item_comment, beanList);
         this.context = context;
     }
 

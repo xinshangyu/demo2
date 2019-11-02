@@ -30,8 +30,6 @@ public class JfgzDetailsAdapter extends CommonAdapter<JFGZBean.ProtocolRulesBean
                     public void onClick(View v) {
                         tv_content.setVisibility(tv_content.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
                     }
-                })
-        ;
-
+                });
     }
 }

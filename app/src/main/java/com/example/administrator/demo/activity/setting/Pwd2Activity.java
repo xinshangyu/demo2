@@ -1,18 +1,15 @@
 package com.example.administrator.demo.activity.setting;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.administrator.demo.R;
-import com.example.administrator.demo.weight.AppActivityUtils;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.api.ApiKeys;
@@ -25,11 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Pwd2Activity extends BaseActivity {
-
 
     @BindView(R.id.et_new_number)
     EditText etNewNumber;
@@ -87,7 +82,6 @@ public class Pwd2Activity extends BaseActivity {
                 etNewNumber2.setSelection(etNewNumber2.length());
             }
         });
-
     }
 
 
@@ -101,6 +95,9 @@ public class Pwd2Activity extends BaseActivity {
         } else if (TextUtils.isEmpty(mEtNewNumber) || TextUtils.isEmpty(mEetNewNumber2)) {
             showToast("请输入旧密码或新密码");
         } else {
+            /**
+             * 密码修改
+             */
             paramMap = new HashMap<>();
             paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
             paramMap.put("smsId", id);

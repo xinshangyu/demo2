@@ -26,6 +26,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 修改手机号
+ */
 public class Phone2Activity extends BaseActivity {
 
     @BindView(R.id.et_number)
@@ -69,7 +72,6 @@ public class Phone2Activity extends BaseActivity {
 
     }
 
-
     @OnClick({R.id.et_number, R.id.et_code, R.id.tv_code, R.id.tv_save})
     public void onClick(View view) {
         phone = etNumber.getText().toString();
@@ -80,7 +82,6 @@ public class Phone2Activity extends BaseActivity {
                     showToast(R.string.login_phone_error_hint);
                 } else {
                     // TODO: 2019/8/21 先唯一校验
-
                     updatePhoneCodeOne(mContext, phone);
 
                 }
@@ -94,14 +95,18 @@ public class Phone2Activity extends BaseActivity {
                     return;
                 } else {
                     //校验验证码
-
                     updatePhoneCode2();
-
                 }
                 break;
         }
     }
 
+    /**
+     * 先唯一校验
+     *
+     * @param mContext
+     * @param phone
+     */
     private void updatePhoneCodeOne(Context mContext, String phone) {
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
@@ -121,7 +126,6 @@ public class Phone2Activity extends BaseActivity {
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -131,6 +135,12 @@ public class Phone2Activity extends BaseActivity {
         });
     }
 
+    /**
+     * 更新手机号
+     *
+     * @param mContext
+     * @param phone
+     */
     private void updatePhoneCode(Context mContext, String phone) {
         paramMap = new HashMap<>();
         paramMap.put("userPhone", phone);
@@ -154,11 +164,9 @@ public class Phone2Activity extends BaseActivity {
                     SmsTimeUtils.check(SmsTimeUtils.SETTING_FINANCE_ACCOUNT_TIME3, false);
                     SmsTimeUtils.startCountdown(tvCode, mContext);
 
-
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -166,7 +174,6 @@ public class Phone2Activity extends BaseActivity {
                 showToast("请求失败");
             }
         });
-
     }
 
     private void updatePhoneCode2() {
@@ -188,11 +195,9 @@ public class Phone2Activity extends BaseActivity {
                 LogUtil.e("ldh" + new Gson().toJson(weatherResult));
                 if (weatherResult.getCode() == 200) {
                     ActivityUtils.startActivity(mContext, UpdatePwdSuccessActivity.class);
-
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
 
             @Override
@@ -200,6 +205,5 @@ public class Phone2Activity extends BaseActivity {
                 showToast("请求失败");
             }
         });
-
     }
 }

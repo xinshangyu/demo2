@@ -30,7 +30,6 @@ import butterknife.BindView;
  * 历史成绩
  */
 public class HositoryFragment extends BaseFragment implements RefreshCallBack {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -80,6 +79,4 @@ public class HositoryFragment extends BaseFragment implements RefreshCallBack {
     public void getRefreshDate(int stat, int page, int count) {
         setFinishRefresh(mSmartRefreshLayout, false);//
     }
-
-
 }

@@ -119,9 +119,7 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     protected void initDate() {
-
     }
-
 
     @Override
     public void onTabSelect(int position) {
@@ -130,7 +128,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     public void onTabReselect(int position) {
-
     }
 
     /**
@@ -207,7 +204,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
             tvUserIdentify.setText(replaceNULL(mUserInfo.getPraiseNumber() + ""));
             tvUserFans.setText(replaceNULL(mUserInfo.getFansNumber() + ""));
         }
-
     }
 
     @OnClick({R.id.iv_run, R.id.tv_save})
@@ -224,7 +220,6 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -234,6 +229,5 @@ public class MyInfoActivity extends BaseActivity implements OnTabSelectListener,
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 }

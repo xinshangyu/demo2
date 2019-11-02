@@ -61,7 +61,6 @@ public class MoreActivity extends BaseActivity implements CommonView {
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.findFAQs);
-
     }
 
     @Override
@@ -118,6 +117,5 @@ public class MoreActivity extends BaseActivity implements CommonView {
                 showToast("请求失败");
             }
         });
-
     }
 }

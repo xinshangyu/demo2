@@ -10,8 +10,6 @@ import android.view.ViewGroup;
  * author：luck
  * project：PictureSelector
  * package：com.luck.picture.ui
- * email：893855882@qq.com
- * data：16/12/31
  */
 
 public class FullyGridLayoutManager extends GridLayoutManager {

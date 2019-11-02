@@ -52,14 +52,12 @@ public class RecordActivity extends BaseActivity implements CommonView, RefreshC
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new FundDetailsAdapter(mContext, mBeanList);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.txnRecord);
-
     }
 
     @Override
@@ -74,7 +72,6 @@ public class RecordActivity extends BaseActivity implements CommonView, RefreshC
             mBeanList.addAll(sqBean.getVirtualCurrencyRecord());
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

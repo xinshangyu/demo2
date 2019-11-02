@@ -17,14 +17,12 @@ import com.example.baselibrary.zh.utils.ImageLoader;
 
 import java.util.ArrayList;
 
-
 /**
  * 关注/粉丝
  **/
 public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordListBean> {
 
     private Context context;
-
 
     public UserFollowAdapter(Context context, ArrayList<UnFollowBen.RelationRecordListBean> beanList) {
         super(context, R.layout.item_follow, beanList);
@@ -47,9 +45,8 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
                         if (mOnItemClickListener != null)
                             mOnItemClickListener.onItemClick(v, holder, position);
                     }
-                })
-        ;
-        ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId +userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
+                });
+        ImageLoader.getInstance().loadingImage(mContext, ApiKeys.getApiUrl() + Address.fileId + userFollowBen.getUserPhoto(), holder.getView(R.id.iv_imageView),
                 new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
         if ("0".equals(userFollowBen.getRalationType())) {
@@ -61,7 +58,6 @@ public class UserFollowAdapter extends CommonAdapter<UnFollowBen.RelationRecordL
         } else {
             holder.setImageResource(R.id.iv_r, R.mipmap.weiguanzhu);
         }
-
     }
 
     public void setData(ArrayList<UnFollowBen.RelationRecordListBean> datas) {

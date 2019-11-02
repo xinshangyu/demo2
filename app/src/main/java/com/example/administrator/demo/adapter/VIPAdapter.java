@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class VIPAdapter extends BaseQuickAdapter<VIPBean.UserInfoBean.VipEquitiesRuleBean, BaseViewHolder> {
 
-
     public VIPAdapter(Context context, @Nullable List<VIPBean.UserInfoBean.VipEquitiesRuleBean> data) {
         super(R.layout.item_vip, data);
     }

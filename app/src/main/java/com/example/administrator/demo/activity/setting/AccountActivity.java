@@ -43,20 +43,18 @@ public class AccountActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
-
     }
 
     @OnClick({R.id.rl_tv_nick_update, R.id.rl_tv_update_pwd, R.id.rl_tv_bing_email})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rl_tv_nick_update:
+            case R.id.rl_tv_nick_update://修改手机号
                 ActivityUtils.startActivity(mContext, UpdatePhoneActivity.class);
                 break;
-            case R.id.rl_tv_update_pwd:
+            case R.id.rl_tv_update_pwd://修改密码
                 ActivityUtils.startActivity(mContext, UpdatePwdActivity.class);
                 break;
-            case R.id.rl_tv_bing_email:
+            case R.id.rl_tv_bing_email://修改email
                 ActivityUtils.startActivity(mContext, BindEmailActivity.class);
                 break;
         }

@@ -36,9 +36,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 我的资料
+ */
 public class FolderActivity extends BaseActivity {
 
-    public static void callActivity(Context context, String title, MyDataBean myDataBean){
+    public static void callActivity(Context context, String title, MyDataBean myDataBean) {
         Intent intent = new Intent(context, FolderActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("data", myDataBean);
@@ -77,15 +80,16 @@ public class FolderActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        Type type = new TypeToken<List<MyDataBean>>() {}.getType();
+        Type type = new TypeToken<List<MyDataBean>>() {
+        }.getType();
         String files = SharedPreferencesHelper.getPrefString("files", "");
 
         List<MyDataBean> arrayList = null;
-        if(!TextUtils.isEmpty(files)){
+        if (!TextUtils.isEmpty(files)) {
             arrayList = gson.fromJson(files, type);
-            if(arrayList != null && arrayList.size() > 0){
+            if (arrayList != null && arrayList.size() > 0) {
                 mBeanList.addAll(arrayList);
-                for (MyDataBean bean: mBeanList) {
+                for (MyDataBean bean : mBeanList) {
                     bean.setSelect(false);
                 }
             }
@@ -93,20 +97,20 @@ public class FolderActivity extends BaseActivity {
 
         mDataBean = getIntent().getParcelableExtra("data");
 
-        if(mDataBean != null && mDataBean.getFolderBeans() != null && mDataBean.getFolderBeans().size() > 0){
+        if (mDataBean != null && mDataBean.getFolderBeans() != null && mDataBean.getFolderBeans().size() > 0) {
             mAdapter = new FolderAdapter(mDataBean.getFolderBeans());
-            GridLayoutManager manager = new GridLayoutManager(FolderActivity.this,3);
+            GridLayoutManager manager = new GridLayoutManager(FolderActivity.this, 3);
             recyclerView.setLayoutManager(manager);
             recyclerView.setAdapter(mAdapter);
             mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                 @Override
                 public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                     MyDataBean.FolderBean bean = (MyDataBean.FolderBean) adapter.getItem(position);
-                    if(view.getId() == R.id.select){
+                    if (view.getId() == R.id.select) {
                         bean.setSelect(!bean.isSelect());
-                        if(bean.isSelect()){
+                        if (bean.isSelect()) {
                             mFileList.add(bean);
-                        }else{
+                        } else {
                             mFileList.remove(bean);
                         }
                         mAdapter.notifyDataSetChanged();
@@ -116,20 +120,19 @@ public class FolderActivity extends BaseActivity {
         }
 
 
-
     }
 
     @OnClick({R.id.common_toolBar_text_right, R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4})
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.common_toolBar_text_right:
-                if(mAdapter.getShow()){
+                if (mAdapter.getShow()) {
                     mTextRight.setText("编辑");
                     mAdapter.setShow(false);
                     llTop.setVisibility(View.GONE);
                     llBottom.setVisibility(View.GONE);
                     mFileList.clear();
-                }else{
+                } else {
                     mTextRight.setText("取消");
                     mAdapter.setShow(true);
                     llTop.setVisibility(View.VISIBLE);
@@ -152,13 +155,13 @@ public class FolderActivity extends BaseActivity {
                                     @Override
                                     public void onClick(View v) {
                                         EditText editText = holder.getView(R.id.et_content);
-                                        if(TextUtils.isEmpty(editText.getText().toString().trim())){
+                                        if (TextUtils.isEmpty(editText.getText().toString().trim())) {
                                             showToast("请输入文件名");
                                             return;
                                         }
                                         String folderPath = FileUtils.getUserNew(editText.getText().toString().trim());
                                         for (MyDataBean bean : mBeanList) {
-                                            if(bean.getId().equals(mDataBean.getId())){
+                                            if (bean.getId().equals(mDataBean.getId())) {
                                                 bean.setPath(folderPath);
                                                 bean.setName(editText.getText().toString().trim());
                                                 new File(bean.getPath()).renameTo(new File(folderPath));
@@ -166,7 +169,7 @@ public class FolderActivity extends BaseActivity {
                                             }
                                         }
 
-                                        for(MyDataBean.FolderBean folderBean : mDataBean.getFolderBeans()){
+                                        for (MyDataBean.FolderBean folderBean : mDataBean.getFolderBeans()) {
                                             FileUtil.copyFile(folderBean.getPath(), folderPath + folderBean.getName());
                                         }
                                         new File(mDataBean.getPath()).delete();
@@ -182,19 +185,19 @@ public class FolderActivity extends BaseActivity {
                         .show(getSupportFragmentManager());
                 break;
             case R.id.tv2://删除分组
-                for (MyDataBean.FolderBean folderBean: mDataBean.getFolderBeans()) {
+                for (MyDataBean.FolderBean folderBean : mDataBean.getFolderBeans()) {
                     MyDataBean bean = new MyDataBean();
                     bean.setName(folderBean.getName());
                     bean.setId(DateUtil.getDateShortSerialYY());
                     bean.setPath("");
                     bean.setNewPath(FileUtils.getCacheMD() + folderBean.getName());
                     bean.setType("1");//1代表文件
-                    mBeanList.add(mBeanList.size() - 2,bean);
+                    mBeanList.add(mBeanList.size() - 2, bean);
                     FileUtil.copyFile(folderBean.getPath(), bean.getNewPath());
                 }
                 new File(mDataBean.getPath()).delete();
-                for (MyDataBean bean: mBeanList){
-                    if(bean.getId().equals(mDataBean.getId())){
+                for (MyDataBean bean : mBeanList) {
+                    if (bean.getId().equals(mDataBean.getId())) {
                         mBeanList.remove(bean);
                         break;
                     }
@@ -204,7 +207,7 @@ public class FolderActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv3://移动到
-                if(mFileList.size() <= 0){
+                if (mFileList.size() <= 0) {
                     showToast("请选择文件");
                     return;
                 }
@@ -222,9 +225,9 @@ public class FolderActivity extends BaseActivity {
                                 myDataBean.setId("-2");//-2代表新建分组
                                 myDataBean.setType("2");//2代表文件夹
                                 datas.add(myDataBean);
-                                for (MyDataBean bean:
+                                for (MyDataBean bean :
                                         mBeanList) {
-                                    if("2".equals(bean.getType())){
+                                    if ("2".equals(bean.getType())) {
                                         datas.add(bean);
                                     }
                                 }
@@ -240,16 +243,16 @@ public class FolderActivity extends BaseActivity {
                                     @Override
                                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                         MyDataBean bean = (MyDataBean) adapter.getItem(position);
-                                        if("-2".equals(bean.getId())){//新建文件夹
+                                        if ("-2".equals(bean.getId())) {//新建文件夹
                                             dialog.dismiss();
                                             newFolderDialog();
-                                        }else{
+                                        } else {
                                             //移动文件
-                                            for (MyDataBean.FolderBean mBean:
+                                            for (MyDataBean.FolderBean mBean :
                                                     mFileList) {
-                                                for (MyDataBean.FolderBean dataBean:
+                                                for (MyDataBean.FolderBean dataBean :
                                                         mDataBean.getFolderBeans()) {
-                                                    if(dataBean.getId().equals(mBean.getId())){
+                                                    if (dataBean.getId().equals(mBean.getId())) {
                                                         dataBean.setSelect(false);
                                                         bean.getFolderBeans().add(dataBean);
                                                         mDataBean.getFolderBeans().remove(dataBean);
@@ -258,9 +261,9 @@ public class FolderActivity extends BaseActivity {
                                                     }
                                                 }
                                             }
-                                            for (MyDataBean dataBean:
-                                                 mBeanList) {
-                                                if(dataBean.getId().equals(myDataBean.getId())){
+                                            for (MyDataBean dataBean :
+                                                    mBeanList) {
+                                                if (dataBean.getId().equals(myDataBean.getId())) {
                                                     dataBean.setFolderBeans(myDataBean.getFolderBeans());
                                                     break;
                                                 }
@@ -289,23 +292,23 @@ public class FolderActivity extends BaseActivity {
 
                 break;
             case R.id.tv4://移出分组
-                if(mFileList.size() <= 0){
+                if (mFileList.size() <= 0) {
                     showToast("请选择文件");
                     return;
                 }
-                for (MyDataBean.FolderBean folderBean: mFileList) {
+                for (MyDataBean.FolderBean folderBean : mFileList) {
                     MyDataBean bean = new MyDataBean();
                     bean.setName(folderBean.getName());
                     bean.setId(DateUtil.getDateShortSerialYY());
                     bean.setPath("");
                     bean.setNewPath(FileUtils.getCacheMD() + folderBean.getName());
                     bean.setType("1");//1代表文件
-                    mBeanList.add(mBeanList.size() - 1,bean);
+                    mBeanList.add(mBeanList.size() - 1, bean);
                     mDataBean.getFolderBeans().remove(folderBean);
                     FileUtil.copyFile(folderBean.getPath(), bean.getNewPath());
                 }
-                for (MyDataBean bean: mBeanList) {
-                    if(bean.getId().equals(mDataBean.getId())){
+                for (MyDataBean bean : mBeanList) {
+                    if (bean.getId().equals(mDataBean.getId())) {
                         bean.setFolderBeans(mDataBean.getFolderBeans());
                     }
                 }
@@ -316,7 +319,7 @@ public class FolderActivity extends BaseActivity {
         }
     }
 
-    private void newFolderDialog(){
+    private void newFolderDialog() {
         NiceDialog.init()
                 .setLayoutId(R.layout.dialog_add_show)
                 .setConvertListener(new ViewConvertListener() {
@@ -332,7 +335,7 @@ public class FolderActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 EditText editText = holder.getView(R.id.et_content);
-                                if(TextUtils.isEmpty(editText.getText().toString().trim())){
+                                if (TextUtils.isEmpty(editText.getText().toString().trim())) {
                                     showToast("请输入文件名");
                                     return;
                                 }
@@ -345,11 +348,11 @@ public class FolderActivity extends BaseActivity {
                                 myDataBean.setPath(folderPath);
                                 MyDataBean.FolderBean folderBean = null;
                                 //将最外层文件移动到文件夹里
-                                for (MyDataBean.FolderBean bean:
+                                for (MyDataBean.FolderBean bean :
                                         mFileList) {
-                                    for (MyDataBean.FolderBean dataBean:
+                                    for (MyDataBean.FolderBean dataBean :
                                             mDataBean.getFolderBeans()) {
-                                        if(dataBean.getId().equals(bean.getId())){
+                                        if (dataBean.getId().equals(bean.getId())) {
                                             folderBean = new MyDataBean.FolderBean();
                                             folderBean.setName(dataBean.getName());
                                             folderBean.setId(DateUtil.getDateShortSerialYY());
@@ -380,16 +383,16 @@ public class FolderActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(mAdapter != null && mAdapter.getShow()){
+        if (mAdapter != null && mAdapter.getShow()) {
             mAdapter.setShow(false);
             mFileList.clear();
-            for (MyDataBean bean: mBeanList) {
+            for (MyDataBean bean : mBeanList) {
                 bean.setSelect(false);
             }
             mTextRight.setText("编辑");
             llTop.setVisibility(View.GONE);
             llBottom.setVisibility(View.GONE);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

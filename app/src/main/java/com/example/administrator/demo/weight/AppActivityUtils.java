@@ -12,8 +12,10 @@ import com.example.administrator.demo.activity.setting.Pwd2Activity;
 import com.example.administrator.demo.activity.user.UserLoginActivity;
 import com.example.baselibrary.zh.utils.ActivityUtils;
 
+/**
+ * activity跳转工具类
+ */
 public class AppActivityUtils extends ActivityUtils {
-
 
     /**
      * 跳转帮助页面
@@ -38,7 +40,7 @@ public class AppActivityUtils extends ActivityUtils {
     }
 
     /**
-     * 跳转
+     * 跳转密码
      */
     public static void StartPwdActivity(Context context, String content, String id) {
         Bundle bundle = new Bundle();
@@ -48,7 +50,7 @@ public class AppActivityUtils extends ActivityUtils {
     }
 
     /**
-     * 跳转
+     * 跳转手机号
      */
     public static void StartPhoneActivity(Context context, String content, String id, String pho) {
         Bundle bundle = new Bundle();

@@ -28,9 +28,6 @@ public class ChaJianActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-
-
     }
-
 
 }

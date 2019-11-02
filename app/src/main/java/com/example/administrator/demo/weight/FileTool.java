@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,13 +17,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-import okhttp3.Request;
-import okhttp3.Response;
-
 /**
  * FileName:
- * Author :  杜晓武
- * Create : 2018/10/10 15:40
+ * Create : 2019/10/10 15:40
  */
 public class FileTool {
 
@@ -36,7 +31,6 @@ public class FileTool {
      *
      * @param file
      * @return
-     * @throws Exception
      */
     public static long getFolderSize(File file) throws Exception {
         long size = 0;
@@ -105,7 +99,6 @@ public class FileTool {
     }
 
 
-
     //下载到指定文件
 
     //子线程里操作
@@ -166,7 +159,7 @@ public class FileTool {
     /**
      * @param url  下载连接
      * @param path 下载的文件储存目录
-     *             //     * @param listener     下载监听
+     * //     * @param listener     下载监听
      */
 
     private static final String AUDIO_PATH = "audio/";
@@ -202,10 +195,12 @@ public class FileTool {
         }
         return filePic.getAbsolutePath();
     }
-    public static String get8UUID(){
+
+    public static String get8UUID() {
         String ranStr = UUID.randomUUID().toString().replace("_", "").substring(0, 8);
         return ranStr;
     }
+
     private static final String TIME_STYLE = "yyyyMMdd_HHmmss";
 
     public static String getPhotoNameWithType(String source) {

@@ -17,6 +17,7 @@ import java.io.File;
 
 /**
  * 文件 -- 图片裁剪工具类
+ *
  * @Description:
  * @Author: tao
  * @CreateDate: 2018/8/11 10:40
@@ -86,11 +87,11 @@ public class UCropUtils {
         //初始化UCrop配置
         UCrop.Options options = new UCrop.Options();
         //设置裁剪图片可操作的手势
-        options.setAllowedGestures( UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL);
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL);
         //设置toolbar颜色
-        options.setToolbarColor( ActivityCompat.getColor(activity, R.color.black));
+        options.setToolbarColor(ActivityCompat.getColor(activity, R.color.black));
         //设置状态栏颜色
-        options.setStatusBarColor( ActivityCompat.getColor(activity, R.color.black));
+        options.setStatusBarColor(ActivityCompat.getColor(activity, R.color.black));
         //是否能调整裁剪框
         //是否隐藏底部容器，默认显示
         options.setHideBottomControls(true);
@@ -118,11 +119,11 @@ public class UCropUtils {
         //初始化UCrop配置
         UCrop.Options options = new UCrop.Options();
         //设置裁剪图片可操作的手势
-        options.setAllowedGestures( UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL);
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL);
         //设置toolbar颜色
-        options.setToolbarColor( ActivityCompat.getColor(context, R.color.black));
+        options.setToolbarColor(ActivityCompat.getColor(context, R.color.black));
         //设置状态栏颜色
-        options.setStatusBarColor( ActivityCompat.getColor(context, R.color.black));
+        options.setStatusBarColor(ActivityCompat.getColor(context, R.color.black));
         //是否能调整裁剪框
         //是否隐藏底部容器，默认显示
         options.setHideBottomControls(true);

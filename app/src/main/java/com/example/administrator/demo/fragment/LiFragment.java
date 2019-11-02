@@ -70,7 +70,6 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
         return fragment;
     }
 
-
     @Override
     protected int getContentViewLayoutID() {
         return R.layout.activity_follows;
@@ -145,10 +144,12 @@ public class LiFragment extends BaseFragment implements RefreshCallBack, CommonV
             rl_empty.setVisibility(View.VISIBLE);
         }
     }
+
     @Override
     public void onError() {
         if (rl_empty != null) rl_empty.setVisibility(View.VISIBLE);
     }
+
     @Override
     public void onResume() {
         super.onResume();

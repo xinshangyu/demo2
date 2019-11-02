@@ -51,7 +51,6 @@ public class JfGzActivity extends BaseActivity implements CommonView {
     protected void initDate() {
         cMap.put("protocolType", "4");
         cPresenter.requestData(this, cMap, Address.pointsRules);
-
     }
 
     @Override
@@ -62,7 +61,6 @@ public class JfGzActivity extends BaseActivity implements CommonView {
             mBeanList.add(sqBean.getProtocolRules());
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

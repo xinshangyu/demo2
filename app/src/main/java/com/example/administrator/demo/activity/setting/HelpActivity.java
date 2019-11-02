@@ -25,7 +25,6 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -46,9 +45,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
     RecyclerView mRecyclerView;
 
     private CallAdapter adapter;
-    //    private EmptyWrapper mAdapter;
     private ArrayList<Help2Bean.FaqRecordBean> mBeanList = new ArrayList<>();
-
 
     @Override
     protected int getLayout() {
@@ -66,10 +63,7 @@ public class HelpActivity extends BaseActivity implements CommonView {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new CallAdapter(mContext, mBeanList);
-//        mAdapter = new EmptyWrapper(adapter);
-//        mAdapter.setEmptyView(R.layout.empty_view);
         mRecyclerView.setAdapter(adapter);
-
     }
 
     @Override
@@ -92,9 +86,8 @@ public class HelpActivity extends BaseActivity implements CommonView {
                         mBeanList.addAll(sqBean.getFaqRecord());
                         adapter.notifyDataSetChanged();
                     }
-
-                }else {
-                    showToast(""+weatherResult.getMsg());
+                } else {
+                    showToast("" + weatherResult.getMsg());
                 }
             }
 
@@ -108,10 +101,9 @@ public class HelpActivity extends BaseActivity implements CommonView {
 
     @OnClick(R.id.common_toolBar_text_right)
     public void onClick(View view) {
-        if (view.getId() == R.id.common_toolBar_text_right) {
+        if (view.getId() == R.id.common_toolBar_text_right) {//意见反馈
             ActivityUtils.startActivity(mContext, CallBackActivity.class);
         }
-
     }
 
     @Override

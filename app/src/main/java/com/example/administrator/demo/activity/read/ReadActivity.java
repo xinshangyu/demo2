@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.Read1Adapter;
-import com.example.administrator.demo.adapter.Read2Adapter;
 import com.example.baselibrary.zh.adapter.MultiItemTypeAdapter;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -48,12 +47,10 @@ public class ReadActivity extends BaseActivity {
                 finish();
             }
         });
-
     }
 
     @Override
     protected void initDate() {
-
         for (int i = 0; i < 5; i++) {
             mListData.add("不用写" + i);
         }
@@ -89,7 +86,7 @@ public class ReadActivity extends BaseActivity {
         flowLayout.setAdapter(tagAdapter = new TagAdapter<String>(mListData2) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
-                View view = View.inflate(mContext,R.layout.item_search_cache, null);
+                View view = View.inflate(mContext, R.layout.item_search_cache, null);
                 TextView textView = view.findViewById(R.id.tv_name);
                 textView.setText(s);
                 return view;
@@ -116,6 +113,5 @@ public class ReadActivity extends BaseActivity {
 //                getActivity().setTitle("choose:" + selectPosSet.toString());
             }
         });
-
     }
 }

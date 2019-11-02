@@ -61,7 +61,6 @@ public class UserLoginModel {
                     uUserLoginPresenter.toError(weatherResult.getMsg());
 
                 }
-
 //                uUserLoginPresenter.toRegister(weatherResult.getCode(), weatherResult.getMsg(), 0);
             }
 

@@ -20,7 +20,6 @@ public class FansPresenter implements IFansPresenter {
     }
 
 
-
     //开始处理
     public void requestFans(Context context) {
 

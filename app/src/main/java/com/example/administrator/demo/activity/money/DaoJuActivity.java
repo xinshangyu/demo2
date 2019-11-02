@@ -24,10 +24,7 @@ import butterknife.BindView;
 /**
  * 道具
  */
-
 public class DaoJuActivity extends BaseActivity implements RefreshCallBack, CommonView {
-
-
     @BindView(R.id.RecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.SmartRefreshLayout)
@@ -35,7 +32,6 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
 
     DaoDetailsAdapter mAdapter;
     private List<List<DaojuBean.PropsAssetsBean>> mBeanList = new ArrayList<>();
-
 
     @Override
     protected int getLayout() {
@@ -55,14 +51,12 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new DaoDetailsAdapter(mBeanList);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(getApplicationContext(), cMap, Address.propsAssets);
-
     }
 
     @Override
@@ -78,7 +72,6 @@ public class DaoJuActivity extends BaseActivity implements RefreshCallBack, Comm
             mBeanList.addAll(sqBean.getPropsAssets());
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override

@@ -109,7 +109,6 @@ public class ZjActivity extends BaseActivity implements CommonView {
                                                 dialog.dismiss();
                                             }
                                         });
-
                                     }
                                 })
                                 .setMargin(42)
@@ -118,15 +117,19 @@ public class ZjActivity extends BaseActivity implements CommonView {
                 }
             }
         });
-
     }
 
+    /**
+     * 初始化数据
+     */
     @Override
     protected void initDate() {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(this, cMap, Address.footprint_list);
     }
-
+    /**
+     * 回调数据
+     */
     @Override
     public void onData(WeatherResult weatherResult) {
         TrackBean trackBean = gson.fromJson(gson.toJson(weatherResult.getData()), TrackBean.class);

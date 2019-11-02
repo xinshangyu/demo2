@@ -31,7 +31,6 @@ import butterknife.OnClick;
  * 我的钱包
  */
 public class MyMoneyActivity extends BaseActivity {
-
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_money)
@@ -89,29 +88,25 @@ public class MyMoneyActivity extends BaseActivity {
                 } else {
                     showToast("" + weatherResult.getMsg());
                 }
-
             }
-
             @Override
             public void onAfterFailure() {
                 showToast("请求失败");
             }
         });
-
     }
 
     @OnClick({R.id.tv_save, R.id.rl_yhj, R.id.rl_daoju, R.id.rl_jyjl})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_save:
-                // TODO: 2019/8/21 充值
                 ActivityUtils.startActivity(mContext, RechargeActivity.class);
                 break;
             case R.id.rl_yhj:
                 showToast("接口没有...");
                 break;
-            case R.id.rl_daoju:
-                ActivityUtils.startActivity(mContext,DaoJuActivity.class);
+            case R.id.rl_daoju://跳转道具页面
+                ActivityUtils.startActivity(mContext, DaoJuActivity.class);
                 break;
             case R.id.rl_jyjl:
                 ActivityUtils.startActivity(mContext, RecordActivity.class);

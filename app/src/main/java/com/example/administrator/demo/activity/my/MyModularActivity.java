@@ -1,7 +1,6 @@
 package com.example.administrator.demo.activity.my;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -100,21 +99,17 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
             ImageLoader.getInstance().loadingImage(getApplicationContext(), ApiKeys.getApiUrl() + Address.fileId + userPhoto, iv_my_head,
                     new MultiTransformation(new CircleCrop()), R.drawable.defaulthead);
 
-
             tvUserName.setText(replaceNULL(mUserInfo.getPetName()));
             tvUserCircle.setText(replaceNULL(mUserInfo.getCircleNumber() + ""));
             tvUserFollw.setText(replaceNULL(mUserInfo.getAttentionNumber() + ""));
             tvUserIdentify.setText(replaceNULL(mUserInfo.getPraiseNumber() + ""));
             tvUserFans.setText(replaceNULL(mUserInfo.getFansNumber() + ""));
-
         }
     }
-
 
     /***
      * 返回
      */
-
     @OnClick(R.id.iv_run)
     void onRun() {
         finish();
@@ -123,7 +118,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     /***
      * 个人中心
      */
-
     @OnClick(R.id.iv_my_head)
     void onHead() {
         ActivityUtils.startActivity(this, MyInfoActivity.class);
@@ -195,7 +189,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
      **/
     @OnClick(R.id.iv_personal_user_name)
     void onName() {
-
         Bundle bundle = new Bundle();
         bundle.putString("tabNum", "0");
         startActivity(UserFollowActivity.class, bundle);
@@ -319,7 +312,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @OnClick(R.id.onclickFootprint)
     void onclickFootprint() {
         ActivityUtils.startActivity(this, ZjActivity.class);
-
     }
 
 
@@ -329,7 +321,6 @@ public class MyModularActivity extends BaseActivity implements MyModularView {
     @OnClick(R.id.onclickOrganization)
     void onclickOrganization() {
     }
-
 
     /**
      * 积分商城

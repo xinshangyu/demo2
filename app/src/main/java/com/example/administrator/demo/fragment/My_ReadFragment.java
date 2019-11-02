@@ -2,30 +2,20 @@ package com.example.administrator.demo.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyReadAdapter;
-import com.example.administrator.demo.adapter.UserFollowAdapter;
 import com.example.administrator.demo.entity.ReadBean;
-import com.example.administrator.demo.entity.SCBean;
-import com.example.administrator.demo.entity.UnFollowBen;
-import com.example.administrator.demo.entity.UserFollowBen;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
 import com.example.baselibrary.zh.base.BaseFragment;
 import com.example.baselibrary.zh.callback.RefreshCallBack;
 import com.example.baselibrary.zh.mvp.CommonView;
 import com.example.baselibrary.zh.network.result.WeatherResult;
-import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 
@@ -81,7 +71,6 @@ public class My_ReadFragment extends BaseFragment implements RefreshCallBack, Co
     public void getRefreshDate(int stat, int page, int count) {
         setFinishRefresh(mSmartRefreshLayout, false);//
     }
-
 
     @Override
     public void onData(WeatherResult weatherResult) {
