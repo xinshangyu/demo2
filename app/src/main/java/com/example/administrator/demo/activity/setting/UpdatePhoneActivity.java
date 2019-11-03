@@ -128,6 +128,7 @@ public class UpdatePhoneActivity extends BaseActivity {
         paramMap = new HashMap<>();
         paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         paramMap.put("smsCode", code);
+        paramMap.put("userPhone", phone);
         paramMap.put("id", integralNumber);
 
         RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.smsVerify, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(mContext) {

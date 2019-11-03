@@ -236,6 +236,11 @@ public class Address {
      * 我的--足迹--添加足迹   GET  http://192.168.0.195:8980/user/footprint/add
      */
     public final static String add_footprint = "user/footprint/add?";
+
+    /**
+     * 我的--足迹--添加足迹校验   GET  http://192.168.0.195:8980/user/footprint/getUserFootprintAsset
+     */
+    public final static String getUserFootprintAsset = "user/footprint/getUserFootprintAsset?";
     /**
      * 我的迹--退出登录   GET  http://192.168.0.195:8980/user/login/loginout
      */

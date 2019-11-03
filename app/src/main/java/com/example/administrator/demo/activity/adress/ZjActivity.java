@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.demo.R;
+import com.example.administrator.demo.activity.setting.UpdateEmailSuccessActivity;
 import com.example.administrator.demo.adapter.TrackAdapter;
 import com.example.administrator.demo.entity.TrackBean;
 import com.example.administrator.demo.weight.nice.BaseNiceDialog;
@@ -18,11 +19,16 @@ import com.example.administrator.demo.weight.nice.ViewConvertListener;
 import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.api.Address;
+import com.example.baselibrary.zh.api.ApiKeys;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.example.baselibrary.zh.mvp.CommonView;
+import com.example.baselibrary.zh.network.RetrofitRequest;
 import com.example.baselibrary.zh.network.result.WeatherResult;
+import com.example.baselibrary.zh.utils.ActivityUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -39,6 +45,7 @@ public class ZjActivity extends BaseActivity implements CommonView {
     private TrackAdapter mAdapter;
     private ArrayList<TrackBean.FootprintBean> mBeanList = new ArrayList<>();
     private TrackBean.FootprintBean footprintBean;
+    private Map<String, String> paramMap;
 
     @Override
     protected int getLayout() {
@@ -66,54 +73,81 @@ public class ZjActivity extends BaseActivity implements CommonView {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.iv || view.getId() == R.id.iv1) {
-                    TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
-                    if (bean.isAdd()) {
-                        NiceDialog.init()
-                                .setLayoutId(R.layout.dialog_zuji_show)
-                                .setConvertListener(new ViewConvertListener() {
-                                    @Override
-                                    protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
-                                        final int[] i = {1};
-                                        TextView textView = holder.getView(R.id.tv_num);
 
-                                        holder.setOnClickListener(R.id.iv_less, new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                if (i[0] > 1) {
-                                                    i[0]--;
+                    paramMap = new HashMap<>();
+                    paramMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
+                    RetrofitRequest.sendPostRequest(ApiKeys.getApiUrl() + Address.getUserFootprintAsset, paramMap, WeatherResult.class, new RetrofitRequest.ResultHandler<WeatherResult>(getApplicationContext()) {
+                        @Override
+                        public void onBeforeResult() {
+                        }
+
+                        @Override
+                        public void onResult(WeatherResult weatherResult) {
+                            if (weatherResult.getCode() == 200) {
+                                startActivityForResult(new Intent(ZjActivity.this, ZjAddActivity.class), 100);
+
+                            } else if (weatherResult.getCode() == 3002) {
+
+                                TrackBean.FootprintBean bean = (TrackBean.FootprintBean) adapter.getItem(position);
+                                if (bean.isAdd()) {
+                                    NiceDialog.init()
+                                            .setLayoutId(R.layout.dialog_zuji_show)
+                                            .setConvertListener(new ViewConvertListener() {
+                                                @Override
+                                                protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                                                    final int[] i = {1};
+                                                    TextView textView = holder.getView(R.id.tv_num);
+
+                                                    holder.setOnClickListener(R.id.iv_less, new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            if (i[0] > 1) {
+                                                                i[0]--;
+                                                            }
+                                                            holder.setText(R.id.tv_content, 2000 * i[0] + "");
+                                                            textView.setText(i[0] + "");
+                                                        }
+                                                    });
+
+                                                    holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+
+                                                            i[0]++;
+                                                            textView.setText(i[0] + "");
+                                                            holder.setText(R.id.tv_content, 2000 * i[0] + "");
+                                                        }
+                                                    });
+                                                    holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    });
+                                                    holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            startActivityForResult(new Intent(ZjActivity.this, ZjAddActivity.class), 100);
+                                                            dialog.dismiss();
+                                                        }
+                                                    });
                                                 }
-                                                holder.setText(R.id.tv_content, 2000 * i[0] + "");
-                                                textView.setText(i[0] + "");
-                                            }
-                                        });
+                                            })
+                                            .setMargin(42)
+                                            .show(getSupportFragmentManager());
+                                }
 
-                                        holder.setOnClickListener(R.id.iv_add, new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
+                            } else {
+                                showToast("" + weatherResult.getMsg());
+                            }
+                        }
 
-                                                i[0]++;
-                                                textView.setText(i[0] + "");
-                                                holder.setText(R.id.tv_content, 2000 * i[0] + "");
-                                            }
-                                        });
-                                        holder.setOnClickListener(R.id.tv_do_cancel, new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                dialog.dismiss();
-                                            }
-                                        });
-                                        holder.setOnClickListener(R.id.tv_start, new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                startActivityForResult(new Intent(ZjActivity.this, ZjAddActivity.class), 100);
-                                                dialog.dismiss();
-                                            }
-                                        });
-                                    }
-                                })
-                                .setMargin(42)
-                                .show(getSupportFragmentManager());
-                    }
+                        @Override
+                        public void onAfterFailure() {
+                            showToast("请求失败");
+                        }
+                    });
+
                 }
             }
         });
@@ -127,6 +161,7 @@ public class ZjActivity extends BaseActivity implements CommonView {
         cMap.put("userId", SharedPreferencesHelper.getPrefString("userId", ""));
         cPresenter.requestData2(this, cMap, Address.footprint_list);
     }
+
     /**
      * 回调数据
      */
