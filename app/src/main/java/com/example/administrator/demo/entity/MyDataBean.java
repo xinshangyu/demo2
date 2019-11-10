@@ -12,9 +12,10 @@ public class MyDataBean implements Parcelable{
     private String path;
     private String newPath;
     private String size;
-    private String id;
+    private String id;//-1代表添加图标
     private String src;
-    private String type;
+    private String type;//1代表文件，2代表文件夹
+    private String userId;//用户id
     private boolean isSelect;
     private List<FolderBean> folderBeans = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class MyDataBean implements Parcelable{
         id = in.readString();
         src = in.readString();
         type = in.readString();
+        userId = in.readString();
         isSelect = in.readByte() != 0;
         folderBeans = in.createTypedArrayList(FolderBean.CREATOR);
     }
@@ -100,6 +102,14 @@ public class MyDataBean implements Parcelable{
         this.type = type;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public boolean isSelect() {
         return isSelect;
     }
@@ -130,6 +140,7 @@ public class MyDataBean implements Parcelable{
         dest.writeString(id);
         dest.writeString(src);
         dest.writeString(type);
+        dest.writeString(userId);
         dest.writeByte((byte) (isSelect ? 1 : 0));
         dest.writeTypedList(folderBeans);
     }
@@ -142,6 +153,7 @@ public class MyDataBean implements Parcelable{
         private String id;
         private String src;
         private String type;
+        private String userId;
         private boolean isSelect;
 
         public FolderBean(){}
@@ -154,6 +166,7 @@ public class MyDataBean implements Parcelable{
             id = in.readString();
             src = in.readString();
             type = in.readString();
+            userId = in.readString();
             isSelect = in.readByte() != 0;
         }
 
@@ -225,6 +238,14 @@ public class MyDataBean implements Parcelable{
             this.type = type;
         }
 
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
         public boolean isSelect() {
             return isSelect;
         }
@@ -247,6 +268,7 @@ public class MyDataBean implements Parcelable{
             dest.writeString(id);
             dest.writeString(src);
             dest.writeString(type);
+            dest.writeString(userId);
             dest.writeByte((byte) (isSelect ? 1 : 0));
         }
     }

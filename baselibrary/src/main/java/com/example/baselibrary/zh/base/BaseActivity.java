@@ -141,7 +141,7 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
             mTextRight.setVisibility(View.VISIBLE);
             mTextRight.setText(right);
         }
-        mToolbar.setNavigationIcon(R.drawable.black_back);
+        mToolbar.setNavigationIcon(R.drawable.black_back_white);
         mToolbar.setNavigationOnClickListener(listener);
     }
 

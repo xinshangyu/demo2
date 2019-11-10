@@ -33,6 +33,9 @@ import com.example.baselibrary.zh.base.BaseActivity;
 import com.google.gson.reflect.TypeToken;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.NormalFile;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -66,6 +69,7 @@ public class MyDataActivity extends BaseActivity {
     private List<Integer> images = new ArrayList<>();
     public static final int FILE_PICKER_REQUEST_CODE = 1;
     private List<MyDataBean> mFileList = new ArrayList<>();
+    private String userId;
 
 
     @Override
@@ -92,8 +96,9 @@ public class MyDataActivity extends BaseActivity {
                 if ("-1".equals(bean.getId())) {
                     requestPermission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE);
                 } else if ("2".equals(bean.getType())) {
-
-                    FolderActivity.callActivity(MyDataActivity.this, bean.getName(), bean);
+                    if(!mAdapter.getShow()){
+                        FolderActivity.callActivity(MyDataActivity.this, bean.getName(), bean);
+                    }
                 } else {
 //                    OpenFileUtil.openFile(bean.getNewPath());
                 }
@@ -107,6 +112,9 @@ public class MyDataActivity extends BaseActivity {
                 if ("-1".equals(bean.getId()) || "2".equals(bean.getType())) {
                     return false;
                 }
+
+                bean.setSelect(true);
+                mFileList.add(bean);
                 mAdapter.setShow(true);
                 navigationView.setVisibility(View.VISIBLE);
                 return false;
@@ -134,157 +142,50 @@ public class MyDataActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.m_delete) {
-                    for (MyDataBean bean : mFileList) {
-                        for (int i = 0; i < mBeanList.size(); i++) {
-                            if (bean.getId().equals(mBeanList.get(i).getId())) {
-                                mBeanList.remove(i);
-                                FileUtils.deletePath(bean.getNewPath());
-                                break;
-                            }
-                        }
-                    }
-                    mFileList.clear();
-                    String json = gson.toJson(mBeanList);
-                    SharedPreferencesHelper.setPrefString("files", json);
-                    mAdapter.notifyDataSetChanged();
-                } else if (item.getItemId() == R.id.m_add) {
-
+                    deleteFiles();
+                } else if (item.getItemId() == R.id.m_add) {//新增文件夹
                     newFolderDialog();
-
-                } else if (item.getItemId() == R.id.m_top) {
-                    for (MyDataBean bean : mFileList) {
-                        for (int i = 0; i < mBeanList.size(); i++) {
-                            if (bean.getId().equals(mBeanList.get(i).getId())) {
-                                mBeanList.remove(i);
-                                break;
-                            }
-                        }
-                    }
-                    mBeanList.addAll(0, mFileList);
-                    String json = gson.toJson(mBeanList);
-                    SharedPreferencesHelper.setPrefString("files", json);
-                    mAdapter.notifyDataSetChanged();
-                } else if (item.getItemId() == R.id.m_all) {
-                    for (MyDataBean bean : mBeanList) {
-                        bean.setSelect(true);
-                    }
-                    mFileList.clear();
-                    mFileList.addAll(mBeanList);
-                    mAdapter.notifyDataSetChanged();
-                } else if (item.getItemId() == R.id.m_move) {
-                    NiceDialog.init()
-                            .setLayoutId(R.layout.dialog_files_list)
-                            .setConvertListener(new ViewConvertListener() {
-                                @Override
-                                protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
-                                    RecyclerView recyclerView = holder.getView(R.id.recyclerView);
-                                    LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-                                    recyclerView.setLayoutManager(layoutManager);
-                                    ArrayList<MyDataBean> datas = new ArrayList<>();
-                                    MyDataBean myDataBean = new MyDataBean();
-                                    myDataBean.setName("新建分组");
-                                    myDataBean.setId("-2");//-2代表新建分组
-                                    myDataBean.setType("2");//2代表文件夹
-                                    datas.add(myDataBean);
-                                    for (MyDataBean bean :
-                                            mBeanList) {
-                                        if ("2".equals(bean.getType())) {
-                                            datas.add(bean);
-                                        }
-                                    }
-                                    BaseQuickAdapter<MyDataBean, BaseViewHolder> adapter = new BaseQuickAdapter<MyDataBean, BaseViewHolder>(R.layout.item_files, datas) {
-                                        @Override
-                                        protected void convert(BaseViewHolder helper, MyDataBean item) {
-                                            helper.setText(R.id.tv_name, item.getName());
-                                            TextView textView = helper.getView(R.id.tv_name);
-                                            textView.setTextColor(getResources().getColor("-2".equals(item.getId()) ? R.color.colorText_back : R.color.huise2));
-                                        }
-                                    };
-                                    adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            MyDataBean bean = (MyDataBean) adapter.getItem(position);
-                                            if ("-2".equals(bean.getId())) {//新建文件夹
-                                                dialog.dismiss();
-                                                newFolderDialog();
-                                            } else {
-                                                MyDataBean.FolderBean folderBean;
-                                                //将最外层文件移动到文件夹里
-                                                for (MyDataBean mBean :
-                                                        mFileList) {
-                                                    for (MyDataBean dataBean :
-                                                            mBeanList) {
-                                                        if (dataBean.getId().equals(mBean.getId())) {
-                                                            folderBean = new MyDataBean.FolderBean();
-                                                            folderBean.setName(dataBean.getName());
-                                                            folderBean.setId(DateUtil.getDateShortSerialYY());
-                                                            folderBean.setPath(bean.getPath() + dataBean.getName());
-                                                            folderBean.setType("3");//3代表文件夹内的文件
-                                                            bean.getFolderBeans().add(folderBean);
-                                                            mBeanList.remove(dataBean);
-                                                            FileUtil.copyFile(dataBean.getNewPath(), bean.getPath() + dataBean.getName());
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                                mAdapter.notifyDataSetChanged();
-                                                SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
-                                                mFileList.clear();
-                                                dialog.dismiss();
-                                                FolderActivity.callActivity(MyDataActivity.this, bean.getName(), bean);
-                                            }
-                                        }
-                                    });
-                                    recyclerView.setAdapter(adapter);
-
-
-                                    holder.setOnClickListener(R.id.btn_cancel, new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                }
-                            })
-                            .setMargin(30)
-                            .show(getSupportFragmentManager());
-                } else if (item.getItemId() == R.id.m_cancel) {
-                    if (mAdapter.getShow()) {
-                        mAdapter.setShow(false);
-                        mFileList.clear();
-                        for (MyDataBean bean : mBeanList) {
-                            bean.setSelect(false);
-                        }
-                        navigationView.setVisibility(View.GONE);
-                    }
+                } else if (item.getItemId() == R.id.m_top) {//移动到最顶端
+                    moveTop();
+                } else if (item.getItemId() == R.id.m_all) {//全选
+                    selectAll();
+                } else if (item.getItemId() == R.id.m_move) {//移动
+                    moveFile();
+                } else if (item.getItemId() == R.id.m_cancel) {//取消
+                    cancel();
                 }
                 return true;
             }
+
+
         });
 
 
     }
 
+    /**
+     * 取消
+     */
+    private void cancel() {
+        if (mAdapter.getShow()) {
+            mAdapter.setShow(false);
+            mFileList.clear();
+            for (MyDataBean bean : mBeanList) {
+                bean.setSelect(false);
+            }
+            navigationView.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     protected void initDate() {
-        Type type = new TypeToken<List<MyDataBean>>() {
-        }.getType();
-        String files = SharedPreferencesHelper.getPrefString("files", "");
-
-        List<MyDataBean> arrayList = null;
-        if (!TextUtils.isEmpty(files)) {
-            arrayList = gson.fromJson(files, type);
-            if (arrayList != null && arrayList.size() > 0) {
-                mBeanList.addAll(arrayList);
-                for (MyDataBean bean : mBeanList) {
-                    bean.setSelect(false);
-                }
-            }
-        }
+        userId = SharedPreferencesHelper.getPrefString("userId", "");
+        getFlieData();
         if (mBeanList.size() == 0) {
             bean = new MyDataBean();
             bean.setName("");
             bean.setId("-1");
+            bean.setUserId(userId);
             bean.setNewPath("");
             bean.setPath("");
             bean.setType("1");//1代表文件
@@ -294,11 +195,169 @@ public class MyDataActivity extends BaseActivity {
 
     }
 
+    /**
+     * 移动文件
+     */
+    private void moveFile() {
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_files_list)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    protected void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+                        RecyclerView recyclerView = holder.getView(R.id.recyclerView);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                        recyclerView.setLayoutManager(layoutManager);
+                        ArrayList<MyDataBean> datas = new ArrayList<>();
+                        MyDataBean myDataBean = new MyDataBean();
+                        myDataBean.setName("新建分组");
+                        myDataBean.setUserId(userId);
+                        myDataBean.setId("-2");//-2代表新建分组
+                        myDataBean.setType("2");//2代表文件夹
+                        datas.add(myDataBean);
+                        for (MyDataBean bean :
+                                mBeanList) {
+                            if ("2".equals(bean.getType())) {
+                                datas.add(bean);
+                            }
+                        }
+                        BaseQuickAdapter<MyDataBean, BaseViewHolder> adapter = new BaseQuickAdapter<MyDataBean, BaseViewHolder>(R.layout.item_files, datas) {
+                            @Override
+                            protected void convert(BaseViewHolder helper, MyDataBean item) {
+                                helper.setText(R.id.tv_name, item.getName());
+                                TextView textView = helper.getView(R.id.tv_name);
+                                textView.setTextColor(getResources().getColor("-2".equals(item.getId()) ? R.color.colorText_back : R.color.huise2));
+                            }
+                        };
+                        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                MyDataBean bean = (MyDataBean) adapter.getItem(position);
+                                if ("-2".equals(bean.getId())) {//新建文件夹
+                                    dialog.dismiss();
+                                    newFolderDialog();
+                                } else {
+                                    MyDataBean.FolderBean folderBean;
+                                    //将最外层文件移动到文件夹里
+                                    for (MyDataBean mBean :
+                                            mFileList) {
+                                        for (MyDataBean dataBean :
+                                                mBeanList) {
+                                            if (dataBean.getId().equals(mBean.getId())) {
+                                                folderBean = new MyDataBean.FolderBean();
+                                                folderBean.setName(dataBean.getName());
+                                                folderBean.setId(DateUtil.getDateShortSerialYY());
+                                                folderBean.setPath(bean.getPath() + dataBean.getName());
+                                                folderBean.setType("3");//3代表文件夹内的文件
+                                                bean.getFolderBeans().add(folderBean);
+                                                mBeanList.remove(dataBean);
+                                                FileUtil.copyFile(dataBean.getNewPath(), bean.getPath() + dataBean.getName());
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    mAdapter.notifyDataSetChanged();
+                                    SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                    mFileList.clear();
+                                    dialog.dismiss();
+                                    FolderActivity.callActivity(MyDataActivity.this, bean.getName(), bean);
+                                }
+                            }
+                        });
+                        recyclerView.setAdapter(adapter);
+
+
+                        holder.setOnClickListener(R.id.btn_cancel, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setMargin(30)
+                .show(getSupportFragmentManager());
+    }
+
+    /**
+     * 全选
+     */
+    private void selectAll() {
+        mAdapter.setSelect(!mAdapter.isSelect());
+        mFileList.clear();
+        for (MyDataBean bean : mBeanList) {
+            bean.setSelect(mAdapter.isSelect());
+            if(mAdapter.isSelect()){
+                if("1".equals(bean.getType())){
+                    mFileList.add(bean);
+                }
+            }
+        }
+        mAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 删除文件
+     */
+    private void deleteFiles() {
+        for (MyDataBean bean : mFileList) {
+            for (int i = 0; i < mBeanList.size(); i++) {
+                if (bean.getId().equals(mBeanList.get(i).getId())) {
+                    mBeanList.remove(i);
+                    FileUtils.deletePath(bean.getNewPath());
+                    break;
+                }
+            }
+        }
+        mFileList.clear();
+        String json = gson.toJson(mBeanList);
+        SharedPreferencesHelper.setPrefString("files", json);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 移动到最顶端
+     */
+    private void moveTop() {
+        for (MyDataBean bean : mFileList) {
+            for (int i = 0; i < mBeanList.size(); i++) {
+                if (bean.getId().equals(mBeanList.get(i).getId())) {
+                    mBeanList.remove(i);
+                    break;
+                }
+            }
+        }
+        mBeanList.addAll(0, mFileList);
+        String json = gson.toJson(mBeanList);
+        SharedPreferencesHelper.setPrefString("files", json);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 获取对应客户数据
+     */
+    private void getFlieData() {
+        Type type = new TypeToken<List<MyDataBean>>() {
+        }.getType();
+        String files = SharedPreferencesHelper.getPrefString("files", "");
+        List<MyDataBean> arrayList = null;
+        if (!TextUtils.isEmpty(files)) {
+            arrayList = gson.fromJson(files, type);
+            if (arrayList != null && arrayList.size() > 0) {
+                for (MyDataBean bean : arrayList) {
+                    if(userId.equals(bean.getUserId())){
+                        bean.setSelect(false);
+                        mBeanList.add(bean);
+                    }
+                }
+            }
+        }
+    }
+
     @OnClick({R.id.terrace, R.id.my})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.terrace:
-                //平台资料是
+                //平台资料
 
                 break;
             case R.id.my:
@@ -308,6 +367,9 @@ public class MyDataActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 创建新文件夹
+     */
     private void newFolderDialog() {
         NiceDialog.init()
                 .setLayoutId(R.layout.dialog_add_show)
@@ -335,6 +397,7 @@ public class MyDataActivity extends BaseActivity {
                                 myDataBean.setId(DateUtil.getDateShortSerialYY());
                                 myDataBean.setType("2");//2代表文件夹
                                 myDataBean.setPath(folderPath);
+                                myDataBean.setUserId(userId);
                                 MyDataBean.FolderBean folderBean = null;
                                 //将最外层文件移动到文件夹里
                                 for (MyDataBean bean :
@@ -384,19 +447,18 @@ public class MyDataActivity extends BaseActivity {
                         if (mAdapter.getShow()) {
                             return;
                         }
-                        new MaterialFilePicker()
-                                .withActivity(MyDataActivity.this)
-                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
-                                .withHiddenFiles(true)
-                                .withTitle("文件选择")
-                                .start();
+//                        new MaterialFilePicker()
+//                                .withActivity(MyDataActivity.this)
+//                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+//                                .withHiddenFiles(true)
+//                                .withTitle("文件选择")
+//                                .start();
 
-//                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
-//                        intent4.putExtra(Constant.MAX_NUMBER, 1);
-//                        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
-//                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
-//                                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", ".pptx", "pdf", ".epub"});
-//                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
+                        intent4.putExtra(Constant.MAX_NUMBER, 1);
+                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+                                new String[] {"xlsx", "xls", "doc", "docx", "ppt", "pptx", "pdf", "epub"});
+                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
                     }
                 })
                 .onDenied(new Action<List<String>>() {
@@ -424,48 +486,51 @@ public class MyDataActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
-            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            File file = new File(filePath);
-            if (!TextUtils.isEmpty(filePath)) {
-                String newPath = FileUtils.getCacheMD() + file.getName();
-                FileUtil.copyFile(filePath, newPath);
-                bean = new MyDataBean();
-                bean.setName(file.getName());
-                bean.setId(DateUtil.getDateShortSerialYY());
-                bean.setPath(filePath);
-                bean.setNewPath(newPath);
-                bean.setType("1");//1代表文件
-                mBeanList.add(0, bean);
-                mAdapter.notifyDataSetChanged();
-                String json = gson.toJson(mBeanList);
-                SharedPreferencesHelper.setPrefString("files", json);
-            }
-            // Do anything with file
-        }
-
-//        switch (requestCode) {
-//            case Constant.REQUEST_CODE_PICK_FILE:
-//                if (resultCode == RESULT_OK) {
-//                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-//                    String filePath = list.get(0).getPath();
-//                    File file = new File(filePath);
-//                    if(!TextUtils.isEmpty(filePath)){
-//                        String newPath = FileUtils.getCacheMD() + file.getName();
-//                        FileUtil.copyFile(filePath, newPath);
-//                        bean = new MyDataBean();
-//                        bean.setName(file.getName());
-//                        bean.setId(DateUtil.getDateShortSerialYY());
-//                        bean.setPath(filePath);
-//                        bean.setNewPath(newPath);
-//                        mBeanList.add(0, bean);
-//                        mAdapter.notifyDataSetChanged();
-//                        String json = gson.toJson(mBeanList);
-//                        SharedPreferencesHelper.setPrefString("files", json);
-//                    }
-//                }
-//                break;
+//        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+//            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+//            File file = new File(filePath);
+//            if (!TextUtils.isEmpty(filePath)) {
+//                String newPath = FileUtils.getCacheMD() + file.getName();
+//                FileUtil.copyFile(filePath, newPath);
+//                bean = new MyDataBean();
+//                bean.setName(file.getName());
+//                bean.setId(DateUtil.getDateShortSerialYY());
+//                bean.setPath(filePath);
+//                bean.setNewPath(newPath);
+//                bean.setType("1");//1代表文件
+//                bean.setUserId(userId);
+//                mBeanList.add(mBeanList.size() - 1, bean);
+//                mAdapter.notifyDataSetChanged();
+//                String json = gson.toJson(mBeanList);
+//                SharedPreferencesHelper.setPrefString("files", json);
+//            }
+//            // Do anything with file
 //        }
+
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    String filePath = list.get(0).getPath();
+                    File file = new File(filePath);
+                    if(!TextUtils.isEmpty(filePath)){
+                        String newPath = FileUtils.getCacheMD() + file.getName();
+                        FileUtil.copyFile(filePath, newPath);
+                        bean = new MyDataBean();
+                        bean.setName(file.getName());
+                        bean.setId(DateUtil.getDateShortSerialYY());
+                        bean.setPath(filePath);
+                        bean.setNewPath(newPath);
+                        bean.setType("1");//1代表文件
+                        bean.setUserId(userId);
+                        mBeanList.add(mBeanList.size() - 1, bean);
+                        mAdapter.notifyDataSetChanged();
+                        String json = gson.toJson(mBeanList);
+                        SharedPreferencesHelper.setPrefString("files", json);
+                    }
+                }
+                break;
+        }
     }
 
     @Override

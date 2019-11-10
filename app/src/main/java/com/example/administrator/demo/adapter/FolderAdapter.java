@@ -40,8 +40,11 @@ public class FolderAdapter extends BaseQuickAdapter<MyDataBean.FolderBean, BaseV
         } else {
             imageView.setPadding(0, 0, 0, 0);
             helper.setGone(R.id.select, "2".equals(item.getType()) ? false : isShow);
-            ImageLoader.getInstance().loadingImage(mContext, item.getSrc(), imageView,
-                    new MultiTransformation(new CenterCrop(), new GlideRoundTransform(mContext, 5)), R.color.blue);
+            /* 取得扩展名 */
+            String end = item.getName()
+                    .substring(item.getName().lastIndexOf(".") + 1,
+                            item.getName().length()).toLowerCase();
+            helper.setText(R.id.tv_name, "2".equals(item.getType()) ? "文件夹" : end);
         }
 
     }

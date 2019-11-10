@@ -59,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@null"
+                android:focusable="false"
                 android:hint="@string/mine_data_search_hint"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
@@ -69,53 +70,67 @@
 
     </LinearLayout>
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_150"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:id="@+id/terrace"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="平台资料"
-            android:gravity="center"
-            android:paddingLeft="50dp"
-            android:textSize="@dimen/text_15sp"
-            android:textColor="@color/color_main_bottom_text"
-            android:visibility="gone"
-            />
-        <TextView
-            android:id="@+id/my"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="我的资料"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/text_15sp"
-            android:textColor="@color/heise"
-            />
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        />
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_150"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/terrace"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="平台资料"
+                    android:gravity="center"
+                    android:paddingLeft="50dp"
+                    android:textSize="@dimen/text_15sp"
+                    android:textColor="@color/color_main_bottom_text"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/my"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="我的资料"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/text_15sp"
+                    android:textColor="@color/heise"
+                    />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:menu="@menu/menu_mine_data2"
         android:background="@color/white"
         app:itemBackground="@color/white"
