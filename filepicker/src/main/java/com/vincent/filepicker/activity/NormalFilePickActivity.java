@@ -71,7 +71,8 @@ public class NormalFilePickActivity extends BaseActivity {
 
     private void initView() {
         tv_count = (TextView) findViewById(R.id.tv_count);
-        tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
+//        tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
+        tv_count.setText(mCurrentNumber + "");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_file_pick);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -91,7 +92,8 @@ public class NormalFilePickActivity extends BaseActivity {
                     mSelectedList.remove(file);
                     mCurrentNumber--;
                 }
-                tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
+//                tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
+                tv_count.setText(mCurrentNumber + "");
             }
         });
 
