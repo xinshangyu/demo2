@@ -3,6 +3,7 @@ package com.example.administrator.demo.activity.my;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -19,7 +20,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.MyDataAdapter;
-import com.example.administrator.demo.entity.MyDataBean;
+import com.vincent.filepicker.filter.entity.MyDataBean;
 import com.example.administrator.demo.utils.DateUtil;
 import com.example.administrator.demo.utils.FileUtil;
 import com.example.administrator.demo.utils.FileUtils;
@@ -31,8 +32,6 @@ import com.example.administrator.demo.weight.nice.ViewHolder;
 import com.example.baselibrary.SharedPreferencesHelper;
 import com.example.baselibrary.zh.base.BaseActivity;
 import com.google.gson.reflect.TypeToken;
-import com.nbsp.materialfilepicker.MaterialFilePicker;
-import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.NormalFilePickActivity;
 import com.vincent.filepicker.filter.entity.NormalFile;
@@ -45,7 +44,6 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -325,7 +323,7 @@ public class MyDataActivity extends BaseActivity {
     /**
      * 获取对应客户数据
      */
-    private void getFileData() {
+    public void getFileData() {
         Type type = new TypeToken<List<MyDataBean>>() {
         }.getType();
         String files = SharedPreferencesHelper.getPrefString("files", "");
@@ -449,19 +447,20 @@ public class MyDataActivity extends BaseActivity {
                         if (mAdapter.getShow()) {
                             return;
                         }
-                        new MaterialFilePicker()
-                                .withActivity(MyDataActivity.this)
-                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
-                                .withHiddenFiles(true)
-                                .withTitle("文件选择")
-                                .withFilter(Pattern.compile("^.*.(xlsx|xls|doc|docx|ppt|pptx|pdf|epub)$"))
-                                .start();
+//                        new MaterialFilePicker()
+//                                .withActivity(MyDataActivity.this)
+//                                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+//                                .withHiddenFiles(true)
+//                                .withTitle("文件选择")
+//                                .withFilter(Pattern.compile("^.*.(xlsx|xls|doc|docx|ppt|pptx|pdf|epub)$"))
+//                                .start();
 
-//                        Intent intent4 = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
-//                        intent4.putExtra(Constant.MAX_NUMBER, 1000);
-//                        intent4.putExtra(NormalFilePickActivity.SUFFIX,
-//                                new String[] {"xlsx", "xls", "doc", "docx", "ppt", "pptx", "pdf", "epub"});
-//                        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+                        Intent intent = new Intent(MyDataActivity.this, NormalFilePickActivity.class);
+                        intent.putExtra(Constant.MAX_NUMBER, 1000);
+                        intent.putExtra(Constant.RESULT_USERID, userId);
+                        intent.putExtra(NormalFilePickActivity.SUFFIX,
+                                new String[] {"xlsx", "xls", "doc", "docx", "ppt", "pptx", "pdf", "epub"});
+                        startActivityForResult(intent, Constant.REQUEST_CODE_PICK_FILE);
                     }
                 })
                 .onDenied(new Action<List<String>>() {
@@ -489,58 +488,58 @@ public class MyDataActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
-            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            File file = new File(filePath);
-            if (!TextUtils.isEmpty(filePath)) {
-                String newPath = FileUtils.getCacheMD() + file.getName();
-                FileUtil.copyFile(filePath, newPath);
-                bean = new MyDataBean();
-                bean.setName(file.getName());
-                bean.setId(DateUtil.getDateShortSerialYY());
-                bean.setPath(filePath);
-                bean.setNewPath(newPath);
-                bean.setType("1");//1代表文件
-                bean.setUserId(userId);
-                mBeanList.add(mBeanList.size() - 1, bean);
-                mAdapter.notifyDataSetChanged();
-                String json = gson.toJson(mBeanList);
-                SharedPreferencesHelper.setPrefString("files", json);
-            }
-            // Do anything with file
-        }
-
-//        switch (requestCode) {
-//            case Constant.REQUEST_CODE_PICK_FILE:
-//                if (resultCode == RESULT_OK) {
-//                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-//                    if(list != null && list.size() > 0){
-//                        String filePath = "";
-//                        File file = null;
-//                        MyDataBean bean = null;
-//                        for (NormalFile normalFile: list) {
-//                            filePath = normalFile.getPath();
-//                            file = new File(filePath);
-//                            if(!TextUtils.isEmpty(filePath)){
-//                                String newPath = FileUtils.getCacheMD() + file.getName();
-//                                FileUtil.copyFile(filePath, newPath);
-//                                bean = new MyDataBean();
-//                                bean.setName(file.getName());
-//                                bean.setId(DateUtil.getDateShortSerialYY());
-//                                bean.setPath(filePath);
-//                                bean.setNewPath(newPath);
-//                                bean.setType("1");//1代表文件
-//                                bean.setUserId(userId);
-//                                mBeanList.add(mBeanList.size() - 1, bean);
-//                            }
-//                        }
-//                        mAdapter.notifyDataSetChanged();
-//                        String json = gson.toJson(mBeanList);
-//                        SharedPreferencesHelper.setPrefString("files", json);
-//                    }
-//                }
-//                break;
+//        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+//            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+//            File file = new File(filePath);
+//            if (!TextUtils.isEmpty(filePath)) {
+//                String newPath = FileUtils.getCacheMD() + file.getName();
+//                FileUtil.copyFile(filePath, newPath);
+//                bean = new MyDataBean();
+//                bean.setName(file.getName());
+//                bean.setId(DateUtil.getDateShortSerialYY());
+//                bean.setPath(filePath);
+//                bean.setNewPath(newPath);
+//                bean.setType("1");//1代表文件
+//                bean.setUserId(userId);
+//                mBeanList.add(mBeanList.size() - 1, bean);
+//                mAdapter.notifyDataSetChanged();
+//                String json = gson.toJson(mBeanList);
+//                SharedPreferencesHelper.setPrefString("files", json);
+//            }
+//            // Do anything with file
 //        }
+
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    if(list != null && list.size() > 0){
+                        String filePath = "";
+                        File file = null;
+                        MyDataBean bean = null;
+                        for (NormalFile normalFile: list) {
+                            filePath = normalFile.getPath();
+                            file = new File(filePath);
+                            if(!TextUtils.isEmpty(filePath)){
+                                String newPath = FileUtils.getCacheMD() + file.getName();
+                                FileUtil.copyFile(filePath, newPath);
+                                bean = new MyDataBean();
+                                bean.setName(file.getName());
+                                bean.setId(DateUtil.getDateShortSerialYY());
+                                bean.setPath(filePath);
+                                bean.setNewPath(newPath);
+                                bean.setType("1");//1代表文件
+                                bean.setUserId(userId);
+                                mBeanList.add(mBeanList.size() - 1, bean);
+                            }
+                        }
+                        mAdapter.notifyDataSetChanged();
+                        String json = gson.toJson(mBeanList);
+                        SharedPreferencesHelper.setPrefString("files", json);
+                    }
+                }
+            break;
+        }
     }
 
     @Override

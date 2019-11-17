@@ -16,7 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.demo.R;
 import com.example.administrator.demo.adapter.FolderAdapter;
-import com.example.administrator.demo.entity.MyDataBean;
+import com.vincent.filepicker.filter.entity.MyDataBean;
 import com.example.administrator.demo.utils.DateUtil;
 import com.example.administrator.demo.utils.FileUtil;
 import com.example.administrator.demo.utils.FileUtils;

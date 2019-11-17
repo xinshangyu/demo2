@@ -26,4 +26,6 @@ public class Constant {
 
     public static final int REQUEST_CODE_PICK_FILE = 0x400;
     public static final String RESULT_PICK_FILE = "ResultPickFILE";
+
+    public static final String RESULT_USERID = "ResultUserId";
 }

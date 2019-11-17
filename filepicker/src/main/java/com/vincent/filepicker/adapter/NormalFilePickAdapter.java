@@ -2,18 +2,24 @@ package com.vincent.filepicker.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.baselibrary.SharedPreferencesHelper;
 import com.vincent.filepicker.R;
 import com.vincent.filepicker.ToastUtil;
 import com.vincent.filepicker.Util;
+import com.vincent.filepicker.filter.entity.Directory;
+import com.vincent.filepicker.filter.entity.MyDataBean;
 import com.vincent.filepicker.filter.entity.NormalFile;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vincent Woo
@@ -24,6 +30,7 @@ import java.util.ArrayList;
 public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePickAdapter.NormalFilePickViewHolder> {
     private int mMaxNumber;
     private int mCurrentNumber = 0;
+    private List<MyDataBean> datas = new ArrayList<>();
 
     public NormalFilePickAdapter(Context ctx, int max) {
         this(ctx, new ArrayList<NormalFile>(), max);
@@ -57,6 +64,19 @@ public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePic
             holder.mCbx.setSelected(true);
         } else {
             holder.mCbx.setSelected(false);
+        }
+
+        for (MyDataBean bean:
+             datas) {
+            if(bean.getName().startsWith(file.getName())){
+                holder.mTvRight.setVisibility(View.VISIBLE);
+                holder.mCbx.setVisibility(View.GONE);
+                break;
+            }else{
+                holder.mTvRight.setVisibility(View.GONE);
+                holder.mCbx.setVisibility(View.VISIBLE);
+            }
+
         }
 
         if (file.getPath().endsWith("xls") || file.getPath().endsWith("xlsx")) {
@@ -121,17 +141,26 @@ public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePic
         private ImageView mIvIcon;
         private TextView mTvTitle;
         private ImageView mCbx;
+        private TextView mTvRight;
 
         public NormalFilePickViewHolder(View itemView) {
             super(itemView);
             mIvIcon = (ImageView) itemView.findViewById(R.id.ic_file);
             mTvTitle = (TextView) itemView.findViewById(R.id.tv_file_title);
             mCbx = (ImageView) itemView.findViewById(R.id.cbx);
+            mTvRight = (TextView) itemView.findViewById(R.id.tv_right);
         }
     }
 
     private boolean isUpToMax() {
         return mCurrentNumber >= mMaxNumber;
+    }
+
+    public void refresh(List<NormalFile> list, List<MyDataBean> datas) {
+        this.datas = datas;
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
 }

@@ -16,6 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.baselibrary.SharedPreferencesHelper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.DividerListItemDecoration;
 import com.vincent.filepicker.R;
@@ -25,8 +28,10 @@ import com.vincent.filepicker.adapter.OnSelectStateListener;
 import com.vincent.filepicker.filter.FileFilter;
 import com.vincent.filepicker.filter.callback.FilterResultCallback;
 import com.vincent.filepicker.filter.entity.Directory;
+import com.vincent.filepicker.filter.entity.MyDataBean;
 import com.vincent.filepicker.filter.entity.NormalFile;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +52,8 @@ public class NormalFilePickActivity extends BaseActivity {
     private List<Directory<NormalFile>> mAll;
     private ProgressBar mProgressBar;
     private String[] mSuffix;
+    private List<MyDataBean> mBeanList = new ArrayList<>();
+    private String userId;
 
     private TextView tv_count;
     private TextView tv_folder;
@@ -66,7 +73,9 @@ public class NormalFilePickActivity extends BaseActivity {
 
         mMaxNumber = getIntent().getIntExtra(Constant.MAX_NUMBER, DEFAULT_MAX_NUMBER);
         mSuffix = getIntent().getStringArrayExtra(SUFFIX);
+        userId = getIntent().getStringExtra(Constant.RESULT_USERID);
         initView();
+        getFileData();
     }
 
     private void initView() {
@@ -180,6 +189,29 @@ public class NormalFilePickActivity extends BaseActivity {
             }
         }
 
-        mAdapter.refresh(list);
+        mAdapter.refresh(list, mBeanList);
+    }
+
+    /**
+     * 获取对应客户数据
+     */
+    public void getFileData() {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<MyDataBean>>() {
+        }.getType();
+        String files = SharedPreferencesHelper.getPrefString("files", "");
+        List<MyDataBean> arrayList = null;
+        if (!TextUtils.isEmpty(files)) {
+            arrayList = gson.fromJson(files, type);
+            if (arrayList != null && arrayList.size() > 0) {
+                for (MyDataBean bean : arrayList) {
+                    if(userId.equals(bean.getUserId())){
+                        bean.setSelect(false);
+                        mBeanList.add(bean);
+                    }
+                }
+            }
+        }
+
     }
 }
