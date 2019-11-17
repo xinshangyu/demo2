@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/color_f2"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
@@ -41,6 +41,7 @@
             android:layout_height="0dp"
             android:overScrollMode="never"
             android:layout_weight="1"
+            android:background="@color/color_f2"
             android:scrollbars="none">
 
         </android.support.v7.widget.RecyclerView>

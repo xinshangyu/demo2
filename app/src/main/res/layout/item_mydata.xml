@@ -21,7 +21,7 @@
                 android:id="@+id/iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/color_f2" />
+                android:background="@color/white" />
 
             <ImageView
                 android:id="@+id/select"
@@ -41,6 +41,89 @@
                 android:textSize="@dimen/text_26sp"
                 android:textColor="@color/colorSearchText"
                 />
+
+            <LinearLayout
+                android:id="@+id/ll_folder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:padding="@dimen/dp_5"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/dp_3"
+                        android:textColor="@color/colorSearchText"
+                        android:textSize="10sp"
+                        android:text="书名"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/icon_mydata_zi"
+                        />
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="10sp"
+                        android:text="书名"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/colorSearchText"
+                        android:visibility="invisible"
+                        android:layout_margin="@dimen/dp_3"
+                        android:background="@drawable/icon_mydata_zi"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/tv3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dp_3"
+                        android:layout_weight="1"
+                        android:textSize="10sp"
+                        android:text="书名"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/colorSearchText"
+                        android:visibility="invisible"
+
+                        android:background="@drawable/icon_mydata_zi"
+                        />
+                    <TextView
+                        android:id="@+id/tv4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        android:textSize="10sp"
+                        android:textColor="@color/colorSearchText"
+                        android:text="书名"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="@dimen/dp_3"
+                        android:background="@drawable/icon_mydata_zi"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
 
         </RelativeLayout>

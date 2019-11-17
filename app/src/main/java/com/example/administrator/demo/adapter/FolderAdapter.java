@@ -35,6 +35,7 @@ public class FolderAdapter extends BaseQuickAdapter<MyDataBean.FolderBean, BaseV
             imageView.setPadding(size, size, size, size);
         } else {
             imageView.setPadding(0, 0, 0, 0);
+            imageView.setImageResource(R.color.white);
             helper.setGone(R.id.select, "2".equals(item.getType()) ? false : isShow);
             /* 取得扩展名 */
             String end = item.getName()
