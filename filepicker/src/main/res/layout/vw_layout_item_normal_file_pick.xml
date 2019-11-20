@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp">
 
@@ -13,23 +15,14 @@
         android:layout_marginLeft="10dp"
         android:src="@drawable/vw_ic_audio" />
 
-    <ImageView
-        android:id="@+id/cbx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:visibility="visible"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/vw_selector_cbx_audio" />
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_weight="1"
         android:layout_margin="10dp"
-        android:layout_toLeftOf="@id/cbx"
-        android:layout_toRightOf="@id/ic_file"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -49,10 +42,19 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_marginLeft="5dp"
             android:text="已在书架"
             />
     </LinearLayout>
+    <ImageView
+        android:id="@+id/cbx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="visible"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/vw_selector_cbx_audio" />
 
-</RelativeLayout>
+</LinearLayout>

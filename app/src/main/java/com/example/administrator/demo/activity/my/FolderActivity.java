@@ -31,6 +31,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -57,7 +58,7 @@ public class FolderActivity extends BaseActivity {
 
     private List<MyDataBean> mBeanList = new ArrayList<>();
     private List<MyDataBean.FolderBean> mFileList = new ArrayList<>();
-    private MyDataBean mDataBean;
+    private MyDataBean mDataBean = new MyDataBean();
     private FolderAdapter mAdapter;
     private String userId;
 
@@ -86,8 +87,7 @@ public class FolderActivity extends BaseActivity {
         getFlieData();
 
         mDataBean = getIntent().getParcelableExtra("data");
-
-        if (mDataBean != null && mDataBean.getFolderBeans() != null && mDataBean.getFolderBeans().size() > 0) {
+//        if (mDataBean != null && mDataBean.getFolderBeans() != null && mDataBean.getFolderBeans().size() > 0) {
             mAdapter = new FolderAdapter(mDataBean.getFolderBeans());
             GridLayoutManager manager = new GridLayoutManager(FolderActivity.this, 3);
             recyclerView.setLayoutManager(manager);
@@ -107,7 +107,7 @@ public class FolderActivity extends BaseActivity {
                     }
                 }
             });
-        }
+//        }
 
 
     }
@@ -135,10 +135,6 @@ public class FolderActivity extends BaseActivity {
 
     @OnClick({R.id.common_toolBar_text_right, R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4})
     public void onClick(View view) {
-        if(mAdapter == null){
-            showToast("请先选择文件！");
-            return;
-        }
         switch (view.getId()) {
             case R.id.common_toolBar_text_right://编辑
                 compile();
@@ -332,7 +328,6 @@ public class FolderActivity extends BaseActivity {
                                     if (bean.getId().equals(mDataBean.getId())) {
                                         bean.setPath(folderPath);
                                         bean.setName(editText.getText().toString().trim());
-                                        new File(bean.getPath()).renameTo(new File(folderPath));
                                         break;
                                     }
                                 }
@@ -415,9 +410,20 @@ public class FolderActivity extends BaseActivity {
                                             folderBean.setPath(folderPath + dataBean.getName());
                                             folderBean.setType("3");//3代表文件夹内的文件
                                             myDataBean.getFolderBeans().add(folderBean);
+                                            mDataBean.getFolderBeans().remove(dataBean);
                                             FileUtil.copyFile(dataBean.getNewPath(), folderPath + dataBean.getName());
                                             break;
                                         }
+                                    }
+                                }
+
+                                Iterator<MyDataBean> iterator = mBeanList.iterator();
+
+                                while (iterator.hasNext()) {
+                                    MyDataBean bean = iterator.next();
+                                    if(bean.getId().equals(mDataBean.getId())){
+                                        bean.getFolderBeans().clear();
+                                        bean.getFolderBeans().addAll(mDataBean.getFolderBeans());
                                     }
                                 }
 

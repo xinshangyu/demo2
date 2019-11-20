@@ -40,9 +40,10 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
             imageView.setImageResource(R.color.white);
             helper.setGone(R.id.select, "2".equals(item.getType()) ? false : isShow);//2代表文件夹
             /* 取得扩展名 */
-            String end = item.getName()
-                    .substring(item.getName().lastIndexOf(".") + 1,
-                            item.getName().length()).toLowerCase();
+            String end = getEnd(item.getName());
+//            item.getName()
+//                    .substring(item.getName().lastIndexOf(".") + 1,
+//                            item.getName().length()).toLowerCase();
             if("2".equals(item.getType())){
                 helper.setText(R.id.tv_name, "");
                 helper.setGone(R.id.ll_folder, true);
@@ -61,7 +62,7 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
                     helper.setVisible(R.id.tv2, false);
                     helper.setVisible(R.id.tv3, false);
                     helper.setVisible(R.id.tv4, false);
-                    helper.setText(R.id.tv1, item.getFolderBeans().get(0).getName());
+                    helper.setText(R.id.tv1, getEnd(item.getFolderBeans().get(0).getName()));
                     helper.setText(R.id.tv2, "");
                     helper.setText(R.id.tv3, "");
                     helper.setText(R.id.tv4, "");
@@ -71,8 +72,8 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
                     helper.setVisible(R.id.tv2, true);
                     helper.setVisible(R.id.tv3, false);
                     helper.setVisible(R.id.tv4, false);
-                    helper.setText(R.id.tv1, item.getFolderBeans().get(0).getName());
-                    helper.setText(R.id.tv2, item.getFolderBeans().get(1).getName());
+                    helper.setText(R.id.tv1, getEnd(item.getFolderBeans().get(0).getName()));
+                    helper.setText(R.id.tv2, getEnd(item.getFolderBeans().get(1).getName()));
                     helper.setText(R.id.tv3, "");
                     helper.setText(R.id.tv4, "");
                 }else if(item.getFolderBeans().size() == 3){
@@ -80,19 +81,19 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
                     helper.setVisible(R.id.tv2, true);
                     helper.setVisible(R.id.tv3, true);
                     helper.setVisible(R.id.tv4, false);
-                    helper.setText(R.id.tv1, item.getFolderBeans().get(0).getName());
-                    helper.setText(R.id.tv2, item.getFolderBeans().get(1).getName());
-                    helper.setText(R.id.tv3, item.getFolderBeans().get(2).getName());
+                    helper.setText(R.id.tv1, getEnd(item.getFolderBeans().get(0).getName()));
+                    helper.setText(R.id.tv2, getEnd(item.getFolderBeans().get(1).getName()));
+                    helper.setText(R.id.tv3, getEnd(item.getFolderBeans().get(2).getName()));
                     helper.setText(R.id.tv4, "");
                 }else if(item.getFolderBeans().size() >= 4){
                     helper.setVisible(R.id.tv1, true);
                     helper.setVisible(R.id.tv2, true);
                     helper.setVisible(R.id.tv3, true);
                     helper.setVisible(R.id.tv4, true);
-                    helper.setText(R.id.tv1, item.getFolderBeans().get(0).getName());
-                    helper.setText(R.id.tv2, item.getFolderBeans().get(1).getName());
-                    helper.setText(R.id.tv3, item.getFolderBeans().get(2).getName());
-                    helper.setText(R.id.tv4, item.getFolderBeans().get(3).getName());
+                    helper.setText(R.id.tv1, getEnd(item.getFolderBeans().get(0).getName()));
+                    helper.setText(R.id.tv2, getEnd(item.getFolderBeans().get(1).getName()));
+                    helper.setText(R.id.tv3, getEnd(item.getFolderBeans().get(2).getName()));
+                    helper.setText(R.id.tv4, getEnd(item.getFolderBeans().get(3).getName()));
                 }
             }else{
                 helper.setText(R.id.tv_name, end);
@@ -118,5 +119,10 @@ public class MyDataAdapter extends BaseQuickAdapter<MyDataBean, BaseViewHolder> 
 
     public void setSelect(boolean select) {
         isSelect = select;
+    }
+
+    private String getEnd(String name){
+        String end = name.substring(name.lastIndexOf(".") + 1, name.length()).toLowerCase();
+        return end;
     }
 }
