@@ -68,15 +68,19 @@ public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePic
 
         for (MyDataBean bean:
              datas) {
-            if(bean.getName().startsWith(file.getName())){
-                holder.mTvRight.setVisibility(View.VISIBLE);
-                holder.mCbx.setVisibility(View.GONE);
-                break;
+            if(!TextUtils.isEmpty(bean.getName()) && !TextUtils.isEmpty(file.getName())){
+                if(bean.getName().startsWith(file.getName())){
+                    holder.mTvRight.setVisibility(View.VISIBLE);
+                    holder.mCbx.setVisibility(View.GONE);
+                    break;
+                }else{
+                    holder.mTvRight.setVisibility(View.GONE);
+                    holder.mCbx.setVisibility(View.VISIBLE);
+                }
             }else{
                 holder.mTvRight.setVisibility(View.GONE);
                 holder.mCbx.setVisibility(View.VISIBLE);
             }
-
         }
 
         if (file.getPath().endsWith("xls") || file.getPath().endsWith("xlsx")) {
