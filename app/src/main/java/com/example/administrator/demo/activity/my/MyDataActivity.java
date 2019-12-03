@@ -89,6 +89,7 @@ public class MyDataActivity extends BaseActivity {
         recyclerView.setLayoutManager(manager);
         mAdapter = new MyDataAdapter(mBeanList);
         recyclerView.setAdapter(mAdapter);
+
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -276,7 +277,7 @@ public class MyDataActivity extends BaseActivity {
         for (MyDataBean bean : mBeanList) {
             bean.setSelect(mAdapter.isSelect());
             if(mAdapter.isSelect()){
-                if("1".equals(bean.getType()) && "-1".equals(bean.getId())){
+                if("1".equals(bean.getType()) && !"-1".equals(bean.getId())){
                     mFileList.add(bean);
                 }
             }
@@ -340,7 +341,7 @@ public class MyDataActivity extends BaseActivity {
                 }
             }
         }
-        if (mBeanList.size() == 0) {
+        if (mBeanList.size() == 0 || !"-1".equals(mBeanList.get(mBeanList.size() - 1).getId())) {
             bean = new MyDataBean();
             bean.setName("");
             bean.setId("-1");

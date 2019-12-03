@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -63,7 +64,7 @@ public class NormalFilePickActivity extends BaseActivity {
 
     @Override
     void permissionGranted() {
-        loadData();
+        getTypeFiles();
     }
 
     @Override
@@ -212,6 +213,26 @@ public class NormalFilePickActivity extends BaseActivity {
                 }
             }
         }
+    }
 
+    /**
+     * 获取本地文件
+     */
+    public void getTypeFiles() {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Directory<NormalFile>>>() {
+        }.getType();
+        String files = SharedPreferencesHelper.getPrefString("typeFiles", "");
+        List<Directory<NormalFile>> arrayList = null;
+        if (!TextUtils.isEmpty(files)) {
+            arrayList = gson.fromJson(files, type);
+            if (arrayList != null && arrayList.size() > 0) {
+                mAll = arrayList;
+                refreshData(arrayList);
+                mProgressBar.setVisibility(View.GONE);
+            }
+        } else {
+            loadData();
+        }
     }
 }
