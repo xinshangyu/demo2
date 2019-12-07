@@ -31,6 +31,7 @@ public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePic
     private int mMaxNumber;
     private int mCurrentNumber = 0;
     private List<MyDataBean> datas = new ArrayList<>();
+    private boolean isStop;//停止循环
 
     public NormalFilePickAdapter(Context ctx, int max) {
         this(ctx, new ArrayList<NormalFile>(), max);
@@ -68,19 +69,44 @@ public class NormalFilePickAdapter extends BaseAdapter<NormalFile, NormalFilePic
 
         for (MyDataBean bean:
              datas) {
-            if(!TextUtils.isEmpty(bean.getName()) && !TextUtils.isEmpty(file.getName())){
-                if(bean.getName().startsWith(file.getName())){
-                    holder.mTvRight.setVisibility(View.VISIBLE);
-                    holder.mCbx.setVisibility(View.GONE);
+            if("2".equals(bean.getType())){
+                List<MyDataBean.FolderBean> folderBeans = bean.getFolderBeans();
+                for (MyDataBean.FolderBean folderBean : folderBeans) {
+                    if(!TextUtils.isEmpty(folderBean.getName()) && !TextUtils.isEmpty(file.getName())){
+                        if(folderBean.getName().startsWith(file.getName())){
+                            holder.mTvRight.setVisibility(View.VISIBLE);
+                            holder.mCbx.setVisibility(View.GONE);
+                            isStop = true;
+                            break;
+                        }else{
+                            holder.mTvRight.setVisibility(View.GONE);
+                            holder.mCbx.setVisibility(View.VISIBLE);
+                        }
+                    }else{
+                        holder.mTvRight.setVisibility(View.GONE);
+                        holder.mCbx.setVisibility(View.VISIBLE);
+                    }
+                }
+                if(isStop){
+                    isStop = !isStop;
                     break;
+                }
+            }else{
+                if(!TextUtils.isEmpty(bean.getName()) && !TextUtils.isEmpty(file.getName())){
+                    if(bean.getName().startsWith(file.getName())){
+                        holder.mTvRight.setVisibility(View.VISIBLE);
+                        holder.mCbx.setVisibility(View.GONE);
+                        break;
+                    }else{
+                        holder.mTvRight.setVisibility(View.GONE);
+                        holder.mCbx.setVisibility(View.VISIBLE);
+                    }
                 }else{
                     holder.mTvRight.setVisibility(View.GONE);
                     holder.mCbx.setVisibility(View.VISIBLE);
                 }
-            }else{
-                holder.mTvRight.setVisibility(View.GONE);
-                holder.mCbx.setVisibility(View.VISIBLE);
             }
+
         }
 
         if (file.getPath().endsWith("xls") || file.getPath().endsWith("xlsx")) {

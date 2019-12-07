@@ -326,6 +326,8 @@ public class MyDataActivity extends BaseActivity {
      * 获取对应客户数据
      */
     public void getFileData() {
+        mFileList.clear();
+        mBeanList.clear();
         Type type = new TypeToken<List<MyDataBean>>() {
         }.getType();
         String files = SharedPreferencesHelper.getPrefString("files", "");
@@ -547,7 +549,6 @@ public class MyDataActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        mBeanList.clear();
         getFileData();
     }
 
