@@ -180,7 +180,7 @@ public class MyDataActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        userId = SharedPreferencesHelper.getPrefString("userId", "");
+        userId = SharedPreferencesHelper.getPrefString("userId", "xinshangyu");
         getFileData();
 
     }
@@ -246,7 +246,7 @@ public class MyDataActivity extends BaseActivity {
                                         }
                                     }
                                     mAdapter.notifyDataSetChanged();
-                                    SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                    SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
                                     mFileList.clear();
                                     dialog.dismiss();
                                     FolderActivity.callActivity(MyDataActivity.this, bean.getName(), bean);
@@ -300,7 +300,7 @@ public class MyDataActivity extends BaseActivity {
         }
         mFileList.clear();
         String json = gson.toJson(mBeanList);
-        SharedPreferencesHelper.setPrefString("files", json);
+        SharedPreferencesHelper.setPrefString(userId, json);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -318,7 +318,7 @@ public class MyDataActivity extends BaseActivity {
         }
         mBeanList.addAll(0, mFileList);
         String json = gson.toJson(mBeanList);
-        SharedPreferencesHelper.setPrefString("files", json);
+        SharedPreferencesHelper.setPrefString(userId, json);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -330,16 +330,14 @@ public class MyDataActivity extends BaseActivity {
         mBeanList.clear();
         Type type = new TypeToken<List<MyDataBean>>() {
         }.getType();
-        String files = SharedPreferencesHelper.getPrefString("files", "");
+        String files = SharedPreferencesHelper.getPrefString(userId, "");
         List<MyDataBean> arrayList = null;
         if (!TextUtils.isEmpty(files)) {
             arrayList = gson.fromJson(files, type);
             if (arrayList != null && arrayList.size() > 0) {
                 for (MyDataBean bean : arrayList) {
-                    if(userId.equals(bean.getUserId())){
-                        bean.setSelect(false);
-                        mBeanList.add(bean);
-                    }
+                    bean.setSelect(false);
+                    mBeanList.add(bean);
                 }
             }
         }
@@ -425,7 +423,7 @@ public class MyDataActivity extends BaseActivity {
 
                                 mBeanList.add(0, myDataBean);
                                 mAdapter.notifyDataSetChanged();
-                                SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
                                 mFileList.clear();
                                 FolderActivity.callActivity(MyDataActivity.this, myDataBean.getName(), myDataBean);
                                 showToast("创建成功");
@@ -508,7 +506,7 @@ public class MyDataActivity extends BaseActivity {
 //                mBeanList.add(mBeanList.size() - 1, bean);
 //                mAdapter.notifyDataSetChanged();
 //                String json = gson.toJson(mBeanList);
-//                SharedPreferencesHelper.setPrefString("files", json);
+//                SharedPreferencesHelper.setPrefString(userId, json);
 //            }
 //            // Do anything with file
 //        }
@@ -539,7 +537,7 @@ public class MyDataActivity extends BaseActivity {
                         }
                         mAdapter.notifyDataSetChanged();
                         String json = gson.toJson(mBeanList);
-                        SharedPreferencesHelper.setPrefString("files", json);
+                        SharedPreferencesHelper.setPrefString(userId, json);
                     }
                 }
             break;

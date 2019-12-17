@@ -32,6 +32,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 import static android.provider.BaseColumns._ID;
 import static android.provider.MediaStore.Files.FileColumns.MIME_TYPE;
 import static android.provider.MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME;
@@ -111,9 +119,43 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
                 onAudioResult(data);
                 break;
             case TYPE_FILE:
-                onFileResult(data);
+                filterData(data);
                 break;
         }
+    }
+
+    //异步处理文件
+    private void filterData(final Cursor data) {
+        Observable.create(new ObservableOnSubscribe<List<Directory<NormalFile>>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<Directory<NormalFile>>> e) throws Exception {
+                e.onNext(onFileResult(data));
+                e.onComplete();
+            }
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Observer<List<Directory<NormalFile>>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Directory<NormalFile>> directories) {
+                if(resultCallback != null){
+                    resultCallback.onResult(directories);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     @Override
@@ -239,12 +281,13 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
     }
 
     @SuppressWarnings("unchecked")
-    private void onFileResult(Cursor data) {
+    private List<Directory<NormalFile>> onFileResult(Cursor data) {
         List<Directory<NormalFile>> directories = new ArrayList<>();
 
         if (data.getPosition() != -1) {
             data.moveToPosition(-1);
         }
+
 
         while (data.moveToNext()) {
             String path = data.getString(data.getColumnIndexOrThrow(DATA));
@@ -272,10 +315,8 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
                 }
             }
         }
+        return directories;
 
-        if (resultCallback != null) {
-            resultCallback.onResult(directories);
-        }
     }
 
     private boolean contains(String path) {

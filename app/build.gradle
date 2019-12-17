@@ -75,6 +75,8 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.1.51.android'
     //LFilePicker
 //    implementation 'com.leon:lfilepickerlibrary:1.8.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
 
 }

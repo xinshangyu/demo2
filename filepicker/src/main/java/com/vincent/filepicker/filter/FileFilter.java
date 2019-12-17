@@ -9,6 +9,14 @@ import com.vincent.filepicker.filter.entity.ImageFile;
 import com.vincent.filepicker.filter.entity.NormalFile;
 import com.vincent.filepicker.filter.entity.VideoFile;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 import static com.vincent.filepicker.filter.callback.FileLoaderCallbacks.TYPE_AUDIO;
 import static com.vincent.filepicker.filter.callback.FileLoaderCallbacks.TYPE_FILE;
 import static com.vincent.filepicker.filter.callback.FileLoaderCallbacks.TYPE_IMAGE;
@@ -36,8 +44,8 @@ public class FileFilter {
                 new FileLoaderCallbacks(activity, callback, TYPE_AUDIO));
     }
 
-    public static void getFiles(FragmentActivity activity,
-                                FilterResultCallback<NormalFile> callback, String[] suffix){
+    public static void getFiles(final FragmentActivity activity,
+                                final FilterResultCallback<NormalFile> callback, final String[] suffix){
         activity.getSupportLoaderManager().initLoader(3, null,
                 new FileLoaderCallbacks(activity, callback, TYPE_FILE, suffix));
     }

@@ -41,7 +41,7 @@ public class FileLoader extends CursorLoader {
 ////                + MIME_TYPE + "=? or "
 ////                + MIME_TYPE + "=? or "
 //                + MIME_TYPE + "=?");
-//
+
 //        String[] selectionArgs;
 //        selectionArgs = new String[] { "text/txt", "text/plain" };
 //        setSelectionArgs(selectionArgs);

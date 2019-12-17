@@ -32,9 +32,20 @@ import com.vincent.filepicker.filter.entity.Directory;
 import com.vincent.filepicker.filter.entity.MyDataBean;
 import com.vincent.filepicker.filter.entity.NormalFile;
 
+import org.reactivestreams.Subscriber;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Vincent Woo
@@ -157,10 +168,15 @@ public class NormalFilePickActivity extends BaseActivity {
     }
 
     private void loadData() {
+
         FileFilter.getFiles(this, new FilterResultCallback<NormalFile>() {
             @Override
             public void onResult(List<Directory<NormalFile>> directories) {
                 // Refresh folder list
+                Gson gson = new Gson();
+                String json = gson.toJson(directories);
+                SharedPreferencesHelper.setPrefString("typeFiles", json);
+
                 if (isNeedFolderList) {
                     ArrayList<Directory> list = new ArrayList<>();
                     Directory all = new Directory();
@@ -200,16 +216,16 @@ public class NormalFilePickActivity extends BaseActivity {
         Gson gson = new Gson();
         Type type = new TypeToken<List<MyDataBean>>() {
         }.getType();
-        String files = SharedPreferencesHelper.getPrefString("files", "");
+        String files = SharedPreferencesHelper.getPrefString(userId, "");
         List<MyDataBean> arrayList = null;
         if (!TextUtils.isEmpty(files)) {
             arrayList = gson.fromJson(files, type);
             if (arrayList != null && arrayList.size() > 0) {
                 for (MyDataBean bean : arrayList) {
-                    if(userId.equals(bean.getUserId())){
+//                    if(userId.equals(bean.getUserId())){
                         bean.setSelect(false);
                         mBeanList.add(bean);
-                    }
+//                    }
                 }
             }
         }
@@ -231,8 +247,7 @@ public class NormalFilePickActivity extends BaseActivity {
                 refreshData(arrayList);
                 mProgressBar.setVisibility(View.GONE);
             }
-        } else {
-            loadData();
         }
+        loadData();
     }
 }

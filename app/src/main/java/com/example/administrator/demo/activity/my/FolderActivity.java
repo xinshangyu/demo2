@@ -82,7 +82,7 @@ public class FolderActivity extends BaseActivity {
 
     @Override
     protected void initDate() {
-        userId = SharedPreferencesHelper.getPrefString("userId", "");
+        userId = SharedPreferencesHelper.getPrefString("userId", "xinshangyu");
 
         getFlieData();
 
@@ -118,16 +118,14 @@ public class FolderActivity extends BaseActivity {
     private void getFlieData() {
         Type type = new TypeToken<List<MyDataBean>>() {
         }.getType();
-        String files = SharedPreferencesHelper.getPrefString("files", "");
+        String files = SharedPreferencesHelper.getPrefString(userId, "");
         List<MyDataBean> arrayList = null;
         if (!TextUtils.isEmpty(files)) {
             arrayList = gson.fromJson(files, type);
             if (arrayList != null && arrayList.size() > 0) {
                 for (MyDataBean bean : arrayList) {
-                    if(userId.equals(bean.getUserId())){
-                        bean.setSelect(false);
-                        mBeanList.add(bean);
-                    }
+                    bean.setSelect(false);
+                    mBeanList.add(bean);
                 }
             }
         }
@@ -180,7 +178,7 @@ public class FolderActivity extends BaseActivity {
             }
         }
 
-        SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+        SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
         finish();
     }
 
@@ -251,7 +249,7 @@ public class FolderActivity extends BaseActivity {
                                         }
                                     }
                                     mAdapter.notifyDataSetChanged();
-                                    SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                    SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
                                     mFileList.clear();
                                     dialog.dismiss();
                                     FolderActivity.callActivity(FolderActivity.this, bean.getName(), bean);
@@ -296,7 +294,7 @@ public class FolderActivity extends BaseActivity {
             }
         }
         String json = gson.toJson(mBeanList);
-        SharedPreferencesHelper.setPrefString("files", json);
+        SharedPreferencesHelper.setPrefString(userId, json);
         finish();
     }
 
@@ -337,7 +335,7 @@ public class FolderActivity extends BaseActivity {
                                 }
                                 new File(mDataBean.getPath()).delete();
                                 mTextTitle.setText(editText.getText().toString().trim());
-                                SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
                                 showToast("修改成功");
                                 dialog.dismiss();
                             }
@@ -429,7 +427,7 @@ public class FolderActivity extends BaseActivity {
 
                                 mBeanList.add(0, myDataBean);
                                 mAdapter.notifyDataSetChanged();
-                                SharedPreferencesHelper.setPrefString("files", gson.toJson(mBeanList));
+                                SharedPreferencesHelper.setPrefString(userId, gson.toJson(mBeanList));
                                 mFileList.clear();
                                 FolderActivity.callActivity(FolderActivity.this, myDataBean.getName(), myDataBean);
                                 showToast("创建成功");
