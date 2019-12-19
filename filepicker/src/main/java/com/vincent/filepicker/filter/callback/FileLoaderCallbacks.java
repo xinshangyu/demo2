@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -70,6 +71,8 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
     private String[] mSuffixArgs;
     private CursorLoader mLoader;
     private String mSuffixRegex;
+    private String mFilter;
+
 
     public FileLoaderCallbacks(Context context, FilterResultCallback resultCallback, int type) {
         this(context, resultCallback, type, null);
@@ -82,6 +85,7 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
         this.mSuffixArgs = suffixArgs;
         if (suffixArgs != null && suffixArgs.length > 0) {
             mSuffixRegex = obtainSuffixRegex(suffixArgs);
+            mFilter = obtainFilter(suffixArgs);
         }
     }
 
@@ -98,7 +102,7 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
                 mLoader = new AudioLoader(context.get());
                 break;
             case TYPE_FILE:
-                mLoader = new FileLoader(context.get());
+                mLoader = new FileLoader(context.get(), mFilter);
                 break;
         }
 
@@ -132,7 +136,9 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
                 e.onNext(onFileResult(data));
                 e.onComplete();
             }
-        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+        })
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Observer<List<Directory<NormalFile>>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -291,7 +297,8 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
 
         while (data.moveToNext()) {
             String path = data.getString(data.getColumnIndexOrThrow(DATA));
-            if (path != null && contains(path)) {
+//            if (path != null && contains(path)) {
+            if (path != null) {
                 //Create a File instance
                 NormalFile file = new NormalFile();
                 file.setId(data.getLong(data.getColumnIndexOrThrow(_ID)));
@@ -324,6 +331,22 @@ public class FileLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor
         Pattern pattern = Pattern.compile(mSuffixRegex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
+    }
+
+    private String obtainFilter(String[] suffixes){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < suffixes.length; i++) {
+            if(i == 0){
+                sb.append("(" + MediaStore.Files.FileColumns.DATA + " LIKE '%." + suffixes[i] + "'");
+            }else{
+                if (i == suffixes.length - 1) {
+                    sb.append(" or " + MediaStore.Files.FileColumns.DATA + " LIKE '%." + suffixes[i] + "')");
+                } else {
+                    sb.append(" or " + MediaStore.Files.FileColumns.DATA + " LIKE '%." + suffixes[i] + "'");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     private String obtainSuffixRegex(String[] suffixes) {

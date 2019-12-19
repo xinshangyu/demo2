@@ -31,16 +31,22 @@ public class FileLoader extends CursorLoader {
         super(context, uri, projection, selection, selectionArgs, sortOrder);
     }
 
-    public FileLoader(Context context) {
+    public FileLoader(Context context, String filter) {
         super(context);
         setProjection(FILE_PROJECTION);
         setUri(MediaStore.Files.getContentUri("external"));
         setSortOrder(MediaStore.Files.FileColumns.DATE_ADDED + " DESC");
 
-//        setSelection(MIME_TYPE + "=? or "
-////                + MIME_TYPE + "=? or "
-////                + MIME_TYPE + "=? or "
-//                + MIME_TYPE + "=?");
+        //文件过滤
+//        String selection = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.xlsx'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.xls'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.doc'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.docx'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.ppt'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.pptx'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.pdf'" +
+//                " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.epub'" + ")";
+        setSelection(filter);
 
 //        String[] selectionArgs;
 //        selectionArgs = new String[] { "text/txt", "text/plain" };
